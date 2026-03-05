@@ -1,0 +1,85 @@
+/* stylelint-disable no-descending-specificity */
+
+/* ===== COLUMNS-FEATURE BLOCK ===== */
+.columns-feature > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.columns-feature > div > div {
+  order: 1;
+}
+
+.columns-feature > div > .columns-feature-img-col {
+  order: 0;
+}
+
+.columns-feature img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* ===== EYEBROW TEXT ===== */
+.columns-feature p strong {
+  font-size: var(--body-font-size-xs);
+  font-weight: 700;
+  letter-spacing: 2.08px;
+  text-transform: uppercase;
+  line-height: 1.5;
+  color: var(--text-color);
+}
+
+/* ===== HEADING ===== */
+.columns-feature h2 {
+  margin: 0 0 24px;
+}
+
+/* ===== DESCRIPTION ===== */
+.columns-feature p {
+  margin: 0 0 16px;
+}
+
+/* ===== CTA LINK ===== */
+.columns-feature a.button:any-link {
+  margin-top: 8px;
+}
+
+/* ===== CONTENT PADDING (MOBILE) ===== */
+.columns-feature > div > div:not(.columns-feature-img-col) {
+  padding: 32px 16px;
+}
+
+/* ===== DESKTOP LAYOUT ===== */
+@media (width >= 992px) {
+  .columns-feature > div {
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  .columns-feature > div > div {
+    flex: 1;
+    order: unset;
+  }
+
+  .columns-feature > div > div:not(.columns-feature-img-col) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 72px 64px;
+  }
+
+  .columns-feature img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0 8px 8px 0;
+  }
+
+  .columns-feature picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+}

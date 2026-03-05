@@ -1,0 +1,40 @@
+{
+  "variantName": "columns-quote",
+  "baseBlock": "columns",
+  "version": "1.0.0",
+  "created": "2026-03-05T16:38:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://about.ups.com/us/en/our-impact.html",
+    "originPage": "Our Impact landing page",
+    "blockPosition": "bottom"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "spacious",
+    "purpose": "testimonial",
+    "imagePattern": "large",
+    "structure": "blockquote + attribution | portrait image"
+  },
+  "contentPattern": {
+    "structure": "blockquote + attribution | portrait image",
+    "buttonCount": 0,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "CEO or executive quotes with portrait",
+      "testimonial sections with image",
+      "pull quote with attribution and photo"
+    ],
+    "notSuitableFor": [
+      "feature cards with CTA buttons",
+      "multi-item content grids",
+      "simple text-only layouts"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["content/us/en/our-impact"],
+    "reuseCount": 1,
+    "lastUsed": "2026-03-05T16:38:00.000Z"
+  }
+}

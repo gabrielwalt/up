@@ -1,0 +1,40 @@
+{
+  "variantName": "cards-awards",
+  "baseBlock": "cards",
+  "version": "1.0.0",
+  "created": "2026-03-05T16:38:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://about.ups.com/us/en/our-impact.html",
+    "originPage": "Our Impact landing page",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "spacious",
+    "purpose": "awards",
+    "imagePattern": "noimg",
+    "structure": "eyebrow + heading (text-only cards)"
+  },
+  "contentPattern": {
+    "structure": "eyebrow + heading per card, no images",
+    "buttonCount": 0,
+    "imageCount": 0
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "awards and recognition listings",
+      "text-only card grids",
+      "category-labeled content items"
+    ],
+    "notSuitableFor": [
+      "cards with images",
+      "product or feature cards",
+      "cards with long descriptions"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["content/us/en/our-impact"],
+    "reuseCount": 1,
+    "lastUsed": "2026-03-05T16:38:00.000Z"
+  }
+}

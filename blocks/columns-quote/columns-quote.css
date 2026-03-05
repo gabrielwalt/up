@@ -1,0 +1,71 @@
+/* stylelint-disable no-descending-specificity */
+
+/* ===== COLUMNS-QUOTE BLOCK ===== */
+.columns-quote > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.columns-quote > div > div {
+  order: 1;
+}
+
+.columns-quote > div > .columns-quote-img-col {
+  order: 0;
+}
+
+.columns-quote img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ===== QUOTE TEXT ===== */
+.columns-quote h3 {
+  font-size: 24px;
+  font-weight: 500;
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--text-color);
+  margin: 0 0 24px;
+}
+
+/* ===== ATTRIBUTION ===== */
+.columns-quote p strong {
+  font-size: var(--body-font-size-xs);
+  font-weight: 700;
+  letter-spacing: 2.08px;
+  text-transform: uppercase;
+  color: #767676;
+}
+
+/* ===== MOBILE: CONTENT PADDING ===== */
+.columns-quote > div > div:not(.columns-quote-img-col) {
+  padding: 32px 16px;
+}
+
+/* ===== DESKTOP LAYOUT ===== */
+@media (width >= 992px) {
+  .columns-quote {
+    margin: 80px 0;
+  }
+
+  .columns-quote > div {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .columns-quote > div > div {
+    flex: 1;
+    order: unset;
+  }
+
+  .columns-quote > div > div:not(.columns-quote-img-col) {
+    padding: 0 48px;
+  }
+
+  .columns-quote h3 {
+    font-size: 32px;
+    line-height: 1.5;
+  }
+}

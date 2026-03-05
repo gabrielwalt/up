@@ -1,0 +1,46 @@
+{
+  "templates": [
+    {
+      "name": "our-impact",
+      "urls": ["https://about.ups.com/us/en/our-impact.html"],
+      "description": "Our Impact landing page with hero, section cards, awards, governing text, and CEO quote",
+      "blocks": [
+        {
+          "name": "section-hero",
+          "instances": [".headline.aem-GridColumn > .upspr-width100 .upspr-headline"],
+          "section": "hero"
+        },
+        {
+          "name": "section-navigation-tabs",
+          "instances": [".navigation-tabs"],
+          "section": "navigation"
+        },
+        {
+          "name": "columns-feature",
+          "instances": [".sectioncard .upspr-xd-card"],
+          "section": "feature-cards"
+        },
+        {
+          "name": "section-governing",
+          "instances": [".headline.aem-GridColumn .upspr-headline:has(h2)"],
+          "section": "governing"
+        },
+        {
+          "name": "section-awards",
+          "instances": [".upspr-section-wrapper__bg-grey_25"],
+          "section": "awards"
+        },
+        {
+          "name": "cards-awards",
+          "instances": [".pr04-threecolumnteaser .upspr-three-column-teaser"],
+          "section": "awards-cards"
+        },
+        {
+          "name": "columns-quote",
+          "instances": [".quotes .upspr-testimonial"],
+          "section": "quote"
+        }
+      ]
+    }
+  ]
+}

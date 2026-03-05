@@ -1,0 +1,40 @@
+{
+  "variantName": "columns-feature",
+  "baseBlock": "columns",
+  "version": "1.0.0",
+  "created": "2026-03-05T16:38:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://about.ups.com/us/en/our-impact.html",
+    "originPage": "Our Impact landing page",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "spacious",
+    "purpose": "feature-card",
+    "imagePattern": "large",
+    "structure": "eyebrow + heading + description + CTA | image"
+  },
+  "contentPattern": {
+    "structure": "eyebrow + heading + description + CTA | image",
+    "buttonCount": 1,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "feature section cards with image and text",
+      "content highlight sections with CTA",
+      "two-column promotional content"
+    ],
+    "notSuitableFor": [
+      "simple side-by-side text layouts",
+      "quote or testimonial sections",
+      "multi-row data comparisons"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["content/us/en/our-impact"],
+    "reuseCount": 1,
+    "lastUsed": "2026-03-05T16:38:00.000Z"
+  }
+}

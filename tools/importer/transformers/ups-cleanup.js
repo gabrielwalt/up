@@ -1,0 +1,90 @@
+/* eslint-disable */
+/* global WebImporter */
+
+/**
+ * Transformer for UPS About site cleanup
+ * Purpose: Remove site-wide non-content elements (header, footer, widgets, empty blocks)
+ * Applies to: about.ups.com (all templates)
+ * Generated: 2026-03-05
+ *
+ * SELECTORS EXTRACTED FROM:
+ * - Captured DOM during migration of https://about.ups.com/us/en/our-impact.html
+ * - cleaned.html from page scraping phase
+ */
+
+const TransformHook = {
+  beforeTransform: 'beforeTransform',
+  afterTransform: 'afterTransform'
+};
+
+export default function transform(hookName, element, payload) {
+  if (hookName === TransformHook.beforeTransform) {
+    // Remove header/navigation experience fragment
+    // EXTRACTED: Found <div id="uspsr-navContainer" class="upspr-sticky-nav"> in captured DOM
+    // EXTRACTED: Found <header id="upspr-headerWrap" class="pr-header navbar-header">
+    WebImporter.DOMUtils.remove(element, [
+      '#uspsr-navContainer',
+      '.upspr-sticky-nav',
+      '.cmp-experiencefragment--upspr-header-fragment'
+    ]);
+
+    // Remove footer experience fragment
+    // EXTRACTED: Found <div class="cmp-experiencefragment--upspr-footer-fragment"> in captured DOM
+    // EXTRACTED: Found <footer class="upspr-footer"> in captured DOM
+    WebImporter.DOMUtils.remove(element, [
+      '.cmp-experiencefragment--upspr-footer-fragment',
+      '.upspr-footer'
+    ]);
+
+    // Remove empty content blocks (contain only &nbsp;)
+    // EXTRACTED: Found <div class="pr20-contentblock"> with only empty <p>&nbsp;</p> in captured DOM
+    const emptyBlocks = element.querySelectorAll('.pr20-contentblock');
+    emptyBlocks.forEach((block) => {
+      const text = block.textContent.trim().replace(/\u00a0/g, '');
+      if (!text) {
+        block.remove();
+      }
+    });
+
+    // Remove dynamic media/video placeholder containers
+    // EXTRACTED: Found <div class="video dynamicmedia parbase"> empty container in captured DOM
+    WebImporter.DOMUtils.remove(element, [
+      '.video.dynamicmedia'
+    ]);
+
+    // Remove input elements (hidden form fields used by AEM Classic)
+    // EXTRACTED: Found <input id="authorModeState"> and <input id="threeColumnTeaserResource"> in captured DOM
+    WebImporter.DOMUtils.remove(element, [
+      'input'
+    ]);
+
+    // Remove overlay elements
+    // EXTRACTED: Found <div class="upspr-overlay-global"> in captured DOM
+    WebImporter.DOMUtils.remove(element, [
+      '.upspr-overlay-global'
+    ]);
+  }
+
+  if (hookName === TransformHook.afterTransform) {
+    // Remove remaining link elements (stylesheets)
+    // EXTRACTED: Found multiple <link> elements for clientlibs CSS in captured DOM
+    WebImporter.DOMUtils.remove(element, [
+      'link',
+      'noscript'
+    ]);
+
+    // Remove decorative icons (chevrons, arrows) left behind after parsing
+    // EXTRACTED: Found <i class="upspr upspr-icon-chevronright"> throughout captured DOM
+    const decorativeIcons = element.querySelectorAll('i.upspr');
+    decorativeIcons.forEach((icon) => {
+      icon.remove();
+    });
+
+    // Remove screen reader only text spans
+    // EXTRACTED: Found <span class="upspr-readerTxt"> in captured DOM
+    const readerSpans = element.querySelectorAll('.upspr-readerTxt');
+    readerSpans.forEach((span) => {
+      span.remove();
+    });
+  }
+}

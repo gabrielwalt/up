@@ -1,0 +1,44 @@
+/* ===== CARDS-AWARDS BLOCK ===== */
+.cards-awards > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+.cards-awards > ul > li {
+  background-color: transparent;
+  border-radius: 8px;
+}
+
+.cards-awards .cards-awards-card-body {
+  padding: 0;
+}
+
+/* ===== EYEBROW TEXT ===== */
+.cards-awards .cards-awards-card-body p strong {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  line-height: 1.5;
+  color: var(--text-color);
+}
+
+/* ===== CARD HEADING ===== */
+.cards-awards .cards-awards-card-body h3 {
+  font-size: var(--heading-font-size-l);
+  font-weight: 500;
+  line-height: 1.25;
+  color: var(--text-color);
+  margin: 0 0 8px;
+}
+
+/* ===== DESKTOP: 3 COLUMNS ===== */
+@media (width >= 992px) {
+  .cards-awards > ul {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

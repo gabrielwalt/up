@@ -214,6 +214,7 @@ All content pages in this project and their source URLs.
 | Local Path | Origin URL | Description |
 |------------|-----------|-------------|
 | `/content/en-us.html` | https://about.ups.com/us/en/home.html | Homepage |
+| `/content/us/en/our-impact.html` | https://about.ups.com/us/en/our-impact.html | Our Impact landing page |
 | `/content/nav.html` | Derived from https://about.ups.com/us/en/home.html | Navigation fragment |
 | `/content/footer.html` | Derived from https://about.ups.com/us/en/home.html | Footer fragment |
 
@@ -403,14 +404,92 @@ Complete reference of all blocks and their variants.
 | **header** | — | Site header (to be built) |
 | **footer** | — | Site footer (to be built) |
 | **fragment** | — | Utility for loading content fragments |
-
-**TODO**: Add blocks as they are created during migration.
+| **columns** | columns-feature, columns-quote | Side-by-side content layout |
+| **cards** | cards-awards | Card-based content grid |
 
 ---
 
 ## Custom Blocks
 
 *(Document each block here as it is created. Follow the Documentation Checklist for New Blocks.)*
+
+### columns-feature
+
+**Location**: `/blocks/columns-feature/`
+
+| Variant | Class | Purpose |
+|---------|-------|---------|
+| Default | `.columns-feature` | Two-column feature card with eyebrow, heading, description, CTA, and image |
+
+**Authoring:**
+```
+| Columns-Feature |
+| --- | --- |
+| <p><strong>EYEBROW</strong></p><h2>Heading</h2><p>Description</p><p><a href="...">CTA</a></p> | <picture>...</picture> |
+```
+
+**Features**:
+- Eyebrow text (bold), h2 heading, description paragraph, CTA link
+- Image in one column, text content in the other
+- Column order follows source (image left or right)
+
+**Responsive behavior**:
+- Mobile: stacks vertically
+- Desktop (>=900px): side-by-side columns
+
+---
+
+### columns-quote
+
+**Location**: `/blocks/columns-quote/`
+
+| Variant | Class | Purpose |
+|---------|-------|---------|
+| Default | `.columns-quote` | Testimonial/quote with portrait image |
+
+**Authoring:**
+```
+| Columns-Quote |
+| --- | --- |
+| <h3>"Quote text..."</h3><p><strong>ATTRIBUTION NAME</strong></p> | <picture>...</picture> |
+```
+
+**Features**:
+- Quote text as h3, attribution name as bold text
+- Portrait image in second column
+
+**Responsive behavior**:
+- Mobile: stacks vertically
+- Desktop (>=900px): quote left, image right
+
+---
+
+### cards-awards
+
+**Location**: `/blocks/cards-awards/`
+
+| Variant | Class | Purpose |
+|---------|-------|---------|
+| Default | `.cards-awards` | Text-only award cards with eyebrow and heading |
+
+**Authoring:**
+```
+| Cards-Awards |
+| --- |
+| <p><strong>EYEBROW</strong></p><h3>Award description</h3> |
+| <p><strong>EYEBROW</strong></p><h3>Award description</h3> |
+```
+
+**Features**:
+- Text-only cards (no images)
+- Eyebrow category label (bold) + h3 heading per card
+- Grid layout with responsive columns
+
+**Responsive behavior**:
+- Mobile: single column
+- Desktop: auto-fill grid (min 257px per card)
+
+---
 
 ### fragment (Utility Module)
 
