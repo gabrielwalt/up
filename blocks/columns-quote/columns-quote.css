@@ -46,20 +46,17 @@
   line-height: 1.5;
   color: var(--text-color);
   margin: 0 0 24px;
-  position: relative;
   padding-left: 24px;
+  border-left: 4px solid #ffd100;
 }
 
-/* ===== YELLOW VERTICAL BAR ===== */
+/* ===== QUOTE MARKS (added via CSS, not content) ===== */
 .columns-quote h3::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 4px;
-  height: 100%;
-  background-color: #ffd100;
-  border-radius: 5px;
+  content: '\201C';
+}
+
+.columns-quote h3::after {
+  content: '\201D';
 }
 
 /* ===== ATTRIBUTION ===== */

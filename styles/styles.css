@@ -346,3 +346,29 @@ main .section.highlight {
   margin: 0;
   padding: 40px 0;
 }
+
+/* ===== SECTION SPACING OVERRIDES ===== */
+
+/* No gap between navigation-tabs section and following section */
+main > .section.navigation-tabs-container {
+  margin-bottom: 0;
+}
+
+main > .section.navigation-tabs-container + .section {
+  margin-top: 0;
+}
+
+/* Large gap between consecutive columns-feature sections */
+main > .section.columns-feature-container + .section.columns-feature-container {
+  margin-top: 128px;
+}
+
+/* Gap from last columns-feature to following section */
+main > .section.columns-feature-container + .section:not(.columns-feature-container) {
+  margin-top: 80px;
+}
+
+/* Gap before highlight sections following fade-in-up sections */
+main > .section.fade-in-up:not(.highlight) + .section.highlight {
+  margin-top: 64px;
+}

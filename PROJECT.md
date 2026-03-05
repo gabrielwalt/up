@@ -125,6 +125,31 @@ When encountering a content pattern that's similar to an existing block:
 - JavaScript logic is completely different
 - No shared styling or behavior with existing blocks
 
+### Fade-in-up Animation on Import
+
+**⚠️ When importing content, inspect the original page for scroll-triggered fade-in animations and apply the `fade-in-up` section style accordingly.**
+
+The UPS source site uses scroll-triggered fade-in-up animations on many sections. When importing a page:
+
+1. **Identify animated sections**: Scroll through the original page and note which sections animate into view (elements slide up and fade in as you scroll down).
+2. **Apply `fade-in-up` section style**: Add a `section-metadata` block at the end of each animated section:
+   ```html
+   <div class="section-metadata">
+     <div><div>Style</div><div>fade-in-up</div></div>
+   </div>
+   ```
+3. **Combine with other styles**: If the section also has a background style, combine them:
+   ```html
+   <div><div>Style</div><div>highlight, fade-in-up</div></div>
+   ```
+4. **Headings are excluded**: The animation only applies to non-heading children (`p`, blocks, buttons, etc.). Headings (`h1`–`h6`) remain visible immediately — this is by design.
+5. **Cards-awards special handling**: For `cards-awards` blocks inside `fade-in-up` sections, individual list items animate with staggered delays (0.2s, 0.4s, 0.6s).
+
+**Common animated sections on the UPS site:**
+- "Governing Ethically" and similar text+CTA sections
+- "Awards & Recognition" with the grey highlight background
+- Statistics and impact sections
+
 ---
 
 ## Maintaining This Documentation
@@ -386,6 +411,7 @@ Applied via `section-metadata` block with `Style: style-name`. Multiple styles c
 | `highlight` | `.section.highlight` | Accent background color |
 | `dark` | `.section.dark` | Dark background, light text |
 | `image-full-width` | `.section.image-full-width` | Images break out of container to full viewport width |
+| `fade-in-up` | `.section.fade-in-up` | Scroll-triggered fade-in-up animation for section children. Uses IntersectionObserver (in `delayed.js`) to add `.visible` class when 15% visible. Children animate with staggered delays (0s, 0.2s, 0.4s...). For cards blocks, individual list items animate separately. Can be combined with other styles (e.g., `highlight, fade-in-up`). |
 
 **Example usage in content:**
 ```html
