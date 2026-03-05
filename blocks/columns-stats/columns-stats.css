@@ -18,7 +18,6 @@ main > div:has(.columns-stats) {
 
 /* ===== IMAGE COLUMN ===== */
 .columns-stats .columns-stats-img-col {
-  border-radius: 12px;
   overflow: hidden;
   line-height: 0;
 }
@@ -32,7 +31,8 @@ main > div:has(.columns-stats) {
 
 /* ===== STATS CONTENT COLUMN ===== */
 .columns-stats .columns-stats-content {
-  padding: 32px 0;
+  padding: 24px;
+  background: var(--background-color);
 }
 
 /* ===== STATS LIST ===== */
@@ -43,70 +43,74 @@ main > div:has(.columns-stats) {
 
 /* ===== STAT ITEM ===== */
 .columns-stats .columns-stats-item {
-  padding: 16px 24px;
-  border-bottom: 1px solid #e0e0e0;
+  padding: 0 0 24px;
+  border-bottom: 4px solid var(--light-color);
+  margin-bottom: 24px;
 }
 
 .columns-stats .columns-stats-item:last-child {
   border-bottom: none;
+  margin-bottom: 0;
 }
 
 .columns-stats .columns-stats-item h4 {
   font-size: 32px;
-  font-weight: 700;
+  font-weight: 500;
   color: var(--text-color);
-  margin: 0;
+  margin: 0 0 8px;
   line-height: 1.2;
 }
 
 .columns-stats .columns-stats-item p {
-  font-size: var(--body-font-size-s);
-  color: var(--dark-color);
-  margin: 4px 0 0;
-  line-height: 1.3;
+  font-size: var(--body-font-size-xs);
+  color: var(--text-color);
+  margin: 0;
+  line-height: 1.5;
 }
 
-/* ===== CTA BUTTON ===== */
+/* ===== CTA BUTTON (gold/yellow) ===== */
 .columns-stats .columns-stats-content p.button-wrapper {
-  padding: 16px 24px 0;
+  padding: 0;
+  margin-top: 24px;
 }
 
 .columns-stats .columns-stats-content a.button:any-link {
-  border-color: var(--link-color);
-  background-color: var(--link-color);
-  color: var(--background-color);
+  border-color: #ffc400;
+  background-color: #ffc400;
+  color: #121212;
 }
 
 .columns-stats .columns-stats-content a.button:any-link:hover {
-  border-color: var(--link-hover-color);
-  background-color: var(--link-hover-color);
+  border-color: #e0ac00;
+  background-color: #e0ac00;
+  color: #121212;
 }
 
 /* ===== DESKTOP LAYOUT ===== */
 @media (width >= 992px) {
   .columns-stats > div {
     flex-direction: row;
-    align-items: center;
+    align-items: stretch;
     gap: 0;
     padding: 0 32px;
     position: relative;
   }
 
   .columns-stats .columns-stats-img-col {
-    flex: 0 0 60%;
-    max-width: 60%;
+    flex: 1 1 auto;
+    border-radius: 0;
   }
 
   .columns-stats .columns-stats-content {
-    flex: 0 0 40%;
-    max-width: 40%;
+    flex: 0 0 auto;
+    width: 280px;
     margin-left: -40px;
     background: var(--background-color);
     border-radius: 8px;
-    box-shadow: 0 4px 24px rgb(0 0 0 / 10%);
-    padding: 24px 0;
+    padding: 24px;
     position: relative;
     z-index: 1;
+    align-self: center;
   }
 
   .columns-stats .columns-stats-item h4 {

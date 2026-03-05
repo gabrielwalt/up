@@ -39,19 +39,18 @@
   background: var(--background-color);
   padding: 32px;
   max-width: 480px;
-  box-shadow: 0 4px 24px rgb(0 0 0 / 16%);
-  border-radius: 4px;
+  border-radius: 8px;
 }
 
 /* ===== EYEBROW ===== */
 .hero-featured .hero-featured-eyebrow {
-  font-size: 12px;
+  font-size: 10px;
   font-weight: 700;
-  letter-spacing: 2px;
+  letter-spacing: 1.6px;
   text-transform: uppercase;
   color: var(--text-color);
   margin: 0 0 12px;
-  padding-left: 16px;
+  padding-left: 40px;
   position: relative;
 }
 
@@ -59,10 +58,12 @@
   content: '';
   position: absolute;
   left: 0;
-  top: 0;
-  bottom: 0;
-  width: 3px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 3px;
   background: #ffd100;
+  border-radius: 5px;
 }
 
 .hero-featured .hero-featured-eyebrow a {
@@ -93,28 +94,32 @@
   color: var(--text-color);
   font-size: var(--body-font-size-m);
   line-height: 1.5;
-  margin: 0 0 16px;
+  margin: 0 0 32px;
 }
 
-/* ===== CTA BUTTON ===== */
+/* ===== CTA BUTTON (gold/yellow) ===== */
 .hero-featured a.button:any-link {
-  border-color: var(--link-color);
-  background-color: var(--link-color);
-  color: var(--background-color);
-  font-size: 14px;
-  padding: 10px 24px;
+  border-color: #ffc400;
+  background-color: #ffc400;
+  color: #121212;
 }
 
 .hero-featured a.button:any-link:hover {
-  border-color: var(--link-hover-color);
-  background-color: var(--link-hover-color);
+  border-color: #e0ac00;
+  background-color: #e0ac00;
+  color: #121212;
 }
 
 /* ===== DESKTOP ===== */
 @media (width >= 992px) {
   .hero-featured {
-    min-height: 560px;
-    padding: 60px 140px;
+    min-height: 600px;
+    padding: 60px 130px;
+  }
+
+  .hero-featured > div:last-child {
+    max-width: 50%;
+    padding: 72px 64px;
   }
 
   .hero-featured h4 {

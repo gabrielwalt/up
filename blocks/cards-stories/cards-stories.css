@@ -59,13 +59,13 @@
 
 /* ===== EYEBROW ===== */
 .cards-stories .cards-stories-eyebrow {
-  font-size: 12px;
+  font-size: 10px;
   font-weight: 700;
-  letter-spacing: 2px;
+  letter-spacing: 1.6px;
   text-transform: uppercase;
   color: var(--text-color);
   margin: 0 0 8px;
-  padding-left: 16px;
+  padding-left: 40px;
   position: relative;
 }
 
@@ -73,10 +73,12 @@
   content: '';
   position: absolute;
   left: 0;
-  top: 0;
-  bottom: 0;
-  width: 3px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 3px;
   background: #ffd100;
+  border-radius: 5px;
 }
 
 .cards-stories .cards-stories-eyebrow a {

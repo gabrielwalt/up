@@ -92,11 +92,13 @@
 @media (width < 992px) {
   .navigation-tabs {
     flex-direction: column;
+    gap: 16px;
     margin-top: 16px;
-    padding-bottom: 16px;
+    padding: 0 24px 16px;
   }
 
   .navigation-tabs > div {
+    flex: none;
     max-width: 100%;
   }
 }

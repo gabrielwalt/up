@@ -14,6 +14,7 @@ Migrating UPS "About" site (https://about.ups.com/us/en/home.html) to Adobe Edge
 6. **Create variants, not new blocks** - When a content pattern is similar to an existing block but needs different styling, create a VARIANT of that block (not a new block). This maintains consistency and reduces code duplication.
 7. **Never import all-caps content as-is** - When source content is ALL CAPS in the DOM (e.g., "REPORTS AND DISCLOSURES"), convert it to Title Case or Sentence case in the HTML content and apply `text-transform: uppercase` via CSS instead. This preserves authoring flexibility and avoids requiring authors to type in all caps.
 8. **Don't rely on bold/strong for block-wide styling** - If an entire text element in a block needs to be bold or styled differently (like eyebrow labels or attribution text), apply `font-weight: 700` via CSS targeting the element position (e.g., `:first-child`). Reserve `<strong>` only for inline emphasis where the author wants to distinguish specific words from surrounding text.
+9. **Keep import scripts aligned with content HTML** - When changing content markup patterns, update all related parsers in `tools/importer/parsers/`. Content HTML is the source of truth; parsers must reproduce it exactly. See "Import Script Alignment" in Migration Rules.
 
 ---
 
@@ -149,6 +150,30 @@ The UPS source site uses scroll-triggered fade-in-up animations on many sections
 - "Governing Ethically" and similar text+CTA sections
 - "Awards & Recognition" with the grey highlight background
 - Statistics and impact sections
+
+### Import Script Alignment
+
+**⚠️ CRITICAL: Import infrastructure (parsers, transformers, page-templates.json) MUST stay aligned with the actual content HTML structure.**
+
+The import scripts in `tools/importer/` are designed to reproduce the exact content structure found in `content/`. When the content structure changes (e.g., CSS-handled styling replaces inline markup), the parsers must be updated to match.
+
+**Rules for keeping scripts aligned:**
+
+1. **Content HTML is the source of truth** — If the content HTML uses plain `<p>` for eyebrows, parsers must output plain `<p>` (not `<p><strong>...</strong></p>`).
+2. **CSS handles presentation** — Bold, uppercase, colors, and spacing are all CSS concerns. Parsers should output clean semantic HTML and let block CSS handle visual styling.
+3. **Create clean DOM elements in parsers** — Always use `document.createElement()` to build output elements rather than pushing source DOM nodes directly. Source nodes carry classes, attributes, and inline styles from the original site that don't belong in EDS content.
+4. **Verify after content changes** — When modifying content markup patterns (e.g., removing `<strong>` wrappers from eyebrows), update ALL parsers that produce that pattern. Search across `tools/importer/parsers/` for the old pattern.
+5. **Never overwrite verified content** — When simulating an import to check alignment, compare the parser output against existing content HTML. Fix the parser to match the content, never the other way around.
+
+**Eyebrow text pattern (established):**
+- Content HTML: `<p>Eyebrow Text</p>` (plain paragraph)
+- CSS: `font-weight: 700; text-transform: uppercase; letter-spacing: 1.6px;` on the eyebrow class
+- Parser: `const p = document.createElement('p'); p.textContent = eyebrow.textContent.trim();`
+- Applies to: columns-feature, cards-awards, cards-stories, hero-featured eyebrows
+
+**Yellow accent segment pattern (established):**
+- Eyebrow dashes: `::before` pseudo-element, `width: 32px; height: 3px; background: #ffd100; border-radius: 5px;` positioned absolutely with `left: 0; top: 50%; transform: translateY(-50%);` and `padding-left: 40px` on the text element
+- Heading bars: `::after` pseudo-element on H1, `width: 80px; height: 4px; background: #ffdc40; border-radius: 5px; margin: 32px auto 0;` displayed as block
 
 ---
 
@@ -456,17 +481,18 @@ Complete reference of all blocks and their variants.
 ```
 | Columns-Feature |
 | --- | --- |
-| <p><strong>EYEBROW</strong></p><h2>Heading</h2><p>Description</p><p><a href="...">CTA</a></p> | <picture>...</picture> |
+| <p>Eyebrow Text</p><h2>Heading</h2><p>Description</p><p><a href="...">CTA</a></p> | <picture>...</picture> |
 ```
 
 **Features**:
-- Eyebrow text (bold), h2 heading, description paragraph, CTA link
+- Eyebrow text (plain `<p>`, CSS handles bold/uppercase), h2 heading, description paragraph, CTA link
+- Horizontal yellow accent dash (`::before`) on eyebrow text
 - Image in one column, text content in the other
 - Column order follows source (image left or right)
 
 **Responsive behavior**:
-- Mobile: stacks vertically
-- Desktop (>=900px): side-by-side columns
+- Mobile: stacks vertically, image on top
+- Desktop (>=992px): side-by-side 50/50 columns
 
 ---
 
@@ -482,16 +508,16 @@ Complete reference of all blocks and their variants.
 ```
 | Columns-Quote |
 | --- | --- |
-| <h3>"Quote text..."</h3><p><strong>ATTRIBUTION NAME</strong></p> | <picture>...</picture> |
+| <h3>"Quote text..."</h3><p>Attribution Name</p> | <picture>...</picture> |
 ```
 
 **Features**:
-- Quote text as h3, attribution name as bold text
+- Quote text as h3, attribution name as plain `<p>` (CSS handles bold/uppercase)
 - Portrait image in second column
 
 **Responsive behavior**:
 - Mobile: stacks vertically
-- Desktop (>=900px): quote left, image right
+- Desktop (>=992px): quote left, image right
 
 ---
 
@@ -507,13 +533,13 @@ Complete reference of all blocks and their variants.
 ```
 | Cards-Awards |
 | --- |
-| <p><strong>EYEBROW</strong></p><h3>Award description</h3> |
-| <p><strong>EYEBROW</strong></p><h3>Award description</h3> |
+| <p>Eyebrow Text</p><h3>Award description</h3> |
+| <p>Eyebrow Text</p><h3>Award description</h3> |
 ```
 
 **Features**:
 - Text-only cards (no images)
-- Eyebrow category label (bold) + h3 heading per card
+- Eyebrow category label (plain `<p>`, CSS handles bold/uppercase) + h3 heading per card
 - Grid layout with responsive columns
 
 **Responsive behavior**:
@@ -540,13 +566,13 @@ Complete reference of all blocks and their variants.
 
 **Features**:
 - Full-width background image (first row)
-- White card overlay at bottom-left with shadow
-- Eyebrow text with yellow left accent bar (#ffd100)
-- h4 heading, description, primary CTA button
+- White card overlay at bottom-left (rounded 8px, no box-shadow)
+- Eyebrow text with horizontal yellow accent dash (`::before`, 32x3px, #ffd100)
+- h4 heading, description, outlined CTA button (default global style)
 
 **Responsive behavior**:
-- Mobile: min-height 400px, card takes full width
-- Desktop (>=992px): min-height 560px, card max-width 480px at bottom-left
+- Mobile: min-height 400px, card max-width 480px
+- Desktop (>=992px): min-height 600px, card max-width 50%, padding 72px 64px
 
 ---
 
@@ -567,7 +593,7 @@ Complete reference of all blocks and their variants.
 ```
 
 **Features**:
-- Image + text cards with eyebrow category label (yellow accent)
+- Image + text cards with eyebrow category label and horizontal yellow accent dash (`::before`, 32x3px)
 - Entire card is clickable (wraps in anchor)
 - Image zoom on hover, box-shadow hover effect
 - 16:10 aspect ratio images
@@ -594,14 +620,14 @@ Complete reference of all blocks and their variants.
 ```
 
 **Features**:
-- Left image with rounded corners
-- Stats panel overlaps image on desktop (negative margin)
-- Each stat is an h4 value + p label pair with bottom border
-- Primary CTA button at bottom of stats panel
+- Left image (fills available width)
+- Stats panel overlaps image on desktop (`margin-left: -40px`, centered vertically)
+- Each stat: h4 number + p label pair, separated by 4px solid `var(--light-color)` borders
+- Gold/yellow CTA button (`#ffc400` bg, `#121212` text, no border)
 
 **Responsive behavior**:
 - Mobile: stacks vertically (image then stats)
-- Desktop (>=992px): image 60%, stats panel 40% overlapping with shadow
+- Desktop (>=992px): image fills flex space, stats panel 280px wide overlapping with `border-radius: 8px`
 
 ---
 
