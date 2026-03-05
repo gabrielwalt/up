@@ -1,0 +1,109 @@
+/* stylelint-disable no-descending-specificity */
+
+/* ===== CARDS-STORIES BLOCK ===== */
+.cards-stories > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+.cards-stories > ul > li {
+  background-color: var(--background-color);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgb(0 0 0 / 10%);
+  transition: box-shadow 0.2s ease;
+}
+
+.cards-stories > ul > li:hover {
+  box-shadow: 0 8px 32px rgb(0 0 0 / 18%);
+}
+
+/* ===== CARD LINK WRAPPER ===== */
+.cards-stories .cards-stories-card-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.cards-stories .cards-stories-card-link:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ===== CARD IMAGE ===== */
+.cards-stories .cards-stories-card-image {
+  line-height: 0;
+  overflow: hidden;
+}
+
+.cards-stories .cards-stories-card-image img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.cards-stories > ul > li:hover .cards-stories-card-image img {
+  transform: scale(1.03);
+}
+
+/* ===== CARD BODY ===== */
+.cards-stories .cards-stories-card-body {
+  padding: 20px 24px 28px;
+}
+
+/* ===== EYEBROW ===== */
+.cards-stories .cards-stories-eyebrow {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-color);
+  margin: 0 0 8px;
+  padding-left: 16px;
+  position: relative;
+}
+
+.cards-stories .cards-stories-eyebrow::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: #ffd100;
+}
+
+.cards-stories .cards-stories-eyebrow a {
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+/* ===== TITLE ===== */
+.cards-stories .cards-stories-card-body h3 {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--text-color);
+  margin: 0 0 8px;
+}
+
+/* ===== DESCRIPTION ===== */
+.cards-stories .cards-stories-card-body p:not(.cards-stories-eyebrow) {
+  font-size: var(--body-font-size-s);
+  line-height: 1.5;
+  color: var(--dark-color);
+  margin: 0;
+}
+
+/* ===== DESKTOP GRID ===== */
+@media (width >= 992px) {
+  .cards-stories > ul {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

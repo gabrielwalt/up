@@ -50,14 +50,12 @@ export default function parse(element, { document }) {
   cardItems.forEach((item) => {
     const cardContent = [];
 
-    // Extract eyebrow text
+    // Extract eyebrow text (plain p, CSS handles bold/uppercase styling)
     // VALIDATED: Source has .upspr-eyebrow-text inside .upspr-content-tile__topic
     const eyebrow = item.querySelector('.upspr-eyebrow-text');
     if (eyebrow) {
-      const strong = document.createElement('strong');
-      strong.textContent = eyebrow.textContent.trim();
       const p = document.createElement('p');
-      p.append(strong);
+      p.textContent = eyebrow.textContent.trim();
       cardContent.push(p);
     }
 

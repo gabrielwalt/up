@@ -11,9 +11,10 @@
           "section": "hero"
         },
         {
-          "name": "section-navigation-tabs",
-          "instances": [".navigation-tabs"],
-          "section": "navigation"
+          "name": "navigation-tabs",
+          "instances": [".upspr-section-card__tabs, .upspr-section-card_tabs-container"],
+          "section": "navigation",
+          "_note": "Source selector needs verification against live DOM; parser pending source DOM capture"
         },
         {
           "name": "columns-feature",
@@ -39,6 +40,33 @@
           "name": "columns-quote",
           "instances": [".quotes .upspr-testimonial"],
           "section": "quote"
+        }
+      ]
+    },
+    {
+      "name": "home",
+      "urls": ["https://about.ups.com/us/en/home.html"],
+      "description": "Homepage with hero banner, story cards, about us section, stats, and feature section",
+      "blocks": [
+        {
+          "name": "hero-featured",
+          "instances": [".hero .upspr-heroimage:not(.vertical-hero)"],
+          "section": "hero"
+        },
+        {
+          "name": "cards-stories",
+          "instances": [".pr04-threecolumnteaser .upspr-homepage-latest-stories"],
+          "section": "stories"
+        },
+        {
+          "name": "columns-stats",
+          "instances": [".hero .upspr-heroimage.vertical-hero"],
+          "section": "stats"
+        },
+        {
+          "name": "columns-feature",
+          "instances": [".sectioncard .upspr-xd-card"],
+          "section": "feature"
         }
       ]
     }

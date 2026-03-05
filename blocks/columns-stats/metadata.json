@@ -1,0 +1,40 @@
+{
+  "variantName": "columns-stats",
+  "baseBlock": "columns",
+  "version": "1.0.0",
+  "created": "2026-03-05T19:30:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://about.ups.com/us/en/home.html",
+    "originPage": "Homepage",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "spacious",
+    "purpose": "stats-display",
+    "imagePattern": "large",
+    "structure": "image + stats panel (value + label pairs) + CTA"
+  },
+  "contentPattern": {
+    "structure": "2-column: image | stats list with h4 values and p labels + CTA",
+    "buttonCount": 1,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "company stats or key figures display",
+      "image with overlapping stats panel",
+      "fact sheet or data highlights"
+    ],
+    "notSuitableFor": [
+      "simple side-by-side text layouts",
+      "feature cards with descriptions",
+      "multi-row data tables"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["content/us/en/home"],
+    "reuseCount": 1,
+    "lastUsed": "2026-03-05T19:30:00.000Z"
+  }
+}

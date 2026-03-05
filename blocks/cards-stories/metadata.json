@@ -1,0 +1,40 @@
+{
+  "variantName": "cards-stories",
+  "baseBlock": "cards",
+  "version": "1.0.0",
+  "created": "2026-03-05T19:30:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://about.ups.com/us/en/home.html",
+    "originPage": "Homepage",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "spacious",
+    "purpose": "story-cards",
+    "imagePattern": "large",
+    "structure": "image + eyebrow + title + description per card"
+  },
+  "contentPattern": {
+    "structure": "3-column grid, each card with image, eyebrow, title, description",
+    "buttonCount": 0,
+    "imageCount": 3
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "story or article card grids with images",
+      "content teasers with eyebrow categories",
+      "featured content cards linking to detail pages"
+    ],
+    "notSuitableFor": [
+      "text-only cards without images",
+      "product cards with pricing",
+      "icon-based feature cards"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["content/us/en/home"],
+    "reuseCount": 1,
+    "lastUsed": "2026-03-05T19:30:00.000Z"
+  }
+}

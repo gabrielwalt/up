@@ -29,8 +29,8 @@
   --body-font-size-xs: 13px;
 
   /* heading sizes */
-  --heading-font-size-xxl: 36px;
-  --heading-font-size-xl: 32px;
+  --heading-font-size-xxl: 64px;
+  --heading-font-size-xl: 40px;
   --heading-font-size-l: 24px;
   --heading-font-size-m: 20px;
   --heading-font-size-s: 18px;
@@ -140,6 +140,15 @@ pre {
 /* ===== DEFAULT CONTENT CENTERING ===== */
 main .default-content-wrapper {
   text-align: center;
+}
+
+/* ===== DEFAULT CONTENT VERTICAL SPACING ===== */
+main .default-content-wrapper h2 {
+  margin-bottom: 32px;
+}
+
+main .default-content-wrapper p {
+  margin-bottom: 16px;
 }
 
 main > div {

@@ -41,15 +41,13 @@ export default function parse(element, { document }) {
     quoteCell.push(h3);
   }
 
-  // Extract attribution name
+  // Extract attribution name (plain p, CSS handles styling)
   // VALIDATED: Source has .upspr-testimonial__wrap--name with .upspr-eyebrow-text
   const attribution = element.querySelector('.upspr-testimonial__wrap--name .upspr-eyebrow-text') ||
                       element.querySelector('.upspr-testimonial__wrap--name');
   if (attribution) {
-    const strong = document.createElement('strong');
-    strong.textContent = attribution.textContent.trim();
     const p = document.createElement('p');
-    p.append(strong);
+    p.textContent = attribution.textContent.trim();
     quoteCell.push(p);
   }
 

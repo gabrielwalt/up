@@ -43,28 +43,30 @@ export default function parse(element, { document }) {
   const textCell = [];
 
   if (contentDiv) {
-    // Extract eyebrow text
+    // Extract eyebrow text (plain p, CSS handles bold/uppercase styling)
     // VALIDATED: Source has .upspr-xd-card_eyebrow inside .upspr-eyebrow-link
     const eyebrow = contentDiv.querySelector('.upspr-xd-card_eyebrow');
     if (eyebrow) {
-      const strong = document.createElement('strong');
-      strong.textContent = eyebrow.textContent.trim();
       const p = document.createElement('p');
-      p.append(strong);
+      p.textContent = eyebrow.textContent.trim();
       textCell.push(p);
     }
 
-    // Extract heading
+    // Extract heading (create clean element to avoid carrying source attributes)
     // VALIDATED: Source has h2 element directly in .upspr-xd-card_content
     const heading = contentDiv.querySelector('h2, h3');
     if (heading) {
-      textCell.push(heading);
+      const h = document.createElement(heading.tagName.toLowerCase());
+      h.textContent = heading.textContent.trim();
+      textCell.push(h);
     }
 
-    // Extract description paragraph
+    // Extract description paragraph (create clean elements)
     // VALIDATED: Source has <p> elements (not inside links) in .upspr-xd-card_content
     const paragraphs = contentDiv.querySelectorAll(':scope > p');
-    paragraphs.forEach((p) => {
+    paragraphs.forEach((srcP) => {
+      const p = document.createElement('p');
+      p.textContent = srcP.textContent.trim();
       textCell.push(p);
     });
 

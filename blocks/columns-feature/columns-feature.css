@@ -54,6 +54,21 @@
   padding: 32px 16px;
 }
 
+/* ===== MOBILE EYEBROW YELLOW SEGMENT ===== */
+@media (width < 992px) {
+  .columns-feature > div > div:not(.columns-feature-img-col) > p:first-child::before {
+    content: '';
+    display: inline-block;
+    width: 40px;
+    height: 4px;
+    background: #ffd100;
+    border-radius: 5px;
+    position: relative;
+    top: -3px;
+    margin-right: 16px;
+  }
+}
+
 /* ===== DESKTOP LAYOUT ===== */
 @media (width >= 992px) {
   .columns-feature > div {
@@ -62,7 +77,8 @@
   }
 
   .columns-feature > div > div {
-    flex: 1;
+    flex: 0 0 50%;
+    box-sizing: border-box;
     order: unset;
   }
 
@@ -85,6 +101,12 @@
     top: 78px;
     right: -52px;
     z-index: 1;
+  }
+
+  /* When image is on the left (text column is last child), place dash on left edge */
+  .columns-feature > div > div:not(.columns-feature-img-col):last-child::before {
+    right: auto;
+    left: -52px;
   }
 
   .columns-feature img {

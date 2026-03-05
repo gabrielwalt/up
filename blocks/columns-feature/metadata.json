@@ -33,8 +33,8 @@
     ]
   },
   "usage": {
-    "pagesUsing": ["content/us/en/our-impact"],
-    "reuseCount": 1,
-    "lastUsed": "2026-03-05T16:38:00.000Z"
+    "pagesUsing": ["content/us/en/our-impact", "content/us/en/home"],
+    "reuseCount": 2,
+    "lastUsed": "2026-03-05T19:30:00.000Z"
   }
 }

@@ -1,0 +1,40 @@
+{
+  "variantName": "hero-featured",
+  "baseBlock": "hero",
+  "version": "1.0.0",
+  "created": "2026-03-05T19:30:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://about.ups.com/us/en/home.html",
+    "originPage": "Homepage",
+    "blockPosition": "top"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "spacious",
+    "purpose": "featured-story-teaser",
+    "imagePattern": "large",
+    "structure": "background image + card overlay (eyebrow + heading + description + CTA)"
+  },
+  "contentPattern": {
+    "structure": "background image | eyebrow + heading + description + CTA in card overlay",
+    "buttonCount": 1,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "featured story or article teaser",
+      "hero with background image and card overlay",
+      "homepage featured content highlight"
+    ],
+    "notSuitableFor": [
+      "simple hero with text directly on image",
+      "hero without background image",
+      "multi-item carousel"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["content/us/en/home"],
+    "reuseCount": 1,
+    "lastUsed": "2026-03-05T19:30:00.000Z"
+  }
+}

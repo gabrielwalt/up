@@ -241,7 +241,7 @@ All content pages in this project and their source URLs.
 
 | Local Path | Origin URL | Description |
 |------------|-----------|-------------|
-| `/content/en-us.html` | https://about.ups.com/us/en/home.html | Homepage |
+| `/content/us/en/home.html` | https://about.ups.com/us/en/home.html | Homepage |
 | `/content/us/en/our-impact.html` | https://about.ups.com/us/en/our-impact.html | Our Impact landing page |
 | `/content/nav.html` | Derived from https://about.ups.com/us/en/home.html | Navigation fragment |
 | `/content/footer.html` | Derived from https://about.ups.com/us/en/home.html | Footer fragment |
@@ -433,8 +433,9 @@ Complete reference of all blocks and their variants.
 | **header** | — | Site header (to be built) |
 | **footer** | — | Site footer (to be built) |
 | **fragment** | — | Utility for loading content fragments |
-| **columns** | columns-feature, columns-quote | Side-by-side content layout |
-| **cards** | cards-awards | Card-based content grid |
+| **columns** | columns-feature, columns-quote, columns-stats | Side-by-side content layout |
+| **cards** | cards-awards, cards-stories | Card-based content grid |
+| **hero** | hero-featured | Hero banner with overlay card |
 | **navigation-tabs** | — | Card-style navigation links with arrow icons |
 
 ---
@@ -518,6 +519,89 @@ Complete reference of all blocks and their variants.
 **Responsive behavior**:
 - Mobile: single column
 - Desktop: auto-fill grid (min 257px per card)
+
+---
+
+### hero-featured
+
+**Location**: `/blocks/hero-featured/`
+
+| Variant | Class | Purpose |
+|---------|-------|---------|
+| Default | `.hero-featured` | Full-width hero with background image and white card overlay |
+
+**Authoring:**
+```
+| Hero-Featured |
+| --- |
+| ![alt](image-url) |
+| <p>Eyebrow</p><h4>Heading</h4><p>Description</p><p><a href="...">CTA</a></p> |
+```
+
+**Features**:
+- Full-width background image (first row)
+- White card overlay at bottom-left with shadow
+- Eyebrow text with yellow left accent bar (#ffd100)
+- h4 heading, description, primary CTA button
+
+**Responsive behavior**:
+- Mobile: min-height 400px, card takes full width
+- Desktop (>=992px): min-height 560px, card max-width 480px at bottom-left
+
+---
+
+### cards-stories
+
+**Location**: `/blocks/cards-stories/`
+
+| Variant | Class | Purpose |
+|---------|-------|---------|
+| Default | `.cards-stories` | Image + text story cards in a grid |
+
+**Authoring:**
+```
+| Cards-Stories |
+| --- | --- |
+| ![alt](image-url) | <p>Eyebrow</p><h3>Title</h3><p>Description</p><p><a href="...">Link</a></p> |
+| ![alt](image-url) | <p>Eyebrow</p><h3>Title</h3><p>Description</p><p><a href="...">Link</a></p> |
+```
+
+**Features**:
+- Image + text cards with eyebrow category label (yellow accent)
+- Entire card is clickable (wraps in anchor)
+- Image zoom on hover, box-shadow hover effect
+- 16:10 aspect ratio images
+
+**Responsive behavior**:
+- Mobile: single column
+- Desktop (>=992px): 3-column grid
+
+---
+
+### columns-stats
+
+**Location**: `/blocks/columns-stats/`
+
+| Variant | Class | Purpose |
+|---------|-------|---------|
+| Default | `.columns-stats` | Image with overlapping stats panel |
+
+**Authoring:**
+```
+| Columns-Stats |
+| --- | --- |
+| ![alt](image-url) | <h4>~460K</h4><p>Label</p><h4>200+</h4><p>Label</p>...<p><a href="...">CTA</a></p> |
+```
+
+**Features**:
+- Left image with rounded corners
+- Stats panel overlaps image on desktop (negative margin)
+- Each stat is an h4 value + p label pair with bottom border
+- Primary CTA button at bottom of stats panel
+
+**Responsive behavior**:
+- Mobile: stacks vertically (image then stats)
+- Desktop (>=992px): image 60%, stats panel 40% overlapping with shadow
 
 ---
 
