@@ -14,7 +14,7 @@
   background-color: var(--background-color);
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 4px 24px rgb(0 0 0 / 10%);
+  box-shadow: 0 4px 24px rgb(0 0 0 / 16%);
   transition: box-shadow 0.2s ease;
 }
 
@@ -42,7 +42,7 @@
 
 .cards-stories .cards-stories-card-image img {
   width: 100%;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 19 / 14;
   object-fit: cover;
   display: block;
   transition: transform 0.3s ease;
@@ -54,7 +54,7 @@
 
 /* ===== CARD BODY ===== */
 .cards-stories .cards-stories-card-body {
-  padding: 20px 24px 28px;
+  padding: 24px 40px 40px;
 }
 
 /* ===== EYEBROW ===== */
@@ -88,9 +88,9 @@
 
 /* ===== TITLE ===== */
 .cards-stories .cards-stories-card-body h3 {
-  font-size: 18px;
+  font-size: 24px;
   font-weight: 500;
-  line-height: 1.4;
+  line-height: 1.33;
   color: var(--text-color);
   margin: 0 0 8px;
 }

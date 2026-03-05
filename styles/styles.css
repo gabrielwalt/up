@@ -65,6 +65,12 @@
   }
 }
 
+@media (width >= 1024px) {
+  :root {
+    --nav-height: 104px;
+  }
+}
+
 body {
   display: none;
   margin: 0;
@@ -155,8 +161,13 @@ main .section.accent-bar .default-content-wrapper h2::after {
 }
 
 main .section.accent-bar .default-content-wrapper h6 {
+  font-size: 13px;
+  font-weight: 700;
+  color: rgb(118 118 118);
   text-transform: uppercase;
-  letter-spacing: 1.6px;
+  letter-spacing: 2.08px;
+  line-height: 1.2;
+  margin-bottom: 24px;
 }
 
 /* ===== DEFAULT CONTENT VERTICAL SPACING ===== */
@@ -397,4 +408,15 @@ main > .section.columns-feature-container + .section:not(.columns-feature-contai
 /* Gap before highlight sections following fade-in-up sections */
 main > .section.fade-in-up:not(.highlight) + .section.highlight {
   margin-top: 64px;
+}
+
+/* Hero-featured: reduce bottom margin so cards-stories gap isn't collapsed */
+main > .section.hero-featured-container {
+  margin-bottom: 0;
+}
+
+/* Cards-stories: less margin above, more below */
+main > .section.cards-stories-container {
+  margin-top: 16px;
+  margin-bottom: 80px;
 }

@@ -8,31 +8,40 @@ main > div:has(.columns-stats) {
   padding: 0;
 }
 
-.columns-stats > div {
-  display: flex;
-  flex-direction: column;
+/* Inner container: image as background, stats overlay */
+.columns-stats .columns-stats-inner {
+  position: relative;
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 24px;
-}
-
-/* ===== IMAGE COLUMN ===== */
-.columns-stats .columns-stats-img-col {
   overflow: hidden;
-  line-height: 0;
+  border-radius: 16px;
 }
 
-.columns-stats .columns-stats-img-col img {
-  width: 100%;
-  height: auto;
+/* ===== BACKGROUND IMAGE ===== */
+.columns-stats .columns-stats-inner > picture {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
   display: block;
-  object-fit: cover;
 }
 
-/* ===== STATS CONTENT COLUMN ===== */
+.columns-stats .columns-stats-inner > picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ===== STATS CONTENT OVERLAY ===== */
 .columns-stats .columns-stats-content {
-  padding: 24px;
   background: var(--background-color);
+  border-radius: 8px;
+  padding: 24px 16px;
+  text-align: center;
+  margin: 120px 24px 24px;
+  position: relative;
+  z-index: 1;
 }
 
 /* ===== STATS LIST ===== */
@@ -88,29 +97,22 @@ main > div:has(.columns-stats) {
 
 /* ===== DESKTOP LAYOUT ===== */
 @media (width >= 992px) {
-  .columns-stats > div {
-    flex-direction: row;
-    align-items: stretch;
-    gap: 0;
+  .columns-stats .columns-stats-inner {
     padding: 0 32px;
-    position: relative;
   }
 
-  .columns-stats .columns-stats-img-col {
-    flex: 1 1 auto;
-    border-radius: 0;
+  .columns-stats .columns-stats-inner > picture img {
+    border-radius: 16px;
   }
 
+  /* Stats card positioned at right, overlaying the image */
   .columns-stats .columns-stats-content {
-    flex: 0 0 auto;
-    width: 280px;
-    margin-left: -40px;
-    background: var(--background-color);
-    border-radius: 8px;
-    padding: 24px;
     position: relative;
     z-index: 1;
-    align-self: center;
+    width: 280px;
+    margin: 30px 0 30px auto;
+    padding: 24px 20px;
+    border-radius: 8px;
   }
 
   .columns-stats .columns-stats-item h4 {

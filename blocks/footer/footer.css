@@ -1,20 +1,182 @@
+/* stylelint-disable no-descending-specificity */
+
+/* ===== FOOTER BASE ===== */
 footer {
-  background-color: var(--light-color);
-  font-size: var(--body-font-size-xs);
+  background-color: #351c15;
+  color: #fff;
 }
 
-footer .footer > div {
-  margin: auto;
+footer .footer > div > .section {
   max-width: 1200px;
-  padding: 40px 24px 24px;
+  margin: 0 auto;
+  padding: 0 24px;
 }
 
 footer .footer p {
   margin: 0;
 }
 
-@media (width >= 900px) {
-  footer .footer > div {
-    padding: 40px 32px 24px;
+footer .footer a:any-link {
+  color: #c6c6c6;
+  text-decoration: none;
+}
+
+footer .footer a:any-link:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+/* ===== FEATURED SECTION (Newsroom / Careers) ===== */
+footer .footer-featured {
+  border-bottom: 1px solid rgb(255 255 255 / 15%);
+}
+
+footer .footer-featured > div {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+footer .footer-featured .button-wrapper {
+  margin: 0;
+}
+
+footer .footer-featured a.button:any-link {
+  border-color: #c6c6c6;
+  background-color: transparent;
+  color: #c6c6c6;
+  letter-spacing: 1.6px;
+  min-width: 180px;
+  justify-content: center;
+}
+
+footer .footer-featured a.button:any-link:hover {
+  border-color: #fff;
+  color: #fff;
+  background-color: transparent;
+}
+
+/* ===== LINKS SECTION (Columns) ===== */
+footer .footer-links {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+footer .footer-columns {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
+footer .footer-col p strong {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: #c6c6c6;
+}
+
+footer .footer-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0 0;
+}
+
+footer .footer-col ul li {
+  margin-bottom: 12px;
+}
+
+footer .footer-col ul li a {
+  font-size: var(--body-font-size-m);
+  font-weight: 700;
+}
+
+/* Last column: Subscribe CTA */
+footer .footer-col:last-child p strong {
+  font-size: var(--body-font-size-m);
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: normal;
+  color: #fff;
+}
+
+footer .footer-col:last-child .button-wrapper {
+  margin-top: 16px;
+}
+
+footer .footer-col:last-child a.button:any-link {
+  border-color: #c6c6c6;
+  background-color: transparent;
+  color: #c6c6c6;
+  letter-spacing: 1.6px;
+}
+
+footer .footer-col:last-child a.button:any-link:hover {
+  border-color: #fff;
+  color: #fff;
+  background-color: transparent;
+}
+
+/* ===== LEGAL SECTION ===== */
+footer .footer-legal {
+  border-top: 1px solid rgb(255 255 255 / 15%);
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+
+footer .footer-legal ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+}
+
+footer .footer-legal ul li {
+  font-size: var(--body-font-size-xs);
+}
+
+footer .footer-legal ul li a {
+  color: rgb(198 198 198 / 60%);
+  font-weight: 700;
+  font-size: var(--body-font-size-xs);
+}
+
+footer .footer-legal ul li a:hover {
+  color: #c6c6c6;
+}
+
+/* Separators between legal links */
+footer .footer-legal ul li + li::before {
+  content: '|';
+  color: rgb(198 198 198 / 40%);
+  margin: 0 12px;
+}
+
+footer .footer-legal p {
+  font-size: 10px;
+  color: #c6c6c6;
+  line-height: 1.6;
+}
+
+/* ===== DESKTOP LAYOUT ===== */
+@media (width >= 992px) {
+  footer .footer > div > .section {
+    padding: 0 32px;
+  }
+
+  footer .footer-columns {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 40px;
+  }
+
+  /* Subscribe column gets dark background card */
+  footer .footer-col:last-child {
+    background: rgb(255 255 255 / 8%);
+    border-radius: 8px;
+    padding: 32px;
   }
 }

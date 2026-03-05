@@ -1,9 +1,12 @@
-/* header and nav layout */
+/* stylelint-disable no-descending-specificity */
+
+/* ===== HEADER WRAPPER ===== */
 header .nav-wrapper {
   background-color: var(--background-color);
   width: 100%;
   z-index: 2;
   position: fixed;
+  border-bottom: 2px solid var(--light-color);
 }
 
 header nav {
@@ -15,7 +18,7 @@ header nav {
   align-items: center;
   gap: 0 24px;
   margin: auto;
-  max-width: 1248px;
+  max-width: 1200px;
   height: var(--nav-height);
   padding: 0 24px;
   font-family: var(--body-font-family);
@@ -30,17 +33,18 @@ header nav[aria-expanded='true'] {
   min-height: 100dvh;
 }
 
-@media (width >= 900px) {
+@media (width >= 1024px) {
   header .nav-wrapper {
     position: relative;
   }
 
   header nav {
     display: flex;
-    justify-content: space-between;
-    gap: 0 32px;
-    max-width: 1264px;
+    align-items: center;
+    gap: 0;
+    max-width: 1200px;
     padding: 0 32px;
+    height: 100px;
   }
 
   header nav[aria-expanded='true'] {
@@ -56,9 +60,14 @@ header nav p {
 
 header nav a:any-link {
   color: currentcolor;
+  text-decoration: none;
 }
 
-/* hamburger */
+header nav a:any-link:hover {
+  text-decoration: none;
+}
+
+/* ===== HAMBURGER ===== */
 header nav .nav-hamburger {
   grid-area: hamburger;
   height: 22px;
@@ -77,6 +86,10 @@ header nav .nav-hamburger button {
   overflow: initial;
   text-overflow: initial;
   white-space: initial;
+}
+
+header nav .nav-hamburger button::after {
+  content: none;
 }
 
 header nav .nav-hamburger-icon,
@@ -132,28 +145,32 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
   transform: rotate(-45deg);
 }
 
-@media (width >= 900px) {
+@media (width >= 1024px) {
   header nav .nav-hamburger {
     display: none;
     visibility: hidden;
   }
 }
 
-/* brand */
+/* ===== BRAND / LOGO ===== */
 header .nav-brand {
   grid-area: brand;
-  flex-basis: 128px;
-  font-size: var(--heading-font-size-s);
-  font-weight: 700;
-  line-height: 1;
+  flex-shrink: 0;
+  line-height: 0;
 }
 
 header nav .nav-brand img {
-  width: 128px;
-  height: auto;
+  width: auto;
+  height: 60px;
 }
 
-/* sections */
+@media (width >= 1024px) {
+  header .nav-brand {
+    margin-right: 40px;
+  }
+}
+
+/* ===== NAV SECTIONS ===== */
 header nav .nav-sections {
   grid-area: sections;
   flex: 1 1 auto;
@@ -170,11 +187,11 @@ header nav[aria-expanded='true'] .nav-sections {
 header nav .nav-sections ul {
   list-style: none;
   padding-left: 0;
-  font-size: var(--body-font-size-s);
+  font-size: var(--body-font-size-m);
 }
 
 header nav .nav-sections ul > li {
-  font-weight: 500;
+  font-weight: 700;
 }
 
 header nav .nav-sections ul > li > ul {
@@ -182,10 +199,10 @@ header nav .nav-sections ul > li > ul {
 }
 
 header nav .nav-sections ul > li > ul > li {
-  font-weight: 400;
+  font-weight: 500;
 }
 
-@media (width >= 900px) {
+@media (width >= 1024px) {
   header nav .nav-sections {
     display: block;
     visibility: visible;
@@ -206,11 +223,11 @@ header nav .nav-sections ul > li > ul > li {
     content: '';
     display: inline-block;
     position: absolute;
-    top: 0.5em;
-    right: 2px;
+    top: 0.4em;
+    right: 0;
     transform: rotate(135deg);
-    width: 6px;
-    height: 6px;
+    width: 5px;
+    height: 5px;
     border: 2px solid currentcolor;
     border-radius: 0 1px 0 0;
     border-width: 2px 2px 0 0;
@@ -218,21 +235,24 @@ header nav .nav-sections ul > li > ul > li {
 
   header nav .nav-sections .nav-drop[aria-expanded='true']::after {
     top: unset;
-    bottom: 0.5em;
+    bottom: 0.4em;
     transform: rotate(315deg);
   }
 
   header nav .nav-sections ul {
     display: flex;
-    gap: 24px;
+    gap: 32px;
     margin: 0;
   }
 
   header nav .nav-sections .default-content-wrapper > ul > li {
     flex: 0 1 auto;
     position: relative;
+    font-size: var(--body-font-size-m);
+    line-height: 1.5;
   }
 
+  /* ===== MEGA MENU DROPDOWN ===== */
   header nav .nav-sections .default-content-wrapper > ul > li > ul {
     display: none;
     position: relative;
@@ -240,33 +260,111 @@ header nav .nav-sections ul > li > ul > li {
 
   header nav .nav-sections .default-content-wrapper > ul > li[aria-expanded='true'] > ul {
     display: block;
-    position: absolute;
-    left: -24px;
-    width: 200px;
-    top: 150%;
-    padding: 16px;
-    background-color: var(--light-color);
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: var(--nav-height);
+    width: 100vw;
+    padding: 32px 0 40px;
+    background-color: var(--background-color);
     white-space: initial;
+    box-shadow: 0 4px 16px rgb(0 0 0 / 8%);
+    border-top: 2px solid var(--light-color);
+    z-index: 10;
+    flex-direction: column;
+    gap: 0;
   }
 
-  header nav .nav-sections .default-content-wrapper > ul > li > ul::before {
+  /* Mega menu inner content constrained to nav width */
+  header nav .nav-sections .default-content-wrapper > ul > li[aria-expanded='true'] > ul > li {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 8px 32px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  header nav .nav-sections .default-content-wrapper > ul > li > ul > li a {
+    font-size: var(--body-font-size-m);
+    font-weight: 500;
+    color: var(--text-color);
+  }
+
+  header nav .nav-sections .default-content-wrapper > ul > li > ul > li a:hover {
+    color: var(--link-color);
+  }
+
+  /* Chevron arrow on dropdown links */
+  header nav .nav-sections .default-content-wrapper > ul > li > ul > li a::after {
     content: '';
-    position: absolute;
-    top: -8px;
-    left: 16px;
-    width: 0;
-    height: 0;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-bottom: 8px solid var(--light-color);
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    border: 2px solid var(--dark-color);
+    border-width: 2px 2px 0 0;
+    transform: rotate(45deg);
+    margin-left: 12px;
+    vertical-align: middle;
   }
 
-  header nav .nav-sections .default-content-wrapper > ul > li > ul > li {
-    padding: 8px 0;
+  header nav .nav-sections .default-content-wrapper > ul > li > ul > li a:hover::after {
+    border-color: var(--link-color);
   }
 }
 
-/* tools */
+/* ===== TOOLS / UTILITY NAV ===== */
 header nav .nav-tools {
   grid-area: tools;
+}
+
+header nav .nav-tools .default-content-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+header nav .nav-tools p {
+  margin: 0;
+  font-size: var(--body-font-size-xs);
+  font-weight: 500;
+}
+
+header nav .nav-tools p a {
+  font-size: var(--body-font-size-xs);
+  font-weight: 500;
+}
+
+/* Separator between utility links */
+header nav .nav-tools p + p::before {
+  content: '';
+  display: inline-block;
+  width: 1px;
+  height: 16px;
+  background: var(--light-color);
+  margin: 0 16px;
+  vertical-align: middle;
+}
+
+/* Remove button styling from tool links */
+header nav .nav-tools a.button:any-link {
+  display: inline;
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  background: none;
+  color: var(--text-color);
+  font-size: var(--body-font-size-xs);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+header nav .nav-tools a.button:any-link::after {
+  content: none;
+}
+
+header nav .nav-tools a.button:any-link:hover {
+  color: var(--link-color);
+  background: none;
+  border: none;
 }
