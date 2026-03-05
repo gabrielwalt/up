@@ -10,7 +10,7 @@ Migrating UPS "About" site (https://about.ups.com/us/en/home.html) to Adobe Edge
 2. **Always read files before editing** - Never modify code without reading it first.
 3. **Use `box-sizing: border-box`** - When setting explicit width/height on elements with padding.
 4. **REUSE existing blocks** - Always use existing blocks and variants before creating new ones. See "Block Reuse Guidelines" section.
-5. **Keep CLAUDE.md up-to-date** - Update this file when creating/modifying/deleting blocks, variants, or patterns. See "Maintaining This Documentation" section.
+5. **Keep PROJECT.md up-to-date** - Update this file when creating/modifying/deleting blocks, variants, or patterns. See "Maintaining This Documentation" section.
 6. **Create variants, not new blocks** - When a content pattern is similar to an existing block but needs different styling, create a VARIANT of that block (not a new block). This maintains consistency and reduces code duplication.
 7. **Never import all-caps content as-is** - When source content is ALL CAPS in the DOM (e.g., "REPORTS AND DISCLOSURES"), convert it to Title Case or Sentence case in the HTML content and apply `text-transform: uppercase` via CSS instead. This preserves authoring flexibility and avoids requiring authors to type in all caps.
 8. **Don't rely on bold/strong for block-wide styling** - If an entire text element in a block needs to be bold or styled differently (like eyebrow labels or attribution text), apply `font-weight: 700` via CSS targeting the element position (e.g., `:first-child`). Reserve `<strong>` only for inline emphasis where the author wants to distinguish specific words from surrounding text.
@@ -144,7 +144,7 @@ The UPS source site uses scroll-triggered fade-in-up animations on many sections
    <div><div>Style</div><div>highlight, fade-in-up</div></div>
    ```
 4. **Headings are excluded**: The animation only applies to non-heading children (`p`, blocks, buttons, etc.). Headings (`h1`–`h6`) remain visible immediately — this is by design.
-5. **Cards-awards special handling**: For `cards-awards` blocks inside `fade-in-up` sections, individual list items animate with staggered delays (0.2s, 0.4s, 0.6s).
+5. **No stagger delays**: All animated children use the same 0.8s duration with no stagger offset.
 
 **Common animated sections on the UPS site:**
 - "Governing Ethically" and similar text+CTA sections
@@ -181,7 +181,7 @@ The import scripts in `tools/importer/` are designed to reproduce the exact cont
 
 **This file is the project's source of truth.** Keep it current to ensure consistency.
 
-### When to Update CLAUDE.md
+### When to Update PROJECT.md
 
 | Event | Required Updates |
 |-------|------------------|
@@ -251,12 +251,15 @@ When working on this project, periodically verify:
 ## Key Files
 
 - **Global styles**: `/styles/styles.css`
-- **Blocks**: `/blocks/` (add block directories as created)
-- **Icons**: `/icons/` (custom SVG icons)
+- **Lazy styles**: `/styles/lazy-styles.css` (fade-in-up animation, post-LCP styles)
+- **Delayed JS**: `/scripts/delayed.js` (IntersectionObserver for scroll animations)
+- **Blocks**: `/blocks/` (all block directories listed in Block Reference)
+- **Icons**: `/icons/` (`search.svg`, `ups-logo.svg`)
 - **Icon font**: `/fonts/upspricons.woff` — UPS icon font (button chevron `\e60f`, circle arrow `\e603`)
-- **Images**: `/content/images/` (local assets)
+- **Web fonts**: `/fonts/` (`roboto-regular.woff2`, `roboto-medium.woff2`, `roboto-bold.woff2`, `roboto-condensed-bold.woff2`)
 - **Navigation**: `/content/nav.html`, `/content/nav.plain.html` (fragment files)
 - **Footer**: `/content/footer.html`, `/content/footer.plain.html` (fragment files)
+- **Import infrastructure**: `/tools/importer/` (page-templates.json, parsers/, transformers/)
 
 ---
 
@@ -307,9 +310,45 @@ Fragment files (`nav.html`, `footer.html`) are loaded by blocks, not rendered as
 
 ## Design Tokens
 
-Defined in `/styles/styles.css` - reference these variable names, don't hardcode values.
+Defined in `/styles/styles.css` — reference these variable names, don't hardcode values.
 
-**TODO**: Define design tokens after analyzing the UPS site's color palette, typography, and spacing. The UPS brand uses brown (#644117 / #351C15) and gold (#FFB500) as primary colors.
+### Colors
+
+| Variable | Value | Usage |
+|----------|-------|-------|
+| `--background-color` | `#fff` | Page and card backgrounds |
+| `--light-color` | `#f2f2f2` | Highlight section backgrounds, dividers |
+| `--dark-color` | `#505050` | Secondary text, disabled states |
+| `--text-color` | `#242424` | Primary body and heading text |
+| `--link-color` | `#426da9` | Links, default button borders |
+| `--link-hover-color` | `#244674` | Link/button hover states |
+
+**Brand accent colors** (hardcoded where used, not tokenized):
+- Gold/Yellow CTA: `#ffc400` background, `#e0ac00` hover
+- Yellow accent dash: `#ffd100` (eyebrow `::before`)
+- Yellow heading bar: `#ffdc40` (h1/h2 `::after`)
+
+### Typography
+
+| Variable | Mobile | Desktop (≥992px) |
+|----------|--------|------------------|
+| `--body-font-family` | `roboto, roboto-fallback, sans-serif` | same |
+| `--heading-font-family` | `roboto, roboto-fallback, sans-serif` | same |
+| `--body-font-size-m` | `16px` | same |
+| `--body-font-size-s` | `14px` | same |
+| `--body-font-size-xs` | `13px` | same |
+| `--heading-font-size-xxl` | `64px` | `64px` |
+| `--heading-font-size-xl` | `40px` | `48px` |
+| `--heading-font-size-l` | `24px` | `32px` |
+| `--heading-font-size-m` | `20px` | `24px` |
+| `--heading-font-size-s` | `18px` | `20px` |
+| `--heading-font-size-xs` | `16px` | `16px` |
+
+### Navigation
+
+| Variable | Mobile | Desktop (≥1024px) |
+|----------|--------|-------------------|
+| `--nav-height` | `64px` | `104px` |
 
 ### ⚠️ CRITICAL: CSS Variable Naming Convention
 
@@ -318,19 +357,7 @@ Defined in `/styles/styles.css` - reference these variable names, don't hardcode
 - ~~`--spacing-md`~~ → Use `--spacing-m`
 - ~~`--spacing-lg`~~ → Use `--spacing-l`
 
-**Recommended spacing variable names:**
-| Variable | Value |
-|----------|-------|
-| `--spacing-xxs` | 4px |
-| `--spacing-xs` | 8px |
-| `--spacing-s` | 12px |
-| `--spacing-m` | 16px |
-| `--spacing-l` | 24px |
-| `--spacing-xl` | 32px |
-| `--spacing-xxl` | 48px |
-| `--spacing-xxxl` | 64px |
-
-**Why this matters:** Using non-existent variable names like `--spacing-md` will silently fail - the CSS rule will have no effect because the variable resolves to nothing. Always verify variable names exist in `styles.css` before using them.
+**Note:** Spacing variables (`--spacing-*`) are NOT currently defined in `styles.css`. If you need them, define them first. Most blocks use hardcoded pixel values for spacing.
 
 ### ⚠️ CRITICAL: Always Verify CSS Variables Before Using
 
@@ -366,7 +393,7 @@ Only two breakpoints, derived from the UPS source site. Content flows fluidly be
 | **mobile** | 992px | Below: single-column mobile layout. Above: multi-column desktop layout. |
 | **nav** | 1024px | Below: hamburger menu. Above: full horizontal navigation. |
 
-**Content max-width**: `1400px` — main content area is capped at this width and centered on wider viewports.
+**Content max-width**: `1200px` — main content sections are capped at this width and centered.
 
 **Media query syntax** (use modern CSS syntax):
 ```css
@@ -385,7 +412,7 @@ Only two breakpoints, derived from the UPS source site. Content flows fluidly be
 **⚠️ IMPORTANT**: Avoid fixed-width "jumps" between breakpoints. Content should scale fluidly across all viewport sizes.
 
 **Principles:**
-1. **Content max-width of 1400px** - Main content is constrained and centered; header, footer, and edge-to-edge blocks may extend to full viewport width
+1. **Content max-width of 1200px** - Main content is constrained and centered; header, footer, and edge-to-edge blocks may extend to full viewport width
 2. **Use percentage-based or viewport-relative widths** - Prefer `%`, `vw`, `fr` units over fixed `px` widths for containers
 3. **Flexible grids with auto-fill** - Use `repeat(auto-fill, minmax(min, 1fr))` for responsive card layouts
 4. **Smooth transitions** - When switching layouts at breakpoints, ensure visual continuity
@@ -412,8 +439,6 @@ Templates are applied via page metadata: `Template: template-name`
 |----------|---------------|---------|
 | *(none defined yet)* | | |
 
-**TODO**: Define templates as pages are imported.
-
 ### Default Content Centering (Global)
 
 Default content (text, headings, buttons, images in `.default-content-wrapper`) should be centered on all pages.
@@ -433,10 +458,11 @@ Applied via `section-metadata` block with `Style: style-name`. Multiple styles c
 
 | Style | Class | Purpose |
 |-------|-------|---------|
-| `highlight` | `.section.highlight` | Accent background color |
+| `highlight` | `.section.highlight` | Light grey background (`--light-color`) |
 | `dark` | `.section.dark` | Dark background, light text |
 | `image-full-width` | `.section.image-full-width` | Images break out of container to full viewport width |
-| `fade-in-up` | `.section.fade-in-up` | Scroll-triggered fade-in-up animation for section children. Uses IntersectionObserver (in `delayed.js`) to add `.visible` class when 15% visible. Children animate with staggered delays (0s, 0.2s, 0.4s...). For cards blocks, individual list items animate separately. Can be combined with other styles (e.g., `highlight, fade-in-up`). |
+| `accent-bar` | `.section.accent-bar` | Adds yellow bar under h1/h2 (`::after`), uppercase h6 eyebrow |
+| `fade-in-up` | `.section.fade-in-up` | Scroll-triggered fade-in-up animation. Uses IntersectionObserver (in `delayed.js`, threshold 0.15) to add `.visible` class. Non-heading children animate with 0.8s duration. Cards-awards list items animate individually. Can combine with other styles (e.g., `highlight, fade-in-up`). |
 
 **Example usage in content:**
 ```html
@@ -444,6 +470,17 @@ Applied via `section-metadata` block with `Style: style-name`. Multiple styles c
   <div><div>Style</div><div>dark</div></div>
 </div>
 ```
+
+### Section Spacing Overrides (in styles.css)
+
+| Rule | Effect |
+|------|--------|
+| `navigation-tabs-container` | No gap between nav-tabs and following section |
+| `columns-feature-container + columns-feature-container` | 128px gap between consecutive feature sections |
+| `columns-feature-container + :not(columns-feature-container)` | 80px gap after last feature section |
+| `fade-in-up:not(.highlight) + .highlight` | 64px gap before highlight sections after fade-in-up |
+| `hero-featured-container` | 0px bottom margin (prevents margin collapse with cards-stories) |
+| `cards-stories-container` | 16px top margin, 80px bottom margin |
 
 ---
 
@@ -453,21 +490,55 @@ Complete reference of all blocks and their variants.
 
 ### Summary Table
 
-| Block | Variants | Description |
-|-------|----------|-------------|
-| **header** | — | Site header (to be built) |
-| **footer** | — | Site footer (to be built) |
-| **fragment** | — | Utility for loading content fragments |
-| **columns** | columns-feature, columns-quote, columns-stats | Side-by-side content layout |
-| **cards** | cards-awards, cards-stories | Card-based content grid |
-| **hero** | hero-featured | Hero banner with overlay card |
-| **navigation-tabs** | — | Card-style navigation links with arrow icons |
+| Block | Location | Variants | Description |
+|-------|----------|----------|-------------|
+| **header** | `/blocks/header/` | — | Site header with logo, nav links, mega menu dropdowns, utility links |
+| **footer** | `/blocks/footer/` | — | Site footer with multi-column links, legal links, copyright |
+| **fragment** | `/blocks/fragment/` | — | Utility for loading content fragments |
+| **columns-feature** | `/blocks/columns-feature/` | — | Two-column feature card with eyebrow, heading, CTA, image |
+| **columns-quote** | `/blocks/columns-quote/` | — | Testimonial/quote with portrait image |
+| **columns-stats** | `/blocks/columns-stats/` | — | Full-width image with overlapping stats panel |
+| **cards-awards** | `/blocks/cards-awards/` | — | Text-only award cards with eyebrow and heading |
+| **cards-stories** | `/blocks/cards-stories/` | — | Image + text story cards in a clickable grid |
+| **hero-featured** | `/blocks/hero-featured/` | — | Hero with background image and white card overlay |
+| **navigation-tabs** | `/blocks/navigation-tabs/` | — | Card-style navigation links with arrow icons |
+
+**Boilerplate blocks** (vanilla, unmodified): `cards`, `columns`, `hero`
 
 ---
 
 ## Custom Blocks
 
-*(Document each block here as it is created. Follow the Documentation Checklist for New Blocks.)*
+### header
+
+**Location**: `/blocks/header/`
+
+**Features**:
+- Logo from nav fragment (60px height)
+- Horizontal nav links on desktop (flex layout, 32px gap)
+- Full-width mega menu dropdowns (position: fixed, 100vw width, max-width 1200px inner content)
+- Utility links (ups.com, Support) with pipe separators
+- Hamburger menu on mobile (animated icon, full-height overlay)
+- 2px bottom border (`var(--light-color)`)
+
+**Responsive behavior**:
+- Mobile (<1024px): Fixed position, hamburger menu, 64px height
+- Desktop (≥1024px): Relative position, horizontal nav, 100px height
+
+**Dropdown behavior**: Clicking a nav item with children toggles `aria-expanded`, showing a mega menu panel below the header. Chevron arrows indicate dropdown state. Each dropdown link has a right-pointing chevron arrow (`::after`).
+
+---
+
+### footer
+
+**Location**: `/blocks/footer/`
+
+**Features**:
+- Top row: Highlighted links (Newsroom, Careers) with gold/yellow background strip
+- Middle: Multi-column link grid (This Site, Other UPS Sites, Connect, Subscribe)
+- Bottom: Legal links with pipe separators, copyright text
+
+---
 
 ### columns-feature
 
@@ -554,7 +625,7 @@ Complete reference of all blocks and their variants.
 
 | Variant | Class | Purpose |
 |---------|-------|---------|
-| Default | `.hero-featured` | Full-width hero with background image and white card overlay |
+| Default | `.hero-featured` | Hero with background image and white card overlay |
 
 **Authoring:**
 ```
@@ -565,14 +636,15 @@ Complete reference of all blocks and their variants.
 ```
 
 **Features**:
-- Full-width background image (first row)
-- White card overlay at bottom-left (rounded 8px, no box-shadow)
+- Background image fills entire block (first row → `position: absolute; inset: 0`, picture also `position: absolute; inset: 0`, img `object-fit: cover`)
+- White card overlay (border-radius 8px, no box-shadow)
 - Eyebrow text with horizontal yellow accent dash (`::before`, 32x3px, #ffd100)
-- h4 heading, description, outlined CTA button (default global style)
+- h4 heading, description, gold CTA button (#ffc400 bg)
+- Equal spacing between image edge and card on all visible sides
 
 **Responsive behavior**:
-- Mobile: min-height 400px, card max-width 480px
-- Desktop (>=992px): min-height 600px, card max-width 50%, padding 72px 64px
+- Mobile: min-height 400px, card max-width 480px, padding 24px, margin `200px 24px 24px` (equal left/bottom/right spacing of 24px)
+- Desktop (>=992px): card max-width 480px with `box-sizing: border-box`, padding 48px, margin `60px 0 60px 60px` (equal top/left/bottom spacing of 60px)
 
 ---
 
@@ -610,7 +682,7 @@ Complete reference of all blocks and their variants.
 
 | Variant | Class | Purpose |
 |---------|-------|---------|
-| Default | `.columns-stats` | Image with overlapping stats panel |
+| Default | `.columns-stats` | Full-width image background with overlapping stats panel |
 
 **Authoring:**
 ```
@@ -620,14 +692,30 @@ Complete reference of all blocks and their variants.
 ```
 
 **Features**:
-- Left image (fills available width)
-- Stats panel overlaps image on desktop (`margin-left: -40px`, centered vertically)
+- JS restructures DOM: image becomes absolute-positioned background, stats overlay on top
+- Inner container with 16px border-radius, 1200px max-width, overflow hidden
+- Background image fills entire block height at all breakpoints (`picture: position absolute, inset 0; img: object-fit cover`)
+- Stats panel with white background, 8px border-radius
 - Each stat: h4 number + p label pair, separated by 4px solid `var(--light-color)` borders
-- Gold/yellow CTA button (`#ffc400` bg, `#121212` text, no border)
+- Gold/yellow CTA button (`#ffc400` bg, `#121212` text)
 
 **Responsive behavior**:
-- Mobile: stacks vertically (image then stats)
-- Desktop (>=992px): image fills flex space, stats panel 280px wide overlapping with `border-radius: 8px`
+- Mobile: Image fills full block height as background, stats card overlaid with `margin: 120px 24px 24px`, padding `24px 16px`
+- Desktop (>=992px): Stats panel 280px wide, `margin: 30px 0 30px auto` (right-aligned), padding `24px 20px`, image `border-radius: 16px`
+
+---
+
+### navigation-tabs
+
+**Location**: `/blocks/navigation-tabs/`
+
+| Variant | Class | Purpose |
+|---------|-------|---------|
+| Default | `.navigation-tabs` | Card-style navigation links with arrow icons |
+
+**Features**:
+- Row of clickable cards with heading and right-arrow icon
+- Used for sub-navigation within a page section
 
 ---
 
@@ -648,11 +736,33 @@ Loads the referenced fragment HTML and inserts it into the page.
 
 ---
 
+## Import Infrastructure
+
+Import scripts for bulk content migration are in `/tools/importer/`.
+
+| File | Purpose |
+|------|---------|
+| `page-templates.json` | Template definitions mapping source URL patterns to blocks |
+| `parsers/cards-awards.js` | Parser for cards-awards block |
+| `parsers/cards-stories.js` | Parser for cards-stories block |
+| `parsers/columns-feature.js` | Parser for columns-feature block |
+| `parsers/columns-quote.js` | Parser for columns-quote block |
+| `parsers/columns-stats.js` | Parser for columns-stats block |
+| `parsers/hero-featured.js` | Parser for hero-featured block |
+| `transformers/ups-cleanup.js` | Site-wide DOM cleanup transformer |
+
+---
+
 ## Local Assets
 
-**Icons** (`/icons/`): *(add icons as they are created)*
+**Icons** (`/icons/`):
+- `search.svg` — Search icon
+- `ups-logo.svg` — UPS logo
 
-**Images** (`/content/images/`): *(add images as they are imported)*
+**Fonts** (`/fonts/`):
+- `roboto-regular.woff2`, `roboto-medium.woff2`, `roboto-bold.woff2` — Roboto web fonts
+- `roboto-condensed-bold.woff2` — Roboto Condensed Bold
+- `upspricons.woff` — UPS icon font (button chevron `\e60f`)
 
 ---
 
@@ -756,19 +866,19 @@ Always include ARIA attributes on interactive elements:
 7. Use `box-sizing: border-box` when setting width/height on padded elements
 8. **Fragment files** (nav.html, footer.html) must NOT have `<header>` or `<footer>` tags
 9. **Merge similar blocks into single multi-row blocks** - don't create separate blocks for each row of similar content
-10. **Use teaser (teaser-hero) for single hero items** - don't use carousel (carousel-hero) for non-rotating single items
-11. **Page-specific styles stay page-specific** - When importing styles from one page to match another, NEVER modify shared block CSS in ways that affect other pages
-12. **CSS variable naming** - NEVER use `--spacing-sm`, `--spacing-md`, `--spacing-lg`. The correct names are `--spacing-s`, `--spacing-m`, `--spacing-l`. Using incorrect names will silently fail.
-13. **Links vs Buttons** - In EDS, links that are alone in a paragraph (`<p><a>...</a></p>`) become buttons styled by global styles. If a block needs specific button styling, the block CSS must override the global button styles using block-scoped selectors.
-14. **Default content centering is global** - Centering of `.default-content-wrapper` content applies to ALL pages unconditionally.
-15. **Template meta tag in HTML head** - The `decorateTemplateAndTheme()` function reads `<meta name="template" content="...">` from the `<head>`, NOT from the metadata block in the body. When creating new page HTML files, always add `<meta name="template" content="template-name"/>` to the `<head>` if the page uses a template.
-16. **CSS variables: always verify before using** - Before using ANY CSS variable in your code, verify it exists in `styles.css`. CSS variables that don't exist silently resolve to nothing.
-17. **Block CSS must not override global button styles with link styles** - In EDS, `a.button` gets global button styling. Block CSS should NEVER set `color: var(--link-color)` on `a.button` elements.
-18. **Picture elements need explicit height** - When using `img { width: 100%; height: 100%; object-fit: cover; }`, the parent `<picture>` element also needs `width: 100%; height: 100%`.
-19. **Lazy loading breaks after DOM restructuring** - When a block JS moves images from original DOM positions to new containers, set `img.loading = 'eager'` on all `img[loading="lazy"]` elements in the block.
-20. **Don't use `createOptimizedPicture` for external images** - During migration, images reference external URLs. `createOptimizedPicture` strips the domain and creates broken local paths. Leave external images as-is.
-21. **All-caps content → CSS text-transform** - Never import all-caps text literally. Convert to Title Case in content and apply `text-transform: uppercase` via CSS on the target element.
-22. **Block-wide bold → CSS font-weight** - Don't wrap entire block elements in `<strong>`. Apply `font-weight: 700` via CSS targeting the element's position (e.g., `p:first-child`). Reserve `<strong>` for inline emphasis only.
+10. **Page-specific styles stay page-specific** - When importing styles from one page to match another, NEVER modify shared block CSS in ways that affect other pages
+11. **CSS variable naming** - NEVER use `--spacing-sm`, `--spacing-md`, `--spacing-lg`. The correct names are `--spacing-s`, `--spacing-m`, `--spacing-l`. Using incorrect names will silently fail.
+12. **Links vs Buttons** - In EDS, links that are alone in a paragraph (`<p><a>...</a></p>`) become buttons styled by global styles. If a block needs specific button styling, the block CSS must override the global button styles using block-scoped selectors.
+13. **Default content centering is global** - Centering of `.default-content-wrapper` content applies to ALL pages unconditionally.
+14. **Template meta tag in HTML head** - The `decorateTemplateAndTheme()` function reads `<meta name="template" content="...">` from the `<head>`, NOT from the metadata block in the body. When creating new page HTML files, always add `<meta name="template" content="template-name"/>` to the `<head>` if the page uses a template.
+15. **CSS variables: always verify before using** - Before using ANY CSS variable in your code, verify it exists in `styles.css`. CSS variables that don't exist silently resolve to nothing.
+16. **Block CSS must not override global button styles with link styles** - In EDS, `a.button` gets global button styling. Block CSS should NEVER set `color: var(--link-color)` on `a.button` elements.
+17. **Absolute-position `<picture>` for background images** - When using a `<picture>` element as a background (inside an absolutely-positioned container), the `<picture>` must also be `position: absolute; inset: 0`. Setting `height: 100%` alone on `<picture>` does not reliably stretch it to fill the parent.
+18. **Lazy loading breaks after DOM restructuring** - When a block JS moves images from original DOM positions to new containers, set `img.loading = 'eager'` on all `img[loading="lazy"]` elements in the block.
+19. **Don't use `createOptimizedPicture` for external images** - During migration, images reference external URLs. `createOptimizedPicture` strips the domain and creates broken local paths. Leave external images as-is.
+20. **All-caps content → CSS text-transform** - Never import all-caps text literally. Convert to Title Case in content and apply `text-transform: uppercase` via CSS on the target element.
+21. **Block-wide bold → CSS font-weight** - Don't wrap entire block elements in `<strong>`. Apply `font-weight: 700` via CSS targeting the element's position (e.g., `p:first-child`). Reserve `<strong>` for inline emphasis only.
+22. **CSS margin collapsing** - Adjacent sibling sections with margins will collapse (largest wins). To ensure a specific gap, set the preceding section's bottom margin to 0 and control spacing entirely from the target section's top margin.
 
 ---
 
@@ -794,24 +904,58 @@ main .section.image-full-width .default-content-wrapper p:has(picture) {
 }
 ```
 
+### Background Image Pattern (for blocks with image as background)
+```css
+/* Container: position relative */
+.block .inner {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Picture: absolute-positioned to fill container */
+.block .inner > picture {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: block;
+}
+
+/* Image: fill and cover */
+.block .inner > picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Content: positioned above image */
+.block .content {
+  position: relative;
+  z-index: 1;
+}
+```
+
 ---
 
 ## UPS Source Site Notes
 
 **Source URL**: https://about.ups.com/us/en/home.html
 
-**Observed site structure** (to be refined during import):
-- **Header**: Logo, search, navigation (Our Stories, Our Company, Our Impact, Investors, Newsroom), language selector
-- **Hero**: Full-width hero with headline "Moving our world forward by delivering what matters"
-- **Featured content**: Card/story with image and CTA
-- **About section**: "Customer First, People Led, Innovation Driven" with CTA
-- **Stats**: ~460K Employees, 200+ Countries, 20.8M Packages/day, $88.7B Revenue
-- **Impact section**: Text content with CTA
-- **Footer**: Multi-column links (Our Stories, Our Company, Our Impact, Investors, Newsroom, Support), social links, legal links, copyright
+**Site structure** (confirmed from migration):
+- **Header**: UPS logo (60px), horizontal navigation (Our Stories, Our Company, Our Impact, Investors, Newsroom), utility links (ups.com, Support). Mega menu dropdowns on desktop with full-width panels.
+- **Hero**: Full-width h1 heading "Moving our world forward by delivering what matters" with yellow accent bar below, centered text.
+- **Featured content (hero-featured)**: Background image with white card overlay — eyebrow, h4 heading, description, gold CTA.
+- **Story cards (cards-stories)**: 3-column grid of clickable story cards with image, eyebrow, title, description.
+- **About section**: Centered text with h6 eyebrow ("About Us"), h2 heading, CTA button. Uses `accent-bar` section style.
+- **Stats (columns-stats)**: Full-width image with overlapping white stats panel — ~460K Employees, 200+ Countries, 20.8M Packages/day, $88.7B Revenue, gold CTA.
+- **Impact section (columns-feature)**: Two-column with image left, text right — eyebrow, h2 heading, description, CTA.
+- **Footer**: Highlighted links strip (Newsroom, Careers), 4-column links grid (This Site, Other UPS Sites, Connect, Subscribe), legal links row, copyright.
 
-**Brand colors** (to verify during import):
-- UPS Brown: `#644117` / `#351C15`
-- UPS Gold/Yellow: `#FFB500`
-- White and dark grays for text
+**Brand colors** (confirmed):
+- Gold/Yellow CTA buttons: `#ffc400` (background), `#e0ac00` (hover)
+- Yellow accent elements: `#ffd100` (eyebrow dash), `#ffdc40` (heading bar)
+- Text: `#242424` (primary), `#505050` (secondary)
+- Links: `#426da9` (default), `#244674` (hover)
+- Backgrounds: `#fff` (white), `#f2f2f2` (light grey/highlight)
 
-**Typography** (to verify): The site appears to use a sans-serif font stack.
+**Typography**: Roboto (regular 400, medium 500, bold 700), Roboto Condensed Bold. Font weights: headings use 500, body 400, eyebrows/buttons 700.
