@@ -18,13 +18,28 @@
 }
 
 /* ===== EYEBROW TEXT ===== */
-.cards-awards .cards-awards-card-body p strong {
+.cards-awards .cards-awards-card-body > p:first-child {
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 1.6px;
   text-transform: uppercase;
   line-height: 1.5;
   color: var(--text-color);
+  position: relative;
+  display: inline-block;
+  padding-left: 44px;
+}
+
+.cards-awards .cards-awards-card-body > p:first-child::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  margin-top: -1.5px;
+  left: 0;
+  width: 32px;
+  height: 3px;
+  border-radius: 5px;
+  background-color: #ffd100;
 }
 
 /* ===== CARD HEADING ===== */

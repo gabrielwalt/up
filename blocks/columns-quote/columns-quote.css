@@ -14,10 +14,28 @@
   order: 0;
 }
 
+/* ===== CIRCULAR IMAGE WITH GREY BACKGROUND ===== */
+.columns-quote .columns-quote-img-col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.columns-quote picture {
+  display: block;
+  border-radius: 50%;
+  background: var(--light-color);
+  overflow: hidden;
+  aspect-ratio: 1;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
 .columns-quote img {
   width: 100%;
-  height: auto;
+  height: 100%;
   display: block;
+  object-fit: cover;
 }
 
 /* ===== QUOTE TEXT ===== */
@@ -28,15 +46,34 @@
   line-height: 1.5;
   color: var(--text-color);
   margin: 0 0 24px;
+  position: relative;
+  padding-left: 24px;
+}
+
+/* ===== YELLOW VERTICAL BAR ===== */
+.columns-quote h3::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  background-color: #ffd100;
+  border-radius: 5px;
 }
 
 /* ===== ATTRIBUTION ===== */
-.columns-quote p strong {
+.columns-quote > div > div:not(.columns-quote-img-col) > p {
   font-size: var(--body-font-size-xs);
   font-weight: 700;
   letter-spacing: 2.08px;
   text-transform: uppercase;
   color: #767676;
+}
+
+.columns-quote > div > div:not(.columns-quote-img-col) > p::before {
+  content: '— ';
+  letter-spacing: 0;
 }
 
 /* ===== MOBILE: CONTENT PADDING ===== */

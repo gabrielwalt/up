@@ -12,6 +12,8 @@ Migrating UPS "About" site (https://about.ups.com/us/en/home.html) to Adobe Edge
 4. **REUSE existing blocks** - Always use existing blocks and variants before creating new ones. See "Block Reuse Guidelines" section.
 5. **Keep CLAUDE.md up-to-date** - Update this file when creating/modifying/deleting blocks, variants, or patterns. See "Maintaining This Documentation" section.
 6. **Create variants, not new blocks** - When a content pattern is similar to an existing block but needs different styling, create a VARIANT of that block (not a new block). This maintains consistency and reduces code duplication.
+7. **Never import all-caps content as-is** - When source content is ALL CAPS in the DOM (e.g., "REPORTS AND DISCLOSURES"), convert it to Title Case or Sentence case in the HTML content and apply `text-transform: uppercase` via CSS instead. This preserves authoring flexibility and avoids requiring authors to type in all caps.
+8. **Don't rely on bold/strong for block-wide styling** - If an entire text element in a block needs to be bold or styled differently (like eyebrow labels or attribution text), apply `font-weight: 700` via CSS targeting the element position (e.g., `:first-child`). Reserve `<strong>` only for inline emphasis where the author wants to distinguish specific words from surrounding text.
 
 ---
 
@@ -201,6 +203,7 @@ When working on this project, periodically verify:
 - **Global styles**: `/styles/styles.css`
 - **Blocks**: `/blocks/` (add block directories as created)
 - **Icons**: `/icons/` (custom SVG icons)
+- **Icon font**: `/fonts/upspricons.woff` — UPS icon font (button chevron `\e60f`, circle arrow `\e603`)
 - **Images**: `/content/images/` (local assets)
 - **Navigation**: `/content/nav.html`, `/content/nav.plain.html` (fragment files)
 - **Footer**: `/content/footer.html`, `/content/footer.plain.html` (fragment files)
@@ -406,6 +409,7 @@ Complete reference of all blocks and their variants.
 | **fragment** | — | Utility for loading content fragments |
 | **columns** | columns-feature, columns-quote | Side-by-side content layout |
 | **cards** | cards-awards | Card-based content grid |
+| **navigation-tabs** | — | Card-style navigation links with arrow icons |
 
 ---
 
@@ -627,6 +631,8 @@ Always include ARIA attributes on interactive elements:
 18. **Picture elements need explicit height** - When using `img { width: 100%; height: 100%; object-fit: cover; }`, the parent `<picture>` element also needs `width: 100%; height: 100%`.
 19. **Lazy loading breaks after DOM restructuring** - When a block JS moves images from original DOM positions to new containers, set `img.loading = 'eager'` on all `img[loading="lazy"]` elements in the block.
 20. **Don't use `createOptimizedPicture` for external images** - During migration, images reference external URLs. `createOptimizedPicture` strips the domain and creates broken local paths. Leave external images as-is.
+21. **All-caps content → CSS text-transform** - Never import all-caps text literally. Convert to Title Case in content and apply `text-transform: uppercase` via CSS on the target element.
+22. **Block-wide bold → CSS font-weight** - Don't wrap entire block elements in `<strong>`. Apply `font-weight: 700` via CSS targeting the element's position (e.g., `p:first-child`). Reserve `<strong>` for inline emphasis only.
 
 ---
 

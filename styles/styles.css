@@ -137,6 +137,11 @@ pre {
   white-space: pre;
 }
 
+/* ===== DEFAULT CONTENT CENTERING ===== */
+main .default-content-wrapper {
+  text-align: center;
+}
+
 main > div {
   margin: 40px 16px;
 }
@@ -182,12 +187,23 @@ button.button {
   line-height: normal;
   text-decoration: none;
   color: var(--link-color);
-  background-color: transparent;
+  background-color: var(--background-color);
   cursor: pointer;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+}
+
+a.button:any-link::after,
+button.button::after {
+  /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
+  font-family: upspricons;
+  content: '\e60f';
+  margin-left: 8px;
+  flex-shrink: 0;
+  font-weight: 400;
+  font-size: 14px;
 }
 
 a.button:any-link:hover,

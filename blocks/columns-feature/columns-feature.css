@@ -4,6 +4,9 @@
 .columns-feature > div {
   display: flex;
   flex-direction: column;
+  border-radius: 8px;
+  box-shadow: 0 4px 24px rgb(0 0 0 / 16%);
+  overflow: hidden;
 }
 
 .columns-feature > div > div {
@@ -22,7 +25,7 @@
 }
 
 /* ===== EYEBROW TEXT ===== */
-.columns-feature p strong {
+.columns-feature > div > div:not(.columns-feature-img-col) > p:first-child {
   font-size: var(--body-font-size-xs);
   font-weight: 700;
   letter-spacing: 2.08px;
@@ -68,13 +71,26 @@
     flex-direction: column;
     justify-content: center;
     padding: 72px 64px;
+    position: relative;
+  }
+
+  /* ===== YELLOW ACCENT LINE ===== */
+  .columns-feature > div > div:not(.columns-feature-img-col)::before {
+    content: '';
+    position: absolute;
+    width: 104px;
+    height: 4px;
+    border-radius: 5px;
+    background: #ffd100;
+    top: 78px;
+    right: -52px;
+    z-index: 1;
   }
 
   .columns-feature img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 0 8px 8px 0;
   }
 
   .columns-feature picture {
