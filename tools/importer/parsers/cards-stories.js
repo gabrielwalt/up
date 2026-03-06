@@ -84,22 +84,21 @@ export default function parse(element, { document }) {
 
     if (title) {
       const h3 = document.createElement('h3');
-      h3.textContent = title.textContent.trim();
+      if (cardLink) {
+        // Embed link in heading — no separate CTA paragraph needed
+        const link = document.createElement('a');
+        link.href = cardLink.href;
+        link.textContent = title.textContent.trim();
+        h3.append(link);
+      } else {
+        h3.textContent = title.textContent.trim();
+      }
       textCell.push(h3);
     }
 
     if (description) {
       const p = document.createElement('p');
       p.textContent = description.textContent.trim();
-      textCell.push(p);
-    }
-
-    if (cardLink) {
-      const p = document.createElement('p');
-      const link = document.createElement('a');
-      link.href = cardLink.href;
-      link.textContent = title ? title.textContent.trim() : 'Read more';
-      p.append(link);
       textCell.push(p);
     }
 

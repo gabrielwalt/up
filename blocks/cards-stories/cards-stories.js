@@ -5,7 +5,7 @@ export default function decorate(block) {
     const li = document.createElement('li');
     while (row.firstElementChild) li.append(row.firstElementChild);
     [...li.children].forEach((div) => {
-      if (div.children.length === 1 && div.querySelector('picture')) {
+      if (div.children.length === 1 && (div.querySelector('picture') || div.querySelector('img'))) {
         div.className = 'cards-stories-card-image';
       } else {
         div.className = 'cards-stories-card-body';
@@ -44,9 +44,14 @@ export default function decorate(block) {
           wrapper.append(li.children[1]);
         }
 
-        // Remove the original standalone link paragraph
+        // Remove the original link (from standalone p or heading)
         const linkP = cardLink.closest('p');
-        if (linkP) linkP.remove();
+        if (linkP) {
+          linkP.remove();
+        } else {
+          // Link is inside a heading — unwrap it, keep the text
+          cardLink.replaceWith(...cardLink.childNodes);
+        }
       }
     }
 

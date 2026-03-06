@@ -1,0 +1,69 @@
+/* stylelint-disable no-descending-specificity */
+
+/* ===== BREADCRUMB BLOCK ===== */
+.breadcrumb nav ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0;
+}
+
+.breadcrumb nav ol li {
+  display: inline-flex;
+  align-items: center;
+  font-size: var(--body-font-size-s);
+  color: var(--dark-color);
+  line-height: 1.4;
+}
+
+/* Separator slash via ::before on non-first items */
+.breadcrumb nav ol li + li::before {
+  content: '';
+  display: inline-block;
+  width: 1px;
+  height: 11px;
+  border-right: 1px solid var(--dark-color);
+  transform: rotate(21deg);
+  margin: 0 8px;
+  flex-shrink: 0;
+}
+
+/* Links */
+.breadcrumb nav ol li a {
+  color: var(--dark-color);
+  text-decoration: underline;
+}
+
+.breadcrumb nav ol li a:hover {
+  color: var(--text-color);
+}
+
+/* Active (current page) — no link, no underline */
+.breadcrumb nav ol li.active {
+  color: var(--dark-color);
+}
+
+/* ===== SPACING FROM NAV ===== */
+
+/* 8px section padding + 24px wrapper margin = 32px from nav */
+main > .section:first-of-type:has(.breadcrumb-wrapper) {
+  padding-top: var(--spacing-xs);
+  padding-bottom: 0;
+}
+
+/* ===== HIDE ON TABLET AND BELOW ===== */
+
+/* --viewport-desktop */
+@media (width < 992px) {
+  main > .section:has(.breadcrumb-wrapper) {
+    display: none;
+  }
+
+  /* Restore first-section top padding on the next section */
+  main > .section:has(.breadcrumb-wrapper) + .section {
+    padding-top: calc(var(--spacing-3xl) - var(--block-gap));
+  }
+}

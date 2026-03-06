@@ -2,71 +2,410 @@
   "templates": [
     {
       "name": "our-impact",
-      "urls": ["https://about.ups.com/us/en/our-impact.html"],
+      "urls": [
+        "https://about.ups.com/us/en/our-impact.html"
+      ],
       "description": "Our Impact landing page with hero, section cards, awards, governing text, and CEO quote",
       "blocks": [
         {
           "name": "section-hero",
-          "instances": [".headline.aem-GridColumn > .upspr-width100 .upspr-headline"],
+          "instances": [
+            ".headline.aem-GridColumn > .upspr-width100 .upspr-headline"
+          ],
           "section": "hero"
         },
         {
           "name": "navigation-tabs",
-          "instances": [".upspr-section-card__tabs, .upspr-section-card_tabs-container"],
+          "instances": [
+            ".upspr-section-card__tabs, .upspr-section-card_tabs-container"
+          ],
           "section": "navigation",
           "_note": "Source selector needs verification against live DOM; parser pending source DOM capture"
         },
         {
           "name": "columns-feature",
-          "instances": [".sectioncard .upspr-xd-card"],
+          "instances": [
+            ".sectioncard .upspr-xd-card"
+          ],
           "section": "feature-cards"
         },
         {
           "name": "section-governing",
-          "instances": [".headline.aem-GridColumn .upspr-headline:has(h2)"],
+          "instances": [
+            ".headline.aem-GridColumn .upspr-headline:has(h2)"
+          ],
           "section": "governing"
         },
         {
           "name": "section-awards",
-          "instances": [".upspr-section-wrapper__bg-grey_25"],
+          "instances": [
+            ".upspr-section-wrapper__bg-grey_25"
+          ],
           "section": "awards"
         },
         {
           "name": "cards-awards",
-          "instances": [".pr04-threecolumnteaser .upspr-three-column-teaser"],
+          "instances": [
+            ".pr04-threecolumnteaser .upspr-three-column-teaser"
+          ],
           "section": "awards-cards"
         },
         {
           "name": "columns-quote",
-          "instances": [".quotes .upspr-testimonial"],
+          "instances": [
+            ".quotes .upspr-testimonial"
+          ],
           "section": "quote"
         }
       ]
     },
     {
       "name": "home",
-      "urls": ["https://about.ups.com/us/en/home.html"],
+      "urls": [
+        "https://about.ups.com/us/en/home.html"
+      ],
       "description": "Homepage with hero banner, story cards, about us section, stats, and feature section",
       "blocks": [
         {
           "name": "hero-featured",
-          "instances": [".hero .upspr-heroimage:not(.vertical-hero)"],
+          "instances": [
+            ".hero .upspr-heroimage:not(.vertical-hero)"
+          ],
           "section": "hero"
         },
         {
           "name": "cards-stories",
-          "instances": [".pr04-threecolumnteaser .upspr-homepage-latest-stories"],
+          "instances": [
+            ".pr04-threecolumnteaser .upspr-homepage-latest-stories"
+          ],
           "section": "stories"
         },
         {
           "name": "columns-stats",
-          "instances": [".hero .upspr-heroimage.vertical-hero"],
+          "instances": [
+            ".hero .upspr-heroimage.vertical-hero"
+          ],
           "section": "stats"
         },
         {
           "name": "columns-feature",
-          "instances": [".sectioncard .upspr-xd-card"],
+          "instances": [
+            ".sectioncard .upspr-xd-card"
+          ],
           "section": "feature"
+        }
+      ]
+    },
+    {
+      "name": "story-hub",
+      "urls": [
+        "https://about.ups.com/us/en/our-stories.html"
+      ],
+      "description": "Our Stories landing page with hero heading, hero-featured card, and story cards grid with Load More",
+      "blocks": [
+        {
+          "name": "hero-featured",
+          "instances": [
+            ".hero .upspr-heroimage"
+          ]
+        },
+        {
+          "name": "cards-stories",
+          "instances": [
+            ".pr04-threecolumnteaser .upspr-homepage-latest-stories"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "hero-heading",
+          "name": "Hero Heading",
+          "selector": ".headline.aem-GridColumn",
+          "style": "accent-bar",
+          "blocks": [],
+          "defaultContent": [
+            ".upspr-headline h1"
+          ]
+        },
+        {
+          "id": "hero-featured",
+          "name": "Hero Featured Card",
+          "selector": ".hero.aem-GridColumn",
+          "style": null,
+          "blocks": [
+            "hero-featured"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "story-cards",
+          "name": "Story Cards Grid",
+          "selector": ".pr04-threecolumnteaser",
+          "style": null,
+          "blocks": [
+            "cards-stories"
+          ],
+          "defaultContent": [
+            ".load-more-cta"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "story-category",
+      "urls": [
+        "https://about.ups.com/us/en/our-stories/customer-first.html",
+        "https://about.ups.com/us/en/our-stories/people-led.html",
+        "https://about.ups.com/us/en/our-stories/innovation-driven.html"
+      ],
+      "description": "Story category listing page with h1 heading and story cards grid with Load More button",
+      "blocks": [
+        {
+          "name": "cards-stories",
+          "instances": [
+            ".pr04-threecolumnteaser .upspr-homepage-latest-stories",
+            ".pr04-threecolumnteaser .upspr-three-column-teaser"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "hero-heading",
+          "name": "Category Heading",
+          "selector": ".headline.aem-GridColumn",
+          "style": null,
+          "blocks": [],
+          "defaultContent": [
+            ".upspr-headline h1"
+          ]
+        },
+        {
+          "id": "story-cards",
+          "name": "Story Cards Grid",
+          "selector": ".pr04-threecolumnteaser",
+          "style": null,
+          "blocks": [
+            "cards-stories"
+          ],
+          "defaultContent": [
+            ".load-more-cta"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "company-hub",
+      "urls": [
+        "https://about.ups.com/us/en/our-company.html"
+      ],
+      "description": "Our Company landing page with hero heading, hero-featured card, stats row, columns-feature sections, and CEO quote",
+      "blocks": [
+        {
+          "name": "hero-featured",
+          "instances": [
+            ".hero .upspr-heroimage"
+          ]
+        },
+        {
+          "name": "columns-stats",
+          "instances": [
+            ".upspr-stats-container",
+            ".hero .upspr-heroimage + div"
+          ]
+        },
+        {
+          "name": "columns-feature",
+          "instances": [
+            ".sectioncard .upspr-xd-card"
+          ]
+        },
+        {
+          "name": "columns-quote",
+          "instances": [
+            ".quotes .upspr-testimonial"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "hero-heading",
+          "name": "Hero Heading",
+          "selector": ".headline.aem-GridColumn",
+          "style": "accent-bar",
+          "blocks": [],
+          "defaultContent": [
+            ".upspr-headline h1"
+          ]
+        },
+        {
+          "id": "hero-featured-stats",
+          "name": "Hero Featured and Stats",
+          "selector": [
+            ".hero.aem-GridColumn",
+            ".responsivegrid > .aem-Grid > div:has(.upspr-heroimage)"
+          ],
+          "style": null,
+          "blocks": [
+            "hero-featured",
+            "columns-stats"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "feature-sections",
+          "name": "Feature Sections",
+          "selector": ".sectioncard",
+          "style": null,
+          "blocks": [
+            "columns-feature"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "quote-section",
+          "name": "CEO Quote",
+          "selector": ".quotes",
+          "style": null,
+          "blocks": [
+            "columns-quote"
+          ],
+          "defaultContent": []
+        }
+      ]
+    },
+    {
+      "name": "company-strategy",
+      "urls": [
+        "https://about.ups.com/us/en/our-company/our-strategy.html"
+      ],
+      "description": "Strategy page with hero heading and subtitle, hero-featured card, centered text, story cards, columns-feature, and company profile blockquote",
+      "blocks": [
+        {
+          "name": "hero-featured",
+          "instances": [
+            ".hero .upspr-heroimage"
+          ]
+        },
+        {
+          "name": "cards-stories",
+          "instances": [
+            ".pr04-threecolumnteaser .upspr-homepage-latest-stories",
+            ".pr04-threecolumnteaser .upspr-three-column-teaser"
+          ]
+        },
+        {
+          "name": "columns-feature",
+          "instances": [
+            ".sectioncard .upspr-xd-card"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "hero-heading",
+          "name": "Hero Heading with Subtitle",
+          "selector": ".headline.aem-GridColumn",
+          "style": null,
+          "blocks": [],
+          "defaultContent": [
+            ".upspr-headline h1",
+            ".upspr-headline h4",
+            ".upspr-headline p"
+          ]
+        },
+        {
+          "id": "hero-featured",
+          "name": "Hero Featured Card",
+          "selector": ".hero.aem-GridColumn",
+          "style": null,
+          "blocks": [
+            "hero-featured"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "centered-text",
+          "name": "Centered Text",
+          "selector": ".headline.aem-GridColumn:has(h2)",
+          "style": null,
+          "blocks": [],
+          "defaultContent": [
+            ".upspr-headline h2",
+            ".upspr-headline p"
+          ]
+        },
+        {
+          "id": "story-cards",
+          "name": "Story Cards",
+          "selector": ".pr04-threecolumnteaser",
+          "style": null,
+          "blocks": [
+            "cards-stories"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "feature-section",
+          "name": "Feature Section",
+          "selector": ".sectioncard",
+          "style": null,
+          "blocks": [
+            "columns-feature"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "company-profile",
+          "name": "Company Profile",
+          "selector": ".headline.aem-GridColumn:has(blockquote)",
+          "style": null,
+          "blocks": [],
+          "defaultContent": [
+            ".upspr-headline h2",
+            ".upspr-headline blockquote"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "company-culture",
+      "urls": [
+        "https://about.ups.com/us/en/our-company/our-culture.html"
+      ],
+      "description": "Culture page with hero heading and description, three image-text sections covering values, partnership, and leadership model",
+      "blocks": [
+        {
+          "name": "columns-feature",
+          "instances": [
+            ".sectioncard .upspr-xd-card",
+            ".responsivegrid .upspr-xd-card"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "hero-heading",
+          "name": "Hero Heading with Description",
+          "selector": ".headline.aem-GridColumn",
+          "style": null,
+          "blocks": [],
+          "defaultContent": [
+            ".upspr-headline h1",
+            ".upspr-headline p"
+          ]
+        },
+        {
+          "id": "value-sections",
+          "name": "Values, Partnership, and Leadership Sections",
+          "selector": [
+            ".sectioncard",
+            ".responsivegrid:has(.upspr-xd-card)"
+          ],
+          "style": null,
+          "blocks": [
+            "columns-feature"
+          ],
+          "defaultContent": []
         }
       ]
     }

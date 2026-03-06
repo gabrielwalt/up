@@ -44,6 +44,33 @@ async function loadFonts() {
 }
 
 /**
+ * Builds a breadcrumb block and prepends to the first section.
+ * Only on pages with depth > 1 (not homepage).
+ * @param {Element} main The container element
+ */
+function buildBreadcrumb(main) {
+  // Only add breadcrumb to the page's main element, not to fragment content
+  if (!document.body.contains(main)) return;
+
+  const { pathname } = window.location;
+  // Match locale prefix like /us/en/ or /content/us/en/
+  const localeMatch = pathname.match(/(?:\/content)?(\/[a-z]{2}\/[a-z]{2})\//);
+  if (!localeMatch) return;
+
+  const pathAfterLocale = pathname.slice(localeMatch.index + localeMatch[0].length - 1);
+  const segments = pathAfterLocale.replace(/\/$/, '').split('/').filter(Boolean);
+
+  // Only show breadcrumb on pages with 2+ path segments (not home)
+  if (segments.length <= 1) return;
+
+  // Prepend breadcrumb as a new section div at top of main
+  // (runs before decorateSections, so .section class doesn't exist yet)
+  const wrapper = document.createElement('div');
+  wrapper.append(buildBlock('breadcrumb', ''));
+  main.prepend(wrapper);
+}
+
+/**
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
  */
@@ -68,6 +95,7 @@ function buildAutoBlocks(main) {
     }
 
     buildHeroBlock(main);
+    buildBreadcrumb(main);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);

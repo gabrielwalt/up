@@ -40,7 +40,13 @@
   overflow: hidden;
 }
 
-.cards-stories .cards-stories-card-image img {
+.cards-stories .cards-stories-card-image p {
+  margin: 0;
+  line-height: 0;
+}
+
+.cards-stories .cards-stories-card-image img,
+.cards-stories .cards-stories-card-image p img {
   width: 100%;
   aspect-ratio: 19 / 14;
   object-fit: cover;
@@ -103,11 +109,45 @@
   margin: 0;
 }
 
-/* ===== DESKTOP GRID ===== */
+/* ===== TABLET GRID (≥600px) ===== */
+@media (width >= 600px) {
+  /* Default: 2 columns (applies to 2, 4, and 5+ items) */
+  .cards-stories > ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* 1 item: always full-width */
+  .cards-stories > ul:has(> li:only-child) {
+    grid-template-columns: 1fr;
+  }
+
+  /* 3 items: stay 1 column on tablet */
+  .cards-stories > ul:has(> li:nth-child(3)):not(:has(> li:nth-child(4))) {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===== DESKTOP GRID (≥992px) ===== */
 
 /* --viewport-desktop */
 @media (width >= 992px) {
+  /* Default: 3 columns (applies to 3 and 5+ items) */
   .cards-stories > ul {
     grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* 1 item: always full-width */
+  .cards-stories > ul:has(> li:only-child) {
+    grid-template-columns: 1fr;
+  }
+
+  /* 2 items: 2 columns */
+  .cards-stories > ul:has(> li:nth-child(2)):not(:has(> li:nth-child(3))) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* 4 items: 2 columns */
+  .cards-stories > ul:has(> li:nth-child(4)):not(:has(> li:nth-child(5))) {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
