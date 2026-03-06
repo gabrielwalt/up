@@ -684,7 +684,7 @@ header nav .nav-tools .nav-search button:hover .upspricon-search {
 /* --viewport-nav */
 @media (width >= 1024px) {
   header nav .nav-tools {
-    margin-top: -5px;
+    margin-top: -8px;
   }
 
   header nav .nav-tools .nav-lang::before {
