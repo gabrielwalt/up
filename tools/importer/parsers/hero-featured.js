@@ -26,26 +26,56 @@
  *
  * Generated: 2026-03-05
  */
-export default function parse(element, { document }) {
-  // Extract background image
-  // Source DOM may have <picture> or plain <img> as direct child of .upspr-heroimage
-  let picture = element.querySelector('picture');
-  if (!picture) {
-    const img = element.querySelector('img');
-    if (img) {
-      picture = document.createElement('picture');
-      picture.appendChild(img.cloneNode(true));
+/**
+ * Extract the best image URL from a <picture> element or standalone <img>.
+ * Resolves relative URLs using document.baseURI. Prefers desktop <source>.
+ */
+function resolveImageSrc(el, document) {
+  const base = document.baseURI || document.location?.href || '';
+  const picture = el.querySelector('picture');
+
+  // Try <source> srcset (first source = widest/desktop)
+  if (picture) {
+    const sources = picture.querySelectorAll('source');
+    for (const source of sources) {
+      const srcset = source.getAttribute('srcset');
+      if (srcset) {
+        const raw = srcset.split(',')[0].trim().split(/\s+/)[0];
+        try { return new URL(raw, base).href; } catch { return raw; }
+      }
     }
+  }
+
+  // Try <img> srcset or src
+  const img = el.querySelector('img');
+  if (img) {
+    const srcset = img.getAttribute('srcset');
+    if (srcset) {
+      const raw = srcset.split(',')[0].trim().split(/\s+/)[0];
+      try { return new URL(raw, base).href; } catch { return raw; }
+    }
+    if (img.src) return img.src;
+    if (img.getAttribute('src')) return img.getAttribute('src');
+  }
+  return null;
+}
+
+export default function parse(element, { document }) {
+  // Extract background image — resolve from <picture> sources since <img> may lack src
+  const imgUrl = resolveImageSrc(element, document);
+
+  // Build image row (Row 1) with a clean <img> element
+  const imageCell = [];
+  if (imgUrl) {
+    const img = document.createElement('img');
+    img.src = imgUrl;
+    const origImg = element.querySelector('img');
+    if (origImg?.alt) img.alt = origImg.alt;
+    imageCell.push(img);
   }
 
   // Extract content from the hero message area
   const msgDiv = element.querySelector('.upspr-heroimage_msg');
-
-  // Build image row (Row 1)
-  const imageCell = [];
-  if (picture) {
-    imageCell.push(picture);
-  }
 
   // Build content row (Row 2)
   const contentCell = [];

@@ -31,22 +31,47 @@
  *
  * Generated: 2026-03-05
  */
-export default function parse(element, { document }) {
-  // Extract image
-  // Source DOM may have <picture> or plain <img>
-  let picture = element.querySelector('picture');
-  if (!picture) {
-    const img = element.querySelector('img');
-    if (img) {
-      picture = document.createElement('picture');
-      picture.appendChild(img.cloneNode(true));
+/**
+ * Extract the best image URL from an element containing <picture>/<source>/<img>.
+ * Resolves relative URLs. Prefers desktop <source> srcset.
+ */
+function resolveImageSrc(el, document) {
+  const base = document.baseURI || document.location?.href || '';
+  const picture = el.querySelector('picture');
+  if (picture) {
+    const sources = picture.querySelectorAll('source');
+    for (const source of sources) {
+      const srcset = source.getAttribute('srcset');
+      if (srcset) {
+        const raw = srcset.split(',')[0].trim().split(/\s+/)[0];
+        try { return new URL(raw, base).href; } catch { return raw; }
+      }
     }
   }
+  const img = el.querySelector('img');
+  if (img) {
+    const srcset = img.getAttribute('srcset');
+    if (srcset) {
+      const raw = srcset.split(',')[0].trim().split(/\s+/)[0];
+      try { return new URL(raw, base).href; } catch { return raw; }
+    }
+    if (img.src) return img.src;
+  }
+  return null;
+}
 
-  // Build image cell (column 1)
+export default function parse(element, { document }) {
+  // Resolve image URL from <picture> sources (img may lack src)
+  const imgUrl = resolveImageSrc(element, document);
+
+  // Build image cell (column 1) with clean <img> element
   const imageCell = [];
-  if (picture) {
-    imageCell.push(picture);
+  if (imgUrl) {
+    const img = document.createElement('img');
+    img.src = imgUrl;
+    const origImg = element.querySelector('img');
+    if (origImg?.alt) img.alt = origImg.alt;
+    imageCell.push(img);
   }
 
   // Build stats cell (column 2)

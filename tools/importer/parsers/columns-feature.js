@@ -30,20 +30,40 @@
  *
  * Generated: 2026-03-05
  */
-export default function parse(element, { document }) {
-  // Extract image from first or second column
-  // Source DOM may have <picture> or plain <img> inside columns
-  let picture = element.querySelector('picture');
-  if (!picture) {
-    const img = element.querySelector('img');
-    if (img) {
-      picture = document.createElement('picture');
-      picture.appendChild(img.cloneNode(true));
+/**
+ * Extract the best image URL from an element containing <picture>/<source>/<img>.
+ * Resolves relative URLs. Prefers desktop <source> srcset.
+ */
+function resolveImageSrc(el, document) {
+  const base = document.baseURI || document.location?.href || '';
+  const picture = el.querySelector('picture');
+  if (picture) {
+    const sources = picture.querySelectorAll('source');
+    for (const source of sources) {
+      const srcset = source.getAttribute('srcset');
+      if (srcset) {
+        const raw = srcset.split(',')[0].trim().split(/\s+/)[0];
+        try { return new URL(raw, base).href; } catch { return raw; }
+      }
     }
   }
+  const img = el.querySelector('img');
+  if (img) {
+    const srcset = img.getAttribute('srcset');
+    if (srcset) {
+      const raw = srcset.split(',')[0].trim().split(/\s+/)[0];
+      try { return new URL(raw, base).href; } catch { return raw; }
+    }
+    if (img.src) return img.src;
+  }
+  return null;
+}
+
+export default function parse(element, { document }) {
+  // Resolve image URL from <picture> sources (img may lack src)
+  const imgUrl = resolveImageSrc(element, document);
 
   // Extract text content from the card content area
-  // VALIDATED: Source DOM has .upspr-xd-card_content with eyebrow, heading, description, CTA
   const contentDiv = element.querySelector('.upspr-xd-card_content');
 
   // Build text column content
@@ -94,10 +114,14 @@ export default function parse(element, { document }) {
     }
   }
 
-  // Build image cell
+  // Build image cell with clean <img> element
   const imageCell = [];
-  if (picture) {
-    imageCell.push(picture);
+  if (imgUrl) {
+    const img = document.createElement('img');
+    img.src = imgUrl;
+    const origImg = element.querySelector('img');
+    if (origImg?.alt) img.alt = origImg.alt;
+    imageCell.push(img);
   }
 
   // Determine column order: check if image is first child or second

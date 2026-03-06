@@ -51,23 +51,16 @@ export default function parse(element, { document }) {
     quoteCell.push(p);
   }
 
-  // Build image column
+  // Build image column — resolve from <picture> sources since <img> may lack src
   const imageCell = [];
-
-  // Extract portrait image
-  // Source may have <picture> or plain <img>
-  let picture = element.querySelector('.upspr-testimonial__image picture') ||
-                element.querySelector('picture');
-  if (!picture) {
-    const img = element.querySelector('.upspr-testimonial__image img') ||
-                element.querySelector('img');
-    if (img) {
-      picture = document.createElement('picture');
-      picture.appendChild(img.cloneNode(true));
-    }
-  }
-  if (picture) {
-    imageCell.push(picture);
+  const imgContainer = element.querySelector('.upspr-testimonial__image') || element;
+  const imgUrl = resolveImageSrc(imgContainer, document);
+  if (imgUrl) {
+    const img = document.createElement('img');
+    img.src = imgUrl;
+    const origImg = imgContainer.querySelector('img');
+    if (origImg?.alt) img.alt = origImg.alt;
+    imageCell.push(img);
   }
 
   // Build cells array - 2 columns: quote text | image

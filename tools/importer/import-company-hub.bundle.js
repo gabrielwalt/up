@@ -34,15 +34,22 @@ var CustomImportScript = (() => {
   };
   var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
-  // tools/importer/import-company-hub.js
+  // ../../../../../../../../../../workspace/tools/importer/import-company-hub.js
   var import_company_hub_exports = {};
   __export(import_company_hub_exports, {
     default: () => import_company_hub_default
   });
 
-  // tools/importer/parsers/hero-featured.js
+  // ../../../../../../../../../../workspace/tools/importer/parsers/hero-featured.js
   function parse(element, { document }) {
-    const picture = element.querySelector("picture");
+    let picture = element.querySelector("picture");
+    if (!picture) {
+      const img = element.querySelector("img");
+      if (img) {
+        picture = document.createElement("picture");
+        picture.appendChild(img.cloneNode(true));
+      }
+    }
     const msgDiv = element.querySelector(".upspr-heroimage_msg");
     const imageCell = [];
     if (picture) {
@@ -90,9 +97,16 @@ var CustomImportScript = (() => {
     element.replaceWith(block);
   }
 
-  // tools/importer/parsers/columns-stats.js
+  // ../../../../../../../../../../workspace/tools/importer/parsers/columns-stats.js
   function parse2(element, { document }) {
-    const picture = element.querySelector("picture");
+    let picture = element.querySelector("picture");
+    if (!picture) {
+      const img = element.querySelector("img");
+      if (img) {
+        picture = document.createElement("picture");
+        picture.appendChild(img.cloneNode(true));
+      }
+    }
     const imageCell = [];
     if (picture) {
       imageCell.push(picture);
@@ -131,9 +145,16 @@ var CustomImportScript = (() => {
     element.replaceWith(block);
   }
 
-  // tools/importer/parsers/columns-feature.js
+  // ../../../../../../../../../../workspace/tools/importer/parsers/columns-feature.js
   function parse3(element, { document }) {
-    const picture = element.querySelector("picture");
+    let picture = element.querySelector("picture");
+    if (!picture) {
+      const img = element.querySelector("img");
+      if (img) {
+        picture = document.createElement("picture");
+        picture.appendChild(img.cloneNode(true));
+      }
+    }
     const contentDiv = element.querySelector(".upspr-xd-card_content");
     const textCell = [];
     if (contentDiv) {
@@ -172,7 +193,7 @@ var CustomImportScript = (() => {
       imageCell.push(picture);
     }
     const firstCol = element.querySelector(".row > div:first-child");
-    const imageIsFirst = firstCol && firstCol.querySelector("picture");
+    const imageIsFirst = firstCol && (firstCol.querySelector("picture") || firstCol.querySelector("img"));
     const cells = [];
     if (imageIsFirst) {
       cells.push([imageCell, textCell]);
@@ -183,7 +204,7 @@ var CustomImportScript = (() => {
     element.replaceWith(block);
   }
 
-  // tools/importer/parsers/columns-quote.js
+  // ../../../../../../../../../../workspace/tools/importer/parsers/columns-quote.js
   function parse4(element, { document }) {
     const quoteCell = [];
     const quoteHeading = element.querySelector(".upspr-testimonial__wrap--title, .upspr-testimonial__wrap h3");
@@ -199,7 +220,14 @@ var CustomImportScript = (() => {
       quoteCell.push(p);
     }
     const imageCell = [];
-    const picture = element.querySelector(".upspr-testimonial__image picture") || element.querySelector("picture");
+    let picture = element.querySelector(".upspr-testimonial__image picture") || element.querySelector("picture");
+    if (!picture) {
+      const img = element.querySelector(".upspr-testimonial__image img") || element.querySelector("img");
+      if (img) {
+        picture = document.createElement("picture");
+        picture.appendChild(img.cloneNode(true));
+      }
+    }
     if (picture) {
       imageCell.push(picture);
     }
@@ -210,7 +238,7 @@ var CustomImportScript = (() => {
     element.replaceWith(block);
   }
 
-  // tools/importer/transformers/ups-cleanup.js
+  // ../../../../../../../../../../workspace/tools/importer/transformers/ups-cleanup.js
   var TransformHook = {
     beforeTransform: "beforeTransform",
     afterTransform: "afterTransform"
@@ -279,7 +307,7 @@ var CustomImportScript = (() => {
     }
   }
 
-  // tools/importer/import-company-hub.js
+  // ../../../../../../../../../../workspace/tools/importer/import-company-hub.js
   var parsers = {
     "hero-featured": parse,
     "columns-stats": parse2,

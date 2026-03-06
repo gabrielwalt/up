@@ -34,15 +34,22 @@ var CustomImportScript = (() => {
   };
   var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
-  // tools/importer/import-story-hub.js
+  // ../../../../../../../../../../workspace/tools/importer/import-story-hub.js
   var import_story_hub_exports = {};
   __export(import_story_hub_exports, {
     default: () => import_story_hub_default
   });
 
-  // tools/importer/parsers/hero-featured.js
+  // ../../../../../../../../../../workspace/tools/importer/parsers/hero-featured.js
   function parse(element, { document }) {
-    const picture = element.querySelector("picture");
+    let picture = element.querySelector("picture");
+    if (!picture) {
+      const img = element.querySelector("img");
+      if (img) {
+        picture = document.createElement("picture");
+        picture.appendChild(img.cloneNode(true));
+      }
+    }
     const msgDiv = element.querySelector(".upspr-heroimage_msg");
     const imageCell = [];
     if (picture) {
@@ -90,7 +97,7 @@ var CustomImportScript = (() => {
     element.replaceWith(block);
   }
 
-  // tools/importer/parsers/cards-stories.js
+  // ../../../../../../../../../../workspace/tools/importer/parsers/cards-stories.js
   function parse2(element, { document }) {
     const cells = [];
     const cardItems = element.querySelectorAll(".upspr-stories-list__item");
@@ -138,7 +145,7 @@ var CustomImportScript = (() => {
     element.replaceWith(block);
   }
 
-  // tools/importer/transformers/ups-cleanup.js
+  // ../../../../../../../../../../workspace/tools/importer/transformers/ups-cleanup.js
   var TransformHook = {
     beforeTransform: "beforeTransform",
     afterTransform: "afterTransform"
@@ -207,7 +214,7 @@ var CustomImportScript = (() => {
     }
   }
 
-  // tools/importer/import-story-hub.js
+  // ../../../../../../../../../../workspace/tools/importer/import-story-hub.js
   var parsers = {
     "hero-featured": parse,
     "cards-stories": parse2
