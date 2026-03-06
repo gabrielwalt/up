@@ -250,7 +250,6 @@ header nav .nav-sections ul > li > ul > li {
     border: none;
   }
 
-  header nav .nav-sections a.button:any-link::after,
   header nav .nav-sections .button-wrapper {
     all: unset;
   }
