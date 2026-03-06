@@ -15,6 +15,9 @@ Migrating UPS "About" site (https://about.ups.com/us/en/home.html) to Adobe Edge
 7. **Never import all-caps content as-is** - When source content is ALL CAPS in the DOM (e.g., "REPORTS AND DISCLOSURES"), convert it to Title Case or Sentence case in the HTML content and apply `text-transform: uppercase` via CSS instead. This preserves authoring flexibility and avoids requiring authors to type in all caps.
 8. **Don't rely on bold/strong for block-wide styling** - If an entire text element in a block needs to be bold or styled differently (like eyebrow labels or attribution text), apply `font-weight: 700` via CSS targeting the element position (e.g., `:first-child`). Reserve `<strong>` only for inline emphasis where the author wants to distinguish specific words from surrounding text.
 9. **Keep import scripts aligned with content HTML** - When changing content markup patterns, update all related parsers in `tools/importer/parsers/`. Content HTML is the source of truth; parsers must reproduce it exactly. See "Import Script Alignment" in Migration Rules.
+10. **NEVER push HTML content via Git** - Content and code are strictly separated. Content lives in the CMS (DA), code lives in Git. Never add `.html` files to Git, never modify `.gitignore` to track HTML files. See "Content Architecture" section.
+11. **NEVER commit or push to Git yourself** - The user handles all Git operations (commit, push, branch management). Only make code changes to files — leave staging, committing, and pushing to the user.
+12. **Code must be compatible with DA markup** - DA (Document Authoring) wraps inline content in `<p>` tags in `.plain.html` output. Block JS and CSS must handle this gracefully with flexible selectors — never add JS workarounds to unwrap DA markup. See "DA Markup Compatibility" section.
 
 ---
 
@@ -177,6 +180,91 @@ The import scripts in `tools/importer/` are designed to reproduce the exact cont
 
 ---
 
+## Content Architecture
+
+### Strict Separation: Content in CMS, Code in Git
+
+This project follows the AEM Edge Delivery Services architecture where **content and code are strictly separated**:
+
+- **Code** (JS, CSS, config): Lives in Git (`github.com/gabrielwalt/up`), deployed via AEM Code Sync
+- **Content** (HTML pages, fragments): Lives in DA (Document Authoring at `content.da.live/gabrielwalt/up/`), previewed/published via AEM admin API
+
+**Rules:**
+1. **Never push HTML content via Git** — The `.gitignore` has `*.html` for a reason
+2. **Never modify `.gitignore` to track HTML files** — Content belongs in the CMS, not in the repo
+3. **Fragment content (nav, footer) comes from DA** — These are authored and previewed in DA, not committed to Git
+4. **Local `/content/` directory is for local dev only** — It mirrors DA content for local preview but is NOT tracked in Git
+
+### Fragment Loading: How Nav and Footer Work
+
+The header and footer blocks load their content as **fragments** via `loadFragment()`:
+
+1. `header.js` fetches `{navPath}.plain.html` (default: `/nav`)
+2. `footer.js` fetches `{footerPath}.plain.html` (default: `/footer`)
+3. The `.plain.html` format is a clean HTML representation of the authored content
+
+**Path resolution on deployed vs local:**
+- **Deployed** (aem.page/aem.live): Content at root paths — `/nav.plain.html`, `/footer.plain.html`
+- **Local dev** (localhost:3000): Content at `/content/nav.plain.html` (page metadata overrides the default path)
+
+The local page HTML has `<meta name="nav" content="/content/nav"/>` which overrides the default `/nav` path. On deployed, this meta tag is absent, so the default `/nav` path is used — which correctly resolves to DA content.
+
+### DA Markup Compatibility
+
+**DA (Document Authoring) wraps inline content in `<p>` tags** in its `.plain.html` output. This is standard DA behavior and must NOT be worked around by unwrapping in JS.
+
+**Example — nav link in DA output:**
+```html
+<li>
+  <p><a href="https://about.ups.com/us/en/our-stories.html">Our Stories</a></p>
+  <ul>
+    <li><a href="...">Customer First</a></li>
+  </ul>
+</li>
+```
+
+**Impact**: EDS `decorateButtons()` in `scripts.js` finds links that are sole children of `<p>` and applies `.button` class + `.button-wrapper` on the parent `<p>`. This turns nav links into styled buttons.
+
+**Correct fix — CSS resets + flexible selectors:**
+```css
+/* Reset button styling applied by decorateButtons() */
+header nav .nav-sections a.button:any-link {
+  display: inline;
+  margin: 0;
+  border: none;
+  padding: 0;
+  background: none;
+  color: currentcolor;
+}
+
+header nav .nav-sections .button-wrapper {
+  all: unset;
+}
+```
+
+```javascript
+/* JS selectors must match both patterns */
+navSection.querySelector(':scope > a, :scope > p > a');  // ✓ handles both
+navSection.querySelector(':scope > a');                    // ✗ misses DA markup
+```
+
+**Wrong approaches (do NOT use):**
+- ❌ JS code to unwrap `<p>` tags around links — fights the CMS output
+- ❌ Copying `.plain.html` files into the Git repo — breaks content/code separation
+- ❌ Modifying `.gitignore` to track HTML files — same issue
+
+### Git Workflow
+
+**The user handles all Git operations.** Do not:
+- Run `git commit` — leave changes unstaged for the user
+- Run `git push` — the user pushes when ready
+- Run `git reset --hard` or other destructive operations
+- Modify `.gitignore` without explicit user approval
+
+When code changes are complete, inform the user which files were modified so they can review, commit, and push.
+
+---
+
 ## Maintaining This Documentation
 
 **This file is the project's source of truth.** Keep it current to ensure consistency.
@@ -257,8 +345,8 @@ When working on this project, periodically verify:
 - **Icons**: `/icons/` (`search.svg`, `ups-logo.svg`)
 - **Icon font**: `/fonts/upspricons.woff` — UPS icon font (button chevron `\e60f`, circle arrow `\e603`)
 - **Web fonts**: `/fonts/` (`roboto-regular.woff2`, `roboto-medium.woff2`, `roboto-bold.woff2`, `roboto-condensed-bold.woff2`)
-- **Navigation**: `/content/nav.html`, `/content/nav.plain.html` (fragment files)
-- **Footer**: `/content/footer.html`, `/content/footer.plain.html` (fragment files)
+- **Navigation**: Authored in DA, served at `/nav.plain.html` (deployed) or `/content/nav.plain.html` (local dev)
+- **Footer**: Authored in DA, served at `/footer.plain.html` (deployed) or `/content/footer.plain.html` (local dev)
 - **Import infrastructure**: `/tools/importer/` (page-templates.json, parsers/, transformers/)
 
 ---
@@ -280,7 +368,11 @@ All content pages in this project and their source URLs.
 
 ## Fragment Files
 
-Fragment files (`nav.html`, `footer.html`) are loaded by blocks, not rendered as standalone pages.
+Fragment files (`nav`, `footer`) are **authored in DA** and loaded by blocks at runtime via `loadFragment()`. They are NOT committed to Git.
+
+**Content source**: DA at `content.da.live/gabrielwalt/up/`
+**Deployed paths**: `/nav.plain.html`, `/footer.plain.html` (served by AEM)
+**Local dev paths**: `/content/nav.plain.html`, `/content/footer.plain.html` (for local preview only)
 
 **⚠️ CRITICAL**: Fragment files must NOT have `<header></header>` or `<footer></footer>` tags in their HTML structure. These tags cause AEM to try loading header/footer blocks on the fragment page itself, creating recursive loading issues.
 
@@ -305,6 +397,8 @@ Fragment files (`nav.html`, `footer.html`) are loaded by blocks, not rendered as
 <footer></footer>  <!-- ✗ Don't include -->
 </body>
 ```
+
+**DA markup note**: DA wraps inline content in `<p>` tags. Block CSS/JS must handle this — see "DA Markup Compatibility" in Content Architecture section.
 
 ---
 
@@ -520,6 +614,9 @@ Complete reference of all blocks and their variants.
 - Utility links (ups.com, Support) with pipe separators
 - Hamburger menu on mobile (animated icon, full-height overlay)
 - 2px bottom border (`var(--light-color)`)
+- DA-compatible: CSS resets neutralize button styling on nav links, JS selectors handle both `> li > a` and `> li > p > a` patterns
+
+**Fragment source**: Nav content authored in DA at `/nav`, loaded via `loadFragment('/nav')`
 
 **Responsive behavior**:
 - Mobile (<1024px): Fixed position, hamburger menu, 64px height
@@ -879,6 +976,10 @@ Always include ARIA attributes on interactive elements:
 20. **All-caps content → CSS text-transform** - Never import all-caps text literally. Convert to Title Case in content and apply `text-transform: uppercase` via CSS on the target element.
 21. **Block-wide bold → CSS font-weight** - Don't wrap entire block elements in `<strong>`. Apply `font-weight: 700` via CSS targeting the element's position (e.g., `p:first-child`). Reserve `<strong>` for inline emphasis only.
 22. **CSS margin collapsing** - Adjacent sibling sections with margins will collapse (largest wins). To ensure a specific gap, set the preceding section's bottom margin to 0 and control spacing entirely from the target section's top margin.
+23. **Never push to Git yourself** - The user handles all Git operations (commit, push, branch). Only modify files — leave Git workflow to the user.
+24. **Content and code are strictly separated** - Content (HTML) lives in DA (CMS), code (JS/CSS) lives in Git. Never commit HTML content to Git. Never modify `.gitignore` to track HTML files.
+25. **DA wraps inline content in `<p>` tags** - Block JS/CSS must use flexible selectors (e.g., `:scope > a, :scope > p > a`) to handle both direct children and p-wrapped children from DA. Never add JS unwrapping logic — fix compatibility in CSS with button resets and in JS with dual selectors.
+26. **Fragment default paths are root-relative** - `header.js` defaults to `/nav`, `footer.js` defaults to `/footer`. Local dev pages override these via `<meta name="nav" content="/content/nav"/>`. On deployed (DA), no override exists — the default root path is used.
 
 ---
 
@@ -932,6 +1033,34 @@ main .section.image-full-width .default-content-wrapper p:has(picture) {
 .block .content {
   position: relative;
   z-index: 1;
+}
+```
+
+### DA Button Reset Pattern (for blocks loading fragments)
+When DA wraps links in `<p>` tags, `decorateButtons()` applies `.button` and `.button-wrapper` classes. Reset them in block CSS:
+```css
+/* Reset button styling from decorateButtons() on DA-wrapped links */
+.block-name a.button:any-link {
+  display: inline;
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  background: none;
+  color: currentcolor;
+  font-size: inherit;
+  font-weight: inherit;
+  white-space: nowrap;
+}
+
+.block-name a.button:any-link:hover {
+  background: none;
+  border: none;
+}
+
+.block-name a.button:any-link::after,
+.block-name .button-wrapper {
+  all: unset;
 }
 ```
 
