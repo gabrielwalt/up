@@ -145,7 +145,7 @@ export default async function decorate(block) {
 
         // Add header label to sub-menu (repeats parent item text)
         const subMenu = navSection.querySelector('ul');
-        const parentLink = navSection.querySelector(':scope > a');
+        const parentLink = navSection.querySelector(':scope > a, :scope > p > a');
         if (subMenu && parentLink) {
           const label = document.createElement('li');
           label.className = 'nav-submenu-label';
@@ -206,7 +206,7 @@ export default async function decorate(block) {
     // Highlight active section based on current page URL
     // Strip /content prefix (local dev) and .html suffix for matching
     const currentPath = window.location.pathname.replace(/^\/content/, '').replace(/\.html$/, '');
-    navSections.querySelectorAll(':scope .default-content-wrapper > ul > li > a').forEach((link) => {
+    navSections.querySelectorAll(':scope .default-content-wrapper > ul > li > a, :scope .default-content-wrapper > ul > li > p > a').forEach((link) => {
       try {
         const linkPath = new URL(link.href).pathname.replace(/\.html$/, '');
         if (currentPath.startsWith(linkPath) && linkPath !== '/') {

@@ -231,14 +231,40 @@ header nav .nav-sections ul > li > ul > li {
     line-height: 1.5;
   }
 
+  /* Reset button styling on nav section links (DA wraps links in <p>) */
+  header nav .nav-sections a.button:any-link {
+    display: inline;
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    background: none;
+    color: currentcolor;
+    font-size: var(--body-font-size-m);
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  header nav .nav-sections a.button:any-link:hover {
+    background: none;
+    border: none;
+  }
+
+  header nav .nav-sections a.button:any-link::after,
+  header nav .nav-sections .button-wrapper {
+    all: unset;
+  }
+
   /* Active / hover yellow bar indicator — just below link text */
-  header nav .nav-sections .default-content-wrapper > ul > li > a {
+  header nav .nav-sections .default-content-wrapper > ul > li > a,
+  header nav .nav-sections .default-content-wrapper > ul > li > p > a {
     position: relative;
     display: inline-block;
     padding-bottom: 8px;
   }
 
-  header nav .nav-sections .default-content-wrapper > ul > li > a::after {
+  header nav .nav-sections .default-content-wrapper > ul > li > a::after,
+  header nav .nav-sections .default-content-wrapper > ul > li > p > a::after {
     content: '';
     display: block;
     width: 24px;
@@ -253,7 +279,9 @@ header nav .nav-sections ul > li > ul > li {
   }
 
   header nav .nav-sections .default-content-wrapper > ul > li:hover > a::after,
-  header nav .nav-sections .default-content-wrapper > ul > li > a.nav-link-active::after {
+  header nav .nav-sections .default-content-wrapper > ul > li > a.nav-link-active::after,
+  header nav .nav-sections .default-content-wrapper > ul > li:hover > p > a::after,
+  header nav .nav-sections .default-content-wrapper > ul > li > p > a.nav-link-active::after {
     transform: translateX(-50%) scaleX(1);
   }
 
