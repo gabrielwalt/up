@@ -5,12 +5,12 @@
   padding: 0;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 24px;
+  gap: var(--spacing-m);
 }
 
 .cards-awards > ul > li {
   background-color: transparent;
-  border-radius: 8px;
+  border-radius: var(--radius-m);
 }
 
 .cards-awards .cards-awards-card-body {
@@ -20,14 +20,14 @@
 /* ===== EYEBROW TEXT ===== */
 .cards-awards .cards-awards-card-body > p:first-child {
   font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 1.6px;
+  font-weight: var(--eyebrow-weight);
+  letter-spacing: var(--eyebrow-tracking);
   text-transform: uppercase;
   line-height: 1.5;
   color: var(--text-color);
   position: relative;
   display: inline-block;
-  padding-left: 44px;
+  padding-left: var(--spacing-xl);
 }
 
 .cards-awards .cards-awards-card-body > p:first-child::before {
@@ -36,22 +36,24 @@
   top: 50%;
   margin-top: -1.5px;
   left: 0;
-  width: 32px;
-  height: 3px;
+  width: var(--accent-dash-width);
+  height: var(--accent-dash-height);
   border-radius: 5px;
-  background-color: #ffd100;
+  background-color: var(--accent-dash-color);
 }
 
 /* ===== CARD HEADING ===== */
 .cards-awards .cards-awards-card-body h3 {
-  font-size: var(--heading-font-size-l);
+  font-size: var(--heading-font-size-m);
   font-weight: 500;
   line-height: 1.25;
   color: var(--text-color);
-  margin: 0 0 8px;
+  margin: 0 0 var(--spacing-xs);
 }
 
 /* ===== DESKTOP: 3 COLUMNS ===== */
+
+/* --viewport-desktop */
 @media (width >= 992px) {
   .cards-awards > ul {
     grid-template-columns: repeat(3, 1fr);

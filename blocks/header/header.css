@@ -16,11 +16,11 @@ header nav {
     'hamburger brand tools' var(--nav-height)
     'sections sections sections' 1fr / auto 1fr auto;
   align-items: center;
-  gap: 0 24px;
+  gap: 0 var(--spacing-m);
   margin: auto;
-  max-width: 1200px;
+  max-width: var(--content-max-width);
   height: var(--nav-height);
-  padding: 0 24px;
+  padding: 0 var(--content-padding);
   font-family: var(--body-font-family);
 }
 
@@ -33,6 +33,7 @@ header nav[aria-expanded='true'] {
   min-height: 100dvh;
 }
 
+/* --viewport-nav */
 @media (width >= 1024px) {
   header .nav-wrapper {
     position: relative;
@@ -42,8 +43,8 @@ header nav[aria-expanded='true'] {
     display: flex;
     align-items: center;
     gap: 0;
-    max-width: 1200px;
-    padding: 0 32px;
+    max-width: var(--content-max-width);
+    padding: 0 var(--content-padding);
     height: 100px;
   }
 
@@ -145,6 +146,7 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
   transform: rotate(-45deg);
 }
 
+/* --viewport-nav */
 @media (width >= 1024px) {
   header nav .nav-hamburger {
     display: none;
@@ -164,9 +166,10 @@ header nav .nav-brand img {
   height: 60px;
 }
 
+/* --viewport-nav */
 @media (width >= 1024px) {
   header .nav-brand {
-    margin-right: 40px;
+    margin-right: var(--spacing-xl);
   }
 }
 
@@ -202,6 +205,7 @@ header nav .nav-sections ul > li > ul > li {
   font-weight: 500;
 }
 
+/* --viewport-nav */
 @media (width >= 1024px) {
   header nav .nav-sections {
     display: block;
@@ -220,7 +224,7 @@ header nav .nav-sections ul > li > ul > li {
 
   header nav .nav-sections ul {
     display: flex;
-    gap: 32px;
+    gap: var(--spacing-l);
     margin: 0;
   }
 
@@ -260,7 +264,7 @@ header nav .nav-sections ul > li > ul > li {
   header nav .nav-sections .default-content-wrapper > ul > li > p > a.button:any-link {
     position: relative;
     display: inline-block;
-    padding-bottom: 8px;
+    padding-bottom: var(--spacing-xs);
   }
 
   header nav .nav-sections .default-content-wrapper > ul > li > a::after,
@@ -269,7 +273,7 @@ header nav .nav-sections ul > li > ul > li {
     display: block;
     width: 24px;
     height: 3px;
-    background-color: #ffd100;
+    background-color: var(--color-gold);
     border-radius: 8px;
     position: absolute;
     bottom: 0;
@@ -309,13 +313,13 @@ header nav .nav-sections ul > li > ul > li {
     right: 0;
     top: calc(var(--nav-height) - 4px);
     width: 100vw;
-    padding: 32px 0 40px;
+    padding: var(--spacing-l) 0 var(--spacing-xl);
     background-color: var(--background-color);
     white-space: initial;
-    box-shadow: 0 8px 16px rgb(0 0 0 / 8%);
+    box-shadow: var(--shadow-dropdown);
     clip-path: inset(0 0 -40px 0);
     border-top: 1px solid var(--light-color);
-    border-radius: 0 0 16px 16px;
+    border-radius: 0 0 var(--radius-l) var(--radius-l);
     z-index: 10;
     flex-direction: column;
     gap: 0;
@@ -338,9 +342,9 @@ header nav .nav-sections ul > li > ul > li {
 
   /* Mega menu inner content constrained to nav width */
   header nav .nav-sections .default-content-wrapper > ul > li[aria-expanded='true'] > ul > li {
-    max-width: 1200px;
+    max-width: var(--content-max-width);
     margin: 0 auto;
-    padding: 8px 32px;
+    padding: var(--spacing-xs) var(--spacing-l);
     width: 100%;
     box-sizing: border-box;
   }
@@ -376,11 +380,11 @@ header nav .nav-sections ul > li > ul > li {
   header nav .nav-sections .default-content-wrapper > ul > li > ul > li.nav-submenu-label {
     font-size: 10px;
     font-weight: 700;
-    color: rgb(128 128 128);
+    color: var(--color-muted);
     text-transform: uppercase;
-    letter-spacing: 1.6px;
-    padding-bottom: 16px;
-    margin-bottom: 8px;
+    letter-spacing: var(--eyebrow-tracking);
+    padding-bottom: var(--spacing-s);
+    margin-bottom: var(--spacing-xs);
   }
 
   /* ===== TWO-COLUMN DROPDOWN LAYOUT ===== */
@@ -393,7 +397,7 @@ header nav .nav-sections ul > li > ul > li {
     gap: 0 75px;
     max-width: none;
     margin: 0;
-    padding: 32px max(32px, calc((100vw - 1200px) / 2 + 32px)) 20px;
+    padding: var(--spacing-l) max(var(--spacing-l), calc((100vw - 1200px) / 2 + var(--spacing-l))) 20px;
   }
 
   header nav .nav-sections .default-content-wrapper > ul > li.nav-drop-columns > ul > li.nav-submenu-label {
@@ -402,14 +406,14 @@ header nav .nav-sections ul > li > ul > li {
     width: auto;
     max-width: none;
     margin: 0;
-    padding: 0 0 16px;
+    padding: 0 0 var(--spacing-s);
   }
 
   header nav .nav-sections .default-content-wrapper > ul > li.nav-drop-columns > ul > li:not(.nav-submenu-label) {
     width: auto;
     max-width: none;
     margin: 0;
-    padding: 8px 0;
+    padding: var(--spacing-xs) 0;
   }
 }
 
@@ -441,8 +445,8 @@ header nav .nav-tools p + p::before {
   display: inline-block;
   width: 2px;
   height: 32px;
-  background: #e5e5e5;
-  margin: 0 16px;
+  background: var(--color-border);
+  margin: 0 var(--spacing-s);
   vertical-align: middle;
 }
 
@@ -549,6 +553,7 @@ header nav .nav-tools .nav-search button:hover .upspricon-search {
   color: var(--link-color);
 }
 
+/* --viewport-nav */
 @media (width >= 1024px) {
   header nav .nav-tools .nav-lang {
     display: flex;
@@ -561,8 +566,8 @@ header nav .nav-tools .nav-search button:hover .upspricon-search {
     display: inline-block;
     width: 2px;
     height: 32px;
-    background: #e5e5e5;
-    margin: 0 16px;
+    background: var(--color-border);
+    margin: 0 var(--spacing-s);
     vertical-align: middle;
   }
 
@@ -571,8 +576,8 @@ header nav .nav-tools .nav-search button:hover .upspricon-search {
     display: inline-block;
     width: 2px;
     height: 32px;
-    background: #e5e5e5;
-    margin: 0 16px;
+    background: var(--color-border);
+    margin: 0 var(--spacing-s);
     vertical-align: middle;
   }
 }

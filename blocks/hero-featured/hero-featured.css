@@ -35,21 +35,21 @@
   position: relative;
   z-index: 1;
   background: var(--background-color);
-  padding: 24px;
+  padding: var(--spacing-m);
   max-width: 480px;
-  border-radius: 8px;
-  margin: 200px 24px 24px;
+  border-radius: var(--radius-m);
+  margin: 200px var(--spacing-m) var(--spacing-m);
 }
 
 /* ===== EYEBROW ===== */
 .hero-featured .hero-featured-eyebrow {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 1.6px;
+  font-size: var(--eyebrow-size);
+  font-weight: var(--eyebrow-weight);
+  letter-spacing: var(--eyebrow-tracking);
   text-transform: uppercase;
   color: var(--text-color);
   margin: 0 0 12px;
-  padding-left: 40px;
+  padding-left: var(--spacing-xl);
   position: relative;
 }
 
@@ -59,9 +59,9 @@
   left: 0;
   top: 50%;
   transform: translateY(-50%);
-  width: 32px;
-  height: 3px;
-  background: #ffd100;
+  width: var(--accent-dash-width);
+  height: var(--accent-dash-height);
+  background: var(--accent-dash-color);
   border-radius: 5px;
 }
 
@@ -93,28 +93,30 @@
   color: var(--text-color);
   font-size: var(--body-font-size-m);
   line-height: 1.5;
-  margin: 0 0 32px;
+  margin: 0 0 var(--spacing-l);
 }
 
 /* ===== CTA BUTTON (gold/yellow) ===== */
 .hero-featured a.button:any-link {
-  border-color: #ffc400;
-  background-color: #ffc400;
-  color: #121212;
+  border-color: var(--cta-bg);
+  background-color: var(--cta-bg);
+  color: var(--cta-text);
 }
 
 .hero-featured a.button:any-link:hover {
-  border-color: #e0ac00;
-  background-color: #e0ac00;
-  color: #121212;
+  border-color: var(--cta-bg-hover);
+  background-color: var(--cta-bg-hover);
+  color: var(--cta-text);
 }
 
 /* ===== DESKTOP ===== */
+
+/* --viewport-desktop */
 @media (width >= 992px) {
   .hero-featured > div:last-child {
     box-sizing: border-box;
     max-width: 480px;
-    padding: 48px;
+    padding: var(--spacing-2xl);
     margin: 60px 0 60px 60px;
   }
 

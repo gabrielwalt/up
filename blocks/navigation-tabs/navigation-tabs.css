@@ -3,14 +3,13 @@
   display: flex;
   gap: 20px;
   padding: 0 0 53px;
-  margin-top: 48px;
   justify-content: center;
 }
 
 .navigation-tabs > div {
   flex: 0 1 360px;
   max-width: 360px;
-  box-shadow: 0 4px 24px rgb(0 0 0 / 16%);
+  box-shadow: var(--shadow-card);
 }
 
 .navigation-tabs p {
@@ -23,15 +22,15 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 40px;
+  padding: 20px var(--spacing-xl);
   background: var(--background-color);
   border: none;
-  border-radius: 4px;
-  box-shadow: 0 4px 0 0 #ffd100;
+  border-radius: var(--radius-s);
+  box-shadow: 0 4px 0 0 var(--color-gold);
   text-decoration: none;
   color: var(--text-color);
   font-weight: 500;
-  font-size: 24px;
+  font-size: var(--heading-font-size-m);
   line-height: 1.5;
   transition: box-shadow 0.2s ease;
   white-space: normal;
@@ -40,7 +39,7 @@
 
 .navigation-tabs a:any-link:hover,
 .navigation-tabs a.button:any-link:hover {
-  box-shadow: 0 4px 0 0 #ffd100, 0 4px 12px rgb(0 0 0 / 15%);
+  box-shadow: 0 4px 0 0 var(--color-gold), 0 4px 12px rgb(0 0 0 / 15%);
   text-decoration: none;
   color: var(--text-color);
   background: var(--background-color);
@@ -89,12 +88,13 @@
 }
 
 /* ===== MOBILE ===== */
+
+/* --viewport-desktop */
 @media (width < 992px) {
   .navigation-tabs {
     flex-direction: column;
-    gap: 16px;
-    margin-top: 16px;
-    padding: 0 24px 16px;
+    gap: var(--spacing-s);
+    padding: 0 var(--spacing-m) var(--spacing-s);
   }
 
   .navigation-tabs > div {

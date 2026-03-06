@@ -2,14 +2,21 @@
 
 /* ===== FOOTER BASE ===== */
 footer {
-  background-color: #351c15;
+  --footer-bg: #351c15;
+  --footer-text: #c6c6c6;
+  --footer-text-muted: rgb(198 198 198 / 60%);
+  --footer-separator: rgb(198 198 198 / 40%);
+  --footer-border: rgb(255 255 255 / 15%);
+  --footer-surface: rgb(255 255 255 / 8%);
+
+  background-color: var(--footer-bg);
   color: #fff;
 }
 
 footer .footer > div > .section {
-  max-width: 1200px;
+  max-width: var(--content-max-width);
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 var(--content-padding);
 }
 
 footer .footer p {
@@ -17,26 +24,26 @@ footer .footer p {
 }
 
 footer .footer a:any-link {
-  color: #c6c6c6;
+  color: var(--footer-text);
   text-decoration: none;
 }
 
 footer .footer a:any-link:hover {
-  color: #fff;
+  color: var(--background-color);
   text-decoration: underline;
 }
 
 /* ===== FEATURED SECTION (Newsroom / Careers) ===== */
 footer .footer-featured {
-  border-bottom: 2px solid rgb(255 255 255 / 15%);
+  border-bottom: 2px solid var(--footer-border);
 }
 
 footer .footer-featured > div {
   display: flex;
   justify-content: center;
-  gap: 24px;
-  padding-top: 40px;
-  padding-bottom: 40px;
+  gap: var(--spacing-m);
+  padding-top: var(--spacing-xl);
+  padding-bottom: var(--spacing-xl);
 }
 
 footer .footer-featured .button-wrapper {
@@ -44,30 +51,30 @@ footer .footer-featured .button-wrapper {
 }
 
 footer .footer-featured a.button:any-link {
-  border-color: #c6c6c6;
+  border-color: var(--footer-text);
   background-color: transparent;
-  color: #c6c6c6;
+  color: var(--footer-text);
   letter-spacing: 1.6px;
   min-width: 180px;
   justify-content: center;
 }
 
 footer .footer-featured a.button:any-link:hover {
-  border-color: #fff;
-  color: #fff;
+  border-color: var(--background-color);
+  color: var(--background-color);
   background-color: transparent;
 }
 
 /* ===== LINKS SECTION (Columns) ===== */
 footer .footer > div > .section.footer-links {
-  padding-top: 48px;
-  padding-bottom: 24px;
+  padding-top: var(--spacing-2xl);
+  padding-bottom: var(--spacing-m);
 }
 
 footer .footer-columns {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 32px;
+  gap: var(--spacing-l);
 }
 
 footer .footer-col p strong {
@@ -75,13 +82,13 @@ footer .footer-col p strong {
   font-weight: 700;
   letter-spacing: 1.6px;
   text-transform: uppercase;
-  color: #c6c6c6;
+  color: var(--footer-text);
 }
 
 footer .footer-col ul {
   list-style: none;
   padding: 0;
-  margin: 16px 0 0;
+  margin: var(--spacing-s) 0 0;
 }
 
 footer .footer-col ul li {
@@ -91,7 +98,7 @@ footer .footer-col ul li {
 footer .footer-col ul li a:any-link {
   font-size: var(--body-font-size-m);
   font-weight: 500;
-  color: #fff;
+  color: var(--background-color);
 }
 
 /* ===== EXTERNAL LINK ICON ===== */
@@ -101,7 +108,7 @@ footer .footer-col .upspricon-newwindow {
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
-  color: rgb(198 198 198 / 60%);
+  color: var(--footer-text-muted);
   margin-left: 6px;
   vertical-align: middle;
 }
@@ -139,7 +146,7 @@ footer .footer-connect .upspricon-social {
   font-style: normal;
   font-weight: 400;
   font-size: 34px;
-  color: #c6c6c6;
+  color: var(--footer-text);
   line-height: 1;
 }
 
@@ -148,7 +155,7 @@ footer .footer-connect .upspricon-social::before {
 }
 
 footer .footer-connect ul li a:hover .upspricon-social {
-  color: #e0d8d0;
+  color: var(--footer-text);
 }
 
 /* Last column: Subscribe CTA */
@@ -157,36 +164,36 @@ footer .footer-col:last-child p strong {
   font-weight: 700;
   text-transform: none;
   letter-spacing: normal;
-  color: #fff;
+  color: var(--background-color);
 }
 
 footer .footer-col:last-child .button-wrapper {
-  margin-top: 16px;
+  margin-top: var(--spacing-s);
 }
 
 footer .footer-col:last-child a.button:any-link {
-  border-color: #c6c6c6;
+  border-color: var(--footer-text);
   background-color: transparent;
-  color: #c6c6c6;
+  color: var(--footer-text);
   letter-spacing: 1.6px;
 }
 
 footer .footer-col:last-child a.button:any-link:hover {
-  border-color: #fff;
-  color: #fff;
+  border-color: var(--background-color);
+  color: var(--background-color);
   background-color: transparent;
 }
 
 /* ===== LEGAL SECTION ===== */
 footer .footer > div > .section.footer-legal {
-  margin-top: 8px;
-  padding-bottom: 16px;
+  margin-top: var(--spacing-xs);
+  padding-bottom: var(--spacing-s);
 }
 
 footer .footer-legal ul {
   list-style: none;
-  padding: 8px 0 0;
-  margin: 0 0 32px;
+  padding: var(--spacing-xs) 0 0;
+  margin: 0 0 var(--spacing-l);
   display: flex;
   flex-wrap: wrap;
   gap: 0;
@@ -197,25 +204,25 @@ footer .footer-legal ul li {
 }
 
 footer .footer-legal ul li a:any-link {
-  color: rgb(198 198 198 / 60%);
+  color: var(--footer-text-muted);
   font-weight: 700;
   font-size: var(--body-font-size-xs);
 }
 
 footer .footer-legal ul li a:hover {
-  color: #c6c6c6;
+  color: var(--footer-text);
 }
 
 /* Separators between legal links */
 footer .footer-legal ul li + li::before {
   content: '|';
-  color: rgb(198 198 198 / 40%);
+  color: var(--footer-separator);
   margin: 0 12px;
 }
 
 footer .footer-legal p {
   font-size: var(--body-font-size-xs);
-  color: rgb(198 198 198 / 60%);
+  color: var(--footer-text-muted);
   font-weight: 400;
   line-height: 1.5;
   margin-top: 12px;
@@ -227,7 +234,7 @@ footer .footer-legal p:last-child {
 }
 
 footer .footer-legal p a:any-link {
-  color: rgb(198 198 198 / 60%);
+  color: var(--footer-text-muted);
   text-decoration: underline;
   font-size: var(--body-font-size-xs);
   font-weight: 700;
@@ -240,7 +247,7 @@ footer .footer-legal p a.button:any-link {
   border-radius: 0;
   padding: 0;
   background: none;
-  color: rgb(198 198 198 / 60%);
+  color: var(--footer-text-muted);
   font-size: var(--body-font-size-xs);
   font-weight: 700;
   text-decoration: underline;
@@ -252,25 +259,23 @@ footer .footer-legal p a.button:any-link::after {
 }
 
 footer .footer-legal p a:any-link:hover {
-  color: #fff;
+  color: var(--background-color);
 }
 
 /* ===== DESKTOP LAYOUT ===== */
-@media (width >= 992px) {
-  footer .footer > div > .section {
-    padding: 0 32px;
-  }
 
+/* --viewport-desktop */
+@media (width >= 992px) {
   footer .footer-columns {
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap: 40px;
+    gap: var(--spacing-xl);
   }
 
   /* Subscribe column gets dark background card */
   footer .footer-col:last-child {
-    background: rgb(255 255 255 / 8%);
-    border-radius: 8px;
-    padding: 40px;
+    background: var(--footer-surface);
+    border-radius: var(--radius-m);
+    padding: var(--spacing-xl);
     align-self: start;
   }
 }

@@ -38,6 +38,62 @@
 
   /* nav height */
   --nav-height: 64px;
+
+  /* brand gold */
+  --color-gold: #ffc400;
+  --color-gold-hover: #e0ac00;
+
+  /* neutrals */
+  --color-muted: #767676;
+  --color-border: #e5e5e5;
+
+  /* spacing scale (8px base) */
+  --spacing-xs: 8px;
+  --spacing-s: 16px;
+  --spacing-m: 24px;
+  --spacing-l: 32px;
+  --spacing-xl: 40px;
+  --spacing-2xl: 48px;
+  --spacing-3xl: 64px;
+  --spacing-4xl: 80px;
+
+  /* radius */
+  --radius-s: 4px;
+  --radius-m: 8px;
+  --radius-l: 16px;
+  --radius-pill: 80px;
+
+  /* shadows */
+  --shadow-card: 0 4px 24px rgb(0 0 0 / 16%);
+  --shadow-card-hover: 0 8px 32px rgb(0 0 0 / 18%);
+  --shadow-dropdown: 0 8px 16px rgb(0 0 0 / 8%);
+
+  /* breakpoints (reference tokens — cannot be used in @media, use literal values there) */
+  --viewport-desktop: 992px;
+  --viewport-nav: 1024px;
+
+  /* layout */
+  --content-max-width: 1200px;
+  --content-padding: var(--spacing-m);
+
+  /* vertical rhythm */
+  --block-gap: var(--spacing-m);
+  --section-padding: var(--spacing-s);
+
+  /* gold CTA button */
+  --cta-bg: var(--color-gold);
+  --cta-bg-hover: var(--color-gold-hover);
+  --cta-text: #121212;
+
+  /* eyebrow label */
+  --eyebrow-size: var(--body-font-size-xs);
+  --eyebrow-weight: 700;
+  --eyebrow-tracking: 1.6px;
+
+  /* accent dash (eyebrow yellow segment) */
+  --accent-dash-width: 32px;
+  --accent-dash-height: 3px;
+  --accent-dash-color: var(--color-gold);
 }
 
 /* fallback fonts */
@@ -53,18 +109,23 @@
   src: local('Arial');
 }
 
+/* --viewport-desktop */
 @media (width >= 992px) {
   :root {
     /* heading sizes */
     --heading-font-size-xxl: 64px;
-    --heading-font-size-xl: 48px;
+    --heading-font-size-xl: 40px;
     --heading-font-size-l: 32px;
     --heading-font-size-m: 24px;
     --heading-font-size-s: 20px;
     --heading-font-size-xs: 16px;
+
+    /* layout */
+    --content-padding: var(--spacing-l);
   }
 }
 
+/* --viewport-nav */
 @media (width >= 1024px) {
   :root {
     --nav-height: 104px;
@@ -120,15 +181,6 @@ h4 { font-size: var(--heading-font-size-m); }
 h5 { font-size: var(--heading-font-size-s); }
 h6 { font-size: var(--heading-font-size-xs); }
 
-p,
-dl,
-ol,
-ul,
-pre,
-blockquote {
-  margin-top: 0.8em;
-  margin-bottom: 0.25em;
-}
 
 code,
 pre {
@@ -136,8 +188,8 @@ pre {
 }
 
 pre {
-  padding: 16px;
-  border-radius: 8px;
+  padding: var(--spacing-s);
+  border-radius: var(--radius-m);
   background-color: var(--light-color);
   overflow-x: auto;
   white-space: pre;
@@ -148,6 +200,16 @@ main .default-content-wrapper {
   text-align: center;
 }
 
+/* ===== DEFAULT CONTENT VERTICAL SPACING ===== */
+main .default-content-wrapper > * {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+main .default-content-wrapper > * + * {
+  margin-top: var(--block-gap);
+}
+
 /* ===== ACCENT-BAR SECTION STYLE ===== */
 main .section.accent-bar .default-content-wrapper h1::after,
 main .section.accent-bar .default-content-wrapper h2::after {
@@ -155,32 +217,23 @@ main .section.accent-bar .default-content-wrapper h2::after {
   display: block;
   width: 80px;
   height: 4px;
-  background: #ffdc40;
+  background: var(--color-gold);
   border-radius: 5px;
-  margin: 32px auto 0;
+  margin: var(--spacing-s) auto 0;
 }
 
 main .section.accent-bar .default-content-wrapper h6 {
-  font-size: 13px;
-  font-weight: 700;
-  color: rgb(118 118 118);
+  font-size: var(--eyebrow-size);
+  font-weight: var(--eyebrow-weight);
+  color: var(--color-muted);
   text-transform: uppercase;
-  letter-spacing: 2.08px;
+  letter-spacing: var(--eyebrow-tracking);
   line-height: 1.2;
-  margin-bottom: 24px;
-}
-
-/* ===== DEFAULT CONTENT VERTICAL SPACING ===== */
-main .default-content-wrapper h2 {
-  margin-bottom: 32px;
-}
-
-main .default-content-wrapper p {
-  margin-bottom: 16px;
+  margin-bottom: var(--block-gap);
 }
 
 main > div {
-  margin: 40px 16px;
+  margin: 0 var(--spacing-s);
 }
 
 input,
@@ -204,7 +257,7 @@ a:hover {
 
 /* buttons */
 p.button-wrapper {
-  margin: 12px 0;
+  margin: var(--block-gap) 0;
 }
 
 a.button:any-link,
@@ -216,7 +269,7 @@ button.button {
   max-width: 100%;
   margin: 0;
   border: 2px solid var(--link-color);
-  border-radius: 80px;
+  border-radius: var(--radius-pill);
   padding: 15px 32px 14px;
   font-family: var(--body-font-family);
   font-size: var(--body-font-size-m);
@@ -237,7 +290,7 @@ button.button::after {
   /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
   font-family: upspricons;
   content: '\e60f';
-  margin-left: 8px;
+  margin-left: var(--spacing-xs);
   flex-shrink: 0;
   font-weight: 400;
   font-size: 14px;
@@ -357,66 +410,31 @@ main img {
 
 /* sections */
 main > .section {
-  margin: 64px 0;
-}
-
-main > .section > div {
-  max-width: 1200px;
-  margin: auto;
-  padding: 0 24px;
+  padding: var(--section-padding) 0;
 }
 
 main > .section:first-of-type {
-  margin-top: 0;
+  padding-top: calc(var(--spacing-3xl) - var(--block-gap));
 }
 
-@media (width >= 992px) {
-  main > .section > div {
-    padding: 0 32px;
-  }
+main > .section:last-of-type {
+  padding-bottom: calc(var(--spacing-4xl) - var(--block-gap));
+}
+
+/* wrapper layout — each wrapper contributes block-gap margin to section edges and between siblings */
+main > .section > div {
+  max-width: var(--content-max-width);
+  margin: var(--block-gap) auto;
+  padding: 0 var(--content-padding);
+}
+
+/* block gap — between elements within a wrapper */
+main > .section > div > * + * {
+  margin-top: var(--block-gap);
 }
 
 /* section metadata */
 main .section.light,
 main .section.highlight {
   background-color: var(--light-color);
-  margin: 0;
-  padding: 40px 0;
-}
-
-/* ===== SECTION SPACING OVERRIDES ===== */
-
-/* No gap between navigation-tabs section and following section */
-main > .section.navigation-tabs-container {
-  margin-bottom: 0;
-}
-
-main > .section.navigation-tabs-container + .section {
-  margin-top: 0;
-}
-
-/* Large gap between consecutive columns-feature sections */
-main > .section.columns-feature-container + .section.columns-feature-container {
-  margin-top: 128px;
-}
-
-/* Gap from last columns-feature to following section */
-main > .section.columns-feature-container + .section:not(.columns-feature-container) {
-  margin-top: 80px;
-}
-
-/* Gap before highlight sections following fade-in-up sections */
-main > .section.fade-in-up:not(.highlight) + .section.highlight {
-  margin-top: 64px;
-}
-
-/* Hero-featured: reduce bottom margin so cards-stories gap isn't collapsed */
-main > .section.hero-featured-container {
-  margin-bottom: 0;
-}
-
-/* Cards-stories: less margin above, more below */
-main > .section.cards-stories-container {
-  margin-top: 16px;
-  margin-bottom: 80px;
 }

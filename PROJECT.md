@@ -129,31 +129,6 @@ When encountering a content pattern that's similar to an existing block:
 - JavaScript logic is completely different
 - No shared styling or behavior with existing blocks
 
-### Fade-in-up Animation on Import
-
-**⚠️ When importing content, inspect the original page for scroll-triggered fade-in animations and apply the `fade-in-up` section style accordingly.**
-
-The UPS source site uses scroll-triggered fade-in-up animations on many sections. When importing a page:
-
-1. **Identify animated sections**: Scroll through the original page and note which sections animate into view (elements slide up and fade in as you scroll down).
-2. **Apply `fade-in-up` section style**: Add a `section-metadata` block at the end of each animated section:
-   ```html
-   <div class="section-metadata">
-     <div><div>Style</div><div>fade-in-up</div></div>
-   </div>
-   ```
-3. **Combine with other styles**: If the section also has a background style, combine them:
-   ```html
-   <div><div>Style</div><div>highlight, fade-in-up</div></div>
-   ```
-4. **Headings are excluded**: The animation only applies to non-heading children (`p`, blocks, buttons, etc.). Headings (`h1`–`h6`) remain visible immediately — this is by design.
-5. **No stagger delays**: All animated children use the same 0.8s duration with no stagger offset.
-
-**Common animated sections on the UPS site:**
-- "Governing Ethically" and similar text+CTA sections
-- "Awards & Recognition" with the grey highlight background
-- Statistics and impact sections
-
 ### Import Script Alignment
 
 **⚠️ CRITICAL: Import infrastructure (parsers, transformers, page-templates.json) MUST stay aligned with the actual content HTML structure.**
@@ -339,7 +314,7 @@ When working on this project, periodically verify:
 ## Key Files
 
 - **Global styles**: `/styles/styles.css`
-- **Lazy styles**: `/styles/lazy-styles.css` (fade-in-up animation, post-LCP styles)
+- **Lazy styles**: `/styles/lazy-styles.css` (post-LCP styles)
 - **Delayed JS**: `/scripts/delayed.js` (IntersectionObserver for scroll animations)
 - **Blocks**: `/blocks/` (all block directories listed in Block Reference)
 - **Icons**: `/icons/` (`search.svg`, `ups-logo.svg`)
@@ -417,10 +392,91 @@ Defined in `/styles/styles.css` — reference these variable names, don't hardco
 | `--link-color` | `#426da9` | Links, default button borders |
 | `--link-hover-color` | `#244674` | Link/button hover states |
 
-**Brand accent colors** (hardcoded where used, not tokenized):
-- Gold/Yellow CTA: `#ffc400` background, `#e0ac00` hover
-- Yellow accent dash: `#ffd100` (eyebrow `::before`)
-- Yellow heading bar: `#ffdc40` (h1/h2 `::after`)
+### Brand Gold
+
+| Variable | Value | Usage |
+|----------|-------|-------|
+| `--color-gold` | `#ffc400` | Brand gold — CTA backgrounds, accent dashes, heading bars |
+| `--color-gold-hover` | `#e0ac00` | Hover-darkened gold for CTA buttons |
+
+### Neutrals
+
+| Variable | Value | Usage |
+|----------|-------|-------|
+| `--color-muted` | `#767676` | Muted grey text (attribution, submenu labels, accent-bar h6) |
+| `--color-border` | `#e5e5e5` | Separator/border grey (header pipes, dividers) |
+
+### Spacing
+
+| Variable | Value | Usage |
+|----------|-------|-------|
+| `--spacing-xs` | `8px` | Tight spacing |
+| `--spacing-s` | `16px` | Small spacing, section padding |
+| `--spacing-m` | `24px` | Medium spacing (block gap, card gaps) |
+| `--spacing-l` | `32px` | Large spacing |
+| `--spacing-xl` | `40px` | Card/component padding, eyebrow offset |
+| `--spacing-2xl` | `48px` | Desktop card padding |
+| `--spacing-3xl` | `64px` | Nav/footer edge spacing |
+| `--spacing-4xl` | `80px` | Quadruple extra-large |
+
+### Vertical Rhythm
+
+Two tokens compose to produce consistent vertical spacing via a 4-component model:
+
+| Variable | Value | Purpose |
+|----------|-------|---------|
+| `--block-gap` | `24px` (`--spacing-m`) | Margin on every wrapper div (top and bottom); collapses to 24px between siblings |
+| `--section-padding` | `16px` (`--spacing-s`) | Vertical padding inside each section |
+
+**Cross-section composition**: 24px (last block margin) + 16px (section padding-bottom) + 16px (section padding-top) + 24px (first block margin) = **80px total gap**. Sections have no margin — spacing comes from padding + block margins.
+
+### Radius
+
+| Variable | Value | Usage |
+|----------|-------|-------|
+| `--radius-s` | `4px` | Small radius (navigation-tabs links) |
+| `--radius-m` | `8px` | Medium radius (cards, content cards, stats card) |
+| `--radius-l` | `16px` | Large radius (dropdown menus, stats container) |
+| `--radius-pill` | `80px` | Pill shape (buttons) |
+
+### Shadows
+
+| Variable | Value | Usage |
+|----------|-------|-------|
+| `--shadow-card` | `0 4px 24px rgb(0 0 0 / 16%)` | Card resting state |
+| `--shadow-card-hover` | `0 8px 32px rgb(0 0 0 / 18%)` | Card hover state |
+| `--shadow-dropdown` | `0 8px 16px rgb(0 0 0 / 8%)` | Mega menu dropdown |
+
+### Layout
+
+| Variable | Mobile | Desktop (≥992px) |
+|----------|--------|------------------|
+| `--content-max-width` | `1200px` | same |
+| `--content-padding` | `24px` (`--spacing-m`) | `32px` (`--spacing-l`) |
+
+### CTA Button
+
+| Variable | Value | Usage |
+|----------|-------|-------|
+| `--cta-bg` | `var(--color-gold)` | Gold CTA button background |
+| `--cta-bg-hover` | `var(--color-gold-hover)` | Gold CTA button hover |
+| `--cta-text` | `#121212` | CTA button text color |
+
+### Eyebrow Label
+
+| Variable | Value | Usage |
+|----------|-------|-------|
+| `--eyebrow-size` | `var(--body-font-size-xs)` (13px) | Eyebrow font size |
+| `--eyebrow-weight` | `700` | Eyebrow font weight |
+| `--eyebrow-tracking` | `1.6px` | Eyebrow letter spacing |
+
+### Accent Dash
+
+| Variable | Value | Usage |
+|----------|-------|-------|
+| `--accent-dash-width` | `32px` | Eyebrow yellow dash width |
+| `--accent-dash-height` | `3px` | Eyebrow yellow dash height |
+| `--accent-dash-color` | `var(--color-gold)` | Eyebrow yellow dash color |
 
 ### Typography
 
@@ -432,11 +488,20 @@ Defined in `/styles/styles.css` — reference these variable names, don't hardco
 | `--body-font-size-s` | `14px` | same |
 | `--body-font-size-xs` | `13px` | same |
 | `--heading-font-size-xxl` | `64px` | `64px` |
-| `--heading-font-size-xl` | `40px` | `48px` |
+| `--heading-font-size-xl` | `40px` | `40px` |
 | `--heading-font-size-l` | `24px` | `32px` |
 | `--heading-font-size-m` | `20px` | `24px` |
 | `--heading-font-size-s` | `18px` | `20px` |
 | `--heading-font-size-xs` | `16px` | `16px` |
+
+### Breakpoints
+
+| Variable | Value | Usage |
+|----------|-------|-------|
+| `--viewport-desktop` | `992px` | Desktop layout breakpoint (grid, multi-column) |
+| `--viewport-nav` | `1024px` | Navigation breakpoint (hamburger → full nav) |
+
+**Note:** CSS custom properties cannot be used inside `@media` conditions — media queries are evaluated before the cascade. These tokens are reference values: use the literal `992px` / `1024px` in media queries and annotate with a `/* --viewport-desktop */` or `/* --viewport-nav */` comment above each `@media` rule.
 
 ### Navigation
 
@@ -451,11 +516,34 @@ Defined in `/styles/styles.css` — reference these variable names, don't hardco
 - ~~`--spacing-md`~~ → Use `--spacing-m`
 - ~~`--spacing-lg`~~ → Use `--spacing-l`
 
-**Note:** Spacing variables (`--spacing-*`) are NOT currently defined in `styles.css`. If you need them, define them first. Most blocks use hardcoded pixel values for spacing.
-
 ### ⚠️ CRITICAL: Always Verify CSS Variables Before Using
 
 **Before writing any CSS property with `var(--...)`, cross-check against the variables defined in `styles.css`.** If the variable isn't defined, it does NOT exist and will silently fail.
+
+### Vertical Spacing Rules (4-Component Model)
+
+Two tokens control all vertical spacing:
+- `--block-gap`: `var(--spacing-m)` = **24px** — gap between blocks and between elements within wrappers
+- `--section-padding`: `var(--spacing-s)` = **16px** — padding on section edges
+
+**How it composes:**
+
+| Scenario | Composition | Total |
+|----------|-------------|-------|
+| Between blocks in same section | Sibling wrapper margins collapse: max(24px, 24px) | **24px** |
+| Between elements in same wrapper | `* + *` margin-top | **24px** |
+| Between adjacent sections | 24px (block margin) + 16px (section padding) + 16px (section padding) + 24px (block margin) | **80px** |
+| Nav → first content | `calc(var(--spacing-3xl) - var(--block-gap))` = 40px padding + 24px block margin | **64px** |
+| Last content → footer | `calc(var(--spacing-4xl) - var(--block-gap))` = 56px padding + 24px block margin | **80px** |
+
+**Rules:**
+- **Wrappers have `margin: var(--block-gap) auto`** — each wrapper contributes 24px vertical margin + auto horizontal centering. Between siblings, margins collapse to 24px.
+- **24px between elements within wrappers** — `main > .section > div > * + *` applies 24px gap between elements inside any wrapper.
+- **24px between default content** — within `.default-content-wrapper`, `* + *` applies the same 24px gap between headings, paragraphs, buttons, etc.
+- **No section margins** — sections use `padding` only (no `margin`). This avoids margin-collapsing surprises.
+- **No section-specific spacing overrides** — ALL sections use the same universal spacing. No block-specific padding adjustments.
+- **Blocks must not set outer margins on their wrapper** — the global `--block-gap` system handles all inter-block spacing via wrapper margins.
+- **Highlight/dark sections** inherit the same `--section-padding` from the base rule.
 
 ---
 
@@ -482,22 +570,22 @@ Defined in `/styles/styles.css` — reference these variable names, don't hardco
 
 Only two breakpoints, derived from the UPS source site. Content flows fluidly between them — avoid adding extra breakpoints.
 
-| Breakpoint | Value | Usage |
-|------------|-------|-------|
-| **mobile** | 992px | Below: single-column mobile layout. Above: multi-column desktop layout. |
-| **nav** | 1024px | Below: hamburger menu. Above: full horizontal navigation. |
+| Breakpoint | Token | Value | Usage |
+|------------|-------|-------|-------|
+| **desktop** | `--viewport-desktop` | `992px` | Below: single-column mobile layout. Above: multi-column desktop layout. |
+| **nav** | `--viewport-nav` | `1024px` | Below: hamburger menu. Above: full horizontal navigation. |
 
 **Content max-width**: `1200px` — main content sections are capped at this width and centered.
 
-**Media query syntax** (use modern CSS syntax):
+**Media query syntax** (use modern CSS syntax, annotate with token name comment):
 ```css
-/* Mobile-first — desktop layout */
+/* --viewport-desktop */
 @media (width >= 992px) { }
 
-/* Desktop-first — mobile layout */
+/* --viewport-desktop */
 @media (width < 992px) { }
 
-/* Navigation breakpoint */
+/* --viewport-nav */
 @media (width >= 1024px) { }
 ```
 
@@ -556,7 +644,6 @@ Applied via `section-metadata` block with `Style: style-name`. Multiple styles c
 | `dark` | `.section.dark` | Dark background, light text |
 | `image-full-width` | `.section.image-full-width` | Images break out of container to full viewport width |
 | `accent-bar` | `.section.accent-bar` | Adds yellow bar under h1/h2 (`::after`), uppercase h6 eyebrow |
-| `fade-in-up` | `.section.fade-in-up` | Scroll-triggered fade-in-up animation. Uses IntersectionObserver (in `delayed.js`, threshold 0.15) to add `.visible` class. Non-heading children animate with 0.8s duration. Cards-awards list items animate individually. Can combine with other styles (e.g., `highlight, fade-in-up`). |
 
 **Example usage in content:**
 ```html
@@ -564,17 +651,6 @@ Applied via `section-metadata` block with `Style: style-name`. Multiple styles c
   <div><div>Style</div><div>dark</div></div>
 </div>
 ```
-
-### Section Spacing Overrides (in styles.css)
-
-| Rule | Effect |
-|------|--------|
-| `navigation-tabs-container` | No gap between nav-tabs and following section |
-| `columns-feature-container + columns-feature-container` | 128px gap between consecutive feature sections |
-| `columns-feature-container + :not(columns-feature-container)` | 80px gap after last feature section |
-| `fade-in-up:not(.highlight) + .highlight` | 64px gap before highlight sections after fade-in-up |
-| `hero-featured-container` | 0px bottom margin (prevents margin collapse with cards-stories) |
-| `cards-stories-container` | 16px top margin, 80px bottom margin |
 
 ---
 

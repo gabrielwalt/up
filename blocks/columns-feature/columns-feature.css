@@ -4,8 +4,8 @@
 .columns-feature > div {
   display: flex;
   flex-direction: column;
-  border-radius: 8px;
-  box-shadow: 0 4px 24px rgb(0 0 0 / 16%);
+  border-radius: var(--radius-m);
+  box-shadow: var(--shadow-card);
   overflow: hidden;
 }
 
@@ -26,9 +26,9 @@
 
 /* ===== EYEBROW TEXT ===== */
 .columns-feature > div > div:not(.columns-feature-img-col) > p:first-child {
-  font-size: var(--body-font-size-xs);
-  font-weight: 700;
-  letter-spacing: 2.08px;
+  font-size: var(--eyebrow-size);
+  font-weight: var(--eyebrow-weight);
+  letter-spacing: var(--eyebrow-tracking);
   text-transform: uppercase;
   line-height: 1.5;
   color: var(--text-color);
@@ -36,40 +36,44 @@
 
 /* ===== HEADING ===== */
 .columns-feature h2 {
-  margin: 0 0 24px;
+  margin: 0 0 var(--spacing-m);
 }
 
 /* ===== DESCRIPTION ===== */
 .columns-feature p {
-  margin: 0 0 16px;
+  margin: 0 0 var(--spacing-s);
 }
 
 /* ===== CTA LINK ===== */
 .columns-feature a.button:any-link {
-  margin-top: 8px;
+  margin-top: var(--spacing-xs);
 }
 
 /* ===== CONTENT PADDING (MOBILE) ===== */
 .columns-feature > div > div:not(.columns-feature-img-col) {
-  padding: 32px 16px;
+  padding: var(--spacing-l) var(--spacing-s);
 }
 
 /* ===== MOBILE EYEBROW YELLOW SEGMENT ===== */
+
+/* --viewport-desktop */
 @media (width < 992px) {
   .columns-feature > div > div:not(.columns-feature-img-col) > p:first-child::before {
     content: '';
     display: inline-block;
     width: 40px;
     height: 4px;
-    background: #ffd100;
+    background: var(--color-gold);
     border-radius: 5px;
     position: relative;
     top: -3px;
-    margin-right: 16px;
+    margin-right: var(--spacing-s);
   }
 }
 
 /* ===== DESKTOP LAYOUT ===== */
+
+/* --viewport-desktop */
 @media (width >= 992px) {
   .columns-feature > div {
     flex-direction: row;
@@ -83,10 +87,7 @@
   }
 
   .columns-feature > div > div:not(.columns-feature-img-col) {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 72px 64px;
+    padding: 72px var(--spacing-3xl);
     position: relative;
   }
 
@@ -97,7 +98,7 @@
     width: 104px;
     height: 4px;
     border-radius: 5px;
-    background: #ffd100;
+    background: var(--color-gold);
     top: 78px;
     right: -52px;
     z-index: 1;
