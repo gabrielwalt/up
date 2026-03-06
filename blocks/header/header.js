@@ -76,7 +76,7 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
   const button = nav.querySelector('.nav-hamburger button');
   document.body.style.overflowY = (expanded || isDesktop.matches) ? '' : 'hidden';
   nav.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-  toggleAllNavSections(navSections, expanded || isDesktop.matches ? 'false' : 'true');
+  toggleAllNavSections(navSections, 'false');
   button.setAttribute('aria-label', expanded ? 'Open navigation' : 'Close navigation');
   // enable nav dropdown keyboard accessibility
   if (navSections) {
@@ -193,9 +193,13 @@ export default async function decorate(block) {
         });
       }
 
-      // Keep click for mobile
-      navSection.addEventListener('click', () => {
-        if (!isDesktop.matches) {
+      // Mobile accordion: toggle on click, prevent link navigation for nav-drop items
+      navSection.addEventListener('click', (e) => {
+        if (!isDesktop.matches && navSection.classList.contains('nav-drop')) {
+          // Only toggle if the click is on the top-level item, not on sub-menu links
+          const clickedSubLink = e.target.closest('ul ul a');
+          if (clickedSubLink) return;
+          e.preventDefault();
           const expanded = navSection.getAttribute('aria-expanded') === 'true';
           toggleAllNavSections(navSections);
           navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');

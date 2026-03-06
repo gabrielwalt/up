@@ -37,7 +37,7 @@
   --heading-font-size-xs: 16px;
 
   /* nav height */
-  --nav-height: 64px;
+  --nav-height: 104px;
 
   /* brand gold */
   --color-gold: #ffc400;
@@ -125,10 +125,10 @@
   }
 }
 
-/* --viewport-nav */
-@media (width >= 1024px) {
+/* small mobile: reduce nav height */
+@media (width < 600px) {
   :root {
-    --nav-height: 104px;
+    --nav-height: 64px;
   }
 }
 

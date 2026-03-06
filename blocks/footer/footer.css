@@ -262,6 +262,13 @@ footer .footer-legal p a:any-link:hover {
   color: var(--background-color);
 }
 
+/* ===== TABLET LAYOUT ===== */
+@media (width >= 600px) {
+  footer .footer-columns {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
 /* ===== DESKTOP LAYOUT ===== */
 
 /* --viewport-desktop */

@@ -44,7 +44,7 @@
 
 /* ===== CARD HEADING ===== */
 .cards-awards .cards-awards-card-body h3 {
-  font-size: var(--heading-font-size-m);
+  font-size: var(--heading-font-size-l);
   font-weight: 500;
   line-height: 1.25;
   color: var(--text-color);

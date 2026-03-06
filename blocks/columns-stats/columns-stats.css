@@ -15,7 +15,7 @@ main > div:has(.columns-stats) {
   margin: 0 auto;
   padding: 0 var(--content-padding);
   overflow: hidden;
-  border-radius: var(--radius-l);
+  border-radius: var(--radius-m);
 }
 
 /* ===== BACKGROUND IMAGE ===== */
@@ -101,7 +101,7 @@ main > div:has(.columns-stats) {
 /* --viewport-desktop */
 @media (width >= 992px) {
   .columns-stats .columns-stats-inner > picture img {
-    border-radius: var(--radius-l);
+    border-radius: var(--radius-m);
   }
 
   /* Stats card positioned at right, overlaying the image */

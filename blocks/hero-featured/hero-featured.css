@@ -41,6 +41,10 @@
   margin: 200px var(--spacing-m) var(--spacing-m);
 }
 
+.hero-featured > div:last-child > div > :last-child {
+  margin-bottom: 0;
+}
+
 /* ===== EYEBROW ===== */
 .hero-featured .hero-featured-eyebrow {
   font-size: var(--eyebrow-size);
