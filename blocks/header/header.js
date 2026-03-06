@@ -157,6 +157,8 @@ export default async function decorate(block) {
         const subItems = subMenu ? subMenu.querySelectorAll(':scope > li:not(.nav-submenu-label)') : [];
         if (subItems.length >= 4) {
           navSection.classList.add('nav-drop-columns');
+          // Set row count for CSS Grid column flow
+          subMenu.style.setProperty('--nav-rows', Math.ceil(subItems.length / 2));
         }
       }
 
