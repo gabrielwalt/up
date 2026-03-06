@@ -172,7 +172,7 @@ export default async function decorate(block) {
       const scheduleClose = () => {
         closeTimer = setTimeout(() => {
           navSection.setAttribute('aria-expanded', 'false');
-        }, 120);
+        }, 400);
       };
 
       navSection.addEventListener('mouseenter', () => {
@@ -201,6 +201,18 @@ export default async function decorate(block) {
           navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
         }
       });
+    });
+
+    // Highlight active section based on current page URL
+    // Strip /content prefix (local dev) and .html suffix for matching
+    const currentPath = window.location.pathname.replace(/^\/content/, '').replace(/\.html$/, '');
+    navSections.querySelectorAll(':scope .default-content-wrapper > ul > li > a').forEach((link) => {
+      try {
+        const linkPath = new URL(link.href).pathname.replace(/\.html$/, '');
+        if (currentPath.startsWith(linkPath) && linkPath !== '/') {
+          link.classList.add('nav-link-active');
+        }
+      } catch (e) { /* ignore invalid URLs */ }
     });
   }
 

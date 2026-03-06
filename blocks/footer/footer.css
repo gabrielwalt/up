@@ -61,7 +61,7 @@ footer .footer-featured a.button:any-link:hover {
 /* ===== LINKS SECTION (Columns) ===== */
 footer .footer > div > .section.footer-links {
   padding-top: 48px;
-  padding-bottom: 48px;
+  padding-bottom: 24px;
 }
 
 footer .footer-columns {
@@ -178,9 +178,9 @@ footer .footer-col:last-child a.button:any-link:hover {
 }
 
 /* ===== LEGAL SECTION ===== */
-footer .footer-legal {
-  margin-top: 16px;
-  padding-bottom: 72px;
+footer .footer > div > .section.footer-legal {
+  margin-top: 8px;
+  padding-bottom: 16px;
 }
 
 footer .footer-legal ul {
