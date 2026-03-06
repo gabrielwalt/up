@@ -254,16 +254,17 @@ header nav .nav-sections ul > li > ul > li {
     all: unset;
   }
 
-  /* Active / hover yellow bar indicator — just below link text */
+  /* Active / hover yellow bar indicator — just below link text
+     DA selectors use a.button:any-link to beat the button reset specificity (0,3,3) */
   header nav .nav-sections .default-content-wrapper > ul > li > a,
-  header nav .nav-sections .default-content-wrapper > ul > li > p > a {
+  header nav .nav-sections .default-content-wrapper > ul > li > p > a.button:any-link {
     position: relative;
     display: inline-block;
     padding-bottom: 8px;
   }
 
   header nav .nav-sections .default-content-wrapper > ul > li > a::after,
-  header nav .nav-sections .default-content-wrapper > ul > li > p > a::after {
+  header nav .nav-sections .default-content-wrapper > ul > li > p > a.button::after {
     content: '';
     display: block;
     width: 24px;
@@ -279,8 +280,8 @@ header nav .nav-sections ul > li > ul > li {
 
   header nav .nav-sections .default-content-wrapper > ul > li:hover > a::after,
   header nav .nav-sections .default-content-wrapper > ul > li > a.nav-link-active::after,
-  header nav .nav-sections .default-content-wrapper > ul > li:hover > p > a::after,
-  header nav .nav-sections .default-content-wrapper > ul > li > p > a.nav-link-active::after {
+  header nav .nav-sections .default-content-wrapper > ul > li:hover > p > a.button::after,
+  header nav .nav-sections .default-content-wrapper > ul > li > p > a.button.nav-link-active::after {
     transform: translateX(-50%) scaleX(1);
   }
 
