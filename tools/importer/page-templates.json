@@ -255,7 +255,7 @@
           "id": "feature-sections",
           "name": "Feature Sections",
           "selector": ".sectioncard",
-          "style": null,
+          "style": "highlight",
           "blocks": [
             "columns-feature"
           ],

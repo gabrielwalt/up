@@ -69,7 +69,7 @@ const PAGE_TEMPLATE = {
       id: 'feature-sections',
       name: 'Feature Sections',
       selector: '.sectioncard',
-      style: null,
+      style: 'highlight',
       blocks: ['columns-feature'],
       defaultContent: [],
     },
@@ -119,6 +119,76 @@ function findBlocksOnPage(document, template) {
   return pageBlocks;
 }
 
+/**
+ * Create a section-metadata block table for a given style
+ */
+function createSectionMetadata(document, style) {
+  const table = document.createElement('table');
+  const headerRow = document.createElement('tr');
+  const headerCell = document.createElement('th');
+  headerCell.colSpan = 2;
+  headerCell.textContent = 'Section Metadata';
+  headerRow.appendChild(headerCell);
+  table.appendChild(headerRow);
+
+  const dataRow = document.createElement('tr');
+  const keyCell = document.createElement('td');
+  keyCell.textContent = 'Style';
+  const valueCell = document.createElement('td');
+  valueCell.textContent = style;
+  dataRow.appendChild(keyCell);
+  dataRow.appendChild(valueCell);
+  table.appendChild(dataRow);
+
+  return table;
+}
+
+/**
+ * Organize parsed content into sections with section breaks and section-metadata.
+ * Iterates over the template sections config, finds matched source elements,
+ * collects their parsed output, and assembles them with <hr> separators.
+ */
+function assembleSections(document, main, template, pageBlocks) {
+  const output = document.createElement('div');
+
+  template.sections.forEach((sectionDef, index) => {
+    // Add section break between sections (not before the first)
+    if (index > 0) {
+      output.appendChild(document.createElement('hr'));
+    }
+
+    // Collect default content for this section
+    sectionDef.defaultContent.forEach((contentSelector) => {
+      const els = main.querySelectorAll(contentSelector);
+      els.forEach((el) => {
+        const clone = el.cloneNode(true);
+        output.appendChild(clone);
+      });
+    });
+
+    // Collect parsed block tables for this section
+    sectionDef.blocks.forEach((blockName) => {
+      const matchedBlocks = pageBlocks.filter((b) => b.name === blockName);
+      matchedBlocks.forEach((block) => {
+        // After parsing, the block element should contain a WebImporter table
+        const tables = block.element.querySelectorAll('table');
+        if (tables.length > 0) {
+          tables.forEach((table) => {
+            output.appendChild(table.cloneNode(true));
+          });
+        }
+      });
+    });
+
+    // Add section-metadata if section has a style
+    if (sectionDef.style) {
+      output.appendChild(createSectionMetadata(document, sectionDef.style));
+    }
+  });
+
+  return output;
+}
+
 export default {
   transform: (payload) => {
     const { document, url, html, params } = payload;
@@ -143,14 +213,23 @@ export default {
     // 3. Execute afterTransform transformers
     executeTransformers('afterTransform', main, payload);
 
-    // 4. Apply WebImporter built-in rules
+    // 4. Assemble sections with breaks and section-metadata
+    if (PAGE_TEMPLATE.sections && PAGE_TEMPLATE.sections.length > 0) {
+      const sectionOutput = assembleSections(document, main, PAGE_TEMPLATE, pageBlocks);
+      main.innerHTML = '';
+      while (sectionOutput.firstChild) {
+        main.appendChild(sectionOutput.firstChild);
+      }
+    }
+
+    // 5. Apply WebImporter built-in rules
     const hr = document.createElement('hr');
     main.appendChild(hr);
     WebImporter.rules.createMetadata(main, document);
     WebImporter.rules.transformBackgroundImages(main, document);
     WebImporter.rules.adjustImageUrls(main, url, params.originalURL);
 
-    // 5. Generate sanitized path
+    // 6. Generate sanitized path
     const path = WebImporter.FileUtils.sanitizePath(
       new URL(params.originalURL).pathname.replace(/\/$/, '').replace(/\.html$/, ''),
     );
@@ -162,6 +241,7 @@ export default {
         title: document.title,
         template: PAGE_TEMPLATE.name,
         blocks: pageBlocks.map((b) => b.name),
+        sections: PAGE_TEMPLATE.sections.map((s) => ({ id: s.id, style: s.style })),
       },
     }];
   },
