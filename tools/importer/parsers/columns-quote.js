@@ -55,9 +55,17 @@ export default function parse(element, { document }) {
   const imageCell = [];
 
   // Extract portrait image
-  // VALIDATED: Source has picture element inside .upspr-testimonial__image
-  const picture = element.querySelector('.upspr-testimonial__image picture') ||
-                  element.querySelector('picture');
+  // Source may have <picture> or plain <img>
+  let picture = element.querySelector('.upspr-testimonial__image picture') ||
+                element.querySelector('picture');
+  if (!picture) {
+    const img = element.querySelector('.upspr-testimonial__image img') ||
+                element.querySelector('img');
+    if (img) {
+      picture = document.createElement('picture');
+      picture.appendChild(img.cloneNode(true));
+    }
+  }
   if (picture) {
     imageCell.push(picture);
   }

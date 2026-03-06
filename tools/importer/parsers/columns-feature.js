@@ -32,8 +32,15 @@
  */
 export default function parse(element, { document }) {
   // Extract image from first or second column
-  // VALIDATED: Source DOM has <picture> inside .col-lg-6 columns
-  const picture = element.querySelector('picture');
+  // Source DOM may have <picture> or plain <img> inside columns
+  let picture = element.querySelector('picture');
+  if (!picture) {
+    const img = element.querySelector('img');
+    if (img) {
+      picture = document.createElement('picture');
+      picture.appendChild(img.cloneNode(true));
+    }
+  }
 
   // Extract text content from the card content area
   // VALIDATED: Source DOM has .upspr-xd-card_content with eyebrow, heading, description, CTA
@@ -94,9 +101,8 @@ export default function parse(element, { document }) {
   }
 
   // Determine column order: check if image is first child or second
-  // VALIDATED: Source has .upspr-xd-card_container in second .col-lg-6, but image can be in either position
   const firstCol = element.querySelector('.row > div:first-child');
-  const imageIsFirst = firstCol && firstCol.querySelector('picture');
+  const imageIsFirst = firstCol && (firstCol.querySelector('picture') || firstCol.querySelector('img'));
 
   // Build cells array - 2 columns matching columns block structure
   const cells = [];

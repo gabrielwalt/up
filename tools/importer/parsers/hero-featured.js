@@ -28,11 +28,17 @@
  */
 export default function parse(element, { document }) {
   // Extract background image
-  // VALIDATED: Source DOM has <picture> as direct child of .upspr-heroimage
-  const picture = element.querySelector('picture');
+  // Source DOM may have <picture> or plain <img> as direct child of .upspr-heroimage
+  let picture = element.querySelector('picture');
+  if (!picture) {
+    const img = element.querySelector('img');
+    if (img) {
+      picture = document.createElement('picture');
+      picture.appendChild(img.cloneNode(true));
+    }
+  }
 
   // Extract content from the hero message area
-  // VALIDATED: Source DOM has .upspr-heroimage_msg with eyebrow, heading, description, CTA
   const msgDiv = element.querySelector('.upspr-heroimage_msg');
 
   // Build image row (Row 1)

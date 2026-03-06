@@ -33,8 +33,15 @@
  */
 export default function parse(element, { document }) {
   // Extract image
-  // VALIDATED: Source DOM has <picture> as direct child of .upspr-heroimage.vertical-hero
-  const picture = element.querySelector('picture');
+  // Source DOM may have <picture> or plain <img>
+  let picture = element.querySelector('picture');
+  if (!picture) {
+    const img = element.querySelector('img');
+    if (img) {
+      picture = document.createElement('picture');
+      picture.appendChild(img.cloneNode(true));
+    }
+  }
 
   // Build image cell (column 1)
   const imageCell = [];

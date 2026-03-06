@@ -109,8 +109,8 @@
   margin: 0;
 }
 
-/* ===== TABLET GRID (≥600px) ===== */
-@media (width >= 600px) {
+/* ===== TABLET GRID (600px–991px) ===== */
+@media (width >= 600px) and (width < 992px) {
   /* Default: 2 columns (applies to 2, 4, and 5+ items) */
   .cards-stories > ul {
     grid-template-columns: repeat(2, 1fr);
