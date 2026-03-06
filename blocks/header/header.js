@@ -140,9 +140,60 @@ export default async function decorate(block) {
   const navSections = nav.querySelector('.nav-sections');
   if (navSections) {
     navSections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navSection) => {
-      if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
+      if (navSection.querySelector('ul')) {
+        navSection.classList.add('nav-drop');
+
+        // Add header label to sub-menu (repeats parent item text)
+        const subMenu = navSection.querySelector('ul');
+        const parentLink = navSection.querySelector(':scope > a');
+        if (subMenu && parentLink) {
+          const label = document.createElement('li');
+          label.className = 'nav-submenu-label';
+          label.textContent = parentLink.textContent.trim();
+          subMenu.prepend(label);
+        }
+
+        // Detect multi-column menus (4+ sub-items excluding the label)
+        const subItems = subMenu ? subMenu.querySelectorAll(':scope > li:not(.nav-submenu-label)') : [];
+        if (subItems.length >= 4) {
+          navSection.classList.add('nav-drop-columns');
+        }
+      }
+
+      // Desktop: open on hover with delayed close so dropdown stays accessible
+      let closeTimer = null;
+      const openMenu = () => {
+        clearTimeout(closeTimer);
+        toggleAllNavSections(navSections);
+        navSection.setAttribute('aria-expanded', 'true');
+      };
+      const scheduleClose = () => {
+        closeTimer = setTimeout(() => {
+          navSection.setAttribute('aria-expanded', 'false');
+        }, 120);
+      };
+
+      navSection.addEventListener('mouseenter', () => {
+        if (isDesktop.matches) openMenu();
+      });
+      navSection.addEventListener('mouseleave', () => {
+        if (isDesktop.matches) scheduleClose();
+      });
+
+      // Keep dropdown open when mouse enters the sub-menu panel
+      const subMenu = navSection.querySelector('ul');
+      if (subMenu) {
+        subMenu.addEventListener('mouseenter', () => {
+          if (isDesktop.matches) clearTimeout(closeTimer);
+        });
+        subMenu.addEventListener('mouseleave', () => {
+          if (isDesktop.matches) scheduleClose();
+        });
+      }
+
+      // Keep click for mobile
       navSection.addEventListener('click', () => {
-        if (isDesktop.matches) {
+        if (!isDesktop.matches) {
           const expanded = navSection.getAttribute('aria-expanded') === 'true';
           toggleAllNavSections(navSections);
           navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
@@ -163,6 +214,34 @@ export default async function decorate(block) {
   // prevent mobile nav behavior on window resize
   toggleMenu(nav, navSections, isDesktop.matches);
   isDesktop.addEventListener('change', () => toggleMenu(nav, navSections, isDesktop.matches));
+
+  // Decorate language selector, search icon, and external link icons in nav-tools
+  const navTools = nav.querySelector('.nav-tools');
+  if (navTools) {
+    const toolWrapper = navTools.querySelector('.default-content-wrapper');
+    if (toolWrapper) {
+      const paragraphs = toolWrapper.querySelectorAll('p');
+      paragraphs.forEach((p) => {
+        const text = p.textContent.trim();
+        if (text === 'English') {
+          p.classList.add('nav-lang');
+          p.innerHTML = '<i class="upspricon-globe" aria-hidden="true"></i> English';
+        } else if (text === 'Search') {
+          p.classList.add('nav-search');
+          p.innerHTML = '<button type="button" aria-label="Search"><i class="upspricon-search" aria-hidden="true"></i></button>';
+        } else {
+          // Add external link icon to ups.com link only
+          const link = p.querySelector('a');
+          if (link && link.textContent.trim().toLowerCase() === 'ups.com') {
+            const icon = document.createElement('i');
+            icon.className = 'upspricon-newwindow';
+            icon.setAttribute('aria-hidden', 'true');
+            link.append(icon);
+          }
+        }
+      });
+    }
+  }
 
   const navWrapper = document.createElement('div');
   navWrapper.className = 'nav-wrapper';

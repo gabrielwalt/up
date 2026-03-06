@@ -9,6 +9,16 @@
   src: url('../fonts/upspricons.woff') format('woff');
 }
 
+/* Supplementary upspricons font containing X/Twitter circle icon (U+E900) */
+@font-face {
+  font-family: upspricons;
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url('../fonts/upspricons-x.woff') format('woff');
+  unicode-range: U+E900;
+}
+
 @font-face {
   font-family: roboto-condensed;
   font-style: normal;

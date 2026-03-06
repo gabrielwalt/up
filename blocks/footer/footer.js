@@ -49,5 +49,50 @@ export default async function decorate(block) {
     }
   }
 
+  // Add external link icon to "Other UPS Sites" column links
+  const footerCols = footer.querySelectorAll('.footer-col');
+  footerCols.forEach((col) => {
+    const heading = col.querySelector('p strong');
+    if (heading && heading.textContent.trim() === 'Other UPS Sites') {
+      col.querySelectorAll('ul a').forEach((link) => {
+        const icon = document.createElement('i');
+        icon.className = 'upspricon-newwindow';
+        icon.setAttribute('aria-hidden', 'true');
+        link.append(icon);
+      });
+    }
+  });
+
+  // Decorate social media links in the Connect column with upspricons
+  const socialIconMap = {
+    'facebook.com': '\\e608',
+    'x.com': '\\e900',
+    'twitter.com': '\\e900',
+    'instagram.com': '\\e626',
+    'linkedin.com': '\\e609',
+    'youtube.com': '\\e60b',
+  };
+
+  const connectCol = footer.querySelectorAll('.footer-col');
+  connectCol.forEach((col) => {
+    const heading = col.querySelector('p strong');
+    if (heading && heading.textContent.trim() === 'Connect') {
+      col.classList.add('footer-connect');
+      col.querySelectorAll('ul a').forEach((link) => {
+        const href = link.getAttribute('href') || '';
+        Object.entries(socialIconMap).forEach(([domain, code]) => {
+          if (href.includes(domain)) {
+            const icon = document.createElement('i');
+            icon.className = 'upspricon-social';
+            icon.setAttribute('aria-hidden', 'true');
+            icon.style.setProperty('--icon-code', `"${code}"`);
+            link.textContent = '';
+            link.append(icon);
+          }
+        });
+      });
+    }
+  });
+
   block.append(footer);
 }

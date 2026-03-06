@@ -13,7 +13,7 @@ if (fadeInSections.length) {
         }
       });
     },
-    { threshold: 0.15 },
+    { threshold: 0 },
   );
   fadeInSections.forEach((section) => observer.observe(section));
 }
