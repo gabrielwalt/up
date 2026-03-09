@@ -532,9 +532,10 @@ main > .section:first-child.dark,
 main > .section.breadcrumb-container + .section.highlight,
 main > .section.breadcrumb-container + .section.dark {
   margin-top: 0;
+  padding-top: 0;
 }
 
-/* Breadcrumb floats transparently above highlight background */
+/* Breadcrumb floats transparently above highlight background, edge-to-edge */
 main > .section.breadcrumb-container:has(+ .section.highlight) {
   margin-left: 0;
   margin-right: 0;
@@ -543,18 +544,9 @@ main > .section.breadcrumb-container:has(+ .section.highlight) {
   z-index: 1;
 }
 
-/* Highlight background extends behind breadcrumb via ::before */
+/* Highlight section extends its own background behind breadcrumb via negative margin.
+   Compensating padding keeps content in the same position. */
 main > .section.breadcrumb-container + .section.highlight {
-  position: relative;
-}
-
-main > .section.breadcrumb-container + .section.highlight::before {
-  content: "";
-  position: absolute;
-  bottom: 100%;
-  left: 0;
-  width: 100%;
-  height: 200px;
-  background-color: var(--light-color);
-  pointer-events: none;
+  margin-top: -200px;
+  padding-top: 200px;
 }

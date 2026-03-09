@@ -92,10 +92,10 @@
  *   .arc-gradient — subtle warm beige gradient wash on white/transparent sections
  */
 
-/* First-section flush: no white gap when arc section follows breadcrumb or is first */
-main > .section:first-child[class*="arc"],
-main > .section.breadcrumb-container + .section[class*="arc"] {
+/* First-section flush: no top gap when arc section is first on page */
+main > .section:first-child[class*="arc"] {
   margin-top: 0;
+  padding-top: 0;
 }
 
 /* Breadcrumb floats transparently above arc background, edge-to-edge */
@@ -107,28 +107,12 @@ main > .section.breadcrumb-container:has(+ .section[class*="arc"]) {
   z-index: 1;
 }
 
-/* Arc gradient extends behind breadcrumb via ::before */
-main > .section.breadcrumb-container + .section.arc::before {
-  content: "";
-  position: absolute;
-  bottom: 100%;
-  left: 0;
-  width: 100%;
-  height: 200px;
-  background: linear-gradient(318.8deg, rgb(223 219 215) -11.42%, rgb(242 241 239) 58.01%);
-  pointer-events: none;
-}
-
-/* Arc-wave background extends behind breadcrumb via ::before */
-main > .section.breadcrumb-container + .section.arc-wave::before {
-  content: "";
-  position: absolute;
-  bottom: 100%;
-  left: 0;
-  width: 100%;
-  height: 200px;
-  background-color: var(--light-color);
-  pointer-events: none;
+/* Arc section extends its own background behind breadcrumb via negative margin.
+   Compensating padding keeps content in the same position. The section's single
+   gradient renders across the full box — no seam from a separate ::before. */
+main > .section.breadcrumb-container + .section[class*="arc"] {
+  margin-top: -200px;
+  padding-top: 200px;
 }
 
 /* ===== ARC: grey gradient + white curved bottom edge ===== */
@@ -136,10 +120,8 @@ main > .section.breadcrumb-container + .section.arc-wave::before {
 main > .section.arc {
   position: relative;
   background: linear-gradient(318.8deg, rgb(223 219 215) -11.42%, rgb(242 241 239) 58.01%);
-  margin-top: var(--spacing-4xl);
-  margin-left: 0;
-  margin-right: 0;
-  padding: var(--spacing-4xl) 0 135px;
+  margin: var(--spacing-4xl) 0 -215px;
+  padding: var(--spacing-4xl) 0 215px;
   z-index: 0;
 }
 
@@ -167,9 +149,8 @@ main > .section.arc::after {
   pointer-events: none;
 }
 
-/* Hero overlap when following arc section */
-main > .section.arc + .section:has(.hero-featured) {
-  margin-top: -135px;
+/* Next section renders above arc curve */
+main > .section.arc + .section {
   position: relative;
   z-index: 1;
 }
@@ -179,10 +160,8 @@ main > .section.arc + .section:has(.hero-featured) {
 main > .section.arc-wave {
   position: relative;
   background-color: var(--light-color);
-  margin-top: var(--spacing-4xl);
-  margin-left: 0;
-  margin-right: 0;
-  padding: var(--spacing-4xl) 0 135px;
+  margin: var(--spacing-4xl) 0 -215px;
+  padding: var(--spacing-4xl) 0 215px;
   z-index: 0;
 }
 
@@ -211,9 +190,8 @@ main > .section.arc-wave::after {
   pointer-events: none;
 }
 
-/* Hero overlap when following arc-wave section */
-main > .section.arc-wave + .section:has(.hero-featured) {
-  margin-top: -135px;
+/* Next section renders above arc-wave curve */
+main > .section.arc-wave + .section {
   position: relative;
   z-index: 1;
 }

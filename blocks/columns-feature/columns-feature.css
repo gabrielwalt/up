@@ -45,6 +45,11 @@
   margin: 0 0 var(--spacing-s);
 }
 
+/* ===== LAST ELEMENT IN CONTENT COLUMN ===== */
+.columns-feature > div > div:not(.columns-feature-img-col) > :last-child {
+  margin-bottom: 0;
+}
+
 /* ===== CTA LINK ===== */
 .columns-feature a.button:any-link {
   margin-top: var(--spacing-xs);
