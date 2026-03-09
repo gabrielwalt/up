@@ -515,3 +515,11 @@ main > .section.highlight > div:last-child,
 main > .section.dark > div:last-child {
   margin-bottom: 0;
 }
+
+/* First-section flush: no white gap when background section follows breadcrumb or is first */
+main > .section:first-child.highlight,
+main > .section:first-child.dark,
+main > .section.breadcrumb-container + .section.highlight,
+main > .section.breadcrumb-container + .section.dark {
+  margin-top: 0;
+}

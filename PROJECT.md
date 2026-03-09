@@ -314,7 +314,7 @@ When working on this project, periodically verify:
 ## Key Files
 
 - **Global styles**: `/styles/styles.css`
-- **Lazy styles**: `/styles/lazy-styles.css` (post-LCP styles)
+- **Lazy styles**: `/styles/lazy-styles.css` (post-LCP styles: scroll animations, arc section styles)
 - **Delayed JS**: `/scripts/delayed.js` (IntersectionObserver for scroll animations)
 - **Blocks**: `/blocks/` (all block directories listed in Block Reference)
 - **Icons**: `/icons/` (`search.svg`, `ups-logo.svg`)
@@ -334,8 +334,13 @@ All content pages in this project and their source URLs.
 |------------|-----------|-------------|
 | `/content/us/en/home.html` | https://about.ups.com/us/en/home.html | Homepage |
 | `/content/us/en/our-impact.html` | https://about.ups.com/us/en/our-impact.html | Our Impact landing page |
+| `/content/us/en/our-company.plain.html` | https://about.ups.com/us/en/our-company.html | Our Company landing page |
 | `/content/us/en/our-company/our-strategy.plain.html` | https://about.ups.com/us/en/our-company/our-strategy.html | Our Strategy page |
 | `/content/us/en/our-company/our-culture.html` | https://about.ups.com/us/en/our-company/our-culture.html | Our Culture page |
+| `/content/us/en/our-stories.plain.html` | https://about.ups.com/us/en/our-stories.html | Our Stories listing page |
+| `/content/us/en/our-stories/customer-first.plain.html` | https://about.ups.com/us/en/our-stories/customer-first.html | Customer First category page |
+| `/content/us/en/our-stories/innovation-driven.plain.html` | https://about.ups.com/us/en/our-stories/innovation-driven.html | Innovation Driven category page |
+| `/content/us/en/our-stories/people-led.plain.html` | https://about.ups.com/us/en/our-stories/people-led.html | People Led category page |
 | `/content/nav.html` | Derived from https://about.ups.com/us/en/home.html | Navigation fragment |
 | `/content/footer.html` | Derived from https://about.ups.com/us/en/home.html | Footer fragment |
 
@@ -669,6 +674,9 @@ Applied via `section-metadata` block with `Style: style-name`. Multiple styles c
 | `dark` | `.section.dark` | Dark background, light text |
 | `image-full-width` | `.section.image-full-width` | Images break out of container to full viewport width |
 | `accent-bar` | `.section.accent-bar` | Adds yellow bar under h1/h2 (`::after`), uppercase h6 eyebrow |
+| `arc` | `.section.arc` | Warm grey gradient background with white curved scoop at bottom (decorative SVG `::after`) |
+| `arc-wave` | `.section.arc-wave` | Flat grey background with organic white wave at bottom — the "inverted arc" (decorative SVG `::after`) |
+| `arc-gradient` | `.section.arc-gradient` | Subtle warm beige gradient wash behind content (decorative SVG `::after`, no background color change) |
 
 **Example usage in content:**
 ```html
@@ -676,6 +684,32 @@ Applied via `section-metadata` block with `Style: style-name`. Multiple styles c
   <div><div>Style</div><div>dark</div></div>
 </div>
 ```
+
+### Arc Section Styles Detail
+
+Decorative SVG arc backgrounds from the original UPS site. These create curved transitions between sections using `::after` pseudo-elements with inline SVG data URIs, positioned behind content at `z-index: -1`. CSS is in `/styles/lazy-styles.css`.
+
+**`arc`** — Grey gradient section with white curved bottom edge:
+- Background: `linear-gradient(318.8deg, #DFDBD7, #F2F1EF)` (warm grey-to-lighter)
+- `::after`: White concave SVG scoop (1440x72 viewBox) at bottom of section
+- Spacing: `margin-top: 80px`, `padding: 80px 0 135px` (135px bottom for the arc curve)
+- SVG height is responsive: `padding-top: calc(5%)` scales with viewport width
+- Hero overlap: when followed by a section containing `.hero-featured`, auto-applies `margin-top: -135px` on the hero section for visual overlap
+- Used on: our-stories (H1 section with hero overlap below), our-company (H1 section with hero overlap below), category pages (customer-first, innovation-driven, people-led H1 sections)
+
+**`arc-wave`** — Flat grey background with organic white wave at bottom (inverted arc):
+- Background: `var(--light-color)` (`#f2f2f2`) — flat grey, no gradient
+- `::after`: Organic/irregular white wave SVG (1381x118pt viewBox) at bottom of section
+- Spacing: `margin-top: 80px`, `padding: 80px 0 135px` (135px bottom for the wave)
+- SVG height is responsive: `padding-top: calc(8.5%)` scales with viewport width
+- Used on: our-culture (intro section)
+
+**`arc-gradient`** — Subtle warm beige wash (no visible background change):
+- No background color on the section itself (stays white/transparent)
+- `::after`: Large gradient SVG (1440x560 viewBox) with curved bottom edge, fills from `#DFDBD7` (beige) to transparent `#F2F1EF`. Bottom-aligned.
+- No extra margin or padding — uses default section spacing
+- Very subtle decorative effect; barely noticeable on white backgrounds
+- Used on: home (hero+stories section), our-impact (columns-feature section)
 
 ---
 
@@ -1260,6 +1294,32 @@ When DA wraps links in `<p>` tags, `decorateButtons()` applies `.button` and `.b
 .block-name a.button:any-link::after,
 .block-name .button-wrapper {
   all: unset;
+}
+```
+
+### Decorative Arc Background Pattern (section `::after` with SVG)
+```css
+/* Section: creates stacking context */
+main > .section.arc {
+  position: relative;
+  z-index: 0;
+}
+
+/* ::after: SVG positioned at bottom behind content */
+main > .section.arc::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  padding-top: calc(5%); /* responsive height based on section width */
+  background-image: url("data:image/svg+xml,...");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-color: transparent;
+  z-index: -1;
+  pointer-events: none;
 }
 ```
 
