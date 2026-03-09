@@ -53,7 +53,7 @@ const PAGE_TEMPLATE = {
       id: 'hero-heading',
       name: 'Hero Heading',
       selector: '.headline.aem-GridColumn',
-      style: 'accent-bar',
+      style: 'arc',
       blocks: [],
       defaultContent: ['.upspr-headline h1'],
     },

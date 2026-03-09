@@ -121,7 +121,7 @@
           "id": "hero-heading",
           "name": "Hero Heading",
           "selector": ".headline.aem-GridColumn",
-          "style": "accent-bar",
+          "style": "arc",
           "blocks": [],
           "defaultContent": [
             ".upspr-headline h1"
@@ -173,7 +173,7 @@
           "id": "hero-heading",
           "name": "Category Heading",
           "selector": ".headline.aem-GridColumn",
-          "style": null,
+          "style": "arc",
           "blocks": [],
           "defaultContent": [
             ".upspr-headline h1"
@@ -231,7 +231,7 @@
           "id": "hero-heading",
           "name": "Hero Heading",
           "selector": ".headline.aem-GridColumn",
-          "style": "accent-bar",
+          "style": "arc",
           "blocks": [],
           "defaultContent": [
             ".upspr-headline h1"
@@ -386,12 +386,12 @@
       "sections": [
         {
           "id": "hero-intro",
-          "name": "Hero Intro with Culture Wheel (highlight background)",
+          "name": "Hero Intro with Culture Wheel",
           "selector": [
             ".upspr-section-wrapper__bg-grey_25:has(.herogrid)",
             ".herogrid"
           ],
-          "style": "highlight",
+          "style": "arc-wave",
           "blocks": [
             "columns-media"
           ],

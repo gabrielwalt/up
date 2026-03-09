@@ -17,9 +17,16 @@
   z-index: 0;
 }
 
-.hero-featured > div:first-child picture {
+.hero-featured > div:first-child > div {
   position: absolute;
   inset: 0;
+}
+
+.hero-featured > div:first-child picture,
+.hero-featured > div:first-child p {
+  position: absolute;
+  inset: 0;
+  margin: 0;
   display: block;
 }
 

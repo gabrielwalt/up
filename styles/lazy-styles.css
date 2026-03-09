@@ -160,8 +160,8 @@ main > .section.arc + .section {
 main > .section.arc-wave {
   position: relative;
   background-color: var(--light-color);
-  margin: var(--spacing-4xl) 0 -215px;
-  padding: var(--spacing-4xl) 0 215px;
+  margin: var(--spacing-4xl) 0 0;
+  padding: var(--spacing-4xl) 0 var(--spacing-l);
   z-index: 0;
 }
 
@@ -171,6 +171,10 @@ main > .section.arc-wave > div:first-child {
 
 main > .section.arc-wave > div:last-child {
   margin-bottom: 0;
+}
+
+main > .section.arc-wave + .section {
+  margin-top: var(--spacing-l);
 }
 
 main > .section.arc-wave::after {
@@ -190,11 +194,6 @@ main > .section.arc-wave::after {
   pointer-events: none;
 }
 
-/* Next section renders above arc-wave curve */
-main > .section.arc-wave + .section {
-  position: relative;
-  z-index: 1;
-}
 
 /* ===== ARC-GRADIENT: subtle warm beige wash ===== */
 
