@@ -85,7 +85,8 @@ export default function parse(element, { document }) {
   const quoteHeading = element.querySelector('.upspr-testimonial__wrap--title, .upspr-testimonial__wrap h3');
   if (quoteHeading) {
     const h3 = document.createElement('h3');
-    h3.textContent = quoteHeading.textContent.trim();
+    // Strip leading/trailing quotation marks — CSS adds them via ::before/::after
+    h3.textContent = quoteHeading.textContent.trim().replace(/^[\u201C\u201D\u201E\u201F"«»]+|[\u201C\u201D\u201E\u201F"«»]+$/g, '').trim();
     quoteCell.push(h3);
   }
 
