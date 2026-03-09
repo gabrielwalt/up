@@ -98,20 +98,37 @@ main > .section.breadcrumb-container + .section[class*="arc"] {
   margin-top: 0;
 }
 
-/* Breadcrumb blends into arc background: same grey gradient, edge-to-edge, no bottom gap */
-main > .section.breadcrumb-container:has(+ .section.arc) {
-  background: linear-gradient(318.8deg, rgb(223 219 215) -11.42%, rgb(242 241 239) 58.01%);
+/* Breadcrumb floats transparently above arc background, edge-to-edge */
+main > .section.breadcrumb-container:has(+ .section[class*="arc"]) {
   margin-left: 0;
   margin-right: 0;
   padding-bottom: 0;
+  position: relative;
+  z-index: 1;
 }
 
-/* Breadcrumb blends into arc-wave background: same flat grey, edge-to-edge, no bottom gap */
-main > .section.breadcrumb-container:has(+ .section.arc-wave) {
+/* Arc gradient extends behind breadcrumb via ::before */
+main > .section.breadcrumb-container + .section.arc::before {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(318.8deg, rgb(223 219 215) -11.42%, rgb(242 241 239) 58.01%);
+  pointer-events: none;
+}
+
+/* Arc-wave background extends behind breadcrumb via ::before */
+main > .section.breadcrumb-container + .section.arc-wave::before {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  width: 100%;
+  height: 200px;
   background-color: var(--light-color);
-  margin-left: 0;
-  margin-right: 0;
-  padding-bottom: 0;
+  pointer-events: none;
 }
 
 /* ===== ARC: grey gradient + white curved bottom edge ===== */
