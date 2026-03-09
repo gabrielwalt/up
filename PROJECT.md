@@ -47,7 +47,7 @@ Does it match an existing block's purpose?
     │         ↓
     │     Does styling match an existing variant?
     │         ├─ YES → Use existing variant
-    │         └─ NO → Can styling be achieved with section styles (dark, highlight)?
+    │         └─ NO → Can styling be achieved with section styles (highlight)?
     │                   ├─ YES → Use base block + section style
     │                   └─ NO → Create new VARIANT (not new block)
     │
@@ -67,8 +67,7 @@ Use descriptive kebab-case names. **Block-specific variants** must be prefixed w
 - `carousel-testimonials` - Quote carousel (specific to carousel)
 
 **Generic** (no prefix, reusable across blocks/sections):
-- `dark` - Dark background with light text
-- `highlight` - Accent background color
+- `highlight` - Light grey background
 
 ### Examples of Correct Reuse
 
@@ -81,7 +80,6 @@ Use descriptive kebab-case names. **Block-specific variants** must be prefixed w
 | Card grid | Use `cards` (default) | Create new custom cards block |
 | Logo strip | Use `columns (columns-logos)` | Create new `logo-strip` block |
 | Tabbed content | Use `tabs` | Create new `tabbed-content` block |
-| Full-width image section | Use `image-full-width` section style | Create new `full-image` block |
 | Two-column with image | Use `columns (columns-media)` variant | Create new `image-text` block |
 | **Multiple two-column rows** | Single `columns (columns-media)` with multiple rows | Separate blocks for each row |
 | Quote carousel | Use `carousel (carousel-testimonials)` variant | Create new `testimonials` block |
@@ -122,7 +120,7 @@ When encountering a content pattern that's similar to an existing block:
 
 **Variant naming**: Block-specific variants are prefixed with the block name. In authoring: `| Carousel (carousel-testimonials) |`
 - This creates class: `.carousel.carousel-testimonials`
-- Generic variants (e.g., `dark`) are not prefixed and can be applied to any block or section
+- Generic variants (e.g., `highlight`) are not prefixed and can be applied to any block or section
 
 **When to create a NEW block instead of variant**:
 - Content structure is fundamentally different (>50% different markup)
@@ -544,8 +542,8 @@ Spacing is **margin-driven** — wrappers carry `margin-top`, and sections have 
 | H1 element (above) | **80px** | `--spacing-4xl` |
 | Nav → first content (H1) | **80px** | H1 margin collapses through section |
 | Last section → footer | **80px** | `padding-bottom` on last section |
-| Before background section (highlight/dark) | **80px** | `margin-top` on the section |
-| Background section padding (highlight/dark) | **80px** | `--spacing-4xl` top and bottom |
+| Before background section (highlight) | **80px** | `margin-top` on the section |
+| Background section padding (highlight) | **80px** | `--spacing-4xl` top and bottom |
 
 **CSS selector summary:**
 ```css
@@ -558,7 +556,7 @@ main > .section > .default-content-wrapper               → margin-top: 40px (c
 .default-content-wrapper + .default-content-wrapper      → margin-top: 24px (same-section override)
 main > .section > div > * + *                            → margin-top: 24px (internal gap)
 main .default-content-wrapper > h1                       → margin-top: 80px
-main > .section.highlight, main > .section.dark          → margin-top: 80px; padding: 80px 0
+main > .section.highlight                                → margin-top: 80px; padding: 80px 0
   > div:first-child                                      → margin-top: 0
   > div:last-child                                       → margin-bottom: 0
 ```
@@ -570,7 +568,7 @@ main > .section.highlight, main > .section.dark          → margin-top: 80px; p
 - **H1 gets 80px margin-top** — collapses with wrapper margin for consistent nav-to-H1 gap.
 - **24px between elements within wrappers** — `main > .section > div > * + *` applies 24px gap.
 - **No section margins on regular sections** — regular sections have `padding: 0` and `margin: 0`.
-- **Background sections (highlight/dark)** use `margin-top: 80px` (white space before background) + `padding: 80px 0` (internal spacing) with first/last child margin reset to 0. This creates symmetric 80px white + 80px colored padding on both entering and exiting the background zone.
+- **Background sections (highlight)** use `margin-top: 80px` (white space before background) + `padding: 80px 0` (internal spacing) with first/last child margin reset to 0. This creates symmetric 80px white + 80px colored padding on both entering and exiting the background zone.
 - **Last section gets `padding-bottom: 80px`** for footer gap.
 - **`p.button-wrapper` has `margin: 0`** — spacing is handled by the `* + *` rule; extra margin would leak through sections.
 - **Blocks must not set outer margins on their wrapper** — the global spacing system handles all inter-block spacing.
@@ -636,7 +634,7 @@ Only two breakpoints, derived from the UPS source site. Content flows fluidly be
 
 - **Link → Button**: Link alone in its own paragraph becomes a button
 - **Link stays link**: Link inline with other text stays a link
-- **Section metadata**: Use `section-metadata` block to apply styles like `highlight`, `dark`, `image-full-width`
+- **Section metadata**: Use `section-metadata` block to apply styles like `highlight`, `accent-bar`
 - **Page templates**: Add `Template: template-name` to page metadata for page-specific styles
 - **HTML in table cells**: Markdown syntax (like `## Heading`) is NOT parsed inside table cells. Use HTML tags (`<h2>Heading</h2>`) when you need structured content in block tables.
 - **One row per item**: In block tables (carousel, accordion), each row becomes one item/slide. Combine all content for an item into a single row using HTML.
@@ -671,8 +669,6 @@ Applied via `section-metadata` block with `Style: style-name`. Multiple styles c
 | Style | Class | Purpose |
 |-------|-------|---------|
 | `highlight` | `.section.highlight` | Light grey background (`--light-color`) |
-| `dark` | `.section.dark` | Dark background, light text |
-| `image-full-width` | `.section.image-full-width` | Images break out of container to full viewport width |
 | `accent-bar` | `.section.accent-bar` | Adds yellow bar under h1/h2 (`::after`), uppercase h6 eyebrow |
 | `arc` | `.section.arc` | Warm grey gradient background with white curved scoop at bottom (decorative SVG `::after`) |
 | `arc-wave` | `.section.arc-wave` | Flat grey background with organic white wave at bottom — the "inverted arc" (decorative SVG `::after`) |
@@ -681,7 +677,7 @@ Applied via `section-metadata` block with `Style: style-name`. Multiple styles c
 **Example usage in content:**
 ```html
 <div class="section-metadata">
-  <div><div>Style</div><div>dark</div></div>
+  <div><div>Style</div><div>highlight</div></div>
 </div>
 ```
 
@@ -734,6 +730,7 @@ Complete reference of all blocks and their variants.
 | **navigation-tabs** | `/blocks/navigation-tabs/` | — | Card-style navigation links with arrow icons |
 | **fact-sheets** | `/blocks/fact-sheets/` | — | Responsive stat grid with icons, numbers, labels, and CTA |
 | **columns-media** | `/blocks/columns-media/` | — | Asymmetric image + text (1/3 + 2/3), image on either side |
+| **breadcrumb** | `/blocks/breadcrumb/` | — | Auto-generated breadcrumb from URL path segments |
 
 **Boilerplate blocks** (vanilla, unmodified): `cards`, `columns`, `hero`
 
@@ -1032,6 +1029,29 @@ Text on the left, image on the right (intro/hero usage):
 
 ---
 
+### breadcrumb
+
+**Location**: `/blocks/breadcrumb/`
+
+| Variant | Class | Purpose |
+|---------|-------|---------|
+| Default | `.breadcrumb` | Auto-generated breadcrumb trail from URL path |
+
+**Features**:
+- Auto-generates breadcrumb from URL path (Home / Segment / Current Page)
+- Strips `/content` prefix and locale prefix (`/us/en/`)
+- Hidden on home page (removes its section entirely)
+- Desktop only (hidden below 992px via section `display: none`)
+- Accessible `<nav aria-label="Breadcrumb">` with `<ol>` list
+- Angled slash separators between items (`::before` pseudo-element)
+- Current page shown as plain text (no link), intermediate segments linked
+
+**Responsive behavior**:
+- Mobile (<992px): hidden entirely (section `display: none`)
+- Desktop (>=992px): horizontal breadcrumb trail, 32px below nav
+
+---
+
 ### fragment (Utility Module)
 
 **Location**: `/blocks/fragment/`
@@ -1108,7 +1128,7 @@ Use consistent section headers:
 
 ### Block CSS Scoping
 - Scope all styles to the block class: `.my-block .child-element`
-- Avoid external context selectors unless necessary (e.g., `.section.dark .my-block`)
+- Avoid external context selectors unless necessary (e.g., `.section.highlight .my-block`)
 - Use `:has()` on wrapper for edge-to-edge blocks: `main > div:has(.my-block)`
 
 ### Fixed Dimensions with Padding
@@ -1193,7 +1213,7 @@ Always include ARIA attributes on interactive elements:
 19. **Don't use `createOptimizedPicture` for external images** - During migration, images reference external URLs. `createOptimizedPicture` strips the domain and creates broken local paths. Leave external images as-is.
 20. **All-caps content → CSS text-transform** - Never import all-caps text literally. Convert to Title Case in content and apply `text-transform: uppercase` via CSS on the target element.
 21. **Block-wide bold → CSS font-weight** - Don't wrap entire block elements in `<strong>`. Apply `font-weight: 700` via CSS targeting the element's position (e.g., `p:first-child`). Reserve `<strong>` for inline emphasis only.
-22. **Margin-driven spacing system** - Sections have `padding: 0` by default so wrapper margins collapse through them for cross-section gaps. Block wrappers = 80px margin-top, default-content = 40px base (overridden to 32px/24px for same-section siblings). Background sections (highlight/dark) use `padding: 80px 0` with first/last child margin reset to 0. Never add section padding to regular sections.
+22. **Margin-driven spacing system** - Sections have `padding: 0` by default so wrapper margins collapse through them for cross-section gaps. Block wrappers = 80px margin-top, default-content = 40px base (overridden to 32px/24px for same-section siblings). Background sections (highlight) use `padding: 80px 0` with first/last child margin reset to 0. Never add section padding to regular sections.
 23. **Never push to Git yourself** - The user handles all Git operations (commit, push, branch). Only modify files — leave Git workflow to the user.
 24. **Content and code are strictly separated** - Content (HTML) lives in DA (CMS), code (JS/CSS) lives in Git. Never commit HTML content to Git. Never modify `.gitignore` to track HTML files.
 25. **DA wraps inline content in `<p>` tags** - Block JS/CSS must use flexible selectors (e.g., `:scope > a, :scope > p > a`) to handle both direct children and p-wrapped children from DA. Never add JS unwrapping logic — fix compatibility in CSS with button resets and in JS with dual selectors.
@@ -1203,16 +1223,6 @@ Always include ARIA attributes on interactive elements:
 ---
 
 ## CSS Patterns to Maintain
-
-### Full-Width Breakout
-```css
-main .section.image-full-width .default-content-wrapper p:has(picture) {
-  align-self: stretch;
-  width: 100vw;
-  margin-left: calc(-50vw + 50%);
-  max-width: unset;
-}
-```
 
 ### Constrain and Center Images on Mobile
 ```css

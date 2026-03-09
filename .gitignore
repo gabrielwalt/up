@@ -8,6 +8,7 @@ helix-importer-ui
 *.bak
 .idea
 *.html
+tools/importer/*.bundle.js
 
 # Ensure these files are tracked
 !CLAUDE.md

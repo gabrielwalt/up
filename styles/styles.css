@@ -511,29 +511,24 @@ main .section.highlight {
 }
 
 /* Background sections: edge-to-edge, 80px margin before + 80px padding inside */
-main > .section.highlight,
-main > .section.dark {
+main > .section.highlight {
   margin-top: var(--spacing-4xl);
   margin-left: 0;
   margin-right: 0;
   padding: var(--spacing-4xl) 0;
 }
 
-main > .section.highlight > div:first-child,
-main > .section.dark > div:first-child {
+main > .section.highlight > div:first-child {
   margin-top: 0;
 }
 
-main > .section.highlight > div:last-child,
-main > .section.dark > div:last-child {
+main > .section.highlight > div:last-child {
   margin-bottom: 0;
 }
 
 /* First-section flush: no white gap when background section follows breadcrumb or is first */
 main > .section:first-child.highlight,
-main > .section:first-child.dark,
-main > .section.breadcrumb-container + .section.highlight,
-main > .section.breadcrumb-container + .section.dark {
+main > .section.breadcrumb-container + .section.highlight {
   margin-top: 0;
   padding-top: 0;
 }
