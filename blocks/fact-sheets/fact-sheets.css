@@ -13,6 +13,7 @@
 
 /* ===== STAT ITEM ===== */
 .fact-sheets .fact-sheets-item {
+  position: relative;
   padding: var(--spacing-m) var(--spacing-s);
 }
 
@@ -32,12 +33,6 @@
   width: 57px;
   height: 57px;
   display: block;
-}
-
-/* Last icon SVG has excess internal whitespace — scale up to match visual size of others */
-.fact-sheets .fact-sheets-item:last-child .fact-sheets-icon img {
-  width: 75px;
-  height: 75px;
 }
 
 /* ===== STAT NUMBER ===== */
@@ -80,6 +75,7 @@
 @media (width >= 600px) {
   .fact-sheets .fact-sheets-grid {
     grid-template-columns: repeat(2, 1fr);
+    row-gap: var(--spacing-m);
   }
 
   /* Remove horizontal borders */
@@ -88,13 +84,14 @@
   }
 
   /* Vertical separator on odd items (left column) */
-  .fact-sheets .fact-sheets-item:nth-child(odd) {
-    border-right: 4px solid var(--light-color);
-  }
-
-  /* Horizontal separator between rows (items 1-2 get bottom border) */
-  .fact-sheets .fact-sheets-item:nth-child(-n+2) {
-    border-bottom: 4px solid var(--light-color);
+  .fact-sheets .fact-sheets-item:nth-child(odd)::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 12%;
+    bottom: 12%;
+    width: 4px;
+    background: var(--light-color);
   }
 }
 
@@ -106,9 +103,9 @@
     grid-template-columns: repeat(4, 1fr);
   }
 
-  /* Reset tablet borders */
-  .fact-sheets .fact-sheets-item:nth-child(odd) {
-    border-right: none;
+  /* Reset tablet pseudo-element */
+  .fact-sheets .fact-sheets-item:nth-child(odd)::after {
+    content: none;
   }
 
   .fact-sheets .fact-sheets-item:nth-child(-n+2) {
@@ -116,8 +113,14 @@
   }
 
   /* Vertical separator on all except last */
-  .fact-sheets .fact-sheets-item:not(:last-child) {
-    border-right: 4px solid var(--light-color);
+  .fact-sheets .fact-sheets-item:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 12%;
+    bottom: 12%;
+    width: 4px;
+    background: var(--light-color);
   }
 
   .fact-sheets .fact-sheets-item {

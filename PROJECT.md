@@ -692,16 +692,17 @@ Decorative SVG arc backgrounds from the original UPS site. These create curved t
 **`arc`** — Grey gradient section with white curved bottom edge:
 - Background: `linear-gradient(318.8deg, #DFDBD7, #F2F1EF)` (warm grey-to-lighter)
 - `::after`: White concave SVG scoop (1440x72 viewBox) at bottom of section
-- Spacing: `margin-top: 80px`, `padding: 80px 0 135px` (135px bottom for the arc curve)
+- Spacing: `margin: 80px 0 -215px`, `padding: 80px 0 215px` — negative bottom margin lets next section overlap into curve area
 - SVG height is responsive: `padding-top: calc(5%)` scales with viewport width
-- Hero overlap: when followed by a section containing `.hero-featured`, auto-applies `margin-top: -135px` on the hero section for visual overlap
+- Next section gets `position: relative; z-index: 1` to render above the curve
 - Used on: our-stories (H1 section with hero overlap below), our-company (H1 section with hero overlap below), category pages (customer-first, innovation-driven, people-led H1 sections)
 
 **`arc-wave`** — Flat grey background with organic white wave at bottom (inverted arc):
 - Background: `var(--light-color)` (`#f2f2f2`) — flat grey, no gradient
-- `::after`: Organic/irregular white wave SVG (1381x118pt viewBox) at bottom of section
-- Spacing: `margin-top: 80px`, `padding: 80px 0 135px` (135px bottom for the wave)
+- `::after`: Organic/irregular white wave SVG (1381x118pt viewBox) overlapping upward behind content from section bottom
+- Spacing: `margin: 80px 0 0`, `padding: 80px 0 32px` — no extra padding for the wave; SVG extends upward behind content
 - SVG height is responsive: `padding-top: calc(8.5%)` scales with viewport width
+- Next section gets `margin-top: 32px` for a tight transition
 - Used on: our-culture (intro section)
 
 **`arc-gradient`** — Subtle warm beige wash (no visible background change):

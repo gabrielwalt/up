@@ -2,15 +2,12 @@
 
 /* ===== COLUMNS-MEDIA BLOCK ===== */
 
-/* ===== PHONE (<768px): Single column, centered at 320px ===== */
+/* ===== PHONE (<992px): Single column, full width ===== */
 
 /* Row: each child div is one media + text item */
 .columns-media > div {
   display: flex;
   flex-direction: column;
-  max-width: 320px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .columns-media > div + div {
@@ -27,7 +24,6 @@
 
 .columns-media img {
   width: 100%;
-  max-width: 290px;
   height: auto;
   aspect-ratio: 1;
   object-fit: cover;
@@ -35,9 +31,6 @@
 }
 
 /* ===== TEXT COLUMN ===== */
-.columns-media > div > div:not(.columns-media-img-col) {
-  padding: var(--spacing-m) 0 0;
-}
 
 /* ===== HEADINGS ===== */
 .columns-media h2 {
@@ -74,16 +67,13 @@
   padding: 0;
 }
 
-/* ===== TABLET LAYOUT (≥768px): 50/50 two-column ===== */
+/* ===== TWO-COLUMN LAYOUT (≥768px): Asymmetric columns ===== */
 
 @media (width >= 768px) {
   .columns-media > div {
     flex-direction: row;
     align-items: flex-start;
     gap: var(--spacing-l);
-    max-width: none;
-    margin-left: 0;
-    margin-right: 0;
   }
 
   .columns-media .columns-media-img-col {
@@ -96,14 +86,8 @@
 
   .columns-media > div > div:not(.columns-media-img-col) {
     flex: 1;
-    padding: var(--spacing-xs) 0 0;
   }
-}
 
-/* ===== DESKTOP LAYOUT (≥992px): Asymmetric columns ===== */
-
-/* --viewport-desktop */
-@media (width >= 992px) {
   /* Image on the left (first child) — fixed 275px square */
   .columns-media > div > .columns-media-img-col:first-child {
     flex: 0 0 275px;
@@ -120,9 +104,5 @@
 
   .columns-media > div > .columns-media-img-col:last-child img {
     aspect-ratio: auto;
-  }
-
-  .columns-media > div > div:not(.columns-media-img-col) {
-    flex: 1;
   }
 }
