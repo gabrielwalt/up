@@ -98,12 +98,30 @@ main > .section.breadcrumb-container + .section[class*="arc"] {
   margin-top: 0;
 }
 
+/* Breadcrumb blends into arc background: same grey gradient, edge-to-edge, no bottom gap */
+main > .section.breadcrumb-container:has(+ .section.arc) {
+  background: linear-gradient(318.8deg, rgb(223 219 215) -11.42%, rgb(242 241 239) 58.01%);
+  margin-left: 0;
+  margin-right: 0;
+  padding-bottom: 0;
+}
+
+/* Breadcrumb blends into arc-wave background: same flat grey, edge-to-edge, no bottom gap */
+main > .section.breadcrumb-container:has(+ .section.arc-wave) {
+  background-color: var(--light-color);
+  margin-left: 0;
+  margin-right: 0;
+  padding-bottom: 0;
+}
+
 /* ===== ARC: grey gradient + white curved bottom edge ===== */
 
 main > .section.arc {
   position: relative;
   background: linear-gradient(318.8deg, rgb(223 219 215) -11.42%, rgb(242 241 239) 58.01%);
   margin-top: var(--spacing-4xl);
+  margin-left: 0;
+  margin-right: 0;
   padding: var(--spacing-4xl) 0 135px;
   z-index: 0;
 }
@@ -145,6 +163,8 @@ main > .section.arc-wave {
   position: relative;
   background-color: var(--light-color);
   margin-top: var(--spacing-4xl);
+  margin-left: 0;
+  margin-right: 0;
   padding: var(--spacing-4xl) 0 135px;
   z-index: 0;
 }

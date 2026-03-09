@@ -149,6 +149,14 @@ header {
   height: var(--nav-height);
 }
 
+/* --viewport-nav: nav-wrapper becomes in-flow (position: relative),
+   so header auto-sizes to its content (nav + border) */
+@media (width >= 1024px) {
+  header {
+    height: auto;
+  }
+}
+
 header .header,
 footer .footer {
   visibility: hidden;
@@ -499,10 +507,12 @@ main .section.highlight {
   background-color: var(--light-color);
 }
 
-/* Background sections: 80px margin before + 80px padding inside */
+/* Background sections: edge-to-edge, 80px margin before + 80px padding inside */
 main > .section.highlight,
 main > .section.dark {
   margin-top: var(--spacing-4xl);
+  margin-left: 0;
+  margin-right: 0;
   padding: var(--spacing-4xl) 0;
 }
 
@@ -522,4 +532,29 @@ main > .section:first-child.dark,
 main > .section.breadcrumb-container + .section.highlight,
 main > .section.breadcrumb-container + .section.dark {
   margin-top: 0;
+}
+
+/* Breadcrumb floats transparently above highlight background */
+main > .section.breadcrumb-container:has(+ .section.highlight) {
+  margin-left: 0;
+  margin-right: 0;
+  padding-bottom: 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* Highlight background extends behind breadcrumb via ::before */
+main > .section.breadcrumb-container + .section.highlight {
+  position: relative;
+}
+
+main > .section.breadcrumb-container + .section.highlight::before {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  width: 100%;
+  height: 200px;
+  background-color: var(--light-color);
+  pointer-events: none;
 }
