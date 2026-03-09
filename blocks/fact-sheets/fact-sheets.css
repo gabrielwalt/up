@@ -1,0 +1,126 @@
+/* stylelint-disable no-descending-specificity */
+
+/* ===== FACT-SHEETS BLOCK ===== */
+.fact-sheets {
+  text-align: center;
+}
+
+/* ===== GRID LAYOUT ===== */
+.fact-sheets .fact-sheets-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+/* ===== STAT ITEM ===== */
+.fact-sheets .fact-sheets-item {
+  padding: var(--spacing-m) var(--spacing-s);
+}
+
+/* ===== MOBILE SEPARATORS (horizontal) ===== */
+.fact-sheets .fact-sheets-item:not(:last-child) {
+  border-bottom: 4px solid var(--light-color);
+}
+
+/* ===== ICON ===== */
+.fact-sheets .fact-sheets-icon {
+  display: flex;
+  justify-content: center;
+  margin-bottom: var(--spacing-xs);
+}
+
+.fact-sheets .fact-sheets-icon img {
+  width: 57px;
+  height: 57px;
+  display: block;
+}
+
+/* Last icon SVG has excess internal whitespace — scale up to match visual size of others */
+.fact-sheets .fact-sheets-item:last-child .fact-sheets-icon img {
+  width: 75px;
+  height: 75px;
+}
+
+/* ===== STAT NUMBER ===== */
+.fact-sheets h4 {
+  font-size: var(--heading-font-size-xl);
+  font-weight: 500;
+  color: var(--text-color);
+  line-height: 1.4;
+  margin: var(--spacing-m) 0 var(--spacing-s);
+}
+
+/* ===== STAT LABEL ===== */
+.fact-sheets .fact-sheets-item > p {
+  font-size: var(--body-font-size-m);
+  font-weight: 400;
+  color: var(--text-color);
+  margin: 0;
+}
+
+/* ===== CTA BUTTON ===== */
+.fact-sheets .fact-sheets-cta {
+  margin-top: var(--spacing-l);
+  text-align: center;
+}
+
+.fact-sheets .fact-sheets-cta a.button:any-link {
+  border-color: var(--cta-bg);
+  background-color: var(--cta-bg);
+  color: var(--cta-text);
+  font-weight: 700;
+}
+
+.fact-sheets .fact-sheets-cta a.button:any-link:hover {
+  border-color: var(--cta-bg-hover);
+  background-color: var(--cta-bg-hover);
+  color: var(--cta-text);
+}
+
+/* ===== TABLET: 2 COLUMNS ===== */
+@media (width >= 600px) {
+  .fact-sheets .fact-sheets-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Remove horizontal borders */
+  .fact-sheets .fact-sheets-item:not(:last-child) {
+    border-bottom: none;
+  }
+
+  /* Vertical separator on odd items (left column) */
+  .fact-sheets .fact-sheets-item:nth-child(odd) {
+    border-right: 4px solid var(--light-color);
+  }
+
+  /* Horizontal separator between rows (items 1-2 get bottom border) */
+  .fact-sheets .fact-sheets-item:nth-child(-n+2) {
+    border-bottom: 4px solid var(--light-color);
+  }
+}
+
+/* ===== DESKTOP: 4 COLUMNS ===== */
+
+/* --viewport-desktop */
+@media (width >= 992px) {
+  .fact-sheets .fact-sheets-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  /* Reset tablet borders */
+  .fact-sheets .fact-sheets-item:nth-child(odd) {
+    border-right: none;
+  }
+
+  .fact-sheets .fact-sheets-item:nth-child(-n+2) {
+    border-bottom: none;
+  }
+
+  /* Vertical separator on all except last */
+  .fact-sheets .fact-sheets-item:not(:last-child) {
+    border-right: 4px solid var(--light-color);
+  }
+
+  .fact-sheets .fact-sheets-item {
+    padding: var(--spacing-m) var(--spacing-l);
+  }
+}

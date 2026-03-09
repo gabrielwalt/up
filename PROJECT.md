@@ -411,7 +411,7 @@ Defined in `/styles/styles.css` — reference these variable names, don't hardco
 | Variable | Value | Usage |
 |----------|-------|-------|
 | `--spacing-xs` | `8px` | Tight spacing |
-| `--spacing-s` | `16px` | Small spacing, section padding |
+| `--spacing-s` | `16px` | Small spacing |
 | `--spacing-m` | `24px` | Medium spacing (block gap, card gaps) |
 | `--spacing-l` | `32px` | Large spacing |
 | `--spacing-xl` | `40px` | Card/component padding, eyebrow offset |
@@ -421,14 +421,13 @@ Defined in `/styles/styles.css` — reference these variable names, don't hardco
 
 ### Vertical Rhythm
 
-Two tokens compose to produce consistent vertical spacing via a 4-component model:
+One token controls internal default-content spacing. All other spacing uses the spacing scale tokens directly.
 
 | Variable | Value | Purpose |
 |----------|-------|---------|
-| `--block-gap` | `24px` (`--spacing-m`) | Margin on every wrapper div (top and bottom); collapses to 24px between siblings |
-| `--section-padding` | `16px` (`--spacing-s`) | Vertical padding inside each section |
+| `--block-gap` | `24px` (`--spacing-m`) | Gap between elements within a wrapper (`* + *` rule) |
 
-**Cross-section composition**: 24px (last block margin) + 16px (section padding-bottom) + 16px (section padding-top) + 24px (first block margin) = **80px total gap**. Sections have no margin — spacing comes from padding + block margins.
+**Note:** `--section-padding` has been removed. The spacing system is now margin-driven — see "Vertical Spacing Rules" below.
 
 ### Radius
 
@@ -520,30 +519,54 @@ Two tokens compose to produce consistent vertical spacing via a 4-component mode
 
 **Before writing any CSS property with `var(--...)`, cross-check against the variables defined in `styles.css`.** If the variable isn't defined, it does NOT exist and will silently fail.
 
-### Vertical Spacing Rules (4-Component Model)
+### Vertical Spacing Rules (Margin-Driven System)
 
-Two tokens control all vertical spacing:
-- `--block-gap`: `var(--spacing-m)` = **24px** — gap between blocks and between elements within wrappers
-- `--section-padding`: `var(--spacing-s)` = **16px** — padding on section edges
+Spacing is **margin-driven** — wrappers carry `margin-top`, and sections have **no padding by default** so wrapper margins collapse *through* section boundaries for cross-section gaps.
 
-**How it composes:**
+**Key principle:** Sections with `padding: 0` are transparent to margin collapsing. A block wrapper's 80px margin-top will collapse through the section boundary, creating the same gap whether the next element is in the same section or a different one.
 
-| Scenario | Composition | Total |
-|----------|-------------|-------|
-| Between blocks in same section | Sibling wrapper margins collapse: max(24px, 24px) | **24px** |
-| Between elements in same wrapper | `* + *` margin-top | **24px** |
-| Between adjacent sections | 24px (block margin) + 16px (section padding) + 16px (section padding) + 24px (block margin) | **80px** |
-| Nav → first content | `calc(var(--spacing-3xl) - var(--block-gap))` = 40px padding + 24px block margin | **64px** |
-| Last content → footer | `calc(var(--spacing-4xl) - var(--block-gap))` = 56px padding + 24px block margin | **80px** |
+**Gap hierarchy:**
+
+| Scenario | Gap | Token |
+|----------|-----|-------|
+| Block wrapper → Block wrapper | **80px** | `--spacing-4xl` |
+| Block wrapper ↔ Default-content (same section) | **32px** | `--spacing-l` |
+| Default-content (cross-section base) | **40px** | `--spacing-xl` |
+| Default-content → Default-content (same section) | **24px** | `--spacing-m` |
+| Elements within any wrapper (`* + *`) | **24px** | `--block-gap` |
+| H1 element (above) | **80px** | `--spacing-4xl` |
+| Nav → first content (H1) | **80px** | H1 margin collapses through section |
+| Last section → footer | **80px** | `padding-bottom` on last section |
+| Before background section (highlight/dark) | **80px** | `margin-top` on the section |
+| Background section padding (highlight/dark) | **80px** | `--spacing-4xl` top and bottom |
+
+**CSS selector summary:**
+```css
+main > .section                                          → padding: 0
+main > .section:last-of-type                             → padding-bottom: 80px
+main > .section > div:not(.default-content-wrapper)      → margin-top: 80px (block wrappers)
+main > .section > .default-content-wrapper               → margin-top: 40px (cross-section base)
+…+ .default-content-wrapper (after block)                → margin-top: 32px (same-section override)
+.default-content-wrapper + div:not(…)                    → margin-top: 32px (same-section override)
+.default-content-wrapper + .default-content-wrapper      → margin-top: 24px (same-section override)
+main > .section > div > * + *                            → margin-top: 24px (internal gap)
+main .default-content-wrapper > h1                       → margin-top: 80px
+main > .section.highlight, main > .section.dark          → margin-top: 80px; padding: 80px 0
+  > div:first-child                                      → margin-top: 0
+  > div:last-child                                       → margin-bottom: 0
+```
 
 **Rules:**
-- **Wrappers have `margin: var(--block-gap) auto`** — each wrapper contributes 24px vertical margin + auto horizontal centering. Between siblings, margins collapse to 24px.
-- **24px between elements within wrappers** — `main > .section > div > * + *` applies 24px gap between elements inside any wrapper.
-- **24px between default content** — within `.default-content-wrapper`, `* + *` applies the same 24px gap between headings, paragraphs, buttons, etc.
-- **No section margins** — sections use `padding` only (no `margin`). This avoids margin-collapsing surprises.
-- **No section-specific spacing overrides** — ALL sections use the same universal spacing. No block-specific padding adjustments.
-- **Blocks must not set outer margins on their wrapper** — the global `--block-gap` system handles all inter-block spacing via wrapper margins.
-- **Highlight/dark sections** inherit the same `--section-padding` from the base rule.
+- **Sections have NO padding by default** — this is critical for margin collapsing through sections.
+- **Block wrappers get 80px margin-top** — this is the primary inter-block gap.
+- **Default-content wrappers get 40px margin-top** — overridden to 32px when adjacent to a block wrapper (same section), 24px when adjacent to another default-content-wrapper.
+- **H1 gets 80px margin-top** — collapses with wrapper margin for consistent nav-to-H1 gap.
+- **24px between elements within wrappers** — `main > .section > div > * + *` applies 24px gap.
+- **No section margins on regular sections** — regular sections have `padding: 0` and `margin: 0`.
+- **Background sections (highlight/dark)** use `margin-top: 80px` (white space before background) + `padding: 80px 0` (internal spacing) with first/last child margin reset to 0. This creates symmetric 80px white + 80px colored padding on both entering and exiting the background zone.
+- **Last section gets `padding-bottom: 80px`** for footer gap.
+- **`p.button-wrapper` has `margin: 0`** — spacing is handled by the `* + *` rule; extra margin would leak through sections.
+- **Blocks must not set outer margins on their wrapper** — the global spacing system handles all inter-block spacing.
 
 ---
 
@@ -672,6 +695,7 @@ Complete reference of all blocks and their variants.
 | **cards-stories** | `/blocks/cards-stories/` | — | Image + text story cards in a clickable grid |
 | **hero-featured** | `/blocks/hero-featured/` | — | Hero with background image and white card overlay |
 | **navigation-tabs** | `/blocks/navigation-tabs/` | — | Card-style navigation links with arrow icons |
+| **fact-sheets** | `/blocks/fact-sheets/` | — | Responsive stat grid with icons, numbers, labels, and CTA |
 
 **Boilerplate blocks** (vanilla, unmodified): `cards`, `columns`, `hero`
 
@@ -892,6 +916,39 @@ Complete reference of all blocks and their variants.
 
 ---
 
+### fact-sheets
+
+**Location**: `/blocks/fact-sheets/`
+
+| Variant | Class | Purpose |
+|---------|-------|---------|
+| Default | `.fact-sheets` | Responsive stat grid with icons, numbers, labels, and gold CTA |
+
+**Authoring:**
+```
+| Fact-Sheets |
+| --- | --- |
+| <img icon1> | <h4>~460K</h4><p>Employees</p> |
+| <img icon2> | <h4>200+</h4><p>Countries & territories served</p> |
+| <img icon3> | <h4>20.8M</h4><p>Packages delivered daily</p> |
+| <img icon4> | <h4>$88.7B</h4><p>2025 Revenue</p> |
+| <p><strong><a href="...">View All Fact Sheets</a></strong></p> |
+```
+
+**Features**:
+- Each stat has its own icon (57x57px SVG), large number (h4), and label (p)
+- JS restructures rows into a grid with `.fact-sheets-item` wrappers
+- Last row (link without h4) becomes gold CTA button below the grid
+- Grey separators between items (4px solid `--light-color`)
+- Center-aligned content
+
+**Responsive behavior**:
+- Mobile (<600px): 1 column, horizontal separators between items
+- Tablet (600px-991px): 2 columns, vertical + horizontal separators
+- Desktop (>=992px): 4 columns, vertical separators only
+
+---
+
 ### fragment (Utility Module)
 
 **Location**: `/blocks/fragment/`
@@ -920,7 +977,8 @@ Import scripts for bulk content migration are in `/tools/importer/`.
 | `parsers/cards-stories.js` | Parser for cards-stories block |
 | `parsers/columns-feature.js` | Parser for columns-feature block |
 | `parsers/columns-quote.js` | Parser for columns-quote block |
-| `parsers/columns-stats.js` | Parser for columns-stats block |
+| `parsers/columns-stats.js` | Parser for columns-stats block (home page) |
+| `parsers/fact-sheets.js` | Parser for fact-sheets block (our-company page) |
 | `parsers/hero-featured.js` | Parser for hero-featured block |
 | `transformers/ups-cleanup.js` | Site-wide DOM cleanup transformer |
 
@@ -1051,11 +1109,12 @@ Always include ARIA attributes on interactive elements:
 19. **Don't use `createOptimizedPicture` for external images** - During migration, images reference external URLs. `createOptimizedPicture` strips the domain and creates broken local paths. Leave external images as-is.
 20. **All-caps content → CSS text-transform** - Never import all-caps text literally. Convert to Title Case in content and apply `text-transform: uppercase` via CSS on the target element.
 21. **Block-wide bold → CSS font-weight** - Don't wrap entire block elements in `<strong>`. Apply `font-weight: 700` via CSS targeting the element's position (e.g., `p:first-child`). Reserve `<strong>` for inline emphasis only.
-22. **CSS margin collapsing** - Adjacent sibling sections with margins will collapse (largest wins). To ensure a specific gap, set the preceding section's bottom margin to 0 and control spacing entirely from the target section's top margin.
+22. **Margin-driven spacing system** - Sections have `padding: 0` by default so wrapper margins collapse through them for cross-section gaps. Block wrappers = 80px margin-top, default-content = 40px base (overridden to 32px/24px for same-section siblings). Background sections (highlight/dark) use `padding: 80px 0` with first/last child margin reset to 0. Never add section padding to regular sections.
 23. **Never push to Git yourself** - The user handles all Git operations (commit, push, branch). Only modify files — leave Git workflow to the user.
 24. **Content and code are strictly separated** - Content (HTML) lives in DA (CMS), code (JS/CSS) lives in Git. Never commit HTML content to Git. Never modify `.gitignore` to track HTML files.
 25. **DA wraps inline content in `<p>` tags** - Block JS/CSS must use flexible selectors (e.g., `:scope > a, :scope > p > a`) to handle both direct children and p-wrapped children from DA. Never add JS unwrapping logic — fix compatibility in CSS with button resets and in JS with dual selectors.
 26. **Fragment default paths are root-relative** - `header.js` defaults to `/nav`, `footer.js` defaults to `/footer`. Local dev pages override these via `<meta name="nav" content="/content/nav"/>`. On deployed (DA), no override exists — the default root path is used.
+27. **`p.button-wrapper` must have `margin: 0`** — The global `p.button-wrapper` rule must NOT add margin. Spacing is handled by the `* + *` rule inside default-content-wrapper. Extra margin on button-wrapper leaks through section boundaries (where sections have `padding: 0`) and creates incorrect gaps.
 
 ---
 

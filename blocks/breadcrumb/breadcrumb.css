@@ -48,10 +48,15 @@
 
 /* ===== SPACING FROM NAV ===== */
 
-/* 8px section padding + 24px wrapper margin = 32px from nav */
+/* Breadcrumb sits close to nav — 32px from nav to breadcrumb */
 main > .section:first-of-type:has(.breadcrumb-wrapper) {
-  padding-top: var(--spacing-xs);
+  padding-top: var(--spacing-l);
   padding-bottom: 0;
+}
+
+/* Override default 80px block-wrapper margin for breadcrumb */
+main > .section > .breadcrumb-wrapper {
+  margin-top: 0;
 }
 
 /* ===== HIDE ON TABLET AND BELOW ===== */
@@ -60,10 +65,5 @@ main > .section:first-of-type:has(.breadcrumb-wrapper) {
 @media (width < 992px) {
   main > .section:has(.breadcrumb-wrapper) {
     display: none;
-  }
-
-  /* Restore first-section top padding on the next section */
-  main > .section:has(.breadcrumb-wrapper) + .section {
-    padding-top: calc(var(--spacing-3xl) - var(--block-gap));
   }
 }

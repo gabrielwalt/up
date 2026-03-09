@@ -76,9 +76,8 @@
   --content-max-width: 1200px;
   --content-padding: var(--spacing-m);
 
-  /* vertical rhythm */
+  /* vertical rhythm — default content internal gap */
   --block-gap: var(--spacing-m);
-  --section-padding: var(--spacing-s);
 
   /* gold CTA button */
   --cta-bg: var(--color-gold);
@@ -210,6 +209,11 @@ main .default-content-wrapper > * + * {
   margin-top: var(--block-gap);
 }
 
+/* H1: 80px above (collapses with wrapper margin for nav-to-h1 gap) */
+main .default-content-wrapper > h1 {
+  margin-top: var(--spacing-4xl);
+}
+
 /* ===== ACCENT-BAR SECTION STYLE ===== */
 main .section.accent-bar .default-content-wrapper h1::after,
 main .section.accent-bar .default-content-wrapper h2::after {
@@ -255,9 +259,9 @@ a:hover {
   text-decoration: underline;
 }
 
-/* buttons */
+/* buttons — spacing handled by wrapper's * + * rule, no extra margin */
 p.button-wrapper {
-  margin: var(--block-gap) 0;
+  margin: 0;
 }
 
 a.button:any-link,
@@ -408,33 +412,93 @@ main img {
   width: 100%;
 }
 
-/* sections */
+/*
+ * ===== VERTICAL SPACING SYSTEM =====
+ *
+ * Spacing is margin-driven — wrappers carry margin-top, sections have no
+ * padding by default (so wrapper margins collapse *through* sections for
+ * cross-section gaps).
+ *
+ * Block wrapper → Block wrapper        : 80px  (--spacing-4xl)
+ * Block wrapper ↔ Default-content      : 32px  (--spacing-l)   same section
+ * Default-content ↔ Default-content    : 24px  (--spacing-m)   same section
+ * Default-content (cross-section base) : 40px  (--spacing-xl)
+ * H1 element                           : 80px above (collapses with wrapper)
+ * Background sections (highlight/dark) : 80px padding inside
+ * Last section → footer                : 80px padding-bottom
+ */
+
+/* ===== SECTIONS ===== */
+
 main > .section {
-  padding: var(--section-padding) 0;
+  padding: 0;
 }
 
-main > .section:first-of-type {
-  padding-top: calc(var(--spacing-3xl) - var(--block-gap));
-}
-
+/* Last section: 80px before footer */
 main > .section:last-of-type {
-  padding-bottom: calc(var(--spacing-4xl) - var(--block-gap));
+  padding-bottom: var(--spacing-4xl);
 }
 
-/* wrapper layout — each wrapper contributes block-gap margin to section edges and between siblings */
+/* ===== WRAPPERS ===== */
+
 main > .section > div {
   max-width: var(--content-max-width);
-  margin: var(--block-gap) auto;
+  margin: 0 auto;
   padding: 0 var(--content-padding);
 }
 
-/* block gap — between elements within a wrapper */
+/* Block wrappers: 80px top gap */
+main > .section > div:not(.default-content-wrapper) {
+  margin-top: var(--spacing-4xl);
+}
+
+/* Default-content wrappers: 40px top gap (cross-section base) */
+main > .section > .default-content-wrapper {
+  margin-top: var(--spacing-xl);
+}
+
+/* ===== SAME-SECTION SIBLING OVERRIDES ===== */
+
+/* Block ↔ Default-content (same section): 32px */
+main > .section > div:not(.default-content-wrapper) + .default-content-wrapper {
+  margin-top: var(--spacing-l);
+}
+
+main > .section > .default-content-wrapper + div:not(.default-content-wrapper) {
+  margin-top: var(--spacing-l);
+}
+
+/* Default-content → Default-content (same section): 24px */
+/* stylelint-disable-next-line no-descending-specificity */
+main > .section > .default-content-wrapper + .default-content-wrapper {
+  margin-top: var(--spacing-m);
+}
+
+/* Block gap — between elements within any wrapper */
 main > .section > div > * + * {
   margin-top: var(--block-gap);
 }
 
-/* section metadata */
+/* ===== BACKGROUND SECTIONS ===== */
+
 main .section.light,
 main .section.highlight {
   background-color: var(--light-color);
+}
+
+/* Background sections: 80px margin before + 80px padding inside */
+main > .section.highlight,
+main > .section.dark {
+  margin-top: var(--spacing-4xl);
+  padding: var(--spacing-4xl) 0;
+}
+
+main > .section.highlight > div:first-child,
+main > .section.dark > div:first-child {
+  margin-top: 0;
+}
+
+main > .section.highlight > div:last-child,
+main > .section.dark > div:last-child {
+  margin-bottom: 0;
 }

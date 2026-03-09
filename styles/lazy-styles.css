@@ -1,1 +1,80 @@
+/* stylelint-disable no-descending-specificity */
+
 /* add global styles that can be loaded post LCP here */
+
+/*
+ * ===== SCROLL-TRIGGERED SECTION ANIMATIONS =====
+ *
+ * Matches the original UPS site's selective animation approach:
+ * - Page headings (h1, h2) in default content
+ * - Hero-featured content card
+ * - Story and award card grids (staggered)
+ *
+ * NOT animated (matching original): columns-feature, columns-quote,
+ * columns-stats, fact-sheets, navigation-tabs
+ */
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in-up-text {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== DEFAULT CONTENT HEADINGS ===== */
+.section.appear > .default-content-wrapper > h1,
+.section.appear > .default-content-wrapper > h2 {
+  animation: fade-in-up-text 1s ease-out 0.2s both;
+}
+
+/* ===== HERO FEATURED ===== */
+.hero-featured-container.section.appear .hero-featured > div:last-child {
+  animation: fade-in-up 1s ease-out 0.5s both;
+}
+
+.hero-featured-container.section.appear .hero-featured > div:last-child > div > * {
+  animation: fade-in-up-text 1s ease-out 1.2s both;
+}
+
+/* ===== CARDS STORIES ===== */
+.section.appear .cards-stories > ul > li:nth-child(1) {
+  animation: fade-in-up 1s ease-out 0.2s both;
+}
+
+.section.appear .cards-stories > ul > li:nth-child(2) {
+  animation: fade-in-up 1s ease-out 0.4s both;
+}
+
+.section.appear .cards-stories > ul > li:nth-child(3) {
+  animation: fade-in-up 1s ease-out 0.6s both;
+}
+
+/* ===== CARDS AWARDS ===== */
+.section.appear .cards-awards > ul > li:nth-child(1) {
+  animation: fade-in-up 1s ease-out 0.2s both;
+}
+
+.section.appear .cards-awards > ul > li:nth-child(2) {
+  animation: fade-in-up 1s ease-out 0.4s both;
+}
+
+.section.appear .cards-awards > ul > li:nth-child(3) {
+  animation: fade-in-up 1s ease-out 0.6s both;
+}

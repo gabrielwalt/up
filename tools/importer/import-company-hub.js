@@ -3,7 +3,7 @@
 
 // PARSER IMPORTS
 import heroFeaturedParser from './parsers/hero-featured.js';
-import columnsStatsParser from './parsers/columns-stats.js';
+import factSheetsParser from './parsers/fact-sheets.js';
 import columnsFeatureParser from './parsers/columns-feature.js';
 import columnsQuoteParser from './parsers/columns-quote.js';
 
@@ -13,7 +13,7 @@ import upsCleanupTransformer from './transformers/ups-cleanup.js';
 // PARSER REGISTRY
 const parsers = {
   'hero-featured': heroFeaturedParser,
-  'columns-stats': columnsStatsParser,
+  'fact-sheets': factSheetsParser,
   'columns-feature': columnsFeatureParser,
   'columns-quote': columnsQuoteParser,
 };
@@ -36,8 +36,8 @@ const PAGE_TEMPLATE = {
       instances: ['.hero .upspr-heroimage'],
     },
     {
-      name: 'columns-stats',
-      instances: ['.upspr-stats-container', '.hero .upspr-heroimage + div'],
+      name: 'fact-sheets',
+      instances: ['.upspr-facts-container', '.upspr-stats-container'],
     },
     {
       name: 'columns-feature',
@@ -62,7 +62,7 @@ const PAGE_TEMPLATE = {
       name: 'Hero Featured and Stats',
       selector: ['.hero.aem-GridColumn', '.responsivegrid > .aem-Grid > div:has(.upspr-heroimage)'],
       style: null,
-      blocks: ['hero-featured', 'columns-stats'],
+      blocks: ['hero-featured', 'fact-sheets'],
       defaultContent: [],
     },
     {

@@ -207,10 +207,10 @@
           ]
         },
         {
-          "name": "columns-stats",
+          "name": "fact-sheets",
           "instances": [
-            ".upspr-stats-container",
-            ".hero .upspr-heroimage + div"
+            ".upspr-facts-container",
+            ".upspr-stats-container"
           ]
         },
         {
@@ -247,7 +247,7 @@
           "style": null,
           "blocks": [
             "hero-featured",
-            "columns-stats"
+            "fact-sheets"
           ],
           "defaultContent": []
         },
