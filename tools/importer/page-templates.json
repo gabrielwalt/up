@@ -8,54 +8,78 @@
       "description": "Our Impact landing page with hero, section cards, awards, governing text, and CEO quote",
       "blocks": [
         {
-          "name": "section-hero",
-          "instances": [
-            ".headline.aem-GridColumn > .upspr-width100 .upspr-headline"
-          ],
-          "section": "hero"
-        },
-        {
           "name": "navigation-tabs",
           "instances": [
             ".upspr-section-card__tabs, .upspr-section-card_tabs-container"
-          ],
-          "section": "navigation",
-          "_note": "Source selector needs verification against live DOM; parser pending source DOM capture"
+          ]
         },
         {
           "name": "columns-feature",
           "instances": [
             ".sectioncard .upspr-xd-card"
-          ],
-          "section": "feature-cards"
-        },
-        {
-          "name": "section-governing",
-          "instances": [
-            ".headline.aem-GridColumn .upspr-headline:has(h2)"
-          ],
-          "section": "governing"
-        },
-        {
-          "name": "section-awards",
-          "instances": [
-            ".upspr-section-wrapper__bg-grey_25"
-          ],
-          "section": "awards"
+          ]
         },
         {
           "name": "cards-awards",
           "instances": [
             ".pr04-threecolumnteaser .upspr-three-column-teaser"
-          ],
-          "section": "awards-cards"
+          ]
         },
         {
           "name": "columns-quote",
           "instances": [
             ".quotes .upspr-testimonial"
-          ],
-          "section": "quote"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "hero-heading",
+          "name": "Hero Heading",
+          "selector": ".headline.aem-GridColumn > .upspr-width100 .upspr-headline",
+          "style": null,
+          "blocks": [],
+          "defaultContent": [".upspr-headline h1"]
+        },
+        {
+          "id": "navigation",
+          "name": "Navigation Tabs",
+          "selector": ".upspr-section-card__tabs, .upspr-section-card_tabs-container",
+          "style": null,
+          "blocks": ["navigation-tabs"],
+          "defaultContent": []
+        },
+        {
+          "id": "feature-cards",
+          "name": "Feature Cards",
+          "selector": ".sectioncard",
+          "style": null,
+          "blocks": ["columns-feature"],
+          "defaultContent": []
+        },
+        {
+          "id": "governing",
+          "name": "Governing Text",
+          "selector": ".headline.aem-GridColumn .upspr-headline:has(h2)",
+          "style": null,
+          "blocks": [],
+          "defaultContent": [".upspr-headline h2", ".upspr-headline p"]
+        },
+        {
+          "id": "awards",
+          "name": "Awards Section",
+          "selector": ".upspr-section-wrapper__bg-grey_25",
+          "style": "highlight",
+          "blocks": ["cards-awards"],
+          "defaultContent": []
+        },
+        {
+          "id": "quote",
+          "name": "CEO Quote",
+          "selector": ".quotes",
+          "style": null,
+          "blocks": ["columns-quote"],
+          "defaultContent": []
         }
       ]
     },
@@ -70,29 +94,68 @@
           "name": "hero-featured",
           "instances": [
             ".hero .upspr-heroimage:not(.vertical-hero)"
-          ],
-          "section": "hero"
+          ]
         },
         {
           "name": "cards-stories",
           "instances": [
             ".pr04-threecolumnteaser .upspr-homepage-latest-stories"
-          ],
-          "section": "stories"
+          ]
         },
         {
           "name": "columns-stats",
           "instances": [
             ".hero .upspr-heroimage.vertical-hero"
-          ],
-          "section": "stats"
+          ]
         },
         {
           "name": "columns-feature",
           "instances": [
             ".sectioncard .upspr-xd-card"
-          ],
-          "section": "feature"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "hero",
+          "name": "Hero Featured",
+          "selector": ".hero.aem-GridColumn:has(.upspr-heroimage:not(.vertical-hero))",
+          "style": null,
+          "blocks": ["hero-featured"],
+          "defaultContent": []
+        },
+        {
+          "id": "stories",
+          "name": "Latest Stories",
+          "selector": ".pr04-threecolumnteaser",
+          "style": null,
+          "blocks": ["cards-stories"],
+          "defaultContent": []
+        },
+        {
+          "id": "about",
+          "name": "About Us",
+          "_todo": "Source selector not determined — needs verification against live DOM",
+          "selector": null,
+          "style": "accent-bar",
+          "blocks": [],
+          "defaultContent": ["h6", "h2", "a"]
+        },
+        {
+          "id": "stats",
+          "name": "Stats Section",
+          "selector": ".hero.aem-GridColumn:has(.vertical-hero)",
+          "style": null,
+          "blocks": ["columns-stats"],
+          "defaultContent": []
+        },
+        {
+          "id": "feature",
+          "name": "Impact Feature",
+          "selector": ".sectioncard",
+          "style": null,
+          "blocks": ["columns-feature"],
+          "defaultContent": []
         }
       ]
     },

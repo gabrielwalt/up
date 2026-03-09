@@ -1,5 +1,6 @@
 /* eslint-disable */
 /* global WebImporter */
+import { toTitleCase } from '../utils/text-utils.js';
 
 /**
  * Transformer for UPS About site cleanup
@@ -123,19 +124,8 @@ export default function transform(hookName, element, payload) {
     // Convert ALL CAPS headings to Title Case (CSS handles uppercase display)
     // EXTRACTED: Found <h4>CUSTOMER FIRST, PEOPLE LED, INNOVATION DRIVEN</h4> in captured DOM
     // Rule 7: Never import all-caps content as-is
-    const ACRONYMS = new Set(['UPS', 'CEO', 'CFO', 'COO', 'CTO', 'CIO', 'ESG', 'DEI', 'CSR', 'US', 'UK', 'EU', 'UN', 'AI', 'IT', 'HR', 'PR', 'B2B', 'B2C', 'D2C']);
     element.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((heading) => {
-      const text = heading.textContent.trim();
-      if (text && text.length >= 3 && text === text.toUpperCase()) {
-        heading.textContent = text.split(/(\s+)/).map((seg) => {
-          if (/^\s+$/.test(seg)) return seg;
-          return seg.split(/([-,])/).map((part) => {
-            if (part === '-' || part === ',') return part;
-            if (ACRONYMS.has(part)) return part;
-            return part.charAt(0).toUpperCase() + part.slice(1).toLowerCase();
-          }).join('');
-        }).join('');
-      }
+      heading.textContent = toTitleCase(heading.textContent.trim());
     });
   }
 }

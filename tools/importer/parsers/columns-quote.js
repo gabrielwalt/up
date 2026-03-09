@@ -1,24 +1,7 @@
 /* eslint-disable */
 /* global WebImporter */
-
-/**
- * Convert ALL CAPS text to Title Case. Mixed-case strings are returned unchanged.
- * Detection: string is 3+ chars and equals its own toUpperCase().
- * Preserves known acronyms (UPS, CEO, ESG, etc.).
- */
-const ACRONYMS = new Set(['UPS', 'CEO', 'CFO', 'COO', 'CTO', 'CIO', 'ESG', 'DEI', 'CSR', 'US', 'UK', 'EU', 'UN', 'AI', 'IT', 'HR', 'PR', 'B2B', 'B2C', 'D2C']);
-function toTitleCase(text) {
-  if (!text || text.length < 3) return text;
-  if (text !== text.toUpperCase()) return text;
-  return text.split(/(\s+)/).map((seg) => {
-    if (/^\s+$/.test(seg)) return seg;
-    return seg.split(/([-])/).map((part) => {
-      if (part === '-') return part;
-      if (ACRONYMS.has(part)) return part;
-      return part.charAt(0).toUpperCase() + part.slice(1).toLowerCase();
-    }).join('');
-  }).join('');
-}
+import { toTitleCase } from '../utils/text-utils.js';
+import { resolveImageSrc } from '../utils/image-utils.js';
 
 /**
  * Parser for columns-quote block
@@ -47,35 +30,6 @@ function toTitleCase(text) {
  *
  * Generated: 2026-03-05
  */
-/**
- * Extract the best image URL from an element containing <picture>/<source>/<img>.
- * Resolves relative URLs. Prefers desktop <source> srcset.
- */
-function resolveImageSrc(el, doc) {
-  const base = doc.baseURI || doc.location?.href || '';
-  const picture = el.querySelector('picture');
-  if (picture) {
-    const sources = picture.querySelectorAll('source');
-    for (const source of sources) {
-      const srcset = source.getAttribute('srcset');
-      if (srcset) {
-        const raw = srcset.split(',')[0].trim().split(/\s+/)[0];
-        try { return new URL(raw, base).href; } catch { return raw; }
-      }
-    }
-  }
-  const img = el.querySelector('img');
-  if (img) {
-    const srcset = img.getAttribute('srcset');
-    if (srcset) {
-      const raw = srcset.split(',')[0].trim().split(/\s+/)[0];
-      try { return new URL(raw, base).href; } catch { return raw; }
-    }
-    if (img.src) return img.src;
-  }
-  return null;
-}
-
 export default function parse(element, { document }) {
   // Build quote text column
   const quoteCell = [];

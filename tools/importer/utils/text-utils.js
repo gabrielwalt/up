@@ -30,8 +30,8 @@ export function toTitleCase(text) {
   return text.split(/(\s+)/).map((segment) => {
     if (/^\s+$/.test(segment)) return segment;
     // Handle hyphenated words
-    return segment.split(/([-])/).map((part) => {
-      if (part === '-') return part;
+    return segment.split(/([-,])/).map((part) => {
+      if (part === '-' || part === ',') return part;
       if (ACRONYMS.has(part)) return part;
       return part.charAt(0).toUpperCase() + part.slice(1).toLowerCase();
     }).join('');
