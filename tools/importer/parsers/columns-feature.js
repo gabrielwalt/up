@@ -2,6 +2,25 @@
 /* global WebImporter */
 
 /**
+ * Convert ALL CAPS text to Title Case. Mixed-case strings are returned unchanged.
+ * Detection: string is 3+ chars and equals its own toUpperCase().
+ * Preserves known acronyms (UPS, CEO, ESG, etc.).
+ */
+const ACRONYMS = new Set(['UPS', 'CEO', 'CFO', 'COO', 'CTO', 'CIO', 'ESG', 'DEI', 'CSR', 'US', 'UK', 'EU', 'UN', 'AI', 'IT', 'HR', 'PR', 'B2B', 'B2C', 'D2C']);
+function toTitleCase(text) {
+  if (!text || text.length < 3) return text;
+  if (text !== text.toUpperCase()) return text;
+  return text.split(/(\s+)/).map((seg) => {
+    if (/^\s+$/.test(seg)) return seg;
+    return seg.split(/([-])/).map((part) => {
+      if (part === '-') return part;
+      if (ACRONYMS.has(part)) return part;
+      return part.charAt(0).toUpperCase() + part.slice(1).toLowerCase();
+    }).join('');
+  }).join('');
+}
+
+/**
  * Parser for columns-feature block
  *
  * Source: https://about.ups.com/us/en/our-impact.html
@@ -75,7 +94,7 @@ export default function parse(element, { document }) {
     const eyebrow = contentDiv.querySelector('.upspr-xd-card_eyebrow');
     if (eyebrow) {
       const p = document.createElement('p');
-      p.textContent = eyebrow.textContent.trim();
+      p.textContent = toTitleCase(eyebrow.textContent.trim());
       textCell.push(p);
     }
 
