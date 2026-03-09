@@ -60,8 +60,8 @@ function buildBreadcrumb(main) {
   const pathAfterLocale = pathname.slice(localeMatch.index + localeMatch[0].length - 1);
   const segments = pathAfterLocale.replace(/\/$/, '').split('/').filter(Boolean);
 
-  // Only show breadcrumb on pages with 2+ path segments (not home)
-  if (segments.length <= 1) return;
+  // Don't show breadcrumb on homepage or root
+  if (segments.length < 1 || segments[0] === 'home') return;
 
   // Prepend breadcrumb as a new section div at top of main
   // (runs before decorateSections, so .section class doesn't exist yet)

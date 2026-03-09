@@ -28,8 +28,8 @@ export default function decorate(block) {
     .split('/')
     .filter(Boolean);
 
-  // Don't render breadcrumb on home page or if only one segment
-  if (segments.length <= 1) {
+  // Don't render breadcrumb on home page
+  if (segments.length < 1 || segments[0] === 'home') {
     block.closest('.section')?.remove();
     return;
   }

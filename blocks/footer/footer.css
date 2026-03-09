@@ -158,6 +158,14 @@ footer .footer-connect ul li a:hover .upspricon-social {
   color: var(--footer-text);
 }
 
+/* Subscribe column background card */
+footer .footer-col:last-child {
+  background: var(--footer-surface);
+  border-radius: var(--radius-m);
+  padding: var(--spacing-xl);
+  align-self: start;
+}
+
 /* Last column: Subscribe CTA */
 footer .footer-col:last-child p strong {
   font-size: var(--body-font-size-m);
@@ -278,11 +286,4 @@ footer .footer-legal p a:any-link:hover {
     gap: var(--spacing-xl);
   }
 
-  /* Subscribe column gets dark background card */
-  footer .footer-col:last-child {
-    background: var(--footer-surface);
-    border-radius: var(--radius-m);
-    padding: var(--spacing-xl);
-    align-self: start;
-  }
 }

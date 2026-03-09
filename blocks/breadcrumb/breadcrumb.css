@@ -55,7 +55,7 @@ main > .section:first-of-type:has(.breadcrumb-wrapper) {
 }
 
 /* Override default 80px block-wrapper margin for breadcrumb */
-main > .section > .breadcrumb-wrapper {
+main > .section > div.breadcrumb-wrapper {
   margin-top: 0;
 }
 
