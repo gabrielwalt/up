@@ -1,25 +1,8 @@
 var CustomImportScript = (() => {
   var __defProp = Object.defineProperty;
-  var __defProps = Object.defineProperties;
   var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-  var __getOwnPropDescs = Object.getOwnPropertyDescriptors;
   var __getOwnPropNames = Object.getOwnPropertyNames;
-  var __getOwnPropSymbols = Object.getOwnPropertySymbols;
   var __hasOwnProp = Object.prototype.hasOwnProperty;
-  var __propIsEnum = Object.prototype.propertyIsEnumerable;
-  var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-  var __spreadValues = (a, b) => {
-    for (var prop in b || (b = {}))
-      if (__hasOwnProp.call(b, prop))
-        __defNormalProp(a, prop, b[prop]);
-    if (__getOwnPropSymbols)
-      for (var prop of __getOwnPropSymbols(b)) {
-        if (__propIsEnum.call(b, prop))
-          __defNormalProp(a, prop, b[prop]);
-      }
-    return a;
-  };
-  var __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
   var __export = (target, all) => {
     for (var name in all)
       __defProp(target, name, { get: all[name], enumerable: true });
@@ -41,15 +24,67 @@ var CustomImportScript = (() => {
   });
 
   // tools/importer/parsers/columns-feature.js
-  function parse(element, { document }) {
-    const picture = element.querySelector("picture");
+  var ACRONYMS = /* @__PURE__ */ new Set(["UPS", "CEO", "CFO", "COO", "CTO", "CIO", "ESG", "DEI", "CSR", "US", "UK", "EU", "UN", "AI", "IT", "HR", "PR", "B2B", "B2C", "D2C"]);
+  function toTitleCase(text) {
+    if (!text || text.length < 3) return text;
+    if (text !== text.toUpperCase()) return text;
+    return text.split(/(\s+)/).map((seg) => {
+      if (/^\s+$/.test(seg)) return seg;
+      return seg.split(/([-])/).map((part) => {
+        if (part === "-") return part;
+        if (ACRONYMS.has(part)) return part;
+        return part.charAt(0).toUpperCase() + part.slice(1).toLowerCase();
+      }).join("");
+    }).join("");
+  }
+  function resolveImageSrc(el, document, baseUrl) {
+    const base = baseUrl || document.baseURI || document.location?.href || "";
+    function resolve(raw) {
+      if (!raw) return null;
+      const url = raw.split(",")[0].trim().split(/\s+/)[0];
+      if (!url) return null;
+      if (/^https?:\/\//.test(url)) return url;
+      try {
+        return new URL(url, base).href;
+      } catch {
+      }
+      try {
+        const origin = new URL(base).origin;
+        if (url.startsWith("/")) return origin + url;
+      } catch {
+      }
+      return url;
+    }
+    const picture = el.querySelector("picture");
+    if (picture) {
+      const sources = picture.querySelectorAll("source");
+      for (const source of sources) {
+        const srcset = source.getAttribute("srcset") || source.getAttribute("data-srcset");
+        const resolved = resolve(srcset);
+        if (resolved) return resolved;
+      }
+    }
+    const img = el.querySelector("img");
+    if (img) {
+      const srcset = img.getAttribute("srcset") || img.getAttribute("data-srcset");
+      const resolved = resolve(srcset);
+      if (resolved) return resolved;
+      const src = img.getAttribute("src") || img.getAttribute("data-src");
+      if (src) return resolve(src) || src;
+      if (img.src) return img.src;
+    }
+    return null;
+  }
+  function parse(element, { document, url }) {
+    const baseUrl = url || document.baseURI || "";
+    const imgUrl = resolveImageSrc(element, document, baseUrl);
     const contentDiv = element.querySelector(".upspr-xd-card_content");
     const textCell = [];
     if (contentDiv) {
       const eyebrow = contentDiv.querySelector(".upspr-xd-card_eyebrow");
       if (eyebrow) {
         const p = document.createElement("p");
-        p.textContent = eyebrow.textContent.trim();
+        p.textContent = toTitleCase(eyebrow.textContent.trim());
         textCell.push(p);
       }
       const heading = contentDiv.querySelector("h2, h3");
@@ -77,11 +112,15 @@ var CustomImportScript = (() => {
       }
     }
     const imageCell = [];
-    if (picture) {
-      imageCell.push(picture);
+    if (imgUrl) {
+      const img = document.createElement("img");
+      img.src = imgUrl;
+      const origImg = element.querySelector("img");
+      if (origImg?.alt) img.alt = origImg.alt;
+      imageCell.push(img);
     }
     const firstCol = element.querySelector(".row > div:first-child");
-    const imageIsFirst = firstCol && firstCol.querySelector("picture");
+    const imageIsFirst = firstCol && (firstCol.querySelector("picture") || firstCol.querySelector("img"));
     const cells = [];
     if (imageIsFirst) {
       cells.push([imageCell, textCell]);
@@ -158,6 +197,20 @@ var CustomImportScript = (() => {
       readerSpans.forEach((span) => {
         span.remove();
       });
+      const ACRONYMS2 = /* @__PURE__ */ new Set(["UPS", "CEO", "CFO", "COO", "CTO", "CIO", "ESG", "DEI", "CSR", "US", "UK", "EU", "UN", "AI", "IT", "HR", "PR", "B2B", "B2C", "D2C"]);
+      element.querySelectorAll("h1, h2, h3, h4, h5, h6").forEach((heading) => {
+        const text = heading.textContent.trim();
+        if (text && text.length >= 3 && text === text.toUpperCase()) {
+          heading.textContent = text.split(/(\s+)/).map((seg) => {
+            if (/^\s+$/.test(seg)) return seg;
+            return seg.split(/([-,])/).map((part) => {
+              if (part === "-" || part === ",") return part;
+              if (ACRONYMS2.has(part)) return part;
+              return part.charAt(0).toUpperCase() + part.slice(1).toLowerCase();
+            }).join("");
+          }).join("");
+        }
+      });
     }
   }
 
@@ -200,7 +253,7 @@ var CustomImportScript = (() => {
     ]
   };
   function executeTransformers(hookName, element, payload) {
-    const enhancedPayload = __spreadProps(__spreadValues({}, payload), { template: PAGE_TEMPLATE });
+    const enhancedPayload = { ...payload, template: PAGE_TEMPLATE };
     transformers.forEach((transformerFn) => {
       try {
         transformerFn.call(null, hookName, element, enhancedPayload);

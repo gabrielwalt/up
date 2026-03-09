@@ -334,6 +334,7 @@ All content pages in this project and their source URLs.
 |------------|-----------|-------------|
 | `/content/us/en/home.html` | https://about.ups.com/us/en/home.html | Homepage |
 | `/content/us/en/our-impact.html` | https://about.ups.com/us/en/our-impact.html | Our Impact landing page |
+| `/content/us/en/our-company/our-strategy.plain.html` | https://about.ups.com/us/en/our-company/our-strategy.html | Our Strategy page |
 | `/content/nav.html` | Derived from https://about.ups.com/us/en/home.html | Navigation fragment |
 | `/content/footer.html` | Derived from https://about.ups.com/us/en/home.html | Footer fragment |
 
@@ -1168,6 +1169,21 @@ main .section.image-full-width .default-content-wrapper p:has(picture) {
 .block .content {
   position: relative;
   z-index: 1;
+}
+```
+
+### Blockquote Pattern (global default content styling)
+```css
+main .default-content-wrapper blockquote {
+  border-left: 4px solid var(--color-gold);
+  padding-left: var(--spacing-m);
+  margin: 0;
+  font-style: italic;
+  text-align: left;
+}
+
+main .default-content-wrapper blockquote p {
+  margin: 0;
 }
 ```
 

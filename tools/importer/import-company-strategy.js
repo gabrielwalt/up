@@ -89,10 +89,10 @@ const PAGE_TEMPLATE = {
     {
       id: 'company-profile',
       name: 'Company Profile',
-      selector: '.headline.aem-GridColumn:has(blockquote)',
+      selector: '.pr20-contentblock.text.aem-GridColumn:has(blockquote)',
       style: null,
       blocks: [],
-      defaultContent: ['.upspr-headline h2', '.upspr-headline blockquote'],
+      defaultContent: ['.cmp-text h2', '.cmp-text blockquote'],
     },
   ],
 };

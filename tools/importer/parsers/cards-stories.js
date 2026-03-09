@@ -81,15 +81,13 @@ export default function parse(element, { document }) {
     // VALIDATED: Source has a.upspr-content-tile__link with href
     const cardLink = card.querySelector('a.upspr-content-tile__link');
 
-    // Build image cell (column 1)
+    // Build image cell (column 1) — bare <img>, no <picture> wrapper
     const imageCell = [];
     if (img) {
-      const picture = document.createElement('picture');
       const newImg = document.createElement('img');
       newImg.src = img.src;
       newImg.alt = img.alt || '';
-      picture.append(newImg);
-      imageCell.push(picture);
+      imageCell.push(newImg);
     }
 
     // Build text cell (column 2)

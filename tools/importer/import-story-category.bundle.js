@@ -1,25 +1,8 @@
 var CustomImportScript = (() => {
   var __defProp = Object.defineProperty;
-  var __defProps = Object.defineProperties;
   var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-  var __getOwnPropDescs = Object.getOwnPropertyDescriptors;
   var __getOwnPropNames = Object.getOwnPropertyNames;
-  var __getOwnPropSymbols = Object.getOwnPropertySymbols;
   var __hasOwnProp = Object.prototype.hasOwnProperty;
-  var __propIsEnum = Object.prototype.propertyIsEnumerable;
-  var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-  var __spreadValues = (a, b) => {
-    for (var prop in b || (b = {}))
-      if (__hasOwnProp.call(b, prop))
-        __defNormalProp(a, prop, b[prop]);
-    if (__getOwnPropSymbols)
-      for (var prop of __getOwnPropSymbols(b)) {
-        if (__propIsEnum.call(b, prop))
-          __defNormalProp(a, prop, b[prop]);
-      }
-    return a;
-  };
-  var __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
   var __export = (target, all) => {
     for (var name in all)
       __defProp(target, name, { get: all[name], enumerable: true });
@@ -41,6 +24,19 @@ var CustomImportScript = (() => {
   });
 
   // tools/importer/parsers/cards-stories.js
+  var ACRONYMS = /* @__PURE__ */ new Set(["UPS", "CEO", "CFO", "COO", "CTO", "CIO", "ESG", "DEI", "CSR", "US", "UK", "EU", "UN", "AI", "IT", "HR", "PR", "B2B", "B2C", "D2C"]);
+  function toTitleCase(text) {
+    if (!text || text.length < 3) return text;
+    if (text !== text.toUpperCase()) return text;
+    return text.split(/(\s+)/).map((seg) => {
+      if (/^\s+$/.test(seg)) return seg;
+      return seg.split(/([-])/).map((part) => {
+        if (part === "-") return part;
+        if (ACRONYMS.has(part)) return part;
+        return part.charAt(0).toUpperCase() + part.slice(1).toLowerCase();
+      }).join("");
+    }).join("");
+  }
   function parse(element, { document }) {
     const cells = [];
     const cardItems = element.querySelectorAll(".upspr-stories-list__item");
@@ -52,17 +48,15 @@ var CustomImportScript = (() => {
       const cardLink = card.querySelector("a.upspr-content-tile__link");
       const imageCell = [];
       if (img) {
-        const picture = document.createElement("picture");
         const newImg = document.createElement("img");
         newImg.src = img.src;
         newImg.alt = img.alt || "";
-        picture.append(newImg);
-        imageCell.push(picture);
+        imageCell.push(newImg);
       }
       const textCell = [];
       if (eyebrowText) {
         const p = document.createElement("p");
-        p.textContent = eyebrowText.textContent.trim();
+        p.textContent = toTitleCase(eyebrowText.textContent.trim());
         textCell.push(p);
       }
       if (title) {
@@ -154,6 +148,20 @@ var CustomImportScript = (() => {
       readerSpans.forEach((span) => {
         span.remove();
       });
+      const ACRONYMS2 = /* @__PURE__ */ new Set(["UPS", "CEO", "CFO", "COO", "CTO", "CIO", "ESG", "DEI", "CSR", "US", "UK", "EU", "UN", "AI", "IT", "HR", "PR", "B2B", "B2C", "D2C"]);
+      element.querySelectorAll("h1, h2, h3, h4, h5, h6").forEach((heading) => {
+        const text = heading.textContent.trim();
+        if (text && text.length >= 3 && text === text.toUpperCase()) {
+          heading.textContent = text.split(/(\s+)/).map((seg) => {
+            if (/^\s+$/.test(seg)) return seg;
+            return seg.split(/([-,])/).map((part) => {
+              if (part === "-" || part === ",") return part;
+              if (ACRONYMS2.has(part)) return part;
+              return part.charAt(0).toUpperCase() + part.slice(1).toLowerCase();
+            }).join("");
+          }).join("");
+        }
+      });
     }
   }
 
@@ -201,7 +209,7 @@ var CustomImportScript = (() => {
     ]
   };
   function executeTransformers(hookName, element, payload) {
-    const enhancedPayload = __spreadProps(__spreadValues({}, payload), { template: PAGE_TEMPLATE });
+    const enhancedPayload = { ...payload, template: PAGE_TEMPLATE };
     transformers.forEach((transformerFn) => {
       try {
         transformerFn.call(null, hookName, element, enhancedPayload);

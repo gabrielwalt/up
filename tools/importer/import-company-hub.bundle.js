@@ -1,25 +1,8 @@
 var CustomImportScript = (() => {
   var __defProp = Object.defineProperty;
-  var __defProps = Object.defineProperties;
   var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-  var __getOwnPropDescs = Object.getOwnPropertyDescriptors;
   var __getOwnPropNames = Object.getOwnPropertyNames;
-  var __getOwnPropSymbols = Object.getOwnPropertySymbols;
   var __hasOwnProp = Object.prototype.hasOwnProperty;
-  var __propIsEnum = Object.prototype.propertyIsEnumerable;
-  var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-  var __spreadValues = (a, b) => {
-    for (var prop in b || (b = {}))
-      if (__hasOwnProp.call(b, prop))
-        __defNormalProp(a, prop, b[prop]);
-    if (__getOwnPropSymbols)
-      for (var prop of __getOwnPropSymbols(b)) {
-        if (__propIsEnum.call(b, prop))
-          __defNormalProp(a, prop, b[prop]);
-      }
-    return a;
-  };
-  var __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
   var __export = (target, all) => {
     for (var name in all)
       __defProp(target, name, { get: all[name], enumerable: true });
@@ -34,33 +17,82 @@ var CustomImportScript = (() => {
   };
   var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
-  // ../../../../../../../../../../workspace/tools/importer/import-company-hub.js
+  // tools/importer/import-company-hub.js
   var import_company_hub_exports = {};
   __export(import_company_hub_exports, {
     default: () => import_company_hub_default
   });
 
-  // ../../../../../../../../../../workspace/tools/importer/parsers/hero-featured.js
-  function parse(element, { document }) {
-    let picture = element.querySelector("picture");
-    if (!picture) {
-      const img = element.querySelector("img");
-      if (img) {
-        picture = document.createElement("picture");
-        picture.appendChild(img.cloneNode(true));
+  // tools/importer/parsers/hero-featured.js
+  var ACRONYMS = /* @__PURE__ */ new Set(["UPS", "CEO", "CFO", "COO", "CTO", "CIO", "ESG", "DEI", "CSR", "US", "UK", "EU", "UN", "AI", "IT", "HR", "PR", "B2B", "B2C", "D2C"]);
+  function toTitleCase(text) {
+    if (!text || text.length < 3) return text;
+    if (text !== text.toUpperCase()) return text;
+    return text.split(/(\s+)/).map((seg) => {
+      if (/^\s+$/.test(seg)) return seg;
+      return seg.split(/([-])/).map((part) => {
+        if (part === "-") return part;
+        if (ACRONYMS.has(part)) return part;
+        return part.charAt(0).toUpperCase() + part.slice(1).toLowerCase();
+      }).join("");
+    }).join("");
+  }
+  function resolveImageSrc(el, document, baseUrl) {
+    const base = baseUrl || document.baseURI || document.location?.href || "";
+    function resolve(raw) {
+      if (!raw) return null;
+      const url = raw.split(",")[0].trim().split(/\s+/)[0];
+      if (!url) return null;
+      if (/^https?:\/\//.test(url)) return url;
+      try {
+        return new URL(url, base).href;
+      } catch {
+      }
+      try {
+        const origin = new URL(base).origin;
+        if (url.startsWith("/")) return origin + url;
+      } catch {
+      }
+      return url;
+    }
+    const picture = el.querySelector("picture");
+    if (picture) {
+      const sources = picture.querySelectorAll("source");
+      for (const source of sources) {
+        const srcset = source.getAttribute("srcset") || source.getAttribute("data-srcset");
+        const resolved = resolve(srcset);
+        if (resolved) return resolved;
       }
     }
-    const msgDiv = element.querySelector(".upspr-heroimage_msg");
-    const imageCell = [];
-    if (picture) {
-      imageCell.push(picture);
+    const img = el.querySelector("img");
+    if (img) {
+      const srcset = img.getAttribute("srcset") || img.getAttribute("data-srcset");
+      const resolved = resolve(srcset);
+      if (resolved) return resolved;
+      const src = img.getAttribute("src") || img.getAttribute("data-src");
+      if (src) return resolve(src) || src;
+      if (img.src) return img.src;
     }
+    return null;
+  }
+  function parse(element, { document, url }) {
+    const baseUrl = url || document.baseURI || "";
+    const imgUrl = resolveImageSrc(element, document, baseUrl);
+    const imageCell = [];
+    if (imgUrl) {
+      const img = document.createElement("img");
+      img.src = imgUrl;
+      const origImg = element.querySelector("img");
+      if (origImg?.alt) img.alt = origImg.alt;
+      imageCell.push(img);
+    }
+    const msgDiv = element.querySelector(".upspr-heroimage_msg");
     const contentCell = [];
     if (msgDiv) {
       const eyebrowText = msgDiv.querySelector(".upspr-eyebrow-text");
       if (eyebrowText) {
         const p = document.createElement("p");
-        p.textContent = eyebrowText.textContent.trim();
+        p.textContent = toTitleCase(eyebrowText.textContent.trim());
         contentCell.push(p);
       }
       const heading = msgDiv.querySelector("h4");
@@ -97,71 +129,113 @@ var CustomImportScript = (() => {
     element.replaceWith(block);
   }
 
-  // ../../../../../../../../../../workspace/tools/importer/parsers/columns-stats.js
+  // tools/importer/parsers/fact-sheets.js
   function parse2(element, { document }) {
-    let picture = element.querySelector("picture");
-    if (!picture) {
-      const img = element.querySelector("img");
-      if (img) {
-        picture = document.createElement("picture");
-        picture.appendChild(img.cloneNode(true));
-      }
-    }
-    const imageCell = [];
-    if (picture) {
-      imageCell.push(picture);
-    }
-    const statsCell = [];
-    const statItems = element.querySelectorAll(".upspr-facts__content");
+    const cells = [];
+    const statItems = element.querySelectorAll("li");
     statItems.forEach((item) => {
-      const factValue = item.querySelector(".upspr-facts__content--fact");
-      const factLabel = item.querySelector(".upspr-facts__content--label");
-      if (factValue) {
-        const h4 = document.createElement("h4");
-        h4.textContent = factValue.textContent.trim();
-        statsCell.push(h4);
+      const img = item.querySelector("img");
+      const h4 = item.querySelector("h4");
+      const p = item.querySelector("p");
+      const imageCell = [];
+      if (img) {
+        const newImg = document.createElement("img");
+        newImg.src = img.src;
+        newImg.alt = img.alt || "";
+        imageCell.push(newImg);
       }
-      if (factLabel) {
-        const p = document.createElement("p");
-        p.textContent = factLabel.textContent.trim();
-        statsCell.push(p);
+      const textCell = [];
+      if (h4) {
+        const newH4 = document.createElement("h4");
+        newH4.textContent = h4.textContent.trim();
+        textCell.push(newH4);
       }
+      if (p) {
+        const newP = document.createElement("p");
+        newP.textContent = p.textContent.trim();
+        textCell.push(newP);
+      }
+      cells.push([imageCell, textCell]);
     });
-    const ctaLink = element.querySelector(".upspr-read-the-story a.btn");
+    const ctaLink = element.querySelector('a.btn, a[class*="btn"], .upspr-read-the-story a');
     if (ctaLink) {
       const icon = ctaLink.querySelector("i.upspr");
       if (icon) icon.remove();
       const p = document.createElement("p");
+      const strong = document.createElement("strong");
       const link = document.createElement("a");
       link.href = ctaLink.href;
       link.textContent = ctaLink.textContent.trim();
-      p.append(link);
-      statsCell.push(p);
+      strong.append(link);
+      p.append(strong);
+      cells.push([[p]]);
     }
-    const cells = [
-      [imageCell, statsCell]
-    ];
-    const block = WebImporter.Blocks.createBlock(document, { name: "Columns-Stats", cells });
+    const block = WebImporter.Blocks.createBlock(document, { name: "Fact-Sheets", cells });
     element.replaceWith(block);
   }
 
-  // ../../../../../../../../../../workspace/tools/importer/parsers/columns-feature.js
-  function parse3(element, { document }) {
-    let picture = element.querySelector("picture");
-    if (!picture) {
-      const img = element.querySelector("img");
-      if (img) {
-        picture = document.createElement("picture");
-        picture.appendChild(img.cloneNode(true));
+  // tools/importer/parsers/columns-feature.js
+  var ACRONYMS2 = /* @__PURE__ */ new Set(["UPS", "CEO", "CFO", "COO", "CTO", "CIO", "ESG", "DEI", "CSR", "US", "UK", "EU", "UN", "AI", "IT", "HR", "PR", "B2B", "B2C", "D2C"]);
+  function toTitleCase2(text) {
+    if (!text || text.length < 3) return text;
+    if (text !== text.toUpperCase()) return text;
+    return text.split(/(\s+)/).map((seg) => {
+      if (/^\s+$/.test(seg)) return seg;
+      return seg.split(/([-])/).map((part) => {
+        if (part === "-") return part;
+        if (ACRONYMS2.has(part)) return part;
+        return part.charAt(0).toUpperCase() + part.slice(1).toLowerCase();
+      }).join("");
+    }).join("");
+  }
+  function resolveImageSrc2(el, document, baseUrl) {
+    const base = baseUrl || document.baseURI || document.location?.href || "";
+    function resolve(raw) {
+      if (!raw) return null;
+      const url = raw.split(",")[0].trim().split(/\s+/)[0];
+      if (!url) return null;
+      if (/^https?:\/\//.test(url)) return url;
+      try {
+        return new URL(url, base).href;
+      } catch {
+      }
+      try {
+        const origin = new URL(base).origin;
+        if (url.startsWith("/")) return origin + url;
+      } catch {
+      }
+      return url;
+    }
+    const picture = el.querySelector("picture");
+    if (picture) {
+      const sources = picture.querySelectorAll("source");
+      for (const source of sources) {
+        const srcset = source.getAttribute("srcset") || source.getAttribute("data-srcset");
+        const resolved = resolve(srcset);
+        if (resolved) return resolved;
       }
     }
+    const img = el.querySelector("img");
+    if (img) {
+      const srcset = img.getAttribute("srcset") || img.getAttribute("data-srcset");
+      const resolved = resolve(srcset);
+      if (resolved) return resolved;
+      const src = img.getAttribute("src") || img.getAttribute("data-src");
+      if (src) return resolve(src) || src;
+      if (img.src) return img.src;
+    }
+    return null;
+  }
+  function parse3(element, { document, url }) {
+    const baseUrl = url || document.baseURI || "";
+    const imgUrl = resolveImageSrc2(element, document, baseUrl);
     const contentDiv = element.querySelector(".upspr-xd-card_content");
     const textCell = [];
     if (contentDiv) {
       const eyebrow = contentDiv.querySelector(".upspr-xd-card_eyebrow");
       if (eyebrow) {
         const p = document.createElement("p");
-        p.textContent = eyebrow.textContent.trim();
+        p.textContent = toTitleCase2(eyebrow.textContent.trim());
         textCell.push(p);
       }
       const heading = contentDiv.querySelector("h2, h3");
@@ -189,8 +263,12 @@ var CustomImportScript = (() => {
       }
     }
     const imageCell = [];
-    if (picture) {
-      imageCell.push(picture);
+    if (imgUrl) {
+      const img = document.createElement("img");
+      img.src = imgUrl;
+      const origImg = element.querySelector("img");
+      if (origImg?.alt) img.alt = origImg.alt;
+      imageCell.push(img);
     }
     const firstCol = element.querySelector(".row > div:first-child");
     const imageIsFirst = firstCol && (firstCol.querySelector("picture") || firstCol.querySelector("img"));
@@ -204,7 +282,52 @@ var CustomImportScript = (() => {
     element.replaceWith(block);
   }
 
-  // ../../../../../../../../../../workspace/tools/importer/parsers/columns-quote.js
+  // tools/importer/parsers/columns-quote.js
+  var ACRONYMS3 = /* @__PURE__ */ new Set(["UPS", "CEO", "CFO", "COO", "CTO", "CIO", "ESG", "DEI", "CSR", "US", "UK", "EU", "UN", "AI", "IT", "HR", "PR", "B2B", "B2C", "D2C"]);
+  function toTitleCase3(text) {
+    if (!text || text.length < 3) return text;
+    if (text !== text.toUpperCase()) return text;
+    return text.split(/(\s+)/).map((seg) => {
+      if (/^\s+$/.test(seg)) return seg;
+      return seg.split(/([-])/).map((part) => {
+        if (part === "-") return part;
+        if (ACRONYMS3.has(part)) return part;
+        return part.charAt(0).toUpperCase() + part.slice(1).toLowerCase();
+      }).join("");
+    }).join("");
+  }
+  function resolveImageSrc3(el, doc) {
+    const base = doc.baseURI || doc.location?.href || "";
+    const picture = el.querySelector("picture");
+    if (picture) {
+      const sources = picture.querySelectorAll("source");
+      for (const source of sources) {
+        const srcset = source.getAttribute("srcset");
+        if (srcset) {
+          const raw = srcset.split(",")[0].trim().split(/\s+/)[0];
+          try {
+            return new URL(raw, base).href;
+          } catch {
+            return raw;
+          }
+        }
+      }
+    }
+    const img = el.querySelector("img");
+    if (img) {
+      const srcset = img.getAttribute("srcset");
+      if (srcset) {
+        const raw = srcset.split(",")[0].trim().split(/\s+/)[0];
+        try {
+          return new URL(raw, base).href;
+        } catch {
+          return raw;
+        }
+      }
+      if (img.src) return img.src;
+    }
+    return null;
+  }
   function parse4(element, { document }) {
     const quoteCell = [];
     const quoteHeading = element.querySelector(".upspr-testimonial__wrap--title, .upspr-testimonial__wrap h3");
@@ -216,20 +339,18 @@ var CustomImportScript = (() => {
     const attribution = element.querySelector(".upspr-testimonial__wrap--name .upspr-eyebrow-text") || element.querySelector(".upspr-testimonial__wrap--name");
     if (attribution) {
       const p = document.createElement("p");
-      p.textContent = attribution.textContent.trim();
+      p.textContent = toTitleCase3(attribution.textContent.trim());
       quoteCell.push(p);
     }
     const imageCell = [];
-    let picture = element.querySelector(".upspr-testimonial__image picture") || element.querySelector("picture");
-    if (!picture) {
-      const img = element.querySelector(".upspr-testimonial__image img") || element.querySelector("img");
-      if (img) {
-        picture = document.createElement("picture");
-        picture.appendChild(img.cloneNode(true));
-      }
-    }
-    if (picture) {
-      imageCell.push(picture);
+    const imgContainer = element.querySelector(".upspr-testimonial__image") || element;
+    const imgUrl = resolveImageSrc3(imgContainer, document);
+    if (imgUrl) {
+      const img = document.createElement("img");
+      img.src = imgUrl;
+      const origImg = imgContainer.querySelector("img");
+      if (origImg?.alt) img.alt = origImg.alt;
+      imageCell.push(img);
     }
     const cells = [
       [quoteCell, imageCell]
@@ -238,7 +359,7 @@ var CustomImportScript = (() => {
     element.replaceWith(block);
   }
 
-  // ../../../../../../../../../../workspace/tools/importer/transformers/ups-cleanup.js
+  // tools/importer/transformers/ups-cleanup.js
   var TransformHook = {
     beforeTransform: "beforeTransform",
     afterTransform: "afterTransform"
@@ -304,13 +425,27 @@ var CustomImportScript = (() => {
       readerSpans.forEach((span) => {
         span.remove();
       });
+      const ACRONYMS4 = /* @__PURE__ */ new Set(["UPS", "CEO", "CFO", "COO", "CTO", "CIO", "ESG", "DEI", "CSR", "US", "UK", "EU", "UN", "AI", "IT", "HR", "PR", "B2B", "B2C", "D2C"]);
+      element.querySelectorAll("h1, h2, h3, h4, h5, h6").forEach((heading) => {
+        const text = heading.textContent.trim();
+        if (text && text.length >= 3 && text === text.toUpperCase()) {
+          heading.textContent = text.split(/(\s+)/).map((seg) => {
+            if (/^\s+$/.test(seg)) return seg;
+            return seg.split(/([-,])/).map((part) => {
+              if (part === "-" || part === ",") return part;
+              if (ACRONYMS4.has(part)) return part;
+              return part.charAt(0).toUpperCase() + part.slice(1).toLowerCase();
+            }).join("");
+          }).join("");
+        }
+      });
     }
   }
 
-  // ../../../../../../../../../../workspace/tools/importer/import-company-hub.js
+  // tools/importer/import-company-hub.js
   var parsers = {
     "hero-featured": parse,
-    "columns-stats": parse2,
+    "fact-sheets": parse2,
     "columns-feature": parse3,
     "columns-quote": parse4
   };
@@ -329,8 +464,8 @@ var CustomImportScript = (() => {
         instances: [".hero .upspr-heroimage"]
       },
       {
-        name: "columns-stats",
-        instances: [".upspr-stats-container", ".hero .upspr-heroimage + div"]
+        name: "fact-sheets",
+        instances: [".upspr-facts-container", ".upspr-stats-container"]
       },
       {
         name: "columns-feature",
@@ -355,14 +490,14 @@ var CustomImportScript = (() => {
         name: "Hero Featured and Stats",
         selector: [".hero.aem-GridColumn", ".responsivegrid > .aem-Grid > div:has(.upspr-heroimage)"],
         style: null,
-        blocks: ["hero-featured", "columns-stats"],
+        blocks: ["hero-featured", "fact-sheets"],
         defaultContent: []
       },
       {
         id: "feature-sections",
         name: "Feature Sections",
         selector: ".sectioncard",
-        style: null,
+        style: "highlight",
         blocks: ["columns-feature"],
         defaultContent: []
       },
@@ -377,7 +512,7 @@ var CustomImportScript = (() => {
     ]
   };
   function executeTransformers(hookName, element, payload) {
-    const enhancedPayload = __spreadProps(__spreadValues({}, payload), { template: PAGE_TEMPLATE });
+    const enhancedPayload = { ...payload, template: PAGE_TEMPLATE };
     transformers.forEach((transformerFn) => {
       try {
         transformerFn.call(null, hookName, element, enhancedPayload);
@@ -403,6 +538,54 @@ var CustomImportScript = (() => {
     });
     return pageBlocks;
   }
+  function createSectionMetadata(document, style) {
+    const table = document.createElement("table");
+    const headerRow = document.createElement("tr");
+    const headerCell = document.createElement("th");
+    headerCell.colSpan = 2;
+    headerCell.textContent = "Section Metadata";
+    headerRow.appendChild(headerCell);
+    table.appendChild(headerRow);
+    const dataRow = document.createElement("tr");
+    const keyCell = document.createElement("td");
+    keyCell.textContent = "Style";
+    const valueCell = document.createElement("td");
+    valueCell.textContent = style;
+    dataRow.appendChild(keyCell);
+    dataRow.appendChild(valueCell);
+    table.appendChild(dataRow);
+    return table;
+  }
+  function assembleSections(document, main, template, pageBlocks) {
+    const output = document.createElement("div");
+    template.sections.forEach((sectionDef, index) => {
+      if (index > 0) {
+        output.appendChild(document.createElement("hr"));
+      }
+      sectionDef.defaultContent.forEach((contentSelector) => {
+        const els = main.querySelectorAll(contentSelector);
+        els.forEach((el) => {
+          const clone = el.cloneNode(true);
+          output.appendChild(clone);
+        });
+      });
+      sectionDef.blocks.forEach((blockName) => {
+        const matchedBlocks = pageBlocks.filter((b) => b.name === blockName);
+        matchedBlocks.forEach((block) => {
+          const tables = block.element.querySelectorAll("table");
+          if (tables.length > 0) {
+            tables.forEach((table) => {
+              output.appendChild(table.cloneNode(true));
+            });
+          }
+        });
+      });
+      if (sectionDef.style) {
+        output.appendChild(createSectionMetadata(document, sectionDef.style));
+      }
+    });
+    return output;
+  }
   var import_company_hub_default = {
     transform: (payload) => {
       const { document, url, html, params } = payload;
@@ -420,6 +603,13 @@ var CustomImportScript = (() => {
         }
       });
       executeTransformers("afterTransform", main, payload);
+      if (PAGE_TEMPLATE.sections && PAGE_TEMPLATE.sections.length > 0) {
+        const sectionOutput = assembleSections(document, main, PAGE_TEMPLATE, pageBlocks);
+        main.innerHTML = "";
+        while (sectionOutput.firstChild) {
+          main.appendChild(sectionOutput.firstChild);
+        }
+      }
       const hr = document.createElement("hr");
       main.appendChild(hr);
       WebImporter.rules.createMetadata(main, document);
@@ -434,7 +624,8 @@ var CustomImportScript = (() => {
         report: {
           title: document.title,
           template: PAGE_TEMPLATE.name,
-          blocks: pageBlocks.map((b) => b.name)
+          blocks: pageBlocks.map((b) => b.name),
+          sections: PAGE_TEMPLATE.sections.map((s) => ({ id: s.id, style: s.style }))
         }
       }];
     }
