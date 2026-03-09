@@ -21,6 +21,19 @@ function toTitleCase(text) {
 }
 
 /**
+ * Clean up UPS-specific alt text patterns.
+ * - Converts "u-p-s-ers" (ARIA-friendly hyphenation) to "UPSers"
+ * - Fixes known typos from the source site
+ */
+function cleanAltText(alt) {
+  if (!alt) return alt;
+  return alt
+    .replace(/\bu-p-s-ers\b/gi, 'UPSers')
+    .replace(/\bsmiling as the break\b/g, 'smiling as they break')
+    .replace(/\bhigh-five in and unloading\b/g, 'high-five in an unloading');
+}
+
+/**
  * Extract the best image URL from an element containing <picture>/<source>/<img>.
  * Resolves relative URLs against baseUrl (from import context) or document.baseURI.
  * Prefers desktop <source> srcset, falls back to <img> srcset/src/data-src.
@@ -103,11 +116,21 @@ function cloneInlineContent(sourceEl, document) {
  *
  * Source: https://about.ups.com/us/en/our-company/our-culture.html
  *
- * Block Structure:
- * - Multi-row block; each row has two columns: image | text content
- * - Text content: h2 heading + paragraphs + optional <ul> list
+ * Handles two source DOM patterns:
  *
- * Source HTML Pattern (from captured DOM):
+ * Pattern A — Hero grid (intro section):
+ * <div class="herogrid">
+ *   <div class="herotext">
+ *     <h1>Our Culture</h1>
+ *     <p>...</p>
+ *   </div>
+ *   <div class="heroimage">
+ *     <img src="..." alt="...">
+ *   </div>
+ * </div>
+ * → Produces: text | image (single row, text first for image-right layout)
+ *
+ * Pattern B — List container (value sections):
  * <div id="list-container">
  *   <div class="list-item">
  *     <div><img class="list-item-image" src="..."></div>
@@ -118,11 +141,57 @@ function cloneInlineContent(sourceEl, document) {
  *   </div>
  *   <!-- repeated for each item -->
  * </div>
+ * → Produces: image | text (multi-row, image first for image-left layout)
  *
  * Generated: 2026-03-09
  */
 export default function parse(element, { document, url }) {
   const baseUrl = url || document.baseURI || '';
+
+  // === Pattern A: Hero grid (.herogrid with .herotext + .heroimage) ===
+  const heroText = element.querySelector('.herotext');
+  const heroImage = element.querySelector('.heroimage');
+
+  if (heroText && heroImage) {
+    const cells = [];
+
+    // Text cell — h1 + paragraphs with inline markup
+    const textCell = [];
+    const h1 = heroText.querySelector('h1');
+    if (h1) {
+      const heading = document.createElement('h1');
+      heading.textContent = toTitleCase(h1.textContent.trim());
+      textCell.push(heading);
+    }
+    const paragraphs = heroText.querySelectorAll(':scope > p');
+    paragraphs.forEach((srcP) => {
+      const p = document.createElement('p');
+      p.appendChild(cloneInlineContent(srcP, document));
+      textCell.push(p);
+    });
+
+    // Image cell
+    const imageCell = [];
+    const imgUrl = resolveImageSrc(heroImage, document, baseUrl);
+    if (imgUrl) {
+      const img = document.createElement('img');
+      img.src = imgUrl;
+      const origImg = heroImage.querySelector('img');
+      const alt = origImg?.alt || '';
+      // Use descriptive alt if source is empty
+      img.alt = alt || 'UPS Culture diagram showing purpose, strategy, culture and stakeholders';
+      imageCell.push(img);
+    }
+
+    // Text first, image second → image-right layout on desktop
+    cells.push([textCell, imageCell]);
+
+    const block = WebImporter.Blocks.createBlock(document, { name: 'Columns-Media', cells });
+    element.replaceWith(block);
+    return;
+  }
+
+  // === Pattern B: List container (#list-container with .list-item children) ===
   const items = element.querySelectorAll('.list-item');
 
   if (!items.length) return;
@@ -137,7 +206,7 @@ export default function parse(element, { document, url }) {
       const img = document.createElement('img');
       img.src = imgUrl;
       const origImg = item.querySelector('img');
-      if (origImg?.alt) img.alt = origImg.alt;
+      if (origImg?.alt) img.alt = cleanAltText(origImg.alt);
       imageCell.push(img);
     }
 
@@ -156,8 +225,8 @@ export default function parse(element, { document, url }) {
     const descEl = item.querySelector('.list-item-description');
     if (descEl) {
       // Process paragraphs
-      const paragraphs = descEl.querySelectorAll(':scope > p');
-      paragraphs.forEach((srcP) => {
+      const descParagraphs = descEl.querySelectorAll(':scope > p');
+      descParagraphs.forEach((srcP) => {
         const p = document.createElement('p');
         p.appendChild(cloneInlineContent(srcP, document));
         textCell.push(p);
@@ -176,6 +245,7 @@ export default function parse(element, { document, url }) {
       });
     }
 
+    // Image first, text second → image-left layout on desktop
     cells.push([imageCell, textCell]);
   });
 

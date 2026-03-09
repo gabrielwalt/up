@@ -377,6 +377,7 @@
         {
           "name": "columns-media",
           "instances": [
+            ".herogrid",
             "#list-container",
             ".upspr-two-column_content_ytembed #list-container"
           ]
@@ -384,18 +385,17 @@
       ],
       "sections": [
         {
-          "id": "hero-heading",
-          "name": "Hero Heading with Description and Infographic",
+          "id": "hero-intro",
+          "name": "Hero Intro with Culture Wheel (highlight background)",
           "selector": [
-            ".herotext",
-            ".aem-GridColumn:has(.herotext)"
+            ".upspr-section-wrapper__bg-grey_25:has(.herogrid)",
+            ".herogrid"
           ],
-          "style": null,
-          "blocks": [],
-          "defaultContent": [
-            ".herotext h1",
-            ".herotext p"
-          ]
+          "style": "highlight",
+          "blocks": [
+            "columns-media"
+          ],
+          "defaultContent": []
         },
         {
           "id": "value-sections",

@@ -986,13 +986,14 @@ Text on the left, image on the right (intro/hero usage):
 - Inline `<strong>` for key terms within body text and list items
 - No card styling (no shadow, no border-radius, no background)
 - No eyebrow, no CTA button, no yellow accent line
-- 32px gap between image and text columns on desktop
-- 16px gap between rows
+- 32px gap between image and text columns
+- 32px vertical spacing between consecutive rows (`var(--spacing-l)`)
 - Works well in `highlight` section for grey background intro areas
 
-**Responsive behavior**:
-- Mobile: stacks vertically, image on top (max-width 275px, centered), text below with 24px top padding
-- Desktop (>=992px): flex row following DOM order — image-left uses 275px fixed + text fluid; image-right uses ~38% flexible + text fluid. 32px gap, top-aligned
+**Responsive behavior** (three-tier):
+- Phone (<768px): single column stacked (DOM order preserved), max-width 320px centered, images max 290px, 24px top padding on text
+- Tablet (≥768px): 50/50 two-column side-by-side, DOM order preserved, 32px gap
+- Desktop (≥992px): asymmetric — image-left uses 275px fixed + text fluid; image-right uses ~38% flexible + text fluid. 32px gap, top-aligned
 
 ---
 
@@ -1027,7 +1028,7 @@ Import scripts for bulk content migration are in `/tools/importer/`.
 | `parsers/columns-stats.js` | Parser for columns-stats block (home page) |
 | `parsers/fact-sheets.js` | Parser for fact-sheets block (our-company page) |
 | `parsers/hero-featured.js` | Parser for hero-featured block |
-| `parsers/columns-media.js` | Parser for columns-media block (our-culture page) |
+| `parsers/columns-media.js` | Parser for columns-media block — handles hero grid (.herogrid) and list container (#list-container) patterns |
 | `transformers/ups-cleanup.js` | Site-wide DOM cleanup transformer |
 
 ---

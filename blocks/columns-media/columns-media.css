@@ -2,28 +2,32 @@
 
 /* ===== COLUMNS-MEDIA BLOCK ===== */
 
+/* ===== PHONE (<768px): Single column, centered at 320px ===== */
+
 /* Row: each child div is one media + text item */
 .columns-media > div {
   display: flex;
   flex-direction: column;
+  max-width: 320px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .columns-media > div + div {
-  margin-top: var(--spacing-s);
+  margin-top: var(--spacing-l);
 }
 
 /* ===== IMAGE COLUMN ===== */
 .columns-media .columns-media-img-col {
-  order: 0;
   flex: 0 0 auto;
   display: flex;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .columns-media img {
   width: 100%;
-  max-width: 275px;
+  max-width: 290px;
   height: auto;
   aspect-ratio: 1;
   object-fit: cover;
@@ -32,7 +36,6 @@
 
 /* ===== TEXT COLUMN ===== */
 .columns-media > div > div:not(.columns-media-img-col) {
-  order: 1;
   padding: var(--spacing-m) 0 0;
 }
 
@@ -71,19 +74,43 @@
   padding: 0;
 }
 
-/* ===== DESKTOP LAYOUT ===== */
+/* ===== TABLET LAYOUT (≥768px): 50/50 two-column ===== */
 
-/* --viewport-desktop */
-@media (width >= 992px) {
+@media (width >= 768px) {
   .columns-media > div {
     flex-direction: row;
     align-items: flex-start;
     gap: var(--spacing-l);
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
   }
 
+  .columns-media .columns-media-img-col {
+    flex: 1;
+  }
+
+  .columns-media img {
+    max-width: 100%;
+  }
+
+  .columns-media > div > div:not(.columns-media-img-col) {
+    flex: 1;
+    padding: var(--spacing-xs) 0 0;
+  }
+}
+
+/* ===== DESKTOP LAYOUT (≥992px): Asymmetric columns ===== */
+
+/* --viewport-desktop */
+@media (width >= 992px) {
   /* Image on the left (first child) — fixed 275px square */
   .columns-media > div > .columns-media-img-col:first-child {
     flex: 0 0 275px;
+  }
+
+  .columns-media > div > .columns-media-img-col:first-child img {
+    max-width: 275px;
   }
 
   /* Image on the right (last child) — flexible ~38% width */
@@ -92,18 +119,10 @@
   }
 
   .columns-media > div > .columns-media-img-col:last-child img {
-    max-width: 100%;
     aspect-ratio: auto;
   }
 
-  /* Reset mobile ordering so DOM order is respected on desktop */
-  .columns-media .columns-media-img-col {
-    order: unset;
-  }
-
   .columns-media > div > div:not(.columns-media-img-col) {
-    order: unset;
     flex: 1;
-    padding: var(--spacing-xs) 0 0;
   }
 }
