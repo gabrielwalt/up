@@ -372,38 +372,41 @@
       "urls": [
         "https://about.ups.com/us/en/our-company/our-culture.html"
       ],
-      "description": "Culture page with hero heading and description, three image-text sections covering values, partnership, and leadership model",
+      "description": "Culture page with hero heading and description, culture wheel infographic, and three image-text value sections (values, partnership, leadership model)",
       "blocks": [
         {
-          "name": "columns-feature",
+          "name": "columns-media",
           "instances": [
-            ".sectioncard .upspr-xd-card",
-            ".responsivegrid .upspr-xd-card"
+            "#list-container",
+            ".upspr-two-column_content_ytembed #list-container"
           ]
         }
       ],
       "sections": [
         {
           "id": "hero-heading",
-          "name": "Hero Heading with Description",
-          "selector": ".headline.aem-GridColumn",
+          "name": "Hero Heading with Description and Infographic",
+          "selector": [
+            ".herotext",
+            ".aem-GridColumn:has(.herotext)"
+          ],
           "style": null,
           "blocks": [],
           "defaultContent": [
-            ".upspr-headline h1",
-            ".upspr-headline p"
+            ".herotext h1",
+            ".herotext p"
           ]
         },
         {
           "id": "value-sections",
           "name": "Values, Partnership, and Leadership Sections",
           "selector": [
-            ".sectioncard",
-            ".responsivegrid:has(.upspr-xd-card)"
+            ".upspr-two-column_content_ytembed",
+            ".embed:has(#list-container)"
           ],
           "style": null,
           "blocks": [
-            "columns-feature"
+            "columns-media"
           ],
           "defaultContent": []
         }

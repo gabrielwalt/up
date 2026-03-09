@@ -335,6 +335,7 @@ All content pages in this project and their source URLs.
 | `/content/us/en/home.html` | https://about.ups.com/us/en/home.html | Homepage |
 | `/content/us/en/our-impact.html` | https://about.ups.com/us/en/our-impact.html | Our Impact landing page |
 | `/content/us/en/our-company/our-strategy.plain.html` | https://about.ups.com/us/en/our-company/our-strategy.html | Our Strategy page |
+| `/content/us/en/our-company/our-culture.html` | https://about.ups.com/us/en/our-company/our-culture.html | Our Culture page |
 | `/content/nav.html` | Derived from https://about.ups.com/us/en/home.html | Navigation fragment |
 | `/content/footer.html` | Derived from https://about.ups.com/us/en/home.html | Footer fragment |
 
@@ -697,6 +698,7 @@ Complete reference of all blocks and their variants.
 | **hero-featured** | `/blocks/hero-featured/` | — | Hero with background image and white card overlay |
 | **navigation-tabs** | `/blocks/navigation-tabs/` | — | Card-style navigation links with arrow icons |
 | **fact-sheets** | `/blocks/fact-sheets/` | — | Responsive stat grid with icons, numbers, labels, and CTA |
+| **columns-media** | `/blocks/columns-media/` | — | Asymmetric image + text (1/3 + 2/3), image on either side |
 
 **Boilerplate blocks** (vanilla, unmodified): `cards`, `columns`, `hero`
 
@@ -950,6 +952,50 @@ Complete reference of all blocks and their variants.
 
 ---
 
+### columns-media
+
+**Location**: `/blocks/columns-media/`
+
+| Variant | Class | Purpose |
+|---------|-------|---------|
+| Default | `.columns-media` | Asymmetric two-column layout (~1/3 image + ~2/3 text), image on either side |
+
+**Authoring:**
+
+Image on the left (values sections):
+```
+| Columns-Media |
+| --- | --- |
+| <picture>image1</picture> | <h2>Heading</h2><p>Description with <strong>bold terms</strong>.</p><ul><li><strong>Term</strong>: explanation</li></ul> |
+| <picture>image2</picture> | <h2>Heading</h2><p>Description.</p><p><strong>Sub-heading</strong><br>Additional text.</p> |
+```
+
+Text on the left, image on the right (intro/hero usage):
+```
+| Columns-Media |
+| --- | --- |
+| <h1>Heading</h1><p>Description text.</p> | <picture>image</picture> |
+```
+
+**Features**:
+- Multi-row block — each row is one image + text item
+- Supports both image-left and image-right layouts based on DOM order
+- Image-left (first child): fixed 275px width on desktop, square aspect ratio
+- Image-right (last child): flexible ~38% width, natural aspect ratio
+- Text column: fluid width, h2 heading (font-weight 400), paragraphs, optional `<ul>` bullet lists
+- Inline `<strong>` for key terms within body text and list items
+- No card styling (no shadow, no border-radius, no background)
+- No eyebrow, no CTA button, no yellow accent line
+- 32px gap between image and text columns on desktop
+- 16px gap between rows
+- Works well in `highlight` section for grey background intro areas
+
+**Responsive behavior**:
+- Mobile: stacks vertically, image on top (max-width 275px, centered), text below with 24px top padding
+- Desktop (>=992px): flex row following DOM order — image-left uses 275px fixed + text fluid; image-right uses ~38% flexible + text fluid. 32px gap, top-aligned
+
+---
+
 ### fragment (Utility Module)
 
 **Location**: `/blocks/fragment/`
@@ -981,6 +1027,7 @@ Import scripts for bulk content migration are in `/tools/importer/`.
 | `parsers/columns-stats.js` | Parser for columns-stats block (home page) |
 | `parsers/fact-sheets.js` | Parser for fact-sheets block (our-company page) |
 | `parsers/hero-featured.js` | Parser for hero-featured block |
+| `parsers/columns-media.js` | Parser for columns-media block (our-culture page) |
 | `transformers/ups-cleanup.js` | Site-wide DOM cleanup transformer |
 
 ---

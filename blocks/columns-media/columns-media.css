@@ -1,0 +1,109 @@
+/* stylelint-disable no-descending-specificity */
+
+/* ===== COLUMNS-MEDIA BLOCK ===== */
+
+/* Row: each child div is one media + text item */
+.columns-media > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.columns-media > div + div {
+  margin-top: var(--spacing-s);
+}
+
+/* ===== IMAGE COLUMN ===== */
+.columns-media .columns-media-img-col {
+  order: 0;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.columns-media img {
+  width: 100%;
+  max-width: 275px;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  display: block;
+}
+
+/* ===== TEXT COLUMN ===== */
+.columns-media > div > div:not(.columns-media-img-col) {
+  order: 1;
+  padding: var(--spacing-m) 0 0;
+}
+
+/* ===== HEADINGS ===== */
+.columns-media h2 {
+  font-size: var(--heading-font-size-l);
+  font-weight: 400;
+  line-height: 1.5;
+  margin: 0 0 var(--spacing-xs);
+}
+
+/* ===== BODY TEXT ===== */
+.columns-media p {
+  font-size: var(--body-font-size-m);
+  line-height: 1.5;
+  margin: 0 0 var(--spacing-s);
+}
+
+/* Last paragraph in text column: no bottom margin */
+.columns-media > div > div:not(.columns-media-img-col) > p:last-child,
+.columns-media > div > div:not(.columns-media-img-col) > ul:last-child {
+  margin-bottom: 0;
+}
+
+/* ===== BULLETED LISTS ===== */
+.columns-media ul {
+  margin: 0 0 var(--spacing-s);
+  padding: 0 0 0 40px;
+  list-style-type: disc;
+}
+
+.columns-media li {
+  font-size: var(--body-font-size-m);
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+}
+
+/* ===== DESKTOP LAYOUT ===== */
+
+/* --viewport-desktop */
+@media (width >= 992px) {
+  .columns-media > div {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: var(--spacing-l);
+  }
+
+  /* Image on the left (first child) — fixed 275px square */
+  .columns-media > div > .columns-media-img-col:first-child {
+    flex: 0 0 275px;
+  }
+
+  /* Image on the right (last child) — flexible ~38% width */
+  .columns-media > div > .columns-media-img-col:last-child {
+    flex: 0 0 38%;
+  }
+
+  .columns-media > div > .columns-media-img-col:last-child img {
+    max-width: 100%;
+    aspect-ratio: auto;
+  }
+
+  /* Reset mobile ordering so DOM order is respected on desktop */
+  .columns-media .columns-media-img-col {
+    order: unset;
+  }
+
+  .columns-media > div > div:not(.columns-media-img-col) {
+    order: unset;
+    flex: 1;
+    padding: var(--spacing-xs) 0 0;
+  }
+}
