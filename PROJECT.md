@@ -140,6 +140,7 @@ The import scripts in `tools/importer/` are designed to reproduce the exact cont
 3. **Create clean DOM elements in parsers** — Always use `document.createElement()` to build output elements rather than pushing source DOM nodes directly. Source nodes carry classes, attributes, and inline styles from the original site that don't belong in EDS content.
 4. **Verify after content changes** — When modifying content markup patterns (e.g., removing `<strong>` wrappers from eyebrows), update ALL parsers that produce that pattern. Search across `tools/importer/parsers/` for the old pattern.
 5. **Never overwrite verified content** — When simulating an import to check alignment, compare the parser output against existing content HTML. Fix the parser to match the content, never the other way around.
+6. **Use DOM-walking for flexible page imports** — Parsers call `element.replaceWith(table)`, which detaches the original element. After all parsers run, walk the DOM to collect `<table>` elements (parsed blocks) and remaining headings/paragraphs (default content) in natural document order. Group into sections (H1 = own section, block table = closes section, headings/text = accumulate until next block). This approach handles pages with different block orders using the same import script. See `import-topic-hub.js` for the reference implementation.
 
 **Eyebrow text pattern (established):**
 - Content HTML: `<p>Eyebrow Text</p>` (plain paragraph)
@@ -433,16 +434,14 @@ All content pages in this project and their source URLs.
 | `/content/us/en/our-stories/customer-first.plain.html` | https://about.ups.com/us/en/our-stories/customer-first.html | Customer First category page |
 | `/content/us/en/our-stories/innovation-driven.plain.html` | https://about.ups.com/us/en/our-stories/innovation-driven.html | Innovation Driven category page |
 | `/content/us/en/our-stories/people-led.plain.html` | https://about.ups.com/us/en/our-stories/people-led.html | People Led category page |
-| `/content/us/en/our-stories/customer-first/5-things-you-didn-t-know-the-ups-store-could-do-for-your-small-b.plain.html` | https://about.ups.com/us/en/our-stories/customer-first/5-things-you-didn-t-know-the-ups-store-could-do-for-your-small-b.html | Story article (Customer First) |
-| `/content/us/en/our-stories/customer-first/new-shelves-new-customers-same-reliable-shipper.plain.html` | https://about.ups.com/us/en/our-stories/customer-first/new-shelves--new-customers---same-reliable-shipper.html | Story article (Customer First) |
-| `/content/us/en/our-stories/customer-first/sanmar-and-ups-an-iconic-partnership-delivering-world-class-spe.plain.html` | https://about.ups.com/us/en/our-stories/customer-first/sanmar-and-ups--an-iconic-partnership-delivering-world-class-spe.html | Story article (Customer First) |
-| `/content/us/en/our-stories/customer-first/fresh-products-need-a-reliable-shipper.plain.html` | https://about.ups.com/us/en/our-stories/customer-first/fresh-products-need-a-reliable-shipper.html | Story article (Customer First) |
-| `/content/us/en/our-stories/customer-first/get-everything-you-need-to-make-valentine-s-day-extra-special-d.plain.html` | https://about.ups.com/us/en/our-stories/customer-first/get-everything-you-need-to-make-valentine-s-day-extra-special--d.html | Story article (Customer First) |
-| `/content/us/en/our-stories/customer-first/how-ups-powers-small-business-growth.plain.html` | https://about.ups.com/us/en/our-stories/customer-first/how-ups-powers-small-business-growth.html | Story article (Customer First) |
-| `/content/us/en/our-stories/customer-first/woodworking-company-s-export-business-booms-with-help-from-ups.plain.html` | https://about.ups.com/us/en/our-stories/customer-first/woodworking-company-s-export-business-booms-with-help-from-ups.html | Story article (Customer First) |
-| `/content/us/en/our-stories/people-led/peak-wrap-up.plain.html` | https://about.ups.com/us/en/our-stories/people-led/peak-wrap-up.html | Story article (People Led) |
-| `/content/us/en/our-stories/people-led/national-human-trafficking-prevention-month.plain.html` | https://about.ups.com/us/en/our-stories/people-led/national-human-trafficking-prevention-month.html | Story article (People Led) |
-| `/content/us/en/our-stories/people-led/from-the-philippines-to-ireland-we-deliver-the-holidays.plain.html` | https://about.ups.com/us/en/our-stories/people-led/from-the-philippines-to-ireland--we-deliver-the-holidays.html | Story article (People Led) |
+| `/content/us/en/our-stories/customer-first/*.plain.html` | 37 story articles | Customer First stories (bulk imported) |
+| `/content/us/en/our-stories/innovation-driven/*.plain.html` | 33 story articles | Innovation Driven stories (bulk imported) |
+| `/content/us/en/our-stories/people-led/*.plain.html` | 36 story articles | People Led stories (bulk imported) |
+| `/content/us/en/our-impact/community.plain.html` | https://about.ups.com/us/en/our-impact/community.html | Community topic hub (topic-hub template) |
+| `/content/us/en/our-impact/sustainability.plain.html` | https://about.ups.com/us/en/our-impact/sustainability.html | Sustainability topic hub (topic-hub template) |
+| `/content/us/en/our-company/great-employer.plain.html` | https://about.ups.com/us/en/our-company/great-employer.html | Great Employer topic hub (topic-hub template) |
+| `/content/us/en/our-company/suppliers.plain.html` | https://about.ups.com/us/en/our-company/suppliers.html | Suppliers topic hub (topic-hub template) |
+| `/content/us/en/newsroom.plain.html` | https://about.ups.com/us/en/newsroom.html | Newsroom topic hub (topic-hub template) |
 | `/content/nav.html` | Derived from https://about.ups.com/us/en/home.html | Navigation fragment |
 | `/content/footer.html` | Derived from https://about.ups.com/us/en/home.html | Footer fragment |
 
@@ -1291,6 +1290,9 @@ Import scripts for bulk content migration are in `/tools/importer/`.
 | `transformers/ups-cleanup.js` | Site-wide DOM cleanup transformer |
 | `import-story-article.js` | Import script for story article pages (article-header, body, embed, social-share, related stories) |
 | `import-story-article.bundle.js` | Bundled version of import-story-article.js |
+| `import-topic-hub.js` | Flexible import script for topic hub pages (hero-featured, columns-feature, fact-sheets, cards-stories). Uses DOM-walking approach to detect blocks in any order — works across pages with different layouts. |
+| `import-topic-hub.bundle.js` | Bundled version of import-topic-hub.js |
+| `urls-topic-hub.txt` | URL list for topic-hub bulk import (5 pages: community, great-employer, newsroom, suppliers, sustainability) |
 
 ---
 
@@ -1426,6 +1428,7 @@ Always include ARIA attributes on interactive elements:
 26. **Fragment default paths are root-relative** - `header.js` defaults to `/nav`, `footer.js` defaults to `/footer`. Local dev pages override these via `<meta name="nav" content="/content/nav"/>`. On deployed (DA), no override exists — the default root path is used.
 27. **`p.button-wrapper` must have `margin: 0`** — The global `p.button-wrapper` rule must NOT add margin. Spacing is handled by the `* + *` rule inside default-content-wrapper. Extra margin on button-wrapper leaks through section boundaries (where sections have `padding: 0`) and creates incorrect gaps.
 28. **Content HTML must be DA-compatible** — Blocks as `<table>` (not div-format), `<hr>` between section `<div>` wrappers, lowercase `<td>` block names. See "DA-Compatible Content HTML Format" in Migration Rules. Without this, DA merges all sections and/or loses block structure.
+29. **Import scripts: use DOM-walking, not rigid section assembly** — Parsers call `element.replaceWith(table)` which detaches the original element reference. Never search stale `block.element` for tables after parsing. Instead, walk the DOM after all parsers run to collect tables and default content in natural document order. This also handles pages with different block orders using the same template. See `import-topic-hub.js` for the reference pattern.
 
 ---
 
