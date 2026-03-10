@@ -9,6 +9,8 @@ helix-importer-ui
 .idea
 *.html
 tools/importer/*.bundle.js
+tools/importer/urls-*.txt
+tools/importer/reports/
 
 # Ensure these files are tracked
 !CLAUDE.md

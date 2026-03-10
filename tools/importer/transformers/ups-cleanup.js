@@ -124,8 +124,14 @@ export default function transform(hookName, element, payload) {
     // Convert ALL CAPS headings to Title Case (CSS handles uppercase display)
     // EXTRACTED: Found <h4>CUSTOMER FIRST, PEOPLE LED, INNOVATION DRIVEN</h4> in captured DOM
     // Rule 7: Never import all-caps content as-is
+    // Only set textContent when conversion actually changes the text, to preserve
+    // child elements (e.g. <a> links inside <h3>) in non-all-caps headings.
     element.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((heading) => {
-      heading.textContent = toTitleCase(heading.textContent.trim());
+      const original = heading.textContent.trim();
+      const converted = toTitleCase(original);
+      if (converted !== original) {
+        heading.textContent = converted;
+      }
     });
   }
 }

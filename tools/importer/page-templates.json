@@ -39,14 +39,18 @@
           "selector": ".headline.aem-GridColumn > .upspr-width100 .upspr-headline",
           "style": null,
           "blocks": [],
-          "defaultContent": [".upspr-headline h1"]
+          "defaultContent": [
+            ".upspr-headline h1"
+          ]
         },
         {
           "id": "navigation",
           "name": "Navigation Tabs",
           "selector": ".upspr-section-card__tabs, .upspr-section-card_tabs-container",
           "style": null,
-          "blocks": ["navigation-tabs"],
+          "blocks": [
+            "navigation-tabs"
+          ],
           "defaultContent": []
         },
         {
@@ -54,7 +58,9 @@
           "name": "Feature Cards",
           "selector": ".sectioncard",
           "style": null,
-          "blocks": ["columns-feature"],
+          "blocks": [
+            "columns-feature"
+          ],
           "defaultContent": []
         },
         {
@@ -63,14 +69,19 @@
           "selector": ".headline.aem-GridColumn .upspr-headline:has(h2)",
           "style": null,
           "blocks": [],
-          "defaultContent": [".upspr-headline h2", ".upspr-headline p"]
+          "defaultContent": [
+            ".upspr-headline h2",
+            ".upspr-headline p"
+          ]
         },
         {
           "id": "awards",
           "name": "Awards Section",
           "selector": ".upspr-section-wrapper__bg-grey_25",
           "style": "highlight",
-          "blocks": ["cards-awards"],
+          "blocks": [
+            "cards-awards"
+          ],
           "defaultContent": []
         },
         {
@@ -78,7 +89,9 @@
           "name": "CEO Quote",
           "selector": ".quotes",
           "style": null,
-          "blocks": ["columns-quote"],
+          "blocks": [
+            "columns-quote"
+          ],
           "defaultContent": []
         }
       ]
@@ -121,7 +134,9 @@
           "name": "Hero Featured",
           "selector": ".hero.aem-GridColumn:has(.upspr-heroimage:not(.vertical-hero))",
           "style": null,
-          "blocks": ["hero-featured"],
+          "blocks": [
+            "hero-featured"
+          ],
           "defaultContent": []
         },
         {
@@ -129,7 +144,9 @@
           "name": "Latest Stories",
           "selector": ".pr04-threecolumnteaser",
           "style": null,
-          "blocks": ["cards-stories"],
+          "blocks": [
+            "cards-stories"
+          ],
           "defaultContent": []
         },
         {
@@ -139,14 +156,20 @@
           "selector": null,
           "style": "accent-bar",
           "blocks": [],
-          "defaultContent": ["h6", "h2", "a"]
+          "defaultContent": [
+            "h6",
+            "h2",
+            "a"
+          ]
         },
         {
           "id": "stats",
           "name": "Stats Section",
           "selector": ".hero.aem-GridColumn:has(.vertical-hero)",
           "style": null,
-          "blocks": ["columns-stats"],
+          "blocks": [
+            "columns-stats"
+          ],
           "defaultContent": []
         },
         {
@@ -154,7 +177,9 @@
           "name": "Impact Feature",
           "selector": ".sectioncard",
           "style": null,
-          "blocks": ["columns-feature"],
+          "blocks": [
+            "columns-feature"
+          ],
           "defaultContent": []
         }
       ]
@@ -478,7 +503,17 @@
     {
       "name": "story-article",
       "urls": [
-        "https://about.ups.com/us/en/our-stories/customer-first/ups-and-lfc-celebrate-the--unstoppable-spirit--of-liverpool-busi0.html"
+        "https://about.ups.com/us/en/our-stories/customer-first/ups-and-lfc-celebrate-the--unstoppable-spirit--of-liverpool-busi0.html",
+        "https://about.ups.com/us/en/our-stories/customer-first/5-things-you-didn-t-know-the-ups-store-could-do-for-your-small-b.html",
+        "https://about.ups.com/us/en/our-stories/customer-first/new-shelves--new-customers---same-reliable-shipper.html",
+        "https://about.ups.com/us/en/our-stories/customer-first/sanmar-and-ups--an-iconic-partnership-delivering-world-class-spe.html",
+        "https://about.ups.com/us/en/our-stories/customer-first/fresh-products-need-a-reliable-shipper.html",
+        "https://about.ups.com/us/en/our-stories/customer-first/get-everything-you-need-to-make-valentine-s-day-extra-special--d.html",
+        "https://about.ups.com/us/en/our-stories/customer-first/how-ups-powers-small-business-growth.html",
+        "https://about.ups.com/us/en/our-stories/customer-first/woodworking-company-s-export-business-booms-with-help-from-ups.html",
+        "https://about.ups.com/us/en/our-stories/people-led/peak-wrap-up.html",
+        "https://about.ups.com/us/en/our-stories/people-led/national-human-trafficking-prevention-month.html",
+        "https://about.ups.com/us/en/our-stories/people-led/from-the-philippines-to-ireland--we-deliver-the-holidays.html"
       ],
       "description": "Story article page with article header (eyebrow, title, byline, subtitle, hero image), article body paragraphs with inline YouTube embeds, social share links, and related stories section",
       "blocks": [
@@ -513,7 +548,9 @@
           "name": "Article Header",
           "selector": ".pr15-details",
           "style": null,
-          "blocks": ["article-header"],
+          "blocks": [
+            "article-header"
+          ],
           "defaultContent": []
         },
         {
@@ -521,15 +558,21 @@
           "name": "Article Body",
           "selector": ".pr15-details .upspr-two-column_inner",
           "style": null,
-          "blocks": ["embed"],
-          "defaultContent": [".cmp-text p"]
+          "blocks": [
+            "embed"
+          ],
+          "defaultContent": [
+            ".cmp-text p"
+          ]
         },
         {
           "id": "social-share",
           "name": "Social Share",
           "selector": ".upspr-socialmedia",
           "style": null,
-          "blocks": ["social-share"],
+          "blocks": [
+            "social-share"
+          ],
           "defaultContent": []
         },
         {
@@ -537,8 +580,12 @@
           "name": "Related Stories",
           "selector": ".pr24-background-colour",
           "style": "highlight, accent-bar",
-          "blocks": ["cards-stories"],
-          "defaultContent": [".upspr-headline h2"]
+          "blocks": [
+            "cards-stories"
+          ],
+          "defaultContent": [
+            ".upspr-headline h2"
+          ]
         }
       ]
     }

@@ -86,7 +86,8 @@ export default function parse(element, { document }) {
       if (cardLink) {
         // Embed link in heading — no separate CTA paragraph needed
         const link = document.createElement('a');
-        link.href = cardLink.href;
+        // Use getAttribute('href') for the relative path, not .href which resolves to full URL
+        link.href = cardLink.getAttribute('href') || cardLink.href;
         link.textContent = title.textContent.trim();
         h3.append(link);
       } else {

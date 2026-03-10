@@ -53,7 +53,8 @@ export default function parse(element, { document, url }) {
   const eyebrowCell = [];
   if (eyebrowLink && eyebrowText) {
     const a = document.createElement('a');
-    a.href = eyebrowLink.href;
+    // Use getAttribute('href') for the relative path, not .href which resolves to full URL
+    a.href = eyebrowLink.getAttribute('href') || eyebrowLink.href;
     a.textContent = toTitleCase(eyebrowText.textContent.trim());
     eyebrowCell.push(a);
   }
@@ -75,7 +76,7 @@ export default function parse(element, { document, url }) {
   const bylineCell = [];
   const parts = [];
   if (dateEl) parts.push(dateEl.textContent.trim());
-  if (readTimeEl) parts.push(readTimeEl.textContent.trim());
+  if (readTimeEl) parts.push(toTitleCase(readTimeEl.textContent.trim()));
   if (parts.length > 0) {
     const p = document.createElement('p');
     p.textContent = parts.join(' | ');

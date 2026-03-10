@@ -433,7 +433,16 @@ All content pages in this project and their source URLs.
 | `/content/us/en/our-stories/customer-first.plain.html` | https://about.ups.com/us/en/our-stories/customer-first.html | Customer First category page |
 | `/content/us/en/our-stories/innovation-driven.plain.html` | https://about.ups.com/us/en/our-stories/innovation-driven.html | Innovation Driven category page |
 | `/content/us/en/our-stories/people-led.plain.html` | https://about.ups.com/us/en/our-stories/people-led.html | People Led category page |
-| `/content/us/en/our-stories/customer-first/ups-and-lfc-celebrate-liverpool.html` | https://about.ups.com/us/en/our-stories/customer-first/ups-and-lfc-celebrate-liverpool.html | Story article (Customer First) |
+| `/content/us/en/our-stories/customer-first/5-things-you-didn-t-know-the-ups-store-could-do-for-your-small-b.plain.html` | https://about.ups.com/us/en/our-stories/customer-first/5-things-you-didn-t-know-the-ups-store-could-do-for-your-small-b.html | Story article (Customer First) |
+| `/content/us/en/our-stories/customer-first/new-shelves-new-customers-same-reliable-shipper.plain.html` | https://about.ups.com/us/en/our-stories/customer-first/new-shelves--new-customers---same-reliable-shipper.html | Story article (Customer First) |
+| `/content/us/en/our-stories/customer-first/sanmar-and-ups-an-iconic-partnership-delivering-world-class-spe.plain.html` | https://about.ups.com/us/en/our-stories/customer-first/sanmar-and-ups--an-iconic-partnership-delivering-world-class-spe.html | Story article (Customer First) |
+| `/content/us/en/our-stories/customer-first/fresh-products-need-a-reliable-shipper.plain.html` | https://about.ups.com/us/en/our-stories/customer-first/fresh-products-need-a-reliable-shipper.html | Story article (Customer First) |
+| `/content/us/en/our-stories/customer-first/get-everything-you-need-to-make-valentine-s-day-extra-special-d.plain.html` | https://about.ups.com/us/en/our-stories/customer-first/get-everything-you-need-to-make-valentine-s-day-extra-special--d.html | Story article (Customer First) |
+| `/content/us/en/our-stories/customer-first/how-ups-powers-small-business-growth.plain.html` | https://about.ups.com/us/en/our-stories/customer-first/how-ups-powers-small-business-growth.html | Story article (Customer First) |
+| `/content/us/en/our-stories/customer-first/woodworking-company-s-export-business-booms-with-help-from-ups.plain.html` | https://about.ups.com/us/en/our-stories/customer-first/woodworking-company-s-export-business-booms-with-help-from-ups.html | Story article (Customer First) |
+| `/content/us/en/our-stories/people-led/peak-wrap-up.plain.html` | https://about.ups.com/us/en/our-stories/people-led/peak-wrap-up.html | Story article (People Led) |
+| `/content/us/en/our-stories/people-led/national-human-trafficking-prevention-month.plain.html` | https://about.ups.com/us/en/our-stories/people-led/national-human-trafficking-prevention-month.html | Story article (People Led) |
+| `/content/us/en/our-stories/people-led/from-the-philippines-to-ireland-we-deliver-the-holidays.plain.html` | https://about.ups.com/us/en/our-stories/people-led/from-the-philippines-to-ireland--we-deliver-the-holidays.html | Story article (People Led) |
 | `/content/nav.html` | Derived from https://about.ups.com/us/en/home.html | Navigation fragment |
 | `/content/footer.html` | Derived from https://about.ups.com/us/en/home.html | Footer fragment |
 
@@ -447,7 +456,7 @@ When asked to list all page URLs (e.g., "list all pages", "bulk publish", "bulk 
 2. For each file, strip the `/workspace/content/` prefix and the `.html` extension to get the path
 3. Output each as `https://main--up--gabrielwalt.aem.page/{path}`
 4. Include ALL pages and fragments (nav, footer)
-5. Output **only** the URLs — one per line, no headers, no markdown, no extra text, no code fences
+5. Output the URLs inside a fenced code block — one per line, no headers, no extra text
 
 ---
 
