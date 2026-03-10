@@ -474,6 +474,73 @@
           "defaultContent": []
         }
       ]
+    },
+    {
+      "name": "story-article",
+      "urls": [
+        "https://about.ups.com/us/en/our-stories/customer-first/ups-and-lfc-celebrate-the--unstoppable-spirit--of-liverpool-busi0.html"
+      ],
+      "description": "Story article page with article header (eyebrow, title, byline, subtitle, hero image), article body paragraphs with inline YouTube embeds, social share links, and related stories section",
+      "blocks": [
+        {
+          "name": "article-header",
+          "instances": [
+            ".pr15-details"
+          ]
+        },
+        {
+          "name": "embed",
+          "instances": [
+            ".pr15-details iframe[src*='youtube']"
+          ]
+        },
+        {
+          "name": "social-share",
+          "instances": [
+            ".upspr-socialmedia"
+          ]
+        },
+        {
+          "name": "cards-stories",
+          "instances": [
+            ".pr24-background-colour .upspr-three-column-teaser"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "article-header",
+          "name": "Article Header",
+          "selector": ".pr15-details",
+          "style": null,
+          "blocks": ["article-header"],
+          "defaultContent": []
+        },
+        {
+          "id": "article-body",
+          "name": "Article Body",
+          "selector": ".pr15-details .upspr-two-column_inner",
+          "style": null,
+          "blocks": ["embed"],
+          "defaultContent": [".cmp-text p"]
+        },
+        {
+          "id": "social-share",
+          "name": "Social Share",
+          "selector": ".upspr-socialmedia",
+          "style": null,
+          "blocks": ["social-share"],
+          "defaultContent": []
+        },
+        {
+          "id": "related-stories",
+          "name": "Related Stories",
+          "selector": ".pr24-background-colour",
+          "style": "highlight, accent-bar",
+          "blocks": ["cards-stories"],
+          "defaultContent": [".upspr-headline h2"]
+        }
+      ]
     }
   ]
 }

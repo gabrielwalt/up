@@ -59,10 +59,9 @@ export default function decorate(block) {
     ol.append(li);
   }
 
-  // Current page (no link)
+  // Current page marker (empty text, keeps trailing slash separator)
   const currentLi = document.createElement('li');
   currentLi.classList.add('active');
-  currentLi.textContent = slugToLabel(segments[segments.length - 1]);
   ol.append(currentLi);
 
   nav.append(ol);

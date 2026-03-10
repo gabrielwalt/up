@@ -1,0 +1,115 @@
+/* stylelint-disable no-descending-specificity */
+
+/* ===== ARTICLE HEADER BLOCK ===== */
+
+.article-header {
+  text-align: left;
+}
+
+/* Reset button styling applied by decorateButtons() on eyebrow link */
+.article-header a.button:any-link {
+  display: inline;
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  background: none;
+  font-size: inherit;
+  font-weight: inherit;
+  white-space: normal;
+}
+
+.article-header a.button:any-link:hover {
+  background: none;
+  border: none;
+}
+
+.article-header a.button:any-link::after,
+.article-header .button-wrapper {
+  all: unset;
+}
+
+/* Eyebrow with yellow accent dash to the left */
+.article-header .article-header-eyebrow {
+  margin-bottom: var(--spacing-s);
+}
+
+.article-header .article-header-eyebrow a:any-link {
+  position: relative;
+  padding-left: 80px;
+  font-size: 10px;
+  font-weight: var(--eyebrow-weight);
+  letter-spacing: var(--eyebrow-tracking);
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--text-color);
+  line-height: 15px;
+}
+
+.article-header .article-header-eyebrow a:any-link::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 64px;
+  height: 4px;
+  background: var(--accent-dash-color);
+  border-radius: 5px;
+}
+
+.article-header .article-header-eyebrow a:any-link:hover {
+  color: var(--link-hover-color);
+}
+
+/* Title */
+.article-header .article-header-title h1 {
+  margin: 0 0 8px;
+  font-size: 56px;
+  font-weight: 500;
+  line-height: 72px;
+}
+
+/* --viewport-desktop */
+@media (width < 992px) {
+  .article-header .article-header-title h1 {
+    font-size: 36px;
+    line-height: 44px;
+  }
+}
+
+/* Byline (date + read time) */
+.article-header .article-header-byline {
+  margin-bottom: var(--spacing-s);
+  font-size: 10px;
+  font-weight: var(--eyebrow-weight);
+  color: var(--color-muted);
+  letter-spacing: var(--eyebrow-tracking);
+  text-transform: uppercase;
+  line-height: 15px;
+}
+
+/* Subtitle */
+.article-header .article-header-subtitle {
+  margin-bottom: var(--spacing-l);
+  font-size: var(--body-font-size-m);
+  font-style: italic;
+  color: var(--color-muted);
+  line-height: 1.5;
+}
+
+/* Hero image */
+.article-header .article-header-image {
+  margin-top: var(--spacing-l);
+}
+
+.article-header .article-header-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Remove inner divs from rows */
+.article-header > div > div {
+  padding: 0;
+}

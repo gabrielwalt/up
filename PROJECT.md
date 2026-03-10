@@ -339,10 +339,21 @@ All content pages in this project and their source URLs.
 | `/content/us/en/our-stories/customer-first.plain.html` | https://about.ups.com/us/en/our-stories/customer-first.html | Customer First category page |
 | `/content/us/en/our-stories/innovation-driven.plain.html` | https://about.ups.com/us/en/our-stories/innovation-driven.html | Innovation Driven category page |
 | `/content/us/en/our-stories/people-led.plain.html` | https://about.ups.com/us/en/our-stories/people-led.html | People Led category page |
+| `/content/us/en/our-stories/customer-first/ups-and-lfc-celebrate-liverpool.html` | https://about.ups.com/us/en/our-stories/customer-first/ups-and-lfc-celebrate-liverpool.html | Story article (Customer First) |
 | `/content/nav.html` | Derived from https://about.ups.com/us/en/home.html | Navigation fragment |
 | `/content/footer.html` | Derived from https://about.ups.com/us/en/home.html | Footer fragment |
 
 **URL mapping convention**: Local paths follow the origin URL structure with `/content/` prefix.
+
+### Bulk Publish URL List
+
+When asked to list all page URLs (e.g., "list all pages", "bulk publish", "bulk preview"):
+
+1. Scan `/workspace/content/` for all `.html` files (exclude `.plain.html` duplicates)
+2. For each file, strip the `/workspace/content/` prefix and the `.html` extension to get the path
+3. Output each as `https://main--up--gabrielwalt.aem.page/{path}`
+4. Include ALL pages and fragments (nav, footer)
+5. Output **only** the URLs — one per line, no headers, no markdown, no extra text, no code fences
 
 ---
 
@@ -731,6 +742,9 @@ Complete reference of all blocks and their variants.
 | **fact-sheets** | `/blocks/fact-sheets/` | — | Responsive stat grid with icons, numbers, labels, and CTA |
 | **columns-media** | `/blocks/columns-media/` | — | Asymmetric image + text (1/3 + 2/3), image on either side |
 | **breadcrumb** | `/blocks/breadcrumb/` | — | Auto-generated breadcrumb from URL path segments |
+| **article-header** | `/blocks/article-header/` | — | Story article header with eyebrow, title, byline, subtitle, hero image |
+| **embed** | `/blocks/embed/` | — | YouTube video embed with responsive 16:9 aspect ratio |
+| **social-share** | `/blocks/social-share/` | — | Social media share links (Facebook, Twitter, LinkedIn, Email) |
 
 **Boilerplate blocks** (vanilla, unmodified): `cards`, `columns`, `hero`
 
@@ -1069,6 +1083,90 @@ Loads the referenced fragment HTML and inserts it into the page.
 
 ---
 
+### article-header
+
+**Location**: `/blocks/article-header/`
+
+| Variant | Class | Purpose |
+|---------|-------|---------|
+| Default | `.article-header` | Story article header with eyebrow link, title, byline, subtitle, hero image |
+
+**Authoring:**
+```
+| Article-Header |
+| -------------- |
+| <a href="/category">Eyebrow Category</a> |
+| <h1>Article Title</h1> |
+| <p>03-04-2026 | 2 Min Read</p> |
+| <p>Subtitle text</p> |
+| <picture>hero image</picture> |
+```
+
+**Features**:
+- 5-row block: eyebrow link, h1 title, byline (date + read time), subtitle, hero image
+- Eyebrow link with horizontal yellow accent dash (`::before`, 32x3px, `--accent-dash-color`)
+- DA button reset: eyebrow link gets `.button` from `decorateButtons()`, CSS resets it
+- Byline in uppercase with letter-spacing
+- Subtitle in italic
+- Hero image full-width
+
+**Responsive behavior**:
+- All viewports: single column, left-aligned, max-width constrained by `--content-max-width`
+
+---
+
+### embed
+
+**Location**: `/blocks/embed/`
+
+| Variant | Class | Purpose |
+|---------|-------|---------|
+| Default | `.embed` | YouTube video embed |
+
+**Authoring:**
+```
+| Embed |
+| ----- |
+| <a href="https://www.youtube.com/watch?v=VIDEO_ID">https://www.youtube.com/watch?v=VIDEO_ID</a> |
+```
+
+**Features**:
+- Extracts YouTube video ID from watch URL
+- Creates responsive iframe with 16:9 aspect ratio (`padding-bottom: 56.25%`)
+- Lazy loading, full accessibility attributes (allow autoplay, encrypted-media, etc.)
+
+**Responsive behavior**:
+- All viewports: fluid 16:9 container, 100% width
+
+---
+
+### social-share
+
+**Location**: `/blocks/social-share/`
+
+| Variant | Class | Purpose |
+|---------|-------|---------|
+| Default | `.social-share` | Social media share links |
+
+**Authoring:**
+```
+| Social-Share |
+| ------------ |
+| <a href="https://facebook.com/sharer/...">Facebook</a> <a href="http://twitter.com/share?...">Twitter</a> <a href="https://linkedin.com/shareArticle?...">LinkedIn</a> <a href="mailto:?...">Email</a> |
+```
+
+**Features**:
+- Horizontal row of circular social media icon buttons
+- Platform icons via inline SVG data URIs (Facebook, Twitter/X, LinkedIn, Email)
+- Platform detected from link href
+- Accessible: `aria-label` on each link, `target="_blank"` with `rel="noopener noreferrer"`
+- 40px circular buttons with grey border, hover darkens
+
+**Responsive behavior**:
+- All viewports: horizontal flex row, left-aligned
+
+---
+
 ## Import Infrastructure
 
 Import scripts for bulk content migration are in `/tools/importer/`.
@@ -1084,7 +1182,12 @@ Import scripts for bulk content migration are in `/tools/importer/`.
 | `parsers/fact-sheets.js` | Parser for fact-sheets block (our-company page) |
 | `parsers/hero-featured.js` | Parser for hero-featured block |
 | `parsers/columns-media.js` | Parser for columns-media block — handles hero grid (.herogrid) and list container (#list-container) patterns |
+| `parsers/article-header.js` | Parser for article-header block (story article pages) |
+| `parsers/embed.js` | Parser for embed block (YouTube iframe → watch URL link) |
+| `parsers/social-share.js` | Parser for social-share block (social media share links) |
 | `transformers/ups-cleanup.js` | Site-wide DOM cleanup transformer |
+| `import-story-article.js` | Import script for story article pages (article-header, body, embed, social-share, related stories) |
+| `import-story-article.bundle.js` | Bundled version of import-story-article.js |
 
 ---
 
