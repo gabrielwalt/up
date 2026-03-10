@@ -10,6 +10,7 @@ import {
   loadSection,
   loadSections,
   loadCSS,
+  toClassName,
 } from './aem.js';
 
 /**
@@ -140,11 +141,49 @@ function decorateButtons(main) {
 }
 
 /**
+ * Converts table-format blocks (DA authoring format) to div-format blocks
+ * (AEM runtime format) so the same HTML works both locally and in DA.
+ * In EDS, every table inside a section is a block. The first row contains
+ * the block name in a <td>, remaining rows are content.
+ * @param {Element} main The main element
+ */
+function convertBlockTables(main) {
+  main.querySelectorAll(':scope > div > table').forEach((table) => {
+    const rows = [...table.querySelectorAll(':scope > tbody > tr, :scope > tr')];
+    if (rows.length < 1) return;
+
+    const firstRow = rows[0];
+    const nameCell = firstRow.querySelector('td, th');
+    if (!nameCell) return;
+
+    const blockName = toClassName(nameCell.textContent.trim());
+    if (!blockName) return;
+
+    const block = document.createElement('div');
+    block.className = blockName;
+
+    rows.slice(1).forEach((tr) => {
+      const rowDiv = document.createElement('div');
+      [...tr.querySelectorAll('td')].forEach((td) => {
+        const colDiv = document.createElement('div');
+        while (td.firstChild) colDiv.appendChild(td.firstChild);
+        rowDiv.appendChild(colDiv);
+      });
+      block.appendChild(rowDiv);
+    });
+
+    table.replaceWith(block);
+  });
+}
+
+/**
  * Decorates the main element.
  * @param {Element} main The main element
  */
 // eslint-disable-next-line import/prefer-default-export
 export function decorateMain(main) {
+  convertBlockTables(main);
+  main.querySelectorAll(':scope > hr').forEach((hr) => hr.remove());
   decorateIcons(main);
   buildAutoBlocks(main);
   decorateSections(main);

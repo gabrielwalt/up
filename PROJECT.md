@@ -151,6 +151,100 @@ The import scripts in `tools/importer/` are designed to reproduce the exact cont
 - Eyebrow dashes: `::before` pseudo-element, `width: 32px; height: 3px; background: #ffd100; border-radius: 5px;` positioned absolutely with `left: 0; top: 50%; transform: translateY(-50%);` and `padding-left: 40px` on the text element
 - Heading bars: `::after` pseudo-element on H1, `width: 80px; height: 4px; background: #ffdc40; border-radius: 5px; margin: 32px auto 0;` displayed as block
 
+### DA-Compatible Content HTML Format
+
+**⚠️ CRITICAL: Content HTML files in `/content/` must be DA-compatible so they work both locally (via `aem up`) and when uploaded to DA.**
+
+DA (Document Authoring) processes uploaded HTML differently from how `aem.js` processes it locally. The HTML must satisfy both systems. The `convertBlockTables()` and `<hr>` removal functions in `scripts.js` bridge these differences at runtime.
+
+**Checklist for every content HTML file:**
+
+1. **Blocks as `<table>` elements** (not `<div class="block-name">`)
+   - First row: `<tr><td>block-name</td></tr>` (lowercase, kebab-case)
+   - Use `<td>` (never `<th>`) for the block name cell
+   - Subsequent rows: one `<tr>` per content row with `<td>` per column
+   - For multi-column blocks: `<tr><td colspan="2">block-name</td></tr>`
+   - `scripts.js` `convertBlockTables()` converts these to div-format at runtime for `aem.js`
+   ```html
+   <!-- ✓ Correct (DA-compatible table format) -->
+   <table>
+     <tr><td>article-header</td></tr>
+     <tr><td><h1>Title</h1></td></tr>
+   </table>
+
+   <!-- ✗ Wrong (runtime div-format — DA won't recognize blocks) -->
+   <div class="article-header">
+     <div><div><h1>Title</h1></div></div>
+   </div>
+   ```
+
+2. **Section separators as `<hr>` between `<div>` wrappers**
+   - Each section is a `<div>` child of `<main>` (for local dev compatibility)
+   - Add `<hr>` between sections so DA recognizes section boundaries
+   - DA ignores `<div>` wrappers but uses `<hr>` as section break markers
+   - `scripts.js` removes `<hr>` from the DOM before decoration, so CSS adjacent sibling selectors (`+`) work correctly
+   ```html
+   <main>
+     <div>
+       <!-- Section 1 content -->
+     </div>
+     <hr>
+     <div>
+       <!-- Section 2 content -->
+     </div>
+     <hr>
+     <div>
+       <!-- Section 3 content -->
+       <table>
+         <tr><td colspan="2">section-metadata</td></tr>
+         <tr><td>Style</td><td>highlight</td></tr>
+       </table>
+     </div>
+   </main>
+   ```
+
+3. **`<head>` must match the standard format**
+   ```html
+   <head>
+   <meta
+     http-equiv="Content-Security-Policy"
+     content="script-src 'nonce-aem' 'strict-dynamic' 'unsafe-inline' http: https:; base-uri 'self'; object-src 'none';"
+     move-to-http-header="true"
+   >
+   <title>Page Title</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1"/>
+   <meta name="description" content="Page description"/>
+   <meta property="og:image" content="https://about.ups.com/content/dam/upsstories/images/logo/ups-social-share-logo.jpg"/>
+   <meta name="nav" content="/content/nav"/>
+   <meta name="footer" content="/content/footer"/>
+   <script nonce="aem" src="/scripts/aem.js" type="module"></script>
+   <script nonce="aem" src="/scripts/scripts.js" type="module"></script>
+   <link rel="stylesheet" href="/styles/styles.css"/>
+   </head>
+   ```
+   Required elements:
+   - CSP meta tag with `move-to-http-header="true"`
+   - `nonce="aem"` on both `<script>` tags
+   - `og:image` meta property
+   - `nav` and `footer` meta tags pointing to `/content/nav` and `/content/footer`
+   - Self-closing `<meta>` tags (with `/>`)
+
+4. **Body structure**
+   ```html
+   <body>
+   <header></header>
+   <main>
+     <!-- sections with <hr> separators -->
+   </main>
+   <footer></footer>
+   </body>
+   ```
+
+**What happens without these rules:**
+- Missing `<table>` format → DA shows no block structure, only default content
+- Missing `<hr>` separators → DA merges all sections into one, applying section-metadata styles (e.g., `highlight`) to the entire page
+- Missing `<hr>` removal in JS → `<hr>` elements in the DOM break CSS `+` adjacent sibling selectors, causing layout rules to not match
+
 ---
 
 ## Content Architecture
@@ -1322,6 +1416,7 @@ Always include ARIA attributes on interactive elements:
 25. **DA wraps inline content in `<p>` tags** - Block JS/CSS must use flexible selectors (e.g., `:scope > a, :scope > p > a`) to handle both direct children and p-wrapped children from DA. Never add JS unwrapping logic — fix compatibility in CSS with button resets and in JS with dual selectors.
 26. **Fragment default paths are root-relative** - `header.js` defaults to `/nav`, `footer.js` defaults to `/footer`. Local dev pages override these via `<meta name="nav" content="/content/nav"/>`. On deployed (DA), no override exists — the default root path is used.
 27. **`p.button-wrapper` must have `margin: 0`** — The global `p.button-wrapper` rule must NOT add margin. Spacing is handled by the `* + *` rule inside default-content-wrapper. Extra margin on button-wrapper leaks through section boundaries (where sections have `padding: 0`) and creates incorrect gaps.
+28. **Content HTML must be DA-compatible** — Blocks as `<table>` (not div-format), `<hr>` between section `<div>` wrappers, lowercase `<td>` block names. See "DA-Compatible Content HTML Format" in Migration Rules. Without this, DA merges all sections and/or loses block structure.
 
 ---
 
