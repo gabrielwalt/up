@@ -27,7 +27,7 @@
   height: 11px;
   border-right: 1px solid var(--dark-color);
   transform: rotate(21deg);
-  margin: 0 8px;
+  margin: 0 var(--spacing-xs);
   flex-shrink: 0;
 }
 

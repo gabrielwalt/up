@@ -153,6 +153,13 @@ export default async function decorate(block) {
           subMenu.prepend(label);
         }
 
+        // Add mobile accordion toggle button (chevron area)
+        const toggle = document.createElement('button');
+        toggle.type = 'button';
+        toggle.className = 'nav-drop-toggle';
+        toggle.setAttribute('aria-label', `Expand ${parentLink ? parentLink.textContent.trim() : 'submenu'}`);
+        navSection.append(toggle);
+
         // Detect multi-column menus (4+ sub-items excluding the label)
         const subItems = subMenu ? subMenu.querySelectorAll(':scope > li:not(.nav-submenu-label)') : [];
         if (subItems.length >= 4) {
@@ -193,18 +200,21 @@ export default async function decorate(block) {
         });
       }
 
-      // Mobile accordion: toggle on click, prevent link navigation for nav-drop items
-      navSection.addEventListener('click', (e) => {
-        if (!isDesktop.matches && navSection.classList.contains('nav-drop')) {
-          // Only toggle if the click is on the top-level item, not on sub-menu links
-          const clickedSubLink = e.target.closest('ul ul a');
-          if (clickedSubLink) return;
-          e.preventDefault();
-          const expanded = navSection.getAttribute('aria-expanded') === 'true';
-          toggleAllNavSections(navSections);
-          navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-        }
-      });
+      // Mobile accordion: toggle button handles expand/collapse,
+      // parent link remains clickable for navigation
+      const toggleBtn = navSection.querySelector('.nav-drop-toggle');
+      if (toggleBtn) {
+        toggleBtn.addEventListener('click', (e) => {
+          if (!isDesktop.matches) {
+            e.preventDefault();
+            e.stopPropagation();
+            const expanded = navSection.getAttribute('aria-expanded') === 'true';
+            toggleAllNavSections(navSections);
+            navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+            toggleBtn.setAttribute('aria-label', expanded ? `Expand ${navSection.textContent.trim().split('\n')[0]}` : `Collapse ${navSection.textContent.trim().split('\n')[0]}`);
+          }
+        });
+      }
     });
 
     // Highlight active section based on current page URL

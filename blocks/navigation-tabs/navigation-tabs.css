@@ -72,7 +72,7 @@
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-image: radial-gradient(var(--link-color) 50%, rgb(66 109 169 / 60%) 50%);
+  background-image: radial-gradient(var(--link-color) 50%, rgb(66 109 169 / 60%) 50%); /* --link-color at 60% opacity */
 }
 
 /* ===== ARROW HOVER ===== */

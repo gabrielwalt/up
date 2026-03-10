@@ -8,6 +8,7 @@
 }
 
 .cards > ul > li {
+  /* boilerplate default; project standard is var(--color-border) #e5e5e5 */
   border: 1px solid #dadada;
   background-color: var(--background-color);
 }
