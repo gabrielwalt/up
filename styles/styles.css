@@ -68,7 +68,10 @@
   --shadow-card-hover: 0 8px 32px rgb(0 0 0 / 18%);
   --shadow-dropdown: 0 8px 16px rgb(0 0 0 / 8%);
 
-  /* breakpoints (reference tokens — cannot be used in @media, use literal values there) */
+  /* Breakpoint reference tokens (literal values — CSS vars can't be used in @media)
+     --viewport-tablet:  600px   (small grid shifts: 1-col → 2-col)
+     --viewport-desktop: 992px   (main desktop layout)
+     --viewport-nav:     1024px  (full horizontal navigation) */
   --viewport-desktop: 992px;
   --viewport-nav: 1024px;
 
