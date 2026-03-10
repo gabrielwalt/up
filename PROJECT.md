@@ -786,6 +786,8 @@ Applied via `section-metadata` block with `Style: style-name`. Multiple styles c
 | `arc` | `.section.arc` | Warm grey gradient background with white curved scoop at bottom (decorative SVG `::after`) |
 | `arc-wave` | `.section.arc-wave` | Flat grey background with organic white wave at bottom — the "inverted arc" (decorative SVG `::after`) |
 | `arc-gradient` | `.section.arc-gradient` | Subtle warm beige gradient wash behind content (decorative SVG `::after`, no background color change) |
+| `spacing-l` | `.section.spacing-l` | Adds 80px (`--spacing-4xl`) margin-top to section |
+| `spacing-xl` | `.section.spacing-xl` | Adds 160px margin-top to section |
 
 **Example usage in content:**
 ```html
@@ -1088,7 +1090,7 @@ Complete reference of all blocks and their variants.
 
 **Features**:
 - Each stat has its own icon (57x57px SVG), large number (h4), and label (p)
-- JS restructures rows into a grid with `.fact-sheets-item` wrappers
+- JS restructures rows into a flex container with `.fact-sheets-item` wrappers (centered via flexbox)
 - Last row (link without h4) becomes gold CTA button below the grid
 - Grey separators between items (4px solid `--light-color`)
 - Center-aligned content

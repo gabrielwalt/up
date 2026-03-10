@@ -124,6 +124,10 @@
 
 /* --viewport-desktop */
 @media (width >= 992px) {
+  .hero-featured {
+    min-height: 600px;
+  }
+
   .hero-featured > div:last-child {
     box-sizing: border-box;
     max-width: 480px;

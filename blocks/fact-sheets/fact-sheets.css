@@ -7,8 +7,9 @@
 
 /* ===== GRID LAYOUT ===== */
 .fact-sheets .fact-sheets-grid {
-  display: grid;
-  grid-template-columns: 1fr;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* ===== STAT ITEM ===== */
@@ -74,8 +75,14 @@
 /* ===== TABLET: 2 COLUMNS ===== */
 @media (width >= 600px) {
   .fact-sheets .fact-sheets-grid {
-    grid-template-columns: repeat(2, 1fr);
-    row-gap: var(--spacing-m);
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: stretch;
+  }
+
+  .fact-sheets .fact-sheets-item {
+    flex: 0 0 50%;
+    max-width: 50%;
   }
 
   /* Remove horizontal borders */
@@ -99,8 +106,10 @@
 
 /* --viewport-desktop */
 @media (width >= 992px) {
-  .fact-sheets .fact-sheets-grid {
-    grid-template-columns: repeat(4, 1fr);
+  .fact-sheets .fact-sheets-item {
+    flex: 0 0 25%;
+    max-width: 25%;
+    padding: var(--spacing-m) var(--spacing-l);
   }
 
   /* Reset tablet pseudo-element */
@@ -121,9 +130,5 @@
     bottom: 12%;
     width: 4px;
     background: var(--light-color);
-  }
-
-  .fact-sheets .fact-sheets-item {
-    padding: var(--spacing-m) var(--spacing-l);
   }
 }

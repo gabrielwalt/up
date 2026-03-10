@@ -225,6 +225,11 @@ main .default-content-wrapper > h1 {
   margin-top: var(--spacing-4xl);
 }
 
+/* Bold initials in default content (e.g., HELP acronym) — slightly larger for emphasis */
+main .default-content-wrapper p strong {
+  font-size: 1.25em;
+}
+
 /* ===== BLOCKQUOTE ===== */
 main .default-content-wrapper blockquote {
   border-left: 4px solid var(--color-gold);
@@ -550,4 +555,15 @@ main > .section.breadcrumb-container:has(+ .section.highlight) {
 main > .section.breadcrumb-container + .section.highlight {
   margin-top: -200px;
   padding-top: 200px;
+}
+
+/* ===== SPACING SECTIONS ===== */
+
+/* Extra vertical space above a section (applied via section-metadata Style) */
+main > .section.spacing-l {
+  margin-top: var(--spacing-4xl); /* 80px */
+}
+
+main > .section.spacing-xl {
+  margin-top: 160px;
 }

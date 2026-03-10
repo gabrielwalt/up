@@ -40,6 +40,50 @@ const BLOCK_REGISTRY = [
 
 const transformers = [upsCleanupTransformer];
 
+/**
+ * Detect section styles from source DOM BEFORE cleanup removes wrapper classes.
+ * The UPS source site uses wrapper classes like "background-normal-arc" and
+ * "hero-in-arc" to indicate section backgrounds that map to EDS section styles.
+ */
+function detectSectionStyles(main) {
+  const styles = {};
+
+  // Check the first heading (H1 or H2) for arc wrapper — sustainability uses H2 as page title
+  const firstHeading = main.querySelector('h1, h2');
+  if (firstHeading) {
+    const arcWrapper = firstHeading.closest('.background-normal-arc, .hero-in-arc');
+    if (arcWrapper) {
+      styles.pageTitle = 'arc';
+    }
+  }
+
+  return styles;
+}
+
+/**
+ * Create a Section Metadata table for applying section styles.
+ */
+function createSectionMetadataTable(document, style) {
+  const table = document.createElement('table');
+  const headerRow = document.createElement('tr');
+  const headerCell = document.createElement('td');
+  headerCell.colSpan = 2;
+  headerCell.textContent = 'Section Metadata';
+  headerRow.appendChild(headerCell);
+  table.appendChild(headerRow);
+
+  const styleRow = document.createElement('tr');
+  const keyCell = document.createElement('td');
+  keyCell.textContent = 'Style';
+  const valueCell = document.createElement('td');
+  valueCell.textContent = style;
+  styleRow.appendChild(keyCell);
+  styleRow.appendChild(valueCell);
+  table.appendChild(styleRow);
+
+  return table;
+}
+
 function executeTransformers(hookName, element, payload) {
   transformers.forEach((fn) => {
     try {
@@ -182,6 +226,9 @@ export default {
     const { document, url, params } = payload;
     const main = document.body;
 
+    // 0. Detect section styles BEFORE cleanup removes wrapper classes
+    const sectionStyles = detectSectionStyles(main);
+
     // 1. Pre-parse cleanup (remove header, footer, nav, breadcrumb, etc.)
     executeTransformers('beforeTransform', main, payload);
 
@@ -191,22 +238,113 @@ export default {
     // 3. Post-parse cleanup (title case headings, remove decorative icons)
     executeTransformers('afterTransform', main, payload);
 
+    // 3.5 Remove empty hero-featured blocks (source has decorative hero wrappers with no content)
+    main.querySelectorAll('table').forEach((table) => {
+      const firstRow = table.querySelector('tr');
+      if (!firstRow) return;
+      const firstCell = firstRow.querySelector('th') || firstRow.querySelector('td');
+      if (!firstCell) return;
+      const blockName = firstCell.textContent.trim().toLowerCase();
+      if (blockName === 'hero featured') {
+        const dataRows = Array.from(table.querySelectorAll('tr')).slice(1);
+        const hasContent = dataRows.some((row) => {
+          const cells = row.querySelectorAll('td');
+          return Array.from(cells).some((cell) => {
+            const img = cell.querySelector('img');
+            const text = cell.textContent.trim();
+            return (img && img.getAttribute('src')) || text;
+          });
+        });
+        if (!hasContent) {
+          table.remove();
+        }
+      }
+    });
+
+    // 3.6 Limit cards-stories blocks to 3 items (matching original page layout)
+    main.querySelectorAll('table').forEach((table) => {
+      const firstRow = table.querySelector('tr');
+      if (!firstRow) return;
+      const firstCell = firstRow.querySelector('th') || firstRow.querySelector('td');
+      if (!firstCell) return;
+      // createBlock converts hyphens to spaces in the table header
+      const blockName = firstCell.textContent.trim().toLowerCase();
+      if (blockName === 'cards stories') {
+        const rows = Array.from(table.querySelectorAll('tr'));
+        if (rows.length > 4) {
+          rows.slice(4).forEach((row) => row.remove());
+        }
+      }
+    });
+
+    // 3.7 Format HELP focus areas text (spaces around bullets, bold first word)
+    // Bold entire first word (not single letter) to survive markdown round-tripping
+    main.querySelectorAll('p').forEach((p) => {
+      const text = p.textContent;
+      if (text.includes('Health') && text.includes('Humanitarian Relief') && text.includes('\u2022')) {
+        const parts = text.split('\u2022').map((s) => s.trim()).filter(Boolean);
+        const html = parts.map((part) => {
+          const safe = part.replace(/&/g, '&amp;');
+          const spaceIdx = safe.indexOf(' ');
+          if (spaceIdx > 0) {
+            return `<strong>${safe.slice(0, spaceIdx)}</strong>${safe.slice(spaceIdx)}`;
+          }
+          return `<strong>${safe}</strong>`;
+        }).join(' \u2022 ');
+        p.innerHTML = html;
+      }
+    });
+
     // 4. Walk DOM and collect all content in natural document order
     const items = [];
     collectContent(main, items);
 
+    // 4.5 Promote first heading to page-title type so it gets its own section
+    // Sustainability uses H2 as page title; this ensures it gets sectioned like H1
+    if (items.length > 0 && items[0].type === 'heading') {
+      items[0].type = 'h1';
+    }
+
     // 5. Group into sections
     const sections = groupIntoSections(items);
 
-    // 6. Build output with section breaks
+    // 6. Build output with section breaks and section metadata
     main.innerHTML = '';
+    let firstH1SectionSeen = false;
+    let firstHeadingSectionSeen = false;
     sections.forEach((section, index) => {
       if (index > 0) {
         main.appendChild(document.createElement('hr'));
       }
+      const isH1Section = section.some((item) => item.type === 'h1');
+      const startsWithHeading = section.length > 0 && section[0].type === 'heading';
+
       section.forEach((item) => {
         main.appendChild(cleanClone(item, document));
       });
+
+      // Inject section-metadata for detected styles
+      if (isH1Section) {
+        if (!firstH1SectionSeen) {
+          // Page title section — apply arc (if detected) + accent-bar
+          firstH1SectionSeen = true;
+          const style = sectionStyles.pageTitle
+            ? `${sectionStyles.pageTitle}, accent-bar`
+            : 'accent-bar';
+          main.appendChild(createSectionMetadataTable(document, style));
+        } else {
+          // Subsequent h1 sections — accent-bar + spacing-l
+          main.appendChild(createSectionMetadataTable(document, 'accent-bar, spacing-l'));
+        }
+      } else if (startsWithHeading) {
+        // Heading sections: first gets spacing-l, subsequent get spacing-xl
+        if (!firstHeadingSectionSeen) {
+          main.appendChild(createSectionMetadataTable(document, 'spacing-l'));
+          firstHeadingSectionSeen = true;
+        } else {
+          main.appendChild(createSectionMetadataTable(document, 'spacing-xl'));
+        }
+      }
     });
 
     // 7. WebImporter built-in rules (metadata, background images, URL adjustment)
