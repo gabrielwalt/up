@@ -5,9 +5,11 @@
 /* Content-width container (not edge-to-edge) */
 .hero-featured {
   position: relative;
-  min-height: 400px;
+  min-height: 650px;
   overflow: hidden;
   border-radius: var(--radius-m);
+  display: flex;
+  align-items: flex-end;
 }
 
 /* ===== BACKGROUND IMAGE ===== */
@@ -45,7 +47,7 @@
   padding: var(--spacing-m);
   max-width: 480px;
   border-radius: var(--radius-m);
-  margin: 200px var(--spacing-m) var(--spacing-m);
+  margin: var(--spacing-m);
 }
 
 .hero-featured > div:last-child > div > :last-child {
@@ -120,22 +122,32 @@
   color: var(--cta-text);
 }
 
+/* ===== RIGHT VARIANT (all breakpoints) ===== */
+.hero-featured.hero-featured-right {
+  justify-content: flex-end;
+}
+
 /* ===== DESKTOP ===== */
 
 /* --viewport-desktop */
 @media (width >= 992px) {
   .hero-featured {
     min-height: 600px;
+    align-items: center;
   }
 
   .hero-featured > div:last-child {
     box-sizing: border-box;
     max-width: 480px;
     padding: var(--spacing-2xl);
-    margin: 60px 0 60px 60px;
+    margin: 0 0 0 60px;
   }
 
   .hero-featured h4 {
     font-size: var(--heading-font-size-l);
+  }
+
+  .hero-featured.hero-featured-right > div:last-child {
+    margin: 0 60px 0 0;
   }
 }

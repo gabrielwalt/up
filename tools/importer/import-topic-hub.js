@@ -6,6 +6,7 @@ import heroFeaturedParser from './parsers/hero-featured.js';
 import columnsFeatureParser from './parsers/columns-feature.js';
 import factSheetsParser from './parsers/fact-sheets.js';
 import cardsStoriesParser from './parsers/cards-stories.js';
+import contactCardParser from './parsers/contact-card.js';
 
 // TRANSFORMER IMPORTS
 import upsCleanupTransformer from './transformers/ups-cleanup.js';
@@ -35,6 +36,11 @@ const BLOCK_REGISTRY = [
     name: 'cards-stories',
     selectors: ['.upspr-homepage-latest-stories', '.upspr-three-column-teaser'],
     parser: cardsStoriesParser,
+  },
+  {
+    name: 'contact-card',
+    selectors: ['.upspr-contactus'],
+    parser: contactCardParser,
   },
 ];
 
@@ -245,7 +251,7 @@ export default {
       const firstCell = firstRow.querySelector('th') || firstRow.querySelector('td');
       if (!firstCell) return;
       const blockName = firstCell.textContent.trim().toLowerCase();
-      if (blockName === 'hero featured') {
+      if (blockName.startsWith('hero featured')) {
         const dataRows = Array.from(table.querySelectorAll('tr')).slice(1);
         const hasContent = dataRows.some((row) => {
           const cells = row.querySelectorAll('td');

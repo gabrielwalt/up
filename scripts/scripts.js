@@ -156,11 +156,20 @@ function convertBlockTables(main) {
     const nameCell = firstRow.querySelector('td, th');
     if (!nameCell) return;
 
-    const blockName = toClassName(nameCell.textContent.trim());
-    if (!blockName) return;
+    const rawName = nameCell.textContent.trim();
+    // Parse variant from parentheses: "block-name (variant1, variant2)" → base + variants
+    const parenMatch = rawName.match(/^([^(]+?)(?:\s*\(([^)]+)\))?$/);
+    const baseName = toClassName(parenMatch ? parenMatch[1].trim() : rawName);
+    if (!baseName) return;
 
     const block = document.createElement('div');
-    block.className = blockName;
+    block.classList.add(baseName);
+    if (parenMatch && parenMatch[2]) {
+      parenMatch[2].split(',').forEach((v) => {
+        const variant = toClassName(v.trim());
+        if (variant) block.classList.add(variant);
+      });
+    }
 
     rows.slice(1).forEach((tr) => {
       const rowDiv = document.createElement('div');

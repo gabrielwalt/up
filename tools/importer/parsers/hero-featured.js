@@ -102,8 +102,12 @@ export default function parse(element, { document, url }) {
     [contentCell],
   ];
 
+  // Detect right-aligned variant from source DOM class
+  const contentWrapper = element.querySelector('.upspr-heroimage_content--right');
+  const blockName = contentWrapper ? 'Hero-Featured (hero-featured-right)' : 'Hero-Featured';
+
   // Create block using WebImporter utility
-  const block = WebImporter.Blocks.createBlock(document, { name: 'Hero-Featured', cells });
+  const block = WebImporter.Blocks.createBlock(document, { name: blockName, cells });
 
   // Replace original element with structured block table
   element.replaceWith(block);

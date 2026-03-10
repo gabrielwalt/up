@@ -441,7 +441,7 @@ All content pages in this project and their source URLs.
 | `/content/us/en/our-impact/sustainability.plain.html` | https://about.ups.com/us/en/our-impact/sustainability.html | Sustainability topic hub (topic-hub template) |
 | `/content/us/en/our-company/great-employer.plain.html` | https://about.ups.com/us/en/our-company/great-employer.html | Great Employer topic hub (topic-hub template) |
 | `/content/us/en/our-company/suppliers.plain.html` | https://about.ups.com/us/en/our-company/suppliers.html | Suppliers topic hub (topic-hub template) |
-| `/content/us/en/newsroom.plain.html` | https://about.ups.com/us/en/newsroom.html | Newsroom topic hub (topic-hub template) |
+| `/content/us/en/newsroom.html` | https://about.ups.com/us/en/newsroom.html | Newsroom topic hub (topic-hub template) |
 | `/content/nav.html` | Derived from https://about.ups.com/us/en/home.html | Navigation fragment |
 | `/content/footer.html` | Derived from https://about.ups.com/us/en/home.html | Footer fragment |
 
@@ -841,7 +841,8 @@ Complete reference of all blocks and their variants.
 | **columns-stats** | `/blocks/columns-stats/` | — | Full-width image with overlapping stats panel |
 | **cards-awards** | `/blocks/cards-awards/` | — | Text-only award cards with eyebrow and heading |
 | **cards-stories** | `/blocks/cards-stories/` | — | Image + text story cards in a clickable grid |
-| **hero-featured** | `/blocks/hero-featured/` | — | Hero with background image and white card overlay |
+| **hero-featured** | `/blocks/hero-featured/` | `hero-featured-right` | Hero with background image and white card overlay |
+| **contact-card** | `/blocks/contact-card/` | — | Contact info card with title, two columns, and vertical separator |
 | **navigation-tabs** | `/blocks/navigation-tabs/` | — | Card-style navigation links with arrow icons |
 | **fact-sheets** | `/blocks/fact-sheets/` | — | Responsive stat grid with icons, numbers, labels, and CTA |
 | **columns-media** | `/blocks/columns-media/` | — | Asymmetric image + text (1/3 + 2/3), image on either side |
@@ -975,11 +976,20 @@ Complete reference of all blocks and their variants.
 
 | Variant | Class | Purpose |
 |---------|-------|---------|
-| Default | `.hero-featured` | Hero with background image and white card overlay |
+| Default | `.hero-featured` | Hero with background image and white card overlay (card on left) |
+| hero-featured-right | `.hero-featured.hero-featured-right` | Card positioned on right side of image |
 
 **Authoring:**
 ```
 | Hero-Featured |
+| --- |
+| ![alt](image-url) |
+| <p>Eyebrow</p><h4>Heading</h4><p>Description</p><p><a href="...">CTA</a></p> |
+```
+
+Right variant:
+```
+| Hero-Featured (hero-featured-right) |
 | --- |
 | ![alt](image-url) |
 | <p>Eyebrow</p><h4>Heading</h4><p>Description</p><p><a href="...">CTA</a></p> |
@@ -991,10 +1001,16 @@ Complete reference of all blocks and their variants.
 - Eyebrow text with horizontal yellow accent dash (`::before`, 32x3px, #ffd100)
 - h4 heading, description, gold CTA button (#ffc400 bg)
 - Equal spacing between image edge and card on all visible sides
+- Supports both `<picture>` and bare `<img>` for background image
+
+**hero-featured-right specifics**:
+- Card positioned on right side using `justify-content: flex-end` (desktop)
+- Mirror of default left positioning: `margin: 0 60px 0 0` instead of `0 0 0 60px`
+- Parser detects `.upspr-heroimage_content--right` class in source DOM
 
 **Responsive behavior**:
-- Mobile: min-height 400px, card max-width 480px, padding 24px, margin `200px 24px 24px` (equal left/bottom/right spacing of 24px)
-- Desktop (>=992px): card max-width 480px with `box-sizing: border-box`, padding 48px, margin `60px 0 60px 60px` (equal top/left/bottom spacing of 60px)
+- Mobile: min-height 650px, card max-width 480px, padding 24px, margin `200px 24px 24px` (equal left/bottom/right spacing of 24px)
+- Desktop (>=992px): card max-width 480px with `box-sizing: border-box`, padding 48px, margin `60px 0 60px 60px` (left) or `60px 60px 60px 0` (right)
 
 ---
 
@@ -1271,6 +1287,36 @@ Loads the referenced fragment HTML and inserts it into the page.
 
 ---
 
+### contact-card
+
+**Location**: `/blocks/contact-card/`
+
+| Variant | Class | Purpose |
+|---------|-------|---------|
+| Default | `.contact-card` | Contact info card with title and two-column layout |
+
+**Authoring:**
+```
+| Contact-Card |
+| --- | --- |
+| <h3>Title</h3> |
+| <h4>Left Label</h4><p>Text</p><ul><li>links</li></ul> | <h4>Right Label</h4><p>Text</p> |
+```
+
+**Features**:
+- White card (border-radius 5px, box-shadow `var(--shadow-card)`, max-width 1000px)
+- H3 title row (font-weight 500, `var(--heading-font-size-m)`)
+- Two-column layout with H4 subheadings as eyebrow-style labels (uppercase, letter-spacing 2.08px, `var(--color-muted)`)
+- Vertical separator between columns on desktop (`::after` on left column, 4px solid `var(--light-color)`)
+- DA button reset: inline links in paragraphs and lists get `.button` from `decorateButtons()`, CSS resets them
+- Contact list items: no bullets, standard link styling
+
+**Responsive behavior**:
+- Mobile: single column, `var(--spacing-l)` gap between columns
+- Desktop (>=992px): side-by-side, left 58% + right flex-1, vertical separator
+
+---
+
 ## Import Infrastructure
 
 Import scripts for bulk content migration are in `/tools/importer/`.
@@ -1289,10 +1335,11 @@ Import scripts for bulk content migration are in `/tools/importer/`.
 | `parsers/article-header.js` | Parser for article-header block (story article pages) |
 | `parsers/embed.js` | Parser for embed block (YouTube iframe → watch URL link) |
 | `parsers/social-share.js` | Parser for social-share block (social media share links) |
+| `parsers/contact-card.js` | Parser for contact-card block (Media Relations section on newsroom) |
 | `transformers/ups-cleanup.js` | Site-wide DOM cleanup transformer |
 | `import-story-article.js` | Import script for story article pages (article-header, body, embed, social-share, related stories) |
 | `import-story-article.bundle.js` | Bundled version of import-story-article.js |
-| `import-topic-hub.js` | Flexible import script for topic hub pages (hero-featured, columns-feature, fact-sheets, cards-stories). Uses DOM-walking approach to detect blocks in any order — works across pages with different layouts. |
+| `import-topic-hub.js` | Flexible import script for topic hub pages (hero-featured, columns-feature, fact-sheets, cards-stories, contact-card). Uses DOM-walking approach to detect blocks in any order — works across pages with different layouts. |
 | `import-topic-hub.bundle.js` | Bundled version of import-topic-hub.js |
 | `urls-topic-hub.txt` | URL list for topic-hub bulk import (5 pages: community, great-employer, newsroom, suppliers, sustainability) |
 

@@ -14,6 +14,7 @@
 
 /* ===== STAT ITEM ===== */
 .fact-sheets .fact-sheets-item {
+  box-sizing: border-box;
   position: relative;
   padding: var(--spacing-m) var(--spacing-s);
 }
@@ -72,7 +73,7 @@
   color: var(--cta-text);
 }
 
-/* ===== TABLET: 2 COLUMNS ===== */
+/* ===== TABLET ===== */
 @media (width >= 600px) {
   .fact-sheets .fact-sheets-grid {
     flex-flow: row wrap;
@@ -80,18 +81,39 @@
     align-items: stretch;
   }
 
-  .fact-sheets .fact-sheets-item {
-    flex: 0 0 50%;
-    max-width: 50%;
-  }
-
   /* Remove horizontal borders */
   .fact-sheets .fact-sheets-item:not(:last-child) {
     border-bottom: none;
   }
 
-  /* Vertical separator on odd items (left column) */
-  .fact-sheets .fact-sheets-item:nth-child(odd)::after {
+  /* Default: items fill row equally (3 items → 3 columns) */
+  .fact-sheets .fact-sheets-item {
+    flex: 1 0 0;
+  }
+
+  /* Vertical separator between items */
+  .fact-sheets .fact-sheets-item:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 12%;
+    bottom: 12%;
+    width: 4px;
+    background: var(--light-color);
+  }
+
+  /* 4+ items: force 2-column grid */
+  .fact-sheets .fact-sheets-grid:has(.fact-sheets-item:nth-child(4)) .fact-sheets-item {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+
+  /* 4+ items: reset separators to odd-only (left column) */
+  .fact-sheets .fact-sheets-grid:has(.fact-sheets-item:nth-child(4)) .fact-sheets-item::after {
+    content: none;
+  }
+
+  .fact-sheets .fact-sheets-grid:has(.fact-sheets-item:nth-child(4)) .fact-sheets-item:nth-child(odd)::after {
     content: "";
     position: absolute;
     right: 0;
@@ -123,6 +145,26 @@
 
   /* Vertical separator on all except last */
   .fact-sheets .fact-sheets-item:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 12%;
+    bottom: 12%;
+    width: 4px;
+    background: var(--light-color);
+  }
+
+  /* 4+ items: override tablet 2-column → desktop 4-column */
+  .fact-sheets .fact-sheets-grid:has(.fact-sheets-item:nth-child(4)) .fact-sheets-item {
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+
+  .fact-sheets .fact-sheets-grid:has(.fact-sheets-item:nth-child(4)) .fact-sheets-item::after {
+    content: none;
+  }
+
+  .fact-sheets .fact-sheets-grid:has(.fact-sheets-item:nth-child(4)) .fact-sheets-item:not(:last-child)::after {
     content: "";
     position: absolute;
     right: 0;

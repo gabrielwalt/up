@@ -725,6 +725,12 @@
           "instances": [
             ".pr04-threecolumnteaser .upspr-homepage-latest-stories"
           ]
+        },
+        {
+          "name": "contact-card",
+          "instances": [
+            ".upspr-contactus"
+          ]
         }
       ],
       "sections": [
