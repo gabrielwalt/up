@@ -193,6 +193,7 @@ function convertBlockTables(main) {
 export function decorateMain(main) {
   convertBlockTables(main);
   main.querySelectorAll(':scope > hr').forEach((hr) => hr.remove());
+  main.querySelectorAll(':scope > div > .metadata').forEach((m) => m.closest('div').remove());
   decorateIcons(main);
   buildAutoBlocks(main);
   decorateSections(main);

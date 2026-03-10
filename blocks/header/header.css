@@ -10,7 +10,6 @@ header .nav-wrapper {
 }
 
 header nav {
-  box-sizing: border-box;
   display: grid;
   grid-template:
     'brand hamburger tools' var(--nav-height)
