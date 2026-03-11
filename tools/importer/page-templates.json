@@ -244,7 +244,8 @@
       "urls": [
         "https://about.ups.com/us/en/our-stories/customer-first.html",
         "https://about.ups.com/us/en/our-stories/people-led.html",
-        "https://about.ups.com/us/en/our-stories/innovation-driven.html"
+        "https://about.ups.com/us/en/our-stories/innovation-driven.html",
+        "https://about.ups.com/us/en/all-stories.html"
       ],
       "description": "Story category listing page with h1 heading and story cards grid with Load More button",
       "blocks": [
@@ -608,7 +609,13 @@
         "https://about.ups.com/us/en/our-stories/people-led/ups-unveils-prosperous-daruma-express-envelope-design-in-japan.html",
         "https://about.ups.com/us/en/our-stories/people-led/from-ups-scholar-to-the-ups-store-owner---and-everything-in-betw.html",
         "https://about.ups.com/us/en/our-stories/people-led/special-olympics-coach-builds-lasting-career-in-a-specialist-rol.html",
-        "https://about.ups.com/us/en/our-stories/people-led/a-look-at-the-pioneering-women-who-shaped-ups-history.html"
+        "https://about.ups.com/us/en/our-stories/people-led/a-look-at-the-pioneering-women-who-shaped-ups-history.html",
+        "https://about.ups.com/us/en/newsroom/facebook-rules.html",
+        "https://about.ups.com/us/en/our-company/governance/carbon-neutral-credentials.html",
+        "https://about.ups.com/us/en/our-company/governance/transparency-rule.html",
+        "https://about.ups.com/us/en/our-impact/community/the-ups-foundation-mission-and-purpose.html",
+        "https://about.ups.com/us/en/our-impact/reporting/gender-equality-index---ups-france-.html",
+        "https://about.ups.com/us/en/our-impact/sustainability/key-highlights-from-ups-s-latest-sustainability-and-community-im.html"
       ],
       "description": "Story article page with article header (eyebrow, title, byline, subtitle, hero image), article body paragraphs with inline YouTube embeds, social share links, and related stories section",
       "blocks": [
@@ -691,7 +698,8 @@
         "https://about.ups.com/us/en/our-company/great-employer.html",
         "https://about.ups.com/us/en/newsroom.html",
         "https://about.ups.com/us/en/our-company/suppliers.html",
-        "https://about.ups.com/us/en/our-impact/sustainability.html"
+        "https://about.ups.com/us/en/our-impact/sustainability.html",
+        "https://about.ups.com/us/en/our-impact/ups-sustainability-and-social-impact-report.html"
       ],
       "description": "Topic landing page with hero-featured card, columns-feature cards, fact-sheets stats, default content text, and story cards grid",
       "blocks": [
@@ -739,15 +747,21 @@
           "name": "Breadcrumb and H1 Heading",
           "selector": ".pr24-background-colour",
           "style": null,
-          "blocks": ["breadcrumb"],
-          "defaultContent": [".upspr-headline h1"]
+          "blocks": [
+            "breadcrumb"
+          ],
+          "defaultContent": [
+            ".upspr-headline h1"
+          ]
         },
         {
           "id": "hero-featured",
           "name": "Hero Featured Card",
           "selector": ".hero.aem-GridColumn:has(.upspr-heroimage)",
           "style": null,
-          "blocks": ["hero-featured"],
+          "blocks": [
+            "hero-featured"
+          ],
           "defaultContent": []
         },
         {
@@ -755,23 +769,34 @@
           "name": "Report Feature Card",
           "selector": ".sectioncard:has(.upspr-xd-card)",
           "style": null,
-          "blocks": ["columns-feature"],
+          "blocks": [
+            "columns-feature"
+          ],
           "defaultContent": []
         },
         {
           "id": "stats",
           "name": "By the Numbers Stats",
-          "selector": [".upspr-facts-container", ".upspr-stats-container"],
+          "selector": [
+            ".upspr-facts-container",
+            ".upspr-stats-container"
+          ],
           "style": null,
-          "blocks": ["fact-sheets"],
-          "defaultContent": [".upspr-headline h3"]
+          "blocks": [
+            "fact-sheets"
+          ],
+          "defaultContent": [
+            ".upspr-headline h3"
+          ]
         },
         {
           "id": "leadership-feature",
           "name": "Leadership Feature Card",
           "selector": ".sectioncard:nth-of-type(2)",
           "style": null,
-          "blocks": ["columns-feature"],
+          "blocks": [
+            "columns-feature"
+          ],
           "defaultContent": []
         },
         {
@@ -780,14 +805,19 @@
           "selector": ".pr20-contentblock.text",
           "style": null,
           "blocks": [],
-          "defaultContent": [".cmp-text h2", ".cmp-text p"]
+          "defaultContent": [
+            ".cmp-text h2",
+            ".cmp-text p"
+          ]
         },
         {
           "id": "story-cards",
           "name": "Community Story Cards",
           "selector": ".pr04-threecolumnteaser",
           "style": null,
-          "blocks": ["cards-stories"],
+          "blocks": [
+            "cards-stories"
+          ],
           "defaultContent": []
         }
       ]

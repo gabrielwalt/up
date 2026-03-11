@@ -142,7 +142,7 @@ The import scripts in `tools/importer/` are designed to reproduce the exact cont
 3. **Create clean DOM elements in parsers** — Always use `document.createElement()` to build output elements rather than pushing source DOM nodes directly. Source nodes carry classes, attributes, and inline styles from the original site that don't belong in EDS content.
 4. **Verify after content changes** — When modifying content markup patterns (e.g., removing `<strong>` wrappers from eyebrows), update ALL parsers that produce that pattern. Search across `tools/importer/parsers/` for the old pattern.
 5. **Never overwrite verified content** — When simulating an import to check alignment, compare the parser output against existing content HTML. Fix the parser to match the content, never the other way around.
-6. **Use DOM-walking for flexible page imports** — Parsers call `element.replaceWith(table)`, which detaches the original element. After all parsers run, walk the DOM to collect `<table>` elements (parsed blocks) and remaining headings/paragraphs (default content) in natural document order. Group into sections (H1 = own section, block table = closes section, headings/text = accumulate until next block). This approach handles pages with different block orders using the same import script. See `import-topic-hub.js` for the reference implementation.
+6. **Use DOM-walking for flexible page imports** — Parsers call `element.replaceWith(table)`, which detaches the original element. After all parsers run, walk the DOM to collect `<table>` elements (parsed blocks) and remaining headings/paragraphs (default content) in natural document order. Group into sections (H1 = own section, block table = closes section, headings/text = accumulate until next block). This approach handles pages with different block orders using the same import script. See `import-universal.js` for the reference implementation.
 
 **Eyebrow text pattern (established):**
 - Content HTML: `<p>Eyebrow Text</p>` (plain paragraph)
@@ -1407,9 +1407,30 @@ Loads the referenced fragment HTML and inserts it into the page.
 
 Import scripts for bulk content migration are in `/tools/importer/`.
 
+### Universal Import Script
+
+**⚠️ CRITICAL: Always use `import-universal.bundle.js` for all page imports.** The universal script supersedes all per-template import scripts. It handles every page type on the UPS site automatically:
+
+- **Article pages**: Auto-detected via `.pr15-details` selector → article-header, body content, embed, social-share, related stories
+- **Standard pages**: All other pages → block registry detection, DOM walking, section grouping with wrapper-aware styles
+
+The script includes all 13 block parsers and the cleanup transformer. It detects section wrapper contexts (arc, highlight, arc-wave) before cleanup runs, then applies appropriate section-metadata styles in the output.
+
+**Usage:**
+```bash
+# Single page
+node run-bulk-import.js --import-script tools/importer/import-universal.bundle.js --urls urls-file.txt
+
+# All pages use the same script — no per-template scripts needed
+```
+
+### File Reference
+
 | File | Purpose |
 |------|---------|
 | `page-templates.json` | Template definitions mapping source URL patterns to blocks |
+| **`import-universal.js`** | **Universal import script — use this for ALL pages** |
+| **`import-universal.bundle.js`** | **Bundled universal script (passed to run-bulk-import.js)** |
 | `parsers/cards-awards.js` | Parser for cards-awards block |
 | `parsers/cards-stories.js` | Parser for cards-stories block |
 | `parsers/columns-feature.js` | Parser for columns-feature block |
@@ -1422,12 +1443,8 @@ Import scripts for bulk content migration are in `/tools/importer/`.
 | `parsers/embed.js` | Parser for embed block (YouTube iframe → watch URL link) |
 | `parsers/social-share.js` | Parser for social-share block (social media share links) |
 | `parsers/contact-card.js` | Parser for contact-card block (Media Relations section on newsroom) |
+| `parsers/navigation-tabs.js` | Parser for navigation-tabs block |
 | `transformers/ups-cleanup.js` | Site-wide DOM cleanup transformer |
-| `import-story-article.js` | Import script for story article pages (article-header, body, embed, social-share, related stories) |
-| `import-story-article.bundle.js` | Bundled version of import-story-article.js |
-| `import-topic-hub.js` | Flexible import script for topic hub pages (hero-featured, columns-feature, fact-sheets, cards-stories, contact-card). Uses DOM-walking approach to detect blocks in any order — works across pages with different layouts. |
-| `import-topic-hub.bundle.js` | Bundled version of import-topic-hub.js |
-| `urls-topic-hub.txt` | URL list for topic-hub bulk import (5 pages: community, great-employer, newsroom, suppliers, sustainability) |
 
 ---
 
@@ -1563,8 +1580,9 @@ Always include ARIA attributes on interactive elements:
 26. **Fragment default paths are root-relative** - `header.js` defaults to `/nav`, `footer.js` defaults to `/footer`. Local dev pages override these via `<meta name="nav" content="/content/nav"/>`. On deployed (DA), no override exists — the default root path is used.
 27. **`p.button-wrapper` must have `margin: 0`** — The global `p.button-wrapper` rule must NOT add margin. Spacing is handled by the `* + *` rule inside default-content-wrapper. Extra margin on button-wrapper leaks through section boundaries (where sections have `padding: 0`) and creates incorrect gaps.
 28. **Content HTML must be DA-compatible** — Blocks as `<table>` (not div-format), `<hr>` between section `<div>` wrappers, lowercase `<td>` block names. See "DA-Compatible Content HTML Format" in Migration Rules. Without this, DA merges all sections and/or loses block structure.
-29. **Import scripts: use DOM-walking, not rigid section assembly** — Parsers call `element.replaceWith(table)` which detaches the original element reference. Never search stale `block.element` for tables after parsing. Instead, walk the DOM after all parsers run to collect tables and default content in natural document order. This also handles pages with different block orders using the same template. See `import-topic-hub.js` for the reference pattern.
+29. **Import scripts: use DOM-walking, not rigid section assembly** — Parsers call `element.replaceWith(table)` which detaches the original element reference. Never search stale `block.element` for tables after parsing. Instead, walk the DOM after all parsers run to collect tables and default content in natural document order. This also handles pages with different block orders using the same template. See `import-universal.js` for the reference implementation.
 30. **User previews `.html` only, not `.plain.html`** — The user's preview environment only shows `.html` files. Import tools produce `.plain.html` but the user cannot see those. An import is not complete until a `.html` file exists. See "Content File Formats" in Content Architecture.
+31. **Always use `import-universal.bundle.js` for all imports** — The universal import script handles every page type (articles and standard pages). No per-template scripts exist — only the universal script.
 
 ---
 
