@@ -4177,7 +4177,7 @@
       "path": "/us/en/all-stories",
       "sourceUrl": "https://about.ups.com/us/en/all-stories.html",
       "imported": true,
-      "importValidated": false,
+      "importValidated": true,
       "blocks": [
         {
           "name": "cards-stories",
@@ -4199,7 +4199,7 @@
       "path": "/us/en/newsroom/facebook-rules",
       "sourceUrl": "https://about.ups.com/us/en/newsroom/facebook-rules.html",
       "imported": true,
-      "importValidated": false,
+      "importValidated": true,
       "blocks": [
         {
           "name": "article-header",
@@ -4234,7 +4234,7 @@
       "path": "/us/en/newsroom/press-releases",
       "sourceUrl": "https://about.ups.com/us/en/newsroom/press-releases.html",
       "imported": true,
-      "importValidated": false,
+      "importValidated": true,
       "blocks": [],
       "sectionStyles": []
     },
@@ -4242,7 +4242,7 @@
       "path": "/us/en/newsroom/statements",
       "sourceUrl": "https://about.ups.com/us/en/newsroom/statements.html",
       "imported": true,
-      "importValidated": false,
+      "importValidated": true,
       "blocks": [],
       "sectionStyles": []
     },
@@ -4250,7 +4250,7 @@
       "path": "/us/en/our-company/global-presence",
       "sourceUrl": "https://about.ups.com/us/en/our-company/global-presence.html",
       "imported": true,
-      "importValidated": false,
+      "importValidated": true,
       "blocks": [],
       "sectionStyles": []
     },
@@ -4258,34 +4258,34 @@
       "path": "/us/en/our-company/governance/carbon-neutral-credentials",
       "sourceUrl": "https://about.ups.com/us/en/our-company/governance/carbon-neutral-credentials.html",
       "imported": true,
-      "importValidated": false,
+      "importValidated": true,
       "blocks": [
         {
           "name": "article-header",
-          "critiqued": false,
-          "approved": false
+          "critiqued": true,
+          "approved": true
         },
         {
           "name": "social-share",
-          "critiqued": false,
-          "approved": false
+          "critiqued": true,
+          "approved": true
         },
         {
           "name": "cards-stories",
-          "critiqued": false,
-          "approved": false
+          "critiqued": true,
+          "approved": true
         }
       ],
       "sectionStyles": [
         {
           "name": "highlight",
-          "critiqued": false,
-          "approved": false
+          "critiqued": true,
+          "approved": true
         },
         {
           "name": "accent-bar",
-          "critiqued": false,
-          "approved": false
+          "critiqued": true,
+          "approved": true
         }
       ]
     },
@@ -4293,34 +4293,34 @@
       "path": "/us/en/our-company/governance/transparency-rule",
       "sourceUrl": "https://about.ups.com/us/en/our-company/governance/transparency-rule.html",
       "imported": true,
-      "importValidated": false,
+      "importValidated": true,
       "blocks": [
         {
           "name": "article-header",
-          "critiqued": false,
-          "approved": false
+          "critiqued": true,
+          "approved": true
         },
         {
           "name": "social-share",
-          "critiqued": false,
-          "approved": false
+          "critiqued": true,
+          "approved": true
         },
         {
           "name": "cards-stories",
-          "critiqued": false,
-          "approved": false
+          "critiqued": true,
+          "approved": true
         }
       ],
       "sectionStyles": [
         {
           "name": "highlight",
-          "critiqued": false,
-          "approved": false
+          "critiqued": true,
+          "approved": true
         },
         {
           "name": "accent-bar",
-          "critiqued": false,
-          "approved": false
+          "critiqued": true,
+          "approved": true
         }
       ]
     },
@@ -4344,34 +4344,34 @@
       "path": "/us/en/our-impact/community/the-ups-foundation-mission-and-purpose",
       "sourceUrl": "https://about.ups.com/us/en/our-impact/community/the-ups-foundation-mission-and-purpose.html",
       "imported": true,
-      "importValidated": false,
+      "importValidated": true,
       "blocks": [
         {
           "name": "article-header",
-          "critiqued": false,
-          "approved": false
+          "critiqued": true,
+          "approved": true
         },
         {
           "name": "social-share",
-          "critiqued": false,
-          "approved": false
+          "critiqued": true,
+          "approved": true
         },
         {
           "name": "cards-stories",
-          "critiqued": false,
-          "approved": false
+          "critiqued": true,
+          "approved": true
         }
       ],
       "sectionStyles": [
         {
           "name": "highlight",
-          "critiqued": false,
-          "approved": false
+          "critiqued": true,
+          "approved": true
         },
         {
           "name": "accent-bar",
-          "critiqued": false,
-          "approved": false
+          "critiqued": true,
+          "approved": true
         }
       ]
     },
@@ -4465,22 +4465,22 @@
       "path": "/us/en/our-impact/ups-sustainability-and-social-impact-report",
       "sourceUrl": "https://about.ups.com/us/en/our-impact/ups-sustainability-and-social-impact-report.html",
       "imported": true,
-      "importValidated": false,
+      "importValidated": true,
       "blocks": [
         {
           "name": "hero-featured",
-          "critiqued": false,
-          "approved": false
+          "critiqued": true,
+          "approved": true
         },
         {
           "name": "columns-quote",
-          "critiqued": false,
-          "approved": false
+          "critiqued": true,
+          "approved": true
         },
         {
           "name": "columns-feature",
-          "critiqued": false,
-          "approved": false
+          "critiqued": true,
+          "approved": true
         }
       ],
       "sectionStyles": []

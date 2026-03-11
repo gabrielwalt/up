@@ -14,6 +14,9 @@ export default function decorate(block) {
       statRows.push(row);
     } else if (row.querySelector('a')) {
       ctaRow = row;
+    } else if (row.querySelector('img, picture')) {
+      // Illustration-only items (image in place of number)
+      statRows.push(row);
     }
   });
 
@@ -32,9 +35,14 @@ export default function decorate(block) {
         iconDiv.className = 'fact-sheets-icon';
         iconDiv.append(img);
         item.append(iconDiv);
-      } else {
+      } else if (col.children.length > 0) {
         // Move text children (h4, p) directly into item
         [...col.children].forEach((child) => item.append(child));
+      } else if (col.textContent.trim()) {
+        // Text-only column (illustration description, no child elements)
+        const p = document.createElement('p');
+        p.textContent = col.textContent.trim();
+        item.append(p);
       }
     });
 

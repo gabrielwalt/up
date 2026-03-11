@@ -782,6 +782,7 @@ main > .section.highlight                                → margin-top: 80px; p
 4. **Specificity order in styles.css** - section-specific styles must come BEFORE template styles to maintain proper cascade
 5. **Visually hidden text** - use `clip-path: inset(50%)` instead of deprecated `clip: rect()`
 6. **Backdrop filter** - always include both `-webkit-backdrop-filter` and `backdrop-filter`
+7. **Never write selectors that depend on sibling element sequences** - Selectors like `h3 + h3 + p > strong` are fragile and break when an author reorders, adds, or removes content. If a style only works when exactly the right sequence of elements exists on the page, it is un-authorable. Authors cannot be expected to know that adding a heading before a paragraph will change its styling. Always prefer: (a) inline markup the author controls (e.g., `<strong>`), (b) block or section variants with explicit class names, or (c) accepting a "good enough" approximation over a fragile pixel-perfect hack. **Better to have a slightly imperfect style than an unmaintainable one.**
 
 ---
 

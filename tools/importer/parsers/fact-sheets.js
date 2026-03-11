@@ -22,8 +22,19 @@
  *   <a class="btn" href="...">View All Fact Sheets</a>
  * </div>
  */
-export default function parse(element, { document }) {
+export default function parse(element, { document, url, params }) {
   const cells = [];
+
+  // Detect sustainability sub-page color variant from URL
+  const pageUrl = (params && params.originalURL) || (url && url.toString()) || '';
+  let variantName = '';
+  if (pageUrl.includes('delivering-for-our-communities')) {
+    variantName = 'fact-sheets-communities';
+  } else if (pageUrl.includes('delivering-for-our-people')) {
+    variantName = 'fact-sheets-people';
+  } else if (pageUrl.includes('delivering-for-our-planet')) {
+    variantName = 'fact-sheets-planet';
+  }
 
   // Extract each stat item as a row: [image | h4+p]
   const statItems = element.querySelectorAll('li');
@@ -71,6 +82,7 @@ export default function parse(element, { document }) {
     cells.push([[p]]);
   }
 
-  const block = WebImporter.Blocks.createBlock(document, { name: 'Fact-Sheets', cells });
+  const blockName = variantName ? `Fact-Sheets (${variantName})` : 'Fact-Sheets';
+  const block = WebImporter.Blocks.createBlock(document, { name: blockName, cells });
   element.replaceWith(block);
 }

@@ -266,6 +266,12 @@ function groupIntoSections(items) {
     if (item.type === 'block') {
       const wrapper = item.element.dataset.wrapperStyle || null;
 
+      // Flush accumulated non-block content before starting a block section
+      const hasNonBlockContent = current.some((i) => i.type !== 'block');
+      if (hasNonBlockContent) {
+        flush();
+      }
+
       if (currentWrapper === undefined) {
         // Starting a new section context
         current.push(item);
@@ -311,7 +317,12 @@ function cleanClone(item, document) {
 
   if (/^h[1-6]$/.test(tag)) {
     const clean = document.createElement(tag);
-    clean.textContent = el.textContent.trim();
+    // Preserve inline content (links, strong, em) in headings
+    if (el.querySelector('a, strong, em')) {
+      clean.innerHTML = el.innerHTML;
+    } else {
+      clean.textContent = el.textContent.trim();
+    }
     return clean;
   }
 
@@ -372,6 +383,15 @@ function cloneInlineContent(source, target, document) {
         target.append(em);
       } else if (tag === 'br') {
         target.append(document.createElement('br'));
+      } else if (tag === 'img') {
+        const newImg = document.createElement('img');
+        newImg.src = node.src;
+        newImg.alt = node.alt || '';
+        target.append(newImg);
+      } else if (tag === 'sup') {
+        const sup = document.createElement('sup');
+        sup.textContent = node.textContent;
+        target.append(sup);
       } else {
         cloneInlineContent(node, target, document);
       }
@@ -443,7 +463,7 @@ function extractContentElement(el, content, document) {
   if (tag === 'P') {
     const p = document.createElement('p');
     cloneInlineContent(el, p, document);
-    if (p.textContent.trim() || p.querySelector('a')) {
+    if (p.textContent.trim() || p.querySelector('a') || p.querySelector('img')) {
       content.push(p);
     }
   } else if (tag === 'UL' || tag === 'OL') {
@@ -690,11 +710,7 @@ function transformStandard(payload) {
       const parts = text.split('\u2022').map((s) => s.trim()).filter(Boolean);
       const html = parts.map((part) => {
         const safe = part.replace(/&/g, '&amp;');
-        const spaceIdx = safe.indexOf(' ');
-        if (spaceIdx > 0) {
-          return `<strong>${safe.slice(0, spaceIdx)}</strong>${safe.slice(spaceIdx)}`;
-        }
-        return `<strong>${safe}</strong>`;
+        return `<strong>${safe.charAt(0)}</strong>${safe.slice(1)}`;
       }).join(' \u2022 ');
       p.innerHTML = html;
     }
