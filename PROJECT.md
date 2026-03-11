@@ -19,6 +19,7 @@ Migrating UPS "About" site (https://about.ups.com/us/en/home.html) to Adobe Edge
 11. **NEVER commit or push to Git yourself** - The user handles all Git operations (commit, push, branch management). Only make code changes to files — leave staging, committing, and pushing to the user.
 12. **Code must be compatible with DA markup** - DA (Document Authoring) wraps inline content in `<p>` tags in `.plain.html` output. Block JS and CSS must handle this gracefully with flexible selectors — never add JS workarounds to unwrap DA markup. See "DA Markup Compatibility" section.
 13. **Always produce `.html` files for content** - The user previews `.html` files only. Import tools create `.plain.html`, but the user cannot see those. Always ensure a `.html` file exists as the final deliverable. See "Content File Formats" in Content Architecture.
+14. **Keep `/sitemap.json` up-to-date at all times** - Update the sitemap whenever pages are discovered, imported, re-imported, refactored, validated, critiqued, or approved. This is the master tracker for migration progress. See "Sitemap Maintenance" section.
 
 ---
 
@@ -379,6 +380,8 @@ When code changes are complete, inform the user which files were modified so the
 | **New icon added** | Add to Local Assets section |
 | **CSS pattern discovered** | Add to CSS Patterns to Maintain |
 | **Bug fix with learnings** | Add to Reminders section |
+| **Page imported/re-imported/refactored** | Update `/sitemap.json` (see Sitemap Maintenance) |
+| **New page discovered on source site** | Add to `/sitemap.json` with `imported: false` |
 
 ### Documentation Checklist for New Blocks
 
@@ -444,6 +447,61 @@ When working on this project, periodically verify:
 - **Navigation**: Authored in DA, served at `/nav.plain.html` (deployed) or `/content/nav.plain.html` (local dev)
 - **Footer**: Authored in DA, served at `/footer.plain.html` (deployed) or `/content/footer.plain.html` (local dev)
 - **Import infrastructure**: `/tools/importer/` (page-templates.json, parsers/, transformers/)
+- **Sitemap**: `/sitemap.json` — Master tracker for all pages, import status, block usage, validation, and approval state. **Must be kept up-to-date at all times** (see Sitemap Maintenance section).
+
+---
+
+## Sitemap Maintenance (`/sitemap.json`)
+
+**`/sitemap.json` is the master tracker for the entire migration.** It must always reflect the current state of every page, fragment, and block in the project.
+
+### When to Update sitemap.json
+
+| Event | Required Update |
+|-------|-----------------|
+| **New page discovered on original site** | Add entry to `pages[]` with `sourceUrl`, `imported: false` |
+| **Page imported (content created)** | Set `imported: true`, update `importScript`, populate `blocks[]` and `sectionStyles[]` |
+| **Import re-run on existing page** | Update `blocks[]` and `sectionStyles[]` if they changed |
+| **Import validated** | Set `importValidated: true` |
+| **Block critiqued/approved** | Set `critiqued: true` / `approved: true` on the block entry |
+| **Content refactored (blocks changed)** | Update `blocks[]` to reflect current block composition |
+| **Section style added/removed** | Update `sectionStyles[]` to match current content |
+| **Page removed** | Remove the entry from `pages[]` |
+| **New fragment created** | Add entry to `fragments[]` |
+| **Import script changed** | Update `importScript` field on affected pages |
+
+### Structure Reference
+
+```json
+{
+  "fragments": [
+    { "path": "/nav", "imported": true, "importValidated": true, "critiqued": true, "approved": true }
+  ],
+  "pages": [
+    {
+      "path": "/us/en/page-name",
+      "sourceUrl": "https://about.ups.com/us/en/page-name.html",
+      "importScript": "import-universal",
+      "imported": true,
+      "importValidated": false,
+      "blocks": [
+        { "name": "block-name", "critiqued": false, "approved": false }
+      ],
+      "sectionStyles": [
+        { "name": "style-name", "critiqued": false, "approved": false }
+      ]
+    }
+  ]
+}
+```
+
+### Rules
+
+1. **Always update after any content change** — If blocks are added, removed, or restructured on a page, update the corresponding `blocks[]` array immediately.
+2. **Keep `importScript` current** — When pages move to a new import script (e.g., from per-page scripts to `import-universal`), update the field.
+3. **Don't mark validated/critiqued/approved prematurely** — Only set these flags after the corresponding step is actually completed and verified.
+4. **Paths use no extension** — Page paths are stored without `.html` (e.g., `/us/en/home`, not `/us/en/home.html`).
+5. **Source URLs are the original site URLs** — Always include the full `https://about.ups.com/...` URL.
 
 ---
 

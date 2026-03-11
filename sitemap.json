@@ -1,7 +1,7 @@
 {
-  "$schema": "migration-tracker-schema",
+  "$schema": "sitemap",
   "$version": "1.0.0",
-  "$description": "Tracks all pages in the UPS About site migration to AEM Edge Delivery Services. Source of truth for import status, validation, and styling approval.",
+  "$description": "Tracks all pages in the UPS About site migration to AEM Edge Delivery Services. Source of truth for page inventory, import status, block usage, validation, and styling approval. Must be kept up-to-date at all times.",
   "fragments": [
     {
       "path": "/nav",
