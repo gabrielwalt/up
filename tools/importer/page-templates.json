@@ -10,7 +10,7 @@
         {
           "name": "navigation-tabs",
           "instances": [
-            ".upspr-section-card__tabs, .upspr-section-card_tabs-container"
+            ".upspr-navigation-tabs"
           ]
         },
         {
@@ -46,7 +46,7 @@
         {
           "id": "navigation",
           "name": "Navigation Tabs",
-          "selector": ".upspr-section-card__tabs, .upspr-section-card_tabs-container",
+          "selector": ".upspr-navigation-tabs",
           "style": null,
           "blocks": [
             "navigation-tabs"

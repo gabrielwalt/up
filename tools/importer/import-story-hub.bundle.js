@@ -23,20 +23,43 @@ var CustomImportScript = (() => {
     default: () => import_story_hub_default
   });
 
-  // tools/importer/parsers/hero-featured.js
-  var ACRONYMS = /* @__PURE__ */ new Set(["UPS", "CEO", "CFO", "COO", "CTO", "CIO", "ESG", "DEI", "CSR", "US", "UK", "EU", "UN", "AI", "IT", "HR", "PR", "B2B", "B2C", "D2C"]);
+  // tools/importer/utils/text-utils.js
+  var ACRONYMS = /* @__PURE__ */ new Set([
+    "UPS",
+    "CEO",
+    "CFO",
+    "COO",
+    "CTO",
+    "CIO",
+    "ESG",
+    "DEI",
+    "CSR",
+    "US",
+    "UK",
+    "EU",
+    "UN",
+    "AI",
+    "IT",
+    "HR",
+    "PR",
+    "B2B",
+    "B2C",
+    "D2C"
+  ]);
   function toTitleCase(text) {
     if (!text || text.length < 3) return text;
     if (text !== text.toUpperCase()) return text;
-    return text.split(/(\s+)/).map((seg) => {
-      if (/^\s+$/.test(seg)) return seg;
-      return seg.split(/([-])/).map((part) => {
-        if (part === "-") return part;
+    return text.split(/(\s+)/).map((segment) => {
+      if (/^\s+$/.test(segment)) return segment;
+      return segment.split(/([-,])/).map((part) => {
+        if (part === "-" || part === ",") return part;
         if (ACRONYMS.has(part)) return part;
         return part.charAt(0).toUpperCase() + part.slice(1).toLowerCase();
       }).join("");
     }).join("");
   }
+
+  // tools/importer/utils/image-utils.js
   function resolveImageSrc(el, document, baseUrl) {
     const base = baseUrl || document.baseURI || document.location?.href || "";
     function resolve(raw) {
@@ -75,6 +98,8 @@ var CustomImportScript = (() => {
     }
     return null;
   }
+
+  // tools/importer/parsers/hero-featured.js
   function parse(element, { document, url }) {
     const baseUrl = url || document.baseURI || "";
     const imgUrl = resolveImageSrc(element, document, baseUrl);
@@ -125,24 +150,13 @@ var CustomImportScript = (() => {
       [imageCell],
       [contentCell]
     ];
-    const block = WebImporter.Blocks.createBlock(document, { name: "Hero-Featured", cells });
+    const contentWrapper = element.querySelector(".upspr-heroimage_content--right");
+    const blockName = contentWrapper ? "Hero-Featured (hero-featured-right)" : "Hero-Featured";
+    const block = WebImporter.Blocks.createBlock(document, { name: blockName, cells });
     element.replaceWith(block);
   }
 
   // tools/importer/parsers/cards-stories.js
-  var ACRONYMS2 = /* @__PURE__ */ new Set(["UPS", "CEO", "CFO", "COO", "CTO", "CIO", "ESG", "DEI", "CSR", "US", "UK", "EU", "UN", "AI", "IT", "HR", "PR", "B2B", "B2C", "D2C"]);
-  function toTitleCase2(text) {
-    if (!text || text.length < 3) return text;
-    if (text !== text.toUpperCase()) return text;
-    return text.split(/(\s+)/).map((seg) => {
-      if (/^\s+$/.test(seg)) return seg;
-      return seg.split(/([-])/).map((part) => {
-        if (part === "-") return part;
-        if (ACRONYMS2.has(part)) return part;
-        return part.charAt(0).toUpperCase() + part.slice(1).toLowerCase();
-      }).join("");
-    }).join("");
-  }
   function parse2(element, { document }) {
     const cells = [];
     const cardItems = element.querySelectorAll(".upspr-stories-list__item");
@@ -162,14 +176,14 @@ var CustomImportScript = (() => {
       const textCell = [];
       if (eyebrowText) {
         const p = document.createElement("p");
-        p.textContent = toTitleCase2(eyebrowText.textContent.trim());
+        p.textContent = toTitleCase(eyebrowText.textContent.trim());
         textCell.push(p);
       }
       if (title) {
         const h3 = document.createElement("h3");
         if (cardLink) {
           const link = document.createElement("a");
-          link.href = cardLink.href;
+          link.href = cardLink.getAttribute("href") || cardLink.href;
           link.textContent = title.textContent.trim();
           h3.append(link);
         } else {
@@ -254,18 +268,11 @@ var CustomImportScript = (() => {
       readerSpans.forEach((span) => {
         span.remove();
       });
-      const ACRONYMS3 = /* @__PURE__ */ new Set(["UPS", "CEO", "CFO", "COO", "CTO", "CIO", "ESG", "DEI", "CSR", "US", "UK", "EU", "UN", "AI", "IT", "HR", "PR", "B2B", "B2C", "D2C"]);
       element.querySelectorAll("h1, h2, h3, h4, h5, h6").forEach((heading) => {
-        const text = heading.textContent.trim();
-        if (text && text.length >= 3 && text === text.toUpperCase()) {
-          heading.textContent = text.split(/(\s+)/).map((seg) => {
-            if (/^\s+$/.test(seg)) return seg;
-            return seg.split(/([-,])/).map((part) => {
-              if (part === "-" || part === ",") return part;
-              if (ACRONYMS3.has(part)) return part;
-              return part.charAt(0).toUpperCase() + part.slice(1).toLowerCase();
-            }).join("");
-          }).join("");
+        const original = heading.textContent.trim();
+        const converted = toTitleCase(original);
+        if (converted !== original) {
+          heading.textContent = converted;
         }
       });
     }
@@ -281,7 +288,7 @@ var CustomImportScript = (() => {
   ];
   var PAGE_TEMPLATE = {
     name: "story-hub",
-    description: "Our Stories landing page with hero heading, hero-featured card, and story cards grid with Load More",
+    description: "Our Stories landing page with hero heading, hero-featured card, and story cards grid",
     urls: [
       "https://about.ups.com/us/en/our-stories.html"
     ],
@@ -299,26 +306,16 @@ var CustomImportScript = (() => {
       {
         id: "hero-heading",
         name: "Hero Heading",
-        selector: ".headline.aem-GridColumn",
-        style: "accent-bar",
+        style: "arc",
         blocks: [],
         defaultContent: [".upspr-headline h1"]
       },
       {
-        id: "hero-featured",
-        name: "Hero Featured Card",
-        selector: ".hero.aem-GridColumn",
+        id: "content",
+        name: "Hero Featured and Story Cards",
         style: null,
-        blocks: ["hero-featured"],
+        blocks: ["hero-featured", "cards-stories"],
         defaultContent: []
-      },
-      {
-        id: "story-cards",
-        name: "Story Cards Grid",
-        selector: ".pr04-threecolumnteaser",
-        style: null,
-        blocks: ["cards-stories"],
-        defaultContent: [".load-more-cta"]
       }
     ]
   };
@@ -349,6 +346,61 @@ var CustomImportScript = (() => {
     });
     return pageBlocks;
   }
+  function findBlockTables(main) {
+    const tableMap = {};
+    main.querySelectorAll("table").forEach((table) => {
+      const firstRow = table.querySelector("tr");
+      if (!firstRow) return;
+      const firstCell = firstRow.querySelector("th, td");
+      if (!firstCell) return;
+      const name = firstCell.textContent.trim().toLowerCase().replace(/\s+/g, "-");
+      if (!tableMap[name]) tableMap[name] = [];
+      tableMap[name].push(table);
+    });
+    return tableMap;
+  }
+  function createSectionMetadata(document, style) {
+    const table = document.createElement("table");
+    const headerRow = document.createElement("tr");
+    const headerCell = document.createElement("td");
+    headerCell.colSpan = 2;
+    headerCell.textContent = "Section Metadata";
+    headerRow.appendChild(headerCell);
+    table.appendChild(headerRow);
+    const dataRow = document.createElement("tr");
+    const keyCell = document.createElement("td");
+    keyCell.textContent = "Style";
+    const valueCell = document.createElement("td");
+    valueCell.textContent = style;
+    dataRow.appendChild(keyCell);
+    dataRow.appendChild(valueCell);
+    table.appendChild(dataRow);
+    return table;
+  }
+  function assembleSections(document, main, template, blockTableMap) {
+    const output = document.createElement("div");
+    template.sections.forEach((sectionDef, index) => {
+      if (index > 0) {
+        output.appendChild(document.createElement("hr"));
+      }
+      sectionDef.defaultContent.forEach((contentSelector) => {
+        const els = main.querySelectorAll(contentSelector);
+        els.forEach((el) => {
+          output.appendChild(el.cloneNode(true));
+        });
+      });
+      sectionDef.blocks.forEach((blockName) => {
+        const tables = blockTableMap[blockName] || [];
+        tables.forEach((table) => {
+          output.appendChild(table.cloneNode(true));
+        });
+      });
+      if (sectionDef.style) {
+        output.appendChild(createSectionMetadata(document, sectionDef.style));
+      }
+    });
+    return output;
+  }
   var import_story_hub_default = {
     transform: (payload) => {
       const { document, url, html, params } = payload;
@@ -366,6 +418,14 @@ var CustomImportScript = (() => {
         }
       });
       executeTransformers("afterTransform", main, payload);
+      const blockTableMap = findBlockTables(main);
+      if (PAGE_TEMPLATE.sections && PAGE_TEMPLATE.sections.length > 0) {
+        const sectionOutput = assembleSections(document, main, PAGE_TEMPLATE, blockTableMap);
+        main.innerHTML = "";
+        while (sectionOutput.firstChild) {
+          main.appendChild(sectionOutput.firstChild);
+        }
+      }
       const hr = document.createElement("hr");
       main.appendChild(hr);
       WebImporter.rules.createMetadata(main, document);
@@ -380,7 +440,8 @@ var CustomImportScript = (() => {
         report: {
           title: document.title,
           template: PAGE_TEMPLATE.name,
-          blocks: pageBlocks.map((b) => b.name)
+          blocks: pageBlocks.map((b) => b.name),
+          sections: PAGE_TEMPLATE.sections.map((s) => ({ id: s.id, style: s.style }))
         }
       }];
     }

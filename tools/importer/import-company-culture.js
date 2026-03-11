@@ -2,14 +2,14 @@
 /* global WebImporter */
 
 // PARSER IMPORTS
-import columnsFeatureParser from './parsers/columns-feature.js';
+import columnsMediaParser from './parsers/columns-media.js';
 
 // TRANSFORMER IMPORTS
 import upsCleanupTransformer from './transformers/ups-cleanup.js';
 
 // PARSER REGISTRY
 const parsers = {
-  'columns-feature': columnsFeatureParser,
+  'columns-media': columnsMediaParser,
 };
 
 // TRANSFORMER REGISTRY
@@ -20,39 +20,34 @@ const transformers = [
 // PAGE TEMPLATE CONFIGURATION
 const PAGE_TEMPLATE = {
   name: 'company-culture',
-  description: 'Culture page with hero heading and description, three image-text sections covering values, partnership, and leadership model',
+  description: 'Culture page with hero heading and description, culture wheel infographic, and three image-text value sections',
   urls: [
     'https://about.ups.com/us/en/our-company/our-culture.html',
   ],
   blocks: [
     {
-      name: 'columns-feature',
-      instances: ['.sectioncard .upspr-xd-card', '.responsivegrid .upspr-xd-card'],
+      name: 'columns-media',
+      instances: ['.herogrid', '#list-container', '.upspr-two-column_content_ytembed #list-container'],
     },
   ],
   sections: [
     {
-      id: 'hero-heading',
-      name: 'Hero Heading with Description',
-      selector: '.headline.aem-GridColumn',
+      id: 'hero-intro',
+      name: 'Hero Intro with Culture Wheel',
       style: 'arc-wave',
-      blocks: [],
-      defaultContent: ['.upspr-headline h1', '.upspr-headline p'],
+      blocks: ['columns-media'],
+      defaultContent: [],
     },
     {
       id: 'value-sections',
       name: 'Values, Partnership, and Leadership Sections',
-      selector: ['.sectioncard', '.responsivegrid:has(.upspr-xd-card)'],
       style: null,
-      blocks: ['columns-feature'],
+      blocks: ['columns-media'],
       defaultContent: [],
     },
   ],
 };
 
-/**
- * Execute all page transformers for a specific hook
- */
 function executeTransformers(hookName, element, payload) {
   const enhancedPayload = { ...payload, template: PAGE_TEMPLATE };
   transformers.forEach((transformerFn) => {
@@ -64,9 +59,6 @@ function executeTransformers(hookName, element, payload) {
   });
 }
 
-/**
- * Find all blocks on the page based on embedded template configuration
- */
 function findBlocksOnPage(document, template) {
   const pageBlocks = [];
   template.blocks.forEach((blockDef) => {
@@ -83,6 +75,47 @@ function findBlocksOnPage(document, template) {
     });
   });
   return pageBlocks;
+}
+
+/**
+ * Scan the DOM for parsed block tables and map them by block name.
+ */
+function findBlockTables(main) {
+  const tableMap = {};
+  main.querySelectorAll('table').forEach((table) => {
+    const firstRow = table.querySelector('tr');
+    if (!firstRow) return;
+    const firstCell = firstRow.querySelector('th, td');
+    if (!firstCell) return;
+    const name = firstCell.textContent.trim().toLowerCase().replace(/\s+/g, '-');
+    if (!tableMap[name]) tableMap[name] = [];
+    tableMap[name].push(table);
+  });
+  return tableMap;
+}
+
+/**
+ * Create a section-metadata block table for a given style.
+ */
+function createSectionMetadata(document, style) {
+  const table = document.createElement('table');
+  const headerRow = document.createElement('tr');
+  const headerCell = document.createElement('td');
+  headerCell.colSpan = 2;
+  headerCell.textContent = 'Section Metadata';
+  headerRow.appendChild(headerCell);
+  table.appendChild(headerRow);
+
+  const dataRow = document.createElement('tr');
+  const keyCell = document.createElement('td');
+  keyCell.textContent = 'Style';
+  const valueCell = document.createElement('td');
+  valueCell.textContent = style;
+  dataRow.appendChild(keyCell);
+  dataRow.appendChild(valueCell);
+  table.appendChild(dataRow);
+
+  return table;
 }
 
 export default {
@@ -109,14 +142,37 @@ export default {
     // 3. Execute afterTransform transformers
     executeTransformers('afterTransform', main, payload);
 
-    // 4. Apply WebImporter built-in rules
+    // 4. Find block tables in the DOM after parsing
+    const blockTableMap = findBlockTables(main);
+    const columnsMediaTables = blockTableMap['columns-media'] || [];
+
+    // 5. Assemble sections — culture page splits same-name block across sections
+    // First columns-media table (from .herogrid) → section 1 with arc-wave
+    // Remaining columns-media tables (from #list-container) → section 2
+    main.innerHTML = '';
+
+    // Section 1: Hero intro with culture wheel
+    if (columnsMediaTables.length > 0) {
+      main.appendChild(columnsMediaTables[0].cloneNode(true));
+    }
+    main.appendChild(createSectionMetadata(document, 'arc-wave'));
+
+    // Section break
+    main.appendChild(document.createElement('hr'));
+
+    // Section 2: Values, Partnership, and Leadership
+    for (let i = 1; i < columnsMediaTables.length; i++) {
+      main.appendChild(columnsMediaTables[i].cloneNode(true));
+    }
+
+    // 6. Apply WebImporter built-in rules
     const hr = document.createElement('hr');
     main.appendChild(hr);
     WebImporter.rules.createMetadata(main, document);
     WebImporter.rules.transformBackgroundImages(main, document);
     WebImporter.rules.adjustImageUrls(main, url, params.originalURL);
 
-    // 5. Generate sanitized path
+    // 7. Generate sanitized path
     const path = WebImporter.FileUtils.sanitizePath(
       new URL(params.originalURL).pathname.replace(/\/$/, '').replace(/\.html$/, ''),
     );

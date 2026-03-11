@@ -23,20 +23,43 @@ var CustomImportScript = (() => {
     default: () => import_company_hub_default
   });
 
-  // tools/importer/parsers/hero-featured.js
-  var ACRONYMS = /* @__PURE__ */ new Set(["UPS", "CEO", "CFO", "COO", "CTO", "CIO", "ESG", "DEI", "CSR", "US", "UK", "EU", "UN", "AI", "IT", "HR", "PR", "B2B", "B2C", "D2C"]);
+  // tools/importer/utils/text-utils.js
+  var ACRONYMS = /* @__PURE__ */ new Set([
+    "UPS",
+    "CEO",
+    "CFO",
+    "COO",
+    "CTO",
+    "CIO",
+    "ESG",
+    "DEI",
+    "CSR",
+    "US",
+    "UK",
+    "EU",
+    "UN",
+    "AI",
+    "IT",
+    "HR",
+    "PR",
+    "B2B",
+    "B2C",
+    "D2C"
+  ]);
   function toTitleCase(text) {
     if (!text || text.length < 3) return text;
     if (text !== text.toUpperCase()) return text;
-    return text.split(/(\s+)/).map((seg) => {
-      if (/^\s+$/.test(seg)) return seg;
-      return seg.split(/([-])/).map((part) => {
-        if (part === "-") return part;
+    return text.split(/(\s+)/).map((segment) => {
+      if (/^\s+$/.test(segment)) return segment;
+      return segment.split(/([-,])/).map((part) => {
+        if (part === "-" || part === ",") return part;
         if (ACRONYMS.has(part)) return part;
         return part.charAt(0).toUpperCase() + part.slice(1).toLowerCase();
       }).join("");
     }).join("");
   }
+
+  // tools/importer/utils/image-utils.js
   function resolveImageSrc(el, document, baseUrl) {
     const base = baseUrl || document.baseURI || document.location?.href || "";
     function resolve(raw) {
@@ -75,6 +98,8 @@ var CustomImportScript = (() => {
     }
     return null;
   }
+
+  // tools/importer/parsers/hero-featured.js
   function parse(element, { document, url }) {
     const baseUrl = url || document.baseURI || "";
     const imgUrl = resolveImageSrc(element, document, baseUrl);
@@ -125,7 +150,9 @@ var CustomImportScript = (() => {
       [imageCell],
       [contentCell]
     ];
-    const block = WebImporter.Blocks.createBlock(document, { name: "Hero-Featured", cells });
+    const contentWrapper = element.querySelector(".upspr-heroimage_content--right");
+    const blockName = contentWrapper ? "Hero-Featured (hero-featured-right)" : "Hero-Featured";
+    const block = WebImporter.Blocks.createBlock(document, { name: blockName, cells });
     element.replaceWith(block);
   }
 
@@ -175,67 +202,16 @@ var CustomImportScript = (() => {
   }
 
   // tools/importer/parsers/columns-feature.js
-  var ACRONYMS2 = /* @__PURE__ */ new Set(["UPS", "CEO", "CFO", "COO", "CTO", "CIO", "ESG", "DEI", "CSR", "US", "UK", "EU", "UN", "AI", "IT", "HR", "PR", "B2B", "B2C", "D2C"]);
-  function toTitleCase2(text) {
-    if (!text || text.length < 3) return text;
-    if (text !== text.toUpperCase()) return text;
-    return text.split(/(\s+)/).map((seg) => {
-      if (/^\s+$/.test(seg)) return seg;
-      return seg.split(/([-])/).map((part) => {
-        if (part === "-") return part;
-        if (ACRONYMS2.has(part)) return part;
-        return part.charAt(0).toUpperCase() + part.slice(1).toLowerCase();
-      }).join("");
-    }).join("");
-  }
-  function resolveImageSrc2(el, document, baseUrl) {
-    const base = baseUrl || document.baseURI || document.location?.href || "";
-    function resolve(raw) {
-      if (!raw) return null;
-      const url = raw.split(",")[0].trim().split(/\s+/)[0];
-      if (!url) return null;
-      if (/^https?:\/\//.test(url)) return url;
-      try {
-        return new URL(url, base).href;
-      } catch {
-      }
-      try {
-        const origin = new URL(base).origin;
-        if (url.startsWith("/")) return origin + url;
-      } catch {
-      }
-      return url;
-    }
-    const picture = el.querySelector("picture");
-    if (picture) {
-      const sources = picture.querySelectorAll("source");
-      for (const source of sources) {
-        const srcset = source.getAttribute("srcset") || source.getAttribute("data-srcset");
-        const resolved = resolve(srcset);
-        if (resolved) return resolved;
-      }
-    }
-    const img = el.querySelector("img");
-    if (img) {
-      const srcset = img.getAttribute("srcset") || img.getAttribute("data-srcset");
-      const resolved = resolve(srcset);
-      if (resolved) return resolved;
-      const src = img.getAttribute("src") || img.getAttribute("data-src");
-      if (src) return resolve(src) || src;
-      if (img.src) return img.src;
-    }
-    return null;
-  }
   function parse3(element, { document, url }) {
     const baseUrl = url || document.baseURI || "";
-    const imgUrl = resolveImageSrc2(element, document, baseUrl);
+    const imgUrl = resolveImageSrc(element, document, baseUrl);
     const contentDiv = element.querySelector(".upspr-xd-card_content");
     const textCell = [];
     if (contentDiv) {
       const eyebrow = contentDiv.querySelector(".upspr-xd-card_eyebrow");
       if (eyebrow) {
         const p = document.createElement("p");
-        p.textContent = toTitleCase2(eyebrow.textContent.trim());
+        p.textContent = toTitleCase(eyebrow.textContent.trim());
         textCell.push(p);
       }
       const heading = contentDiv.querySelector("h2, h3");
@@ -283,68 +259,23 @@ var CustomImportScript = (() => {
   }
 
   // tools/importer/parsers/columns-quote.js
-  var ACRONYMS3 = /* @__PURE__ */ new Set(["UPS", "CEO", "CFO", "COO", "CTO", "CIO", "ESG", "DEI", "CSR", "US", "UK", "EU", "UN", "AI", "IT", "HR", "PR", "B2B", "B2C", "D2C"]);
-  function toTitleCase3(text) {
-    if (!text || text.length < 3) return text;
-    if (text !== text.toUpperCase()) return text;
-    return text.split(/(\s+)/).map((seg) => {
-      if (/^\s+$/.test(seg)) return seg;
-      return seg.split(/([-])/).map((part) => {
-        if (part === "-") return part;
-        if (ACRONYMS3.has(part)) return part;
-        return part.charAt(0).toUpperCase() + part.slice(1).toLowerCase();
-      }).join("");
-    }).join("");
-  }
-  function resolveImageSrc3(el, doc) {
-    const base = doc.baseURI || doc.location?.href || "";
-    const picture = el.querySelector("picture");
-    if (picture) {
-      const sources = picture.querySelectorAll("source");
-      for (const source of sources) {
-        const srcset = source.getAttribute("srcset");
-        if (srcset) {
-          const raw = srcset.split(",")[0].trim().split(/\s+/)[0];
-          try {
-            return new URL(raw, base).href;
-          } catch {
-            return raw;
-          }
-        }
-      }
-    }
-    const img = el.querySelector("img");
-    if (img) {
-      const srcset = img.getAttribute("srcset");
-      if (srcset) {
-        const raw = srcset.split(",")[0].trim().split(/\s+/)[0];
-        try {
-          return new URL(raw, base).href;
-        } catch {
-          return raw;
-        }
-      }
-      if (img.src) return img.src;
-    }
-    return null;
-  }
   function parse4(element, { document }) {
     const quoteCell = [];
     const quoteHeading = element.querySelector(".upspr-testimonial__wrap--title, .upspr-testimonial__wrap h3");
     if (quoteHeading) {
       const h3 = document.createElement("h3");
-      h3.textContent = quoteHeading.textContent.trim();
+      h3.textContent = quoteHeading.textContent.trim().replace(/^[\u201C\u201D\u201E\u201F"«»]+|[\u201C\u201D\u201E\u201F"«»]+$/g, "").trim();
       quoteCell.push(h3);
     }
     const attribution = element.querySelector(".upspr-testimonial__wrap--name .upspr-eyebrow-text") || element.querySelector(".upspr-testimonial__wrap--name");
     if (attribution) {
       const p = document.createElement("p");
-      p.textContent = toTitleCase3(attribution.textContent.trim());
+      p.textContent = toTitleCase(attribution.textContent.trim());
       quoteCell.push(p);
     }
     const imageCell = [];
     const imgContainer = element.querySelector(".upspr-testimonial__image") || element;
-    const imgUrl = resolveImageSrc3(imgContainer, document);
+    const imgUrl = resolveImageSrc(imgContainer, document);
     if (imgUrl) {
       const img = document.createElement("img");
       img.src = imgUrl;
@@ -425,18 +356,11 @@ var CustomImportScript = (() => {
       readerSpans.forEach((span) => {
         span.remove();
       });
-      const ACRONYMS4 = /* @__PURE__ */ new Set(["UPS", "CEO", "CFO", "COO", "CTO", "CIO", "ESG", "DEI", "CSR", "US", "UK", "EU", "UN", "AI", "IT", "HR", "PR", "B2B", "B2C", "D2C"]);
       element.querySelectorAll("h1, h2, h3, h4, h5, h6").forEach((heading) => {
-        const text = heading.textContent.trim();
-        if (text && text.length >= 3 && text === text.toUpperCase()) {
-          heading.textContent = text.split(/(\s+)/).map((seg) => {
-            if (/^\s+$/.test(seg)) return seg;
-            return seg.split(/([-,])/).map((part) => {
-              if (part === "-" || part === ",") return part;
-              if (ACRONYMS4.has(part)) return part;
-              return part.charAt(0).toUpperCase() + part.slice(1).toLowerCase();
-            }).join("");
-          }).join("");
+        const original = heading.textContent.trim();
+        const converted = toTitleCase(original);
+        if (converted !== original) {
+          heading.textContent = converted;
         }
       });
     }
@@ -481,7 +405,7 @@ var CustomImportScript = (() => {
         id: "hero-heading",
         name: "Hero Heading",
         selector: ".headline.aem-GridColumn",
-        style: "accent-bar",
+        style: "arc",
         blocks: [],
         defaultContent: [".upspr-headline h1"]
       },
@@ -538,6 +462,19 @@ var CustomImportScript = (() => {
     });
     return pageBlocks;
   }
+  function findBlockTables(main) {
+    const tableMap = {};
+    main.querySelectorAll("table").forEach((table) => {
+      const firstRow = table.querySelector("tr");
+      if (!firstRow) return;
+      const firstCell = firstRow.querySelector("th, td");
+      if (!firstCell) return;
+      const name = firstCell.textContent.trim().toLowerCase().replace(/\s+/g, "-");
+      if (!tableMap[name]) tableMap[name] = [];
+      tableMap[name].push(table);
+    });
+    return tableMap;
+  }
   function createSectionMetadata(document, style) {
     const table = document.createElement("table");
     const headerRow = document.createElement("tr");
@@ -556,7 +493,7 @@ var CustomImportScript = (() => {
     table.appendChild(dataRow);
     return table;
   }
-  function assembleSections(document, main, template, pageBlocks) {
+  function assembleSections(document, main, template, blockTableMap) {
     const output = document.createElement("div");
     template.sections.forEach((sectionDef, index) => {
       if (index > 0) {
@@ -570,14 +507,9 @@ var CustomImportScript = (() => {
         });
       });
       sectionDef.blocks.forEach((blockName) => {
-        const matchedBlocks = pageBlocks.filter((b) => b.name === blockName);
-        matchedBlocks.forEach((block) => {
-          const tables = block.element.querySelectorAll("table");
-          if (tables.length > 0) {
-            tables.forEach((table) => {
-              output.appendChild(table.cloneNode(true));
-            });
-          }
+        const tables = blockTableMap[blockName] || [];
+        tables.forEach((table) => {
+          output.appendChild(table.cloneNode(true));
         });
       });
       if (sectionDef.style) {
@@ -603,8 +535,9 @@ var CustomImportScript = (() => {
         }
       });
       executeTransformers("afterTransform", main, payload);
+      const blockTableMap = findBlockTables(main);
       if (PAGE_TEMPLATE.sections && PAGE_TEMPLATE.sections.length > 0) {
-        const sectionOutput = assembleSections(document, main, PAGE_TEMPLATE, pageBlocks);
+        const sectionOutput = assembleSections(document, main, PAGE_TEMPLATE, blockTableMap);
         main.innerHTML = "";
         while (sectionOutput.firstChild) {
           main.appendChild(sectionOutput.firstChild);

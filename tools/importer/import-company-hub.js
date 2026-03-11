@@ -120,6 +120,25 @@ function findBlocksOnPage(document, template) {
 }
 
 /**
+ * Scan the DOM for parsed block tables and map them by block name.
+ * After parsers call element.replaceWith(table), the original elements are detached.
+ * This function finds the replacement tables in the live DOM.
+ */
+function findBlockTables(main) {
+  const tableMap = {};
+  main.querySelectorAll('table').forEach((table) => {
+    const firstRow = table.querySelector('tr');
+    if (!firstRow) return;
+    const firstCell = firstRow.querySelector('th, td');
+    if (!firstCell) return;
+    const name = firstCell.textContent.trim().toLowerCase().replace(/\s+/g, '-');
+    if (!tableMap[name]) tableMap[name] = [];
+    tableMap[name].push(table);
+  });
+  return tableMap;
+}
+
+/**
  * Create a section-metadata block table for a given style
  */
 function createSectionMetadata(document, style) {
@@ -148,7 +167,7 @@ function createSectionMetadata(document, style) {
  * Iterates over the template sections config, finds matched source elements,
  * collects their parsed output, and assembles them with <hr> separators.
  */
-function assembleSections(document, main, template, pageBlocks) {
+function assembleSections(document, main, template, blockTableMap) {
   const output = document.createElement('div');
 
   template.sections.forEach((sectionDef, index) => {
@@ -168,15 +187,9 @@ function assembleSections(document, main, template, pageBlocks) {
 
     // Collect parsed block tables for this section
     sectionDef.blocks.forEach((blockName) => {
-      const matchedBlocks = pageBlocks.filter((b) => b.name === blockName);
-      matchedBlocks.forEach((block) => {
-        // After parsing, the block element should contain a WebImporter table
-        const tables = block.element.querySelectorAll('table');
-        if (tables.length > 0) {
-          tables.forEach((table) => {
-            output.appendChild(table.cloneNode(true));
-          });
-        }
+      const tables = blockTableMap[blockName] || [];
+      tables.forEach((table) => {
+        output.appendChild(table.cloneNode(true));
       });
     });
 
@@ -213,23 +226,26 @@ export default {
     // 3. Execute afterTransform transformers
     executeTransformers('afterTransform', main, payload);
 
-    // 4. Assemble sections with breaks and section-metadata
+    // 4. Find block tables in the DOM after parsing
+    const blockTableMap = findBlockTables(main);
+
+    // 5. Assemble sections with breaks and section-metadata
     if (PAGE_TEMPLATE.sections && PAGE_TEMPLATE.sections.length > 0) {
-      const sectionOutput = assembleSections(document, main, PAGE_TEMPLATE, pageBlocks);
+      const sectionOutput = assembleSections(document, main, PAGE_TEMPLATE, blockTableMap);
       main.innerHTML = '';
       while (sectionOutput.firstChild) {
         main.appendChild(sectionOutput.firstChild);
       }
     }
 
-    // 5. Apply WebImporter built-in rules
+    // 6. Apply WebImporter built-in rules
     const hr = document.createElement('hr');
     main.appendChild(hr);
     WebImporter.rules.createMetadata(main, document);
     WebImporter.rules.transformBackgroundImages(main, document);
     WebImporter.rules.adjustImageUrls(main, url, params.originalURL);
 
-    // 6. Generate sanitized path
+    // 7. Generate sanitized path
     const path = WebImporter.FileUtils.sanitizePath(
       new URL(params.originalURL).pathname.replace(/\/$/, '').replace(/\.html$/, ''),
     );

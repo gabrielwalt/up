@@ -23,20 +23,43 @@ var CustomImportScript = (() => {
     default: () => import_company_culture_default
   });
 
-  // tools/importer/parsers/columns-feature.js
-  var ACRONYMS = /* @__PURE__ */ new Set(["UPS", "CEO", "CFO", "COO", "CTO", "CIO", "ESG", "DEI", "CSR", "US", "UK", "EU", "UN", "AI", "IT", "HR", "PR", "B2B", "B2C", "D2C"]);
+  // tools/importer/utils/text-utils.js
+  var ACRONYMS = /* @__PURE__ */ new Set([
+    "UPS",
+    "CEO",
+    "CFO",
+    "COO",
+    "CTO",
+    "CIO",
+    "ESG",
+    "DEI",
+    "CSR",
+    "US",
+    "UK",
+    "EU",
+    "UN",
+    "AI",
+    "IT",
+    "HR",
+    "PR",
+    "B2B",
+    "B2C",
+    "D2C"
+  ]);
   function toTitleCase(text) {
     if (!text || text.length < 3) return text;
     if (text !== text.toUpperCase()) return text;
-    return text.split(/(\s+)/).map((seg) => {
-      if (/^\s+$/.test(seg)) return seg;
-      return seg.split(/([-])/).map((part) => {
-        if (part === "-") return part;
+    return text.split(/(\s+)/).map((segment) => {
+      if (/^\s+$/.test(segment)) return segment;
+      return segment.split(/([-,])/).map((part) => {
+        if (part === "-" || part === ",") return part;
         if (ACRONYMS.has(part)) return part;
         return part.charAt(0).toUpperCase() + part.slice(1).toLowerCase();
       }).join("");
     }).join("");
   }
+
+  // tools/importer/utils/image-utils.js
   function resolveImageSrc(el, document, baseUrl) {
     const base = baseUrl || document.baseURI || document.location?.href || "";
     function resolve(raw) {
@@ -75,59 +98,117 @@ var CustomImportScript = (() => {
     }
     return null;
   }
+
+  // tools/importer/parsers/columns-media.js
+  function cleanAltText(alt) {
+    if (!alt) return alt;
+    return alt.replace(/\bu-p-s-ers\b/gi, "UPSers").replace(/\bsmiling as the break\b/g, "smiling as they break").replace(/\bhigh-five in and unloading\b/g, "high-five in an unloading");
+  }
+  function cloneInlineContent(sourceEl, document) {
+    const fragment = document.createDocumentFragment();
+    sourceEl.childNodes.forEach((node) => {
+      if (node.nodeType === 3) {
+        fragment.appendChild(document.createTextNode(node.textContent));
+      } else if (node.nodeType === 1) {
+        const tag = node.tagName.toLowerCase();
+        if (tag === "b" || tag === "strong") {
+          const strong = document.createElement("strong");
+          strong.textContent = node.textContent;
+          fragment.appendChild(strong);
+        } else if (tag === "em" || tag === "i") {
+          const em = document.createElement("em");
+          em.textContent = node.textContent;
+          fragment.appendChild(em);
+        } else if (tag === "a") {
+          const a = document.createElement("a");
+          a.href = node.href;
+          a.textContent = node.textContent;
+          fragment.appendChild(a);
+        } else if (tag === "br") {
+          fragment.appendChild(document.createElement("br"));
+        } else {
+          fragment.appendChild(document.createTextNode(node.textContent));
+        }
+      }
+    });
+    return fragment;
+  }
   function parse(element, { document, url }) {
     const baseUrl = url || document.baseURI || "";
-    const imgUrl = resolveImageSrc(element, document, baseUrl);
-    const contentDiv = element.querySelector(".upspr-xd-card_content");
-    const textCell = [];
-    if (contentDiv) {
-      const eyebrow = contentDiv.querySelector(".upspr-xd-card_eyebrow");
-      if (eyebrow) {
-        const p = document.createElement("p");
-        p.textContent = toTitleCase(eyebrow.textContent.trim());
-        textCell.push(p);
+    const heroText = element.querySelector(".herotext");
+    const heroImage = element.querySelector(".heroimage");
+    if (heroText && heroImage) {
+      const cells2 = [];
+      const textCell = [];
+      const h1 = heroText.querySelector("h1");
+      if (h1) {
+        const heading = document.createElement("h1");
+        heading.textContent = toTitleCase(h1.textContent.trim());
+        textCell.push(heading);
       }
-      const heading = contentDiv.querySelector("h2, h3");
-      if (heading) {
-        const h = document.createElement(heading.tagName.toLowerCase());
-        h.textContent = heading.textContent.trim();
-        textCell.push(h);
-      }
-      const paragraphs = contentDiv.querySelectorAll(":scope > p");
+      const paragraphs = heroText.querySelectorAll(":scope > p");
       paragraphs.forEach((srcP) => {
         const p = document.createElement("p");
-        p.textContent = srcP.textContent.trim();
+        p.appendChild(cloneInlineContent(srcP, document));
         textCell.push(p);
       });
-      const cta = contentDiv.querySelector("a.btn, a.btn-secondary");
-      if (cta) {
-        const icon = cta.querySelector("i.upspr");
-        if (icon) icon.remove();
-        const p = document.createElement("p");
-        const link = document.createElement("a");
-        link.href = cta.href;
-        link.textContent = cta.textContent.trim();
-        p.append(link);
-        textCell.push(p);
+      const imageCell = [];
+      const imgUrl = resolveImageSrc(heroImage, document, baseUrl);
+      if (imgUrl) {
+        const img = document.createElement("img");
+        img.src = imgUrl;
+        const origImg = heroImage.querySelector("img");
+        const alt = origImg?.alt || "";
+        img.alt = alt || "UPS Culture diagram showing purpose, strategy, culture and stakeholders";
+        imageCell.push(img);
       }
+      cells2.push([textCell, imageCell]);
+      const block2 = WebImporter.Blocks.createBlock(document, { name: "Columns-Media", cells: cells2 });
+      element.replaceWith(block2);
+      return;
     }
-    const imageCell = [];
-    if (imgUrl) {
-      const img = document.createElement("img");
-      img.src = imgUrl;
-      const origImg = element.querySelector("img");
-      if (origImg?.alt) img.alt = origImg.alt;
-      imageCell.push(img);
-    }
-    const firstCol = element.querySelector(".row > div:first-child");
-    const imageIsFirst = firstCol && (firstCol.querySelector("picture") || firstCol.querySelector("img"));
+    const items = element.querySelectorAll(".list-item");
+    if (!items.length) return;
     const cells = [];
-    if (imageIsFirst) {
+    items.forEach((item) => {
+      const imageCell = [];
+      const imgUrl = resolveImageSrc(item, document, baseUrl);
+      if (imgUrl) {
+        const img = document.createElement("img");
+        img.src = imgUrl;
+        const origImg = item.querySelector("img");
+        if (origImg?.alt) img.alt = cleanAltText(origImg.alt);
+        imageCell.push(img);
+      }
+      const textCell = [];
+      const titleEl = item.querySelector(".list-item-title");
+      if (titleEl) {
+        const h2 = document.createElement("h2");
+        h2.textContent = toTitleCase(titleEl.textContent.trim());
+        textCell.push(h2);
+      }
+      const descEl = item.querySelector(".list-item-description");
+      if (descEl) {
+        const descParagraphs = descEl.querySelectorAll(":scope > p");
+        descParagraphs.forEach((srcP) => {
+          const p = document.createElement("p");
+          p.appendChild(cloneInlineContent(srcP, document));
+          textCell.push(p);
+        });
+        const lists = descEl.querySelectorAll(":scope > ul");
+        lists.forEach((srcUl) => {
+          const ul = document.createElement("ul");
+          srcUl.querySelectorAll(":scope > li").forEach((srcLi) => {
+            const li = document.createElement("li");
+            li.appendChild(cloneInlineContent(srcLi, document));
+            ul.appendChild(li);
+          });
+          textCell.push(ul);
+        });
+      }
       cells.push([imageCell, textCell]);
-    } else {
-      cells.push([textCell, imageCell]);
-    }
-    const block = WebImporter.Blocks.createBlock(document, { name: "Columns-Feature", cells });
+    });
+    const block = WebImporter.Blocks.createBlock(document, { name: "Columns-Media", cells });
     element.replaceWith(block);
   }
 
@@ -197,18 +278,11 @@ var CustomImportScript = (() => {
       readerSpans.forEach((span) => {
         span.remove();
       });
-      const ACRONYMS2 = /* @__PURE__ */ new Set(["UPS", "CEO", "CFO", "COO", "CTO", "CIO", "ESG", "DEI", "CSR", "US", "UK", "EU", "UN", "AI", "IT", "HR", "PR", "B2B", "B2C", "D2C"]);
       element.querySelectorAll("h1, h2, h3, h4, h5, h6").forEach((heading) => {
-        const text = heading.textContent.trim();
-        if (text && text.length >= 3 && text === text.toUpperCase()) {
-          heading.textContent = text.split(/(\s+)/).map((seg) => {
-            if (/^\s+$/.test(seg)) return seg;
-            return seg.split(/([-,])/).map((part) => {
-              if (part === "-" || part === ",") return part;
-              if (ACRONYMS2.has(part)) return part;
-              return part.charAt(0).toUpperCase() + part.slice(1).toLowerCase();
-            }).join("");
-          }).join("");
+        const original = heading.textContent.trim();
+        const converted = toTitleCase(original);
+        if (converted !== original) {
+          heading.textContent = converted;
         }
       });
     }
@@ -216,38 +290,36 @@ var CustomImportScript = (() => {
 
   // tools/importer/import-company-culture.js
   var parsers = {
-    "columns-feature": parse
+    "columns-media": parse
   };
   var transformers = [
     transform
   ];
   var PAGE_TEMPLATE = {
     name: "company-culture",
-    description: "Culture page with hero heading and description, three image-text sections covering values, partnership, and leadership model",
+    description: "Culture page with hero heading and description, culture wheel infographic, and three image-text value sections",
     urls: [
       "https://about.ups.com/us/en/our-company/our-culture.html"
     ],
     blocks: [
       {
-        name: "columns-feature",
-        instances: [".sectioncard .upspr-xd-card", ".responsivegrid .upspr-xd-card"]
+        name: "columns-media",
+        instances: [".herogrid", "#list-container", ".upspr-two-column_content_ytembed #list-container"]
       }
     ],
     sections: [
       {
-        id: "hero-heading",
-        name: "Hero Heading with Description",
-        selector: ".headline.aem-GridColumn",
-        style: null,
-        blocks: [],
-        defaultContent: [".upspr-headline h1", ".upspr-headline p"]
+        id: "hero-intro",
+        name: "Hero Intro with Culture Wheel",
+        style: "arc-wave",
+        blocks: ["columns-media"],
+        defaultContent: []
       },
       {
         id: "value-sections",
         name: "Values, Partnership, and Leadership Sections",
-        selector: [".sectioncard", ".responsivegrid:has(.upspr-xd-card)"],
         style: null,
-        blocks: ["columns-feature"],
+        blocks: ["columns-media"],
         defaultContent: []
       }
     ]
@@ -279,6 +351,37 @@ var CustomImportScript = (() => {
     });
     return pageBlocks;
   }
+  function findBlockTables(main) {
+    const tableMap = {};
+    main.querySelectorAll("table").forEach((table) => {
+      const firstRow = table.querySelector("tr");
+      if (!firstRow) return;
+      const firstCell = firstRow.querySelector("th, td");
+      if (!firstCell) return;
+      const name = firstCell.textContent.trim().toLowerCase().replace(/\s+/g, "-");
+      if (!tableMap[name]) tableMap[name] = [];
+      tableMap[name].push(table);
+    });
+    return tableMap;
+  }
+  function createSectionMetadata(document, style) {
+    const table = document.createElement("table");
+    const headerRow = document.createElement("tr");
+    const headerCell = document.createElement("td");
+    headerCell.colSpan = 2;
+    headerCell.textContent = "Section Metadata";
+    headerRow.appendChild(headerCell);
+    table.appendChild(headerRow);
+    const dataRow = document.createElement("tr");
+    const keyCell = document.createElement("td");
+    keyCell.textContent = "Style";
+    const valueCell = document.createElement("td");
+    valueCell.textContent = style;
+    dataRow.appendChild(keyCell);
+    dataRow.appendChild(valueCell);
+    table.appendChild(dataRow);
+    return table;
+  }
   var import_company_culture_default = {
     transform: (payload) => {
       const { document, url, html, params } = payload;
@@ -296,6 +399,17 @@ var CustomImportScript = (() => {
         }
       });
       executeTransformers("afterTransform", main, payload);
+      const blockTableMap = findBlockTables(main);
+      const columnsMediaTables = blockTableMap["columns-media"] || [];
+      main.innerHTML = "";
+      if (columnsMediaTables.length > 0) {
+        main.appendChild(columnsMediaTables[0].cloneNode(true));
+      }
+      main.appendChild(createSectionMetadata(document, "arc-wave"));
+      main.appendChild(document.createElement("hr"));
+      for (let i = 1; i < columnsMediaTables.length; i++) {
+        main.appendChild(columnsMediaTables[i].cloneNode(true));
+      }
       const hr = document.createElement("hr");
       main.appendChild(hr);
       WebImporter.rules.createMetadata(main, document);
