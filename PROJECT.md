@@ -21,6 +21,7 @@ Migrating UPS "About" site (https://about.ups.com/us/en/home.html) to Adobe Edge
 13. **Always produce `.html` files for content** - The user previews `.html` files only. Import tools create `.plain.html`, but the user cannot see those. Always ensure a `.html` file exists as the final deliverable. See "Content File Formats" in Content Architecture.
 14. **Keep `/sitemap.json` up-to-date at all times** - Update the sitemap whenever pages are discovered, imported, re-imported, refactored, validated, critiqued, or approved. This is the master tracker for migration progress. See "Sitemap Maintenance" section.
 15. **Keep sitemap blocks[] current after every content change** - After running import scripts, re-importing pages, or changing page content, immediately update the affected page's `blocks[]` and `sectionStyles[]` in `/sitemap.json`. Before refactoring block CSS/JS, query the sitemap to find all affected pages and verify changes on them.
+16. **`.html` is the sole content source of truth — NEVER manually edit `.plain.html`** - When creating, restructuring, or modifying page content (adding blocks, changing sections, updating text), ONLY create or edit the `.html` file. The `.plain.html` format is an import artifact produced exclusively by `run-bulk-import.js` — never manually create, edit, or treat `.plain.html` as the content source. If only a `.plain.html` exists for a page and the content needs changes, create/update the `.html` file, not the `.plain.html`. See "Content File Formats" in Content Architecture.
 
 ---
 
@@ -275,7 +276,9 @@ Two HTML file formats exist in the `/content/` directory:
 | **`.html`** | Full page with `<head>`, `<body>`, `<main>`, blocks, section separators | **Yes** — this is what the user previews |
 | **`.plain.html`** | DA content format — section divs with div-based blocks, no page shell | **No** — the user cannot see these in their preview |
 
-**The user always previews `.html` files.** The `.plain.html` format is invisible to them. When importing content, the `.html` file is the only deliverable that matters for user validation.
+**The `.html` file is the sole source of truth for content.** It is the only file the user can preview, and the only file you should ever create or edit when working with page content. When restructuring content (adding/removing blocks, changing sections, updating text), always modify the `.html` file — never the `.plain.html`.
+
+**`.plain.html` is an import artifact only.** It is produced exclusively by `run-bulk-import.js` and must NEVER be manually created or edited. If a page only has a `.plain.html` file, create a new `.html` file — do not modify the `.plain.html`.
 
 **Import tool output:** The bulk import tool (`run-bulk-import.js`) creates `.plain.html` files. These are the DA-compatible content format but lack the full page shell. After an import, a `.html` file must also exist for the user to preview the result.
 
@@ -464,7 +467,7 @@ When working on this project, periodically verify:
 | **Page imported (content created)** | Set `imported: true`, update `importScript`, populate `blocks[]` and `sectionStyles[]` |
 | **Import re-run on existing page** | Update `blocks[]` and `sectionStyles[]` if they changed |
 | **Import validated** | Set `importValidated: true` |
-| **Block critiqued/approved** | Set `critiqued: true` / `approved: true` on the block entry |
+| **Page critiqued/approved** | Set `critiqued: true` / `approved: true` on the page entry |
 | **Content refactored (blocks changed)** | Update `blocks[]` to reflect current block composition |
 | **Section style added/removed** | Update `sectionStyles[]` to match current content |
 | **Page removed** | Remove the entry from `pages[]` |
@@ -485,12 +488,10 @@ When working on this project, periodically verify:
       "importScript": "import-universal",
       "imported": true,
       "importValidated": false,
-      "blocks": [
-        { "name": "block-name", "critiqued": false, "approved": false }
-      ],
-      "sectionStyles": [
-        { "name": "style-name", "critiqued": false, "approved": false }
-      ]
+      "critiqued": false,
+      "approved": false,
+      "blocks": ["block-name", "another-block"],
+      "sectionStyles": ["style-name", "another-style"]
     }
   ]
 }
@@ -500,10 +501,10 @@ When working on this project, periodically verify:
 
 1. **Always update after any content change** — If blocks are added, removed, or restructured on a page, update the corresponding `blocks[]` array immediately.
 2. **Keep `importScript` current** — When pages move to a new import script (e.g., from per-page scripts to `import-universal`), update the field.
-3. **Don't mark validated/critiqued/approved prematurely** — Only set these flags after the corresponding step is actually completed and verified.
+3. **Don't mark validated/critiqued/approved prematurely** — These flags live at the page level (not on individual blocks or styles). Only set them after the corresponding step is actually completed and verified.
 4. **Paths use no extension** — Page paths are stored without `.html` (e.g., `/us/en/home`, not `/us/en/home.html`).
 5. **Source URLs are the original site URLs** — Always include the full `https://about.ups.com/...` URL.
-6. **Keep blocks[] populated for ALL pages** — Every page must have its `blocks[]` and `sectionStyles[]` arrays reflecting the actual blocks and section styles present in the content. Pages with no blocks should have `blocks: []`.
+6. **Keep blocks[] populated for ALL pages** — `blocks[]` and `sectionStyles[]` are simple string arrays (e.g., `["cards-stories", "hero-featured"]`). Every page must have these arrays reflecting the actual blocks and section styles present in the content. Pages with no blocks should have `blocks: []`.
 7. **Update blocks[] after every content operation** — After running import scripts, re-importing pages, or executing any user request that changes page content (adding/removing blocks, changing section styles), immediately update the affected page's `blocks[]` and `sectionStyles[]` arrays to match the new content.
 8. **Use blocks[] for impact analysis** — Before refactoring a block's CSS/JS or modifying shared styles, query the sitemap to find all pages that use that block. Preview or verify changes on those pages to ensure nothing breaks. Example: changing `cards-stories` CSS should prompt checking all pages where `cards-stories` appears in `blocks[]`.
 
@@ -879,6 +880,7 @@ Applied via `section-metadata` block with `Style: style-name`. Multiple styles c
 | `arc` | `.section.arc` | Warm grey gradient background with white curved scoop at bottom (decorative SVG `::after`) |
 | `arc-wave` | `.section.arc-wave` | Flat grey background with organic white wave at bottom — the "inverted arc" (decorative SVG `::after`) |
 | `arc-gradient` | `.section.arc-gradient` | Subtle warm beige gradient wash behind content (decorative SVG `::after`, no background color change) |
+| `dark` | `.section.dark` | Dark brown background (`#351c15`), inverts text/links to white |
 | `spacing-l` | `.section.spacing-l` | Adds 80px (`--spacing-4xl`) margin-top to section |
 | `spacing-xl` | `.section.spacing-xl` | Adds 160px margin-top to section |
 
@@ -943,6 +945,11 @@ Complete reference of all blocks and their variants.
 | **article-header** | `/blocks/article-header/` | — | Story article header with eyebrow, title, byline, subtitle, hero image |
 | **embed** | `/blocks/embed/` | — | YouTube video embed with responsive 16:9 aspect ratio |
 | **social-share** | `/blocks/social-share/` | — | Social media share links (Facebook, Twitter, LinkedIn, Email) |
+| **cards-leadership** | `/blocks/cards-leadership/` | — | Horizontal person cards with portrait, name, title in 2-col grid |
+| **cards-reports** | `/blocks/cards-reports/` | — | Horizontal document cards with thumbnail, title, action link |
+| **awards-list** | `/blocks/awards-list/` | — | Year-tabbed list of award entries with eyebrow, title, meta |
+| **timeline** | `/blocks/timeline/` | — | Vertical timeline with period nav sidebar and scroll spy |
+| **form** | `/blocks/form/` | — | Styled form with text, email, textarea, select, submit fields |
 
 **Boilerplate blocks** (vanilla, unmodified): `cards`, `columns`, `hero`
 
@@ -1410,6 +1417,168 @@ Loads the referenced fragment HTML and inserts it into the page.
 
 ---
 
+### cards-leadership
+
+**Location**: `/blocks/cards-leadership/`
+
+| Variant | Class | Purpose |
+|---------|-------|---------|
+| Default | `.cards-leadership` | Horizontal person cards with portrait image, yellow accent dash, name, and title |
+
+**Authoring:**
+```
+| Cards-Leadership |
+| --- | --- |
+| <picture>portrait</picture> | <h3><a href="...">Person Name</a></h3><p>Title</p> |
+| <picture>portrait</picture> | <h3>Person Name (no link)</h3><p>Title</p> |
+```
+
+**Features**:
+- Horizontal card layout: portrait image left, text details right
+- Yellow accent dash (32x3px) above name
+- Entire card wraps in `<a>` if h3 contains a link (clickable card)
+- Cards without links render without anchor wrapper
+- Box shadow, 8px border-radius
+- DA button reset for links inside cards
+
+**Responsive behavior**:
+- Mobile: single column, max-width 450px centered, 103px portrait
+- Desktop (>=992px): 2-column grid (50% each), 180px portrait, `box-sizing: border-box`
+
+**Used on**: Leadership, UPS Foundation Leadership
+
+---
+
+### cards-reports
+
+**Location**: `/blocks/cards-reports/`
+
+| Variant | Class | Purpose |
+|---------|-------|---------|
+| Default | `.cards-reports` | Horizontal document cards with thumbnail, title, and action link |
+
+**Authoring:**
+```
+| Cards-Reports |
+| --- | --- |
+| <picture>thumbnail</picture> | <h3>Document Title</h3><p><a href="...">Download</a></p> |
+```
+
+**Features**:
+- Horizontal card layout: document thumbnail left, details right
+- H3 title + action link (Download, Learn More, View)
+- Action link styled with bold, underline, link-color
+- Box shadow, 8px border-radius
+- DA button reset for action links
+
+**Responsive behavior**:
+- Mobile: single column, max-width 450px centered, 103px thumbnail
+- Desktop (>=992px): 2-column grid (50% each), 180px thumbnail, `box-sizing: border-box`
+
+**Used on**: Reporting
+
+---
+
+### awards-list
+
+**Location**: `/blocks/awards-list/`
+
+| Variant | Class | Purpose |
+|---------|-------|---------|
+| Default | `.awards-list` | Year-tabbed list of award entries |
+
+**Authoring:**
+```
+| Awards-List |
+| --- | --- |
+| 2026 | <p>Category</p><h3>Title</h3><p>Date · Description</p><p><a href="...">Read More</a></p> |
+| 2026 | <p>Category</p><h3>Title</h3><p>Date · Description</p><p><a href="...">Read More</a></p> |
+| 2025 | <p>Category</p><h3>Title</h3><p>Date · Description</p><p><a href="...">Read More</a></p> |
+```
+
+**Features**:
+- Groups items by year (Col1), creates tab buttons per unique year
+- Tab bar with teal active state (#0A8080), grey inactive (#5F5753)
+- Active tab: 4px bottom border in teal
+- Each item: eyebrow with yellow accent dash, h3 title, meta paragraph, Read More link with chevron
+- Max-width 878px centered award list
+- Separator lines between items
+
+**Responsive behavior**:
+- All viewports: single column list with sticky tab bar
+- Tab bar scrollable on mobile if many years
+
+**Used on**: Awards and Recognition
+
+---
+
+### timeline
+
+**Location**: `/blocks/timeline/`
+
+| Variant | Class | Purpose |
+|---------|-------|---------|
+| Default | `.timeline` | Vertical timeline with period navigation and scroll spy |
+
+**Authoring:**
+```
+| Timeline |
+| --- | --- |
+| 1907-1950 | <h3>Event Title</h3><p>Description</p> |
+| 1907-1950 | <picture>period image</picture> |
+| 1951-1975 | <h3>Event Title</h3><p>Description</p> |
+```
+
+**Features**:
+- Groups items by period (Col1), renders period labels and events
+- Events have year badge (yellow accent dash + year text), h3 title, description
+- Images rendered full-width with 8px border-radius
+- Desktop: sticky sidebar navigation with scroll spy (IntersectionObserver)
+- Mobile: dropdown button with collapsible period menu
+- Period labels centered on horizontal line with background pill
+
+**Responsive behavior**:
+- Mobile: full-width, dropdown period selector, events at full width
+- Desktop (>=992px): 75% content + 25% sidebar, sidebar sticky, events indented 100px
+
+**Used on**: Our History
+
+---
+
+### form
+
+**Location**: `/blocks/form/`
+
+| Variant | Class | Purpose |
+|---------|-------|---------|
+| Default | `.form` | Styled form with various field types |
+
+**Authoring:**
+```
+| Form |
+| --- | --- |
+| Field Label | text |
+| Field Label | email |
+| Field Label | textarea |
+| Field Label | select: Option 1, Option 2, Option 3 |
+| Submit | submit |
+```
+
+**Features**:
+- Creates form fields from 2-column table rows (label + type)
+- Supported types: text, email, textarea, select (with comma-separated options), submit
+- Styled inputs with border, 8px radius, 14px padding
+- Select with custom chevron SVG
+- Submit button: gold CTA (#FFC400), pill border-radius
+- Labels visually hidden (placeholder-only approach)
+
+**Responsive behavior**:
+- All viewports: max-width 600px centered form, full-width fields
+
+**Used on**: Thank a UPS Hero
+
+---
+
 ## Import Infrastructure
 
 Import scripts for bulk content migration are in `/tools/importer/`.
@@ -1592,6 +1761,7 @@ Always include ARIA attributes on interactive elements:
 31. **Always use `import-universal.bundle.js` for all imports** — The universal import script handles every page type (articles and standard pages). No per-template scripts exist — only the universal script.
 32. **Data tables pass through `convertBlockTables()`** — A `<table>` in content whose first cell is empty or doesn't form a valid block name is left as a native HTML table. Use `<th>` for header rows. Style with `main .default-content-wrapper table` selectors. Note: `.plain.html` format converts ALL tables to divs (losing table structure), so data tables only work correctly in `.html` files.
 33. **Keep sitemap blocks[] current after every content change** — After imports, re-imports, or any content modification, update the affected page's `blocks[]` and `sectionStyles[]` in `/sitemap.json`. Before refactoring block CSS/JS, query the sitemap to find all affected pages.
+34. **`.html` is the sole content source of truth** — When creating, restructuring, or modifying page content, ONLY work with `.html` files. NEVER manually create or edit `.plain.html` files — they are import artifacts produced exclusively by `run-bulk-import.js`. If only a `.plain.html` exists and content needs changes, create/update the `.html` file instead. The `.html` file is what the user previews and what you must deliver.
 
 ---
 

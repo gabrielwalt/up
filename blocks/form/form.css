@@ -1,0 +1,128 @@
+/* stylelint-disable no-descending-specificity */
+
+/* ===== FORM BLOCK ===== */
+
+main > div:has(.form) {
+  max-width: var(--content-max-width);
+}
+
+.form .form-fields {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+/* ===== FIELD GROUP ===== */
+
+.form .form-field {
+  margin-bottom: var(--spacing-m);
+}
+
+/* ===== LABEL (visually hidden — using placeholder) ===== */
+
+.form .form-label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ===== SHARED INPUT STYLES ===== */
+
+.form input[type="text"],
+.form input[type="email"],
+.form select,
+.form textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 16px var(--spacing-s);
+  border: 1px solid #5f5753;
+  border-radius: var(--radius-s);
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-m);
+  line-height: 1.5;
+  color: var(--text-color);
+  background: var(--background-color);
+  transition: border-color 0.2s;
+}
+
+.form input[type="text"]:focus,
+.form input[type="email"]:focus,
+.form select:focus,
+.form textarea:focus {
+  outline: none;
+  border-color: var(--text-color);
+}
+
+.form input[type="text"]::placeholder,
+.form input[type="email"]::placeholder,
+.form textarea::placeholder {
+  color: var(--color-muted);
+}
+
+/* ===== TEXT INPUT ===== */
+
+.form input[type="text"],
+.form input[type="email"] {
+  max-width: 350px;
+}
+
+/* ===== SELECT ===== */
+
+.form select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%23242424' stroke-width='2'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: var(--spacing-xl);
+  cursor: pointer;
+}
+
+/* Short fields (text inputs) have max-width; selects are full-width */
+
+/* ===== TEXTAREA ===== */
+
+.form textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* ===== SUBMIT BUTTON ===== */
+
+.form .form-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 24px;
+  background: var(--cta-bg);
+  color: var(--cta-text);
+  border: none;
+  border-radius: var(--radius-pill);
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-m);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.form .form-submit:hover {
+  background: var(--cta-bg-hover);
+}
+
+.form .form-field-submit {
+  margin-top: var(--spacing-l);
+}
+
+/* ===== INSTRUCTIONAL TEXT BETWEEN FORM BLOCKS ===== */
+
+main > .section > .form-wrapper + .default-content-wrapper {
+  text-align: left;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}

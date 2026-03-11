@@ -584,6 +584,72 @@ main > .section.breadcrumb-container + .section.highlight {
   padding-top: 200px;
 }
 
+/* ===== DARK SECTION STYLE ===== */
+
+main > .section.dark {
+  background-color: #351c15;
+  margin-left: 0;
+  margin-right: 0;
+  padding: var(--spacing-4xl) 0;
+}
+
+main > .section.dark > div:first-child {
+  margin-top: 0;
+}
+
+main > .section.dark > div:last-child {
+  margin-bottom: 0;
+}
+
+main > .section.dark .default-content-wrapper h1,
+main > .section.dark .default-content-wrapper h2,
+main > .section.dark .default-content-wrapper h3,
+main > .section.dark .default-content-wrapper h4,
+main > .section.dark .default-content-wrapper h5,
+main > .section.dark .default-content-wrapper h6,
+main > .section.dark .default-content-wrapper p,
+main > .section.dark .default-content-wrapper li {
+  color: #fff;
+}
+
+main > .section.dark .default-content-wrapper a:any-link {
+  color: #fff;
+}
+
+/* First-section flush: no top gap when dark section is first on page */
+main > .section:first-child.dark {
+  margin-top: 0;
+  padding-top: var(--spacing-4xl);
+}
+
+/* Breadcrumb floats transparently above dark background, edge-to-edge */
+main > .section.breadcrumb-container:has(+ .section.dark) {
+  margin-left: 0;
+  margin-right: 0;
+  padding-bottom: 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* Breadcrumb text white when over dark section background */
+main > .section.breadcrumb-container:has(+ .section.dark) .breadcrumb nav ol li {
+  color: #fff;
+}
+
+main > .section.breadcrumb-container:has(+ .section.dark) .breadcrumb nav ol li a {
+  color: #fff;
+}
+
+main > .section.breadcrumb-container:has(+ .section.dark) .breadcrumb nav ol li + li::before {
+  border-right-color: #fff;
+}
+
+/* Dark section extends its own background behind breadcrumb */
+main > .section.breadcrumb-container + .section.dark {
+  margin-top: -200px;
+  padding-top: 200px;
+}
+
 /* ===== SPACING SECTIONS ===== */
 
 /* Extra vertical space above a section (applied via section-metadata Style) */

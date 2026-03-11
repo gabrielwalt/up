@@ -51,6 +51,16 @@
   margin: 0 0 var(--spacing-xs);
 }
 
+/* ===== DARK SECTION OVERRIDES ===== */
+
+.section.dark .cards-awards .cards-awards-card-body > p:first-child {
+  color: #fff;
+}
+
+.section.dark .cards-awards .cards-awards-card-body h3 {
+  color: #fff;
+}
+
 /* ===== DESKTOP: 3 COLUMNS ===== */
 
 /* --viewport-desktop */

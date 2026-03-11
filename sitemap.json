@@ -25,38 +25,14 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "hero-featured",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "columns-stats",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "columns-feature",
-          "critiqued": true,
-          "approved": true
-        }
+        "hero-featured",
+        "cards-stories",
+        "columns-stats",
+        "columns-feature"
       ],
       "sectionStyles": [
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "arc-gradient",
-          "critiqued": true,
-          "approved": true
-        }
+        "accent-bar",
+        "arc-gradient"
       ]
     },
     {
@@ -65,33 +41,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "hero-featured",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "contact-card",
-          "critiqued": true,
-          "approved": true
-        }
+        "hero-featured",
+        "cards-stories",
+        "contact-card"
       ],
       "sectionStyles": [
-        {
-          "name": "arc",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "arc",
+        "accent-bar"
       ]
     },
     {
@@ -100,38 +56,14 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "hero-featured",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "fact-sheets",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "columns-feature",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "columns-quote",
-          "critiqued": true,
-          "approved": true
-        }
+        "hero-featured",
+        "fact-sheets",
+        "columns-feature",
+        "columns-quote"
       ],
       "sectionStyles": [
-        {
-          "name": "arc",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        }
+        "arc",
+        "highlight"
       ]
     },
     {
@@ -140,43 +72,15 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "hero-featured",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "fact-sheets",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "columns-feature",
-          "critiqued": true,
-          "approved": true
-        }
+        "hero-featured",
+        "fact-sheets",
+        "cards-stories",
+        "columns-feature"
       ],
       "sectionStyles": [
-        {
-          "name": "arc",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "spacing-l",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "spacing-xl",
-          "critiqued": true,
-          "approved": true
-        }
+        "arc",
+        "spacing-l",
+        "spacing-xl"
       ]
     },
     {
@@ -185,18 +89,10 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "columns-media",
-          "critiqued": true,
-          "approved": true
-        }
+        "columns-media"
       ],
       "sectionStyles": [
-        {
-          "name": "arc-wave",
-          "critiqued": true,
-          "approved": true
-        }
+        "arc-wave"
       ]
     },
     {
@@ -205,21 +101,9 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "hero-featured",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "columns-feature",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "hero-featured",
+        "columns-feature",
+        "cards-stories"
       ],
       "sectionStyles": []
     },
@@ -229,23 +113,11 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "hero-featured",
-          "critiqued": true,
-          "approved": true
-        }
+        "hero-featured"
       ],
       "sectionStyles": [
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "spacing-l",
-          "critiqued": true,
-          "approved": true
-        }
+        "accent-bar",
+        "spacing-l"
       ]
     },
     {
@@ -254,38 +126,14 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "navigation-tabs",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "columns-feature",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-awards",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "columns-quote",
-          "critiqued": true,
-          "approved": true
-        }
+        "navigation-tabs",
+        "columns-feature",
+        "cards-awards",
+        "columns-quote"
       ],
       "sectionStyles": [
-        {
-          "name": "arc-gradient",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        }
+        "arc-gradient",
+        "highlight"
       ]
     },
     {
@@ -294,48 +142,16 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "hero-featured",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "columns-feature",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "fact-sheets",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "hero-featured",
+        "columns-feature",
+        "fact-sheets",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "arc",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "spacing-l",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "spacing-xl",
-          "critiqued": true,
-          "approved": true
-        }
+        "arc",
+        "accent-bar",
+        "spacing-l",
+        "spacing-xl"
       ]
     },
     {
@@ -344,38 +160,14 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "hero-featured",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "fact-sheets",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "hero-featured",
+        "fact-sheets",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "arc",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "spacing-l",
-          "critiqued": true,
-          "approved": true
-        }
+        "arc",
+        "accent-bar",
+        "spacing-l"
       ]
     },
     {
@@ -384,23 +176,11 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "hero-featured",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "hero-featured",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "arc",
-          "critiqued": true,
-          "approved": true
-        }
+        "arc"
       ]
     },
     {
@@ -409,18 +189,10 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "arc",
-          "critiqued": true,
-          "approved": true
-        }
+        "arc"
       ]
     },
     {
@@ -429,33 +201,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -464,33 +216,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -499,33 +231,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -534,33 +246,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -569,33 +261,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -604,33 +276,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -639,33 +291,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -674,33 +306,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -709,33 +321,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -744,33 +336,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -779,33 +351,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -814,33 +366,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -849,33 +381,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -884,33 +396,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -919,33 +411,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -954,33 +426,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -989,33 +441,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -1024,33 +456,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -1059,33 +471,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -1094,33 +486,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -1129,33 +501,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -1164,33 +516,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -1199,33 +531,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -1234,33 +546,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -1269,33 +561,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -1304,33 +576,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -1339,33 +591,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -1374,33 +606,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -1409,33 +621,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -1444,33 +636,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -1479,33 +651,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -1514,33 +666,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -1549,33 +681,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -1584,33 +696,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -1619,33 +711,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -1654,33 +726,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -1689,33 +741,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -1724,18 +756,10 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "arc",
-          "critiqued": true,
-          "approved": true
-        }
+        "arc"
       ]
     },
     {
@@ -1744,33 +768,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -1779,33 +783,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -1814,33 +798,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -1849,33 +813,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -1884,33 +828,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -1919,33 +843,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -1954,33 +858,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -1989,33 +873,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -2024,33 +888,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -2059,33 +903,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -2094,33 +918,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -2129,33 +933,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -2164,33 +948,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -2199,33 +963,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -2234,33 +978,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -2269,33 +993,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -2304,33 +1008,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -2339,33 +1023,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -2374,33 +1038,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -2409,33 +1053,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -2444,33 +1068,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -2479,33 +1083,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -2514,33 +1098,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -2549,33 +1113,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -2584,33 +1128,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -2619,33 +1143,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -2654,33 +1158,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -2689,33 +1173,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -2724,33 +1188,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -2759,33 +1203,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -2794,33 +1218,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -2829,33 +1233,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -2864,33 +1248,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -2899,18 +1263,10 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "arc",
-          "critiqued": true,
-          "approved": true
-        }
+        "arc"
       ]
     },
     {
@@ -2919,33 +1275,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -2954,33 +1290,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -2989,33 +1305,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -3024,33 +1320,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -3059,33 +1335,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -3094,33 +1350,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -3129,33 +1365,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -3164,33 +1380,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -3199,33 +1395,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -3234,33 +1410,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -3269,33 +1425,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -3304,33 +1440,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -3339,33 +1455,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -3374,33 +1470,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -3409,33 +1485,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -3444,33 +1500,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -3479,33 +1515,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -3514,33 +1530,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -3549,33 +1545,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -3584,33 +1560,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -3619,33 +1575,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -3654,33 +1590,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -3689,33 +1605,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -3724,33 +1620,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -3759,33 +1635,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -3794,33 +1650,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -3829,33 +1665,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -3864,33 +1680,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -3899,33 +1695,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -3934,33 +1710,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -3969,33 +1725,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -4004,33 +1740,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -4039,33 +1755,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -4074,33 +1770,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -4109,33 +1785,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -4144,33 +1800,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -4179,11 +1815,7 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "cards-stories",
-          "critiqued": false,
-          "approved": false
-        }
+        "cards-stories"
       ],
       "sectionStyles": []
     },
@@ -4193,23 +1825,13 @@
       "imported": true,
       "importValidated": false,
       "blocks": [
-        {
-          "name": "cards-awards",
-          "critiqued": false,
-          "approved": false
-        }
+        "cards-awards",
+        "awards-list"
       ],
       "sectionStyles": [
-        {
-          "name": "accent-bar",
-          "critiqued": false,
-          "approved": false
-        },
-        {
-          "name": "highlight",
-          "critiqued": false,
-          "approved": false
-        }
+        "dark",
+        "accent-bar",
+        "highlight"
       ]
     },
     {
@@ -4218,33 +1840,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": false,
-          "approved": false
-        },
-        {
-          "name": "social-share",
-          "critiqued": false,
-          "approved": false
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": false,
-          "approved": false
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": false,
-          "approved": false
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": false,
-          "approved": false
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -4253,23 +1855,11 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "cards-stories",
-          "critiqued": false,
-          "approved": false
-        }
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "arc",
-          "critiqued": false,
-          "approved": false
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": false,
-          "approved": false
-        }
+        "arc",
+        "accent-bar"
       ]
     },
     {
@@ -4278,23 +1868,11 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "cards-stories",
-          "critiqued": false,
-          "approved": false
-        }
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "arc",
-          "critiqued": false,
-          "approved": false
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": false,
-          "approved": false
-        }
+        "arc",
+        "accent-bar"
       ]
     },
     {
@@ -4303,23 +1881,11 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "cards-stories",
-          "critiqued": false,
-          "approved": false
-        }
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "arc",
-          "critiqued": false,
-          "approved": false
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": false,
-          "approved": false
-        }
+        "arc",
+        "accent-bar"
       ]
     },
     {
@@ -4328,33 +1894,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -4363,57 +1909,27 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
       "path": "/us/en/our-company/leadership",
       "sourceUrl": "https://about.ups.com/us/en/our-company/leadership.html",
       "imported": true,
-      "importValidated": false,
-      "blocks": [],
+      "importValidated": true,
+      "blocks": [
+        "cards-leadership"
+      ],
       "sectionStyles": [
-        {
-          "name": "arc",
-          "critiqued": false,
-          "approved": false
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": false,
-          "approved": false
-        },
-        {
-          "name": "spacing-l",
-          "critiqued": false,
-          "approved": false
-        }
+        "arc",
+        "accent-bar",
+        "spacing-l"
       ]
     },
     {
@@ -4421,18 +1937,12 @@
       "sourceUrl": "https://about.ups.com/us/en/our-company/our-history.html",
       "imported": true,
       "importValidated": false,
-      "blocks": [],
+      "blocks": [
+        "timeline"
+      ],
       "sectionStyles": [
-        {
-          "name": "arc",
-          "critiqued": false,
-          "approved": false
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": false,
-          "approved": false
-        }
+        "arc",
+        "spacing-xl"
       ]
     },
     {
@@ -4441,33 +1951,13 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "social-share",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": true,
-          "approved": true
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": true,
-          "approved": true
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -4476,23 +1966,12 @@
       "imported": true,
       "importValidated": false,
       "blocks": [
-        {
-          "name": "navigation-tabs",
-          "critiqued": false,
-          "approved": false
-        }
+        "cards-leadership"
       ],
       "sectionStyles": [
-        {
-          "name": "accent-bar",
-          "critiqued": false,
-          "approved": false
-        },
-        {
-          "name": "spacing-l",
-          "critiqued": false,
-          "approved": false
-        }
+        "arc",
+        "accent-bar",
+        "spacing-l"
       ]
     },
     {
@@ -4500,18 +1979,12 @@
       "sourceUrl": "https://about.ups.com/us/en/our-impact/reporting.html",
       "imported": true,
       "importValidated": false,
-      "blocks": [],
+      "blocks": [
+        "cards-reports"
+      ],
       "sectionStyles": [
-        {
-          "name": "arc",
-          "critiqued": false,
-          "approved": false
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": false,
-          "approved": false
-        }
+        "arc",
+        "accent-bar"
       ]
     },
     {
@@ -4521,16 +1994,8 @@
       "imported": true,
       "importValidated": false,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": false,
-          "approved": false
-        },
-        {
-          "name": "social-share",
-          "critiqued": false,
-          "approved": false
-        }
+        "article-header",
+        "social-share"
       ],
       "sectionStyles": []
     },
@@ -4540,33 +2005,13 @@
       "imported": true,
       "importValidated": false,
       "blocks": [
-        {
-          "name": "article-header",
-          "critiqued": false,
-          "approved": false
-        },
-        {
-          "name": "social-share",
-          "critiqued": false,
-          "approved": false
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": false,
-          "approved": false
-        }
+        "article-header",
+        "social-share",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": false,
-          "approved": false
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": false,
-          "approved": false
-        }
+        "highlight",
+        "accent-bar"
       ]
     },
     {
@@ -4575,21 +2020,9 @@
       "imported": true,
       "importValidated": true,
       "blocks": [
-        {
-          "name": "hero-featured",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "columns-quote",
-          "critiqued": true,
-          "approved": true
-        },
-        {
-          "name": "columns-feature",
-          "critiqued": true,
-          "approved": true
-        }
+        "hero-featured",
+        "columns-quote",
+        "columns-feature"
       ],
       "sectionStyles": []
     },
@@ -4599,21 +2032,9 @@
       "imported": true,
       "importValidated": false,
       "blocks": [
-        {
-          "name": "hero-featured",
-          "critiqued": false,
-          "approved": false
-        },
-        {
-          "name": "columns-quote",
-          "critiqued": false,
-          "approved": false
-        },
-        {
-          "name": "columns-feature",
-          "critiqued": false,
-          "approved": false
-        }
+        "hero-featured",
+        "columns-quote",
+        "columns-feature"
       ],
       "sectionStyles": []
     },
@@ -4623,21 +2044,9 @@
       "imported": true,
       "importValidated": false,
       "blocks": [
-        {
-          "name": "hero-featured",
-          "critiqued": false,
-          "approved": false
-        },
-        {
-          "name": "columns-quote",
-          "critiqued": false,
-          "approved": false
-        },
-        {
-          "name": "columns-feature",
-          "critiqued": false,
-          "approved": false
-        }
+        "hero-featured",
+        "columns-quote",
+        "columns-feature"
       ],
       "sectionStyles": []
     },
@@ -4647,21 +2056,9 @@
       "imported": true,
       "importValidated": false,
       "blocks": [
-        {
-          "name": "hero-featured",
-          "critiqued": false,
-          "approved": false
-        },
-        {
-          "name": "columns-quote",
-          "critiqued": false,
-          "approved": false
-        },
-        {
-          "name": "columns-feature",
-          "critiqued": false,
-          "approved": false
-        }
+        "hero-featured",
+        "columns-quote",
+        "columns-feature"
       ],
       "sectionStyles": []
     },
@@ -4671,23 +2068,11 @@
       "imported": true,
       "importValidated": false,
       "blocks": [
-        {
-          "name": "cards-stories",
-          "critiqued": false,
-          "approved": false
-        }
+        "form",
+        "cards-stories"
       ],
       "sectionStyles": [
-        {
-          "name": "accent-bar",
-          "critiqued": false,
-          "approved": false
-        },
-        {
-          "name": "spacing-l",
-          "critiqued": false,
-          "approved": false
-        }
+        "spacing-l"
       ]
     }
   ]

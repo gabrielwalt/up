@@ -25,6 +25,7 @@ export default function decorate(block) {
   // Split into segments, filtering empties
   const segments = pathWithoutLocale
     .replace(/\/$/, '')
+    .replace(/\.html$/, '')
     .split('/')
     .filter(Boolean);
 
