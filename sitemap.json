@@ -4192,8 +4192,25 @@
       "sourceUrl": "https://about.ups.com/us/en/newsroom/awards-and-recognition.html",
       "imported": true,
       "importValidated": false,
-      "blocks": [],
-      "sectionStyles": []
+      "blocks": [
+        {
+          "name": "cards-awards",
+          "critiqued": false,
+          "approved": false
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "accent-bar",
+          "critiqued": false,
+          "approved": false
+        },
+        {
+          "name": "highlight",
+          "critiqued": false,
+          "approved": false
+        }
+      ]
     },
     {
       "path": "/us/en/newsroom/facebook-rules",
@@ -4235,24 +4252,75 @@
       "sourceUrl": "https://about.ups.com/us/en/newsroom/press-releases.html",
       "imported": true,
       "importValidated": true,
-      "blocks": [],
-      "sectionStyles": []
+      "blocks": [
+        {
+          "name": "cards-stories",
+          "critiqued": false,
+          "approved": false
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "arc",
+          "critiqued": false,
+          "approved": false
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": false,
+          "approved": false
+        }
+      ]
     },
     {
       "path": "/us/en/newsroom/statements",
       "sourceUrl": "https://about.ups.com/us/en/newsroom/statements.html",
       "imported": true,
       "importValidated": true,
-      "blocks": [],
-      "sectionStyles": []
+      "blocks": [
+        {
+          "name": "cards-stories",
+          "critiqued": false,
+          "approved": false
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "arc",
+          "critiqued": false,
+          "approved": false
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": false,
+          "approved": false
+        }
+      ]
     },
     {
       "path": "/us/en/our-company/global-presence",
       "sourceUrl": "https://about.ups.com/us/en/our-company/global-presence.html",
       "imported": true,
       "importValidated": true,
-      "blocks": [],
-      "sectionStyles": []
+      "blocks": [
+        {
+          "name": "cards-stories",
+          "critiqued": false,
+          "approved": false
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "arc",
+          "critiqued": false,
+          "approved": false
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": false,
+          "approved": false
+        }
+      ]
     },
     {
       "path": "/us/en/our-company/governance/carbon-neutral-credentials",
@@ -4330,7 +4398,23 @@
       "imported": true,
       "importValidated": false,
       "blocks": [],
-      "sectionStyles": []
+      "sectionStyles": [
+        {
+          "name": "arc",
+          "critiqued": false,
+          "approved": false
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": false,
+          "approved": false
+        },
+        {
+          "name": "spacing-l",
+          "critiqued": false,
+          "approved": false
+        }
+      ]
     },
     {
       "path": "/us/en/our-company/our-history",
@@ -4338,7 +4422,18 @@
       "imported": true,
       "importValidated": false,
       "blocks": [],
-      "sectionStyles": []
+      "sectionStyles": [
+        {
+          "name": "arc",
+          "critiqued": false,
+          "approved": false
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": false,
+          "approved": false
+        }
+      ]
     },
     {
       "path": "/us/en/our-impact/community/the-ups-foundation-mission-and-purpose",
@@ -4380,8 +4475,25 @@
       "sourceUrl": "https://about.ups.com/us/en/our-impact/community/ups-foundation-leadership.html",
       "imported": true,
       "importValidated": false,
-      "blocks": [],
-      "sectionStyles": []
+      "blocks": [
+        {
+          "name": "navigation-tabs",
+          "critiqued": false,
+          "approved": false
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "accent-bar",
+          "critiqued": false,
+          "approved": false
+        },
+        {
+          "name": "spacing-l",
+          "critiqued": false,
+          "approved": false
+        }
+      ]
     },
     {
       "path": "/us/en/our-impact/reporting",
@@ -4389,11 +4501,23 @@
       "imported": true,
       "importValidated": false,
       "blocks": [],
-      "sectionStyles": []
+      "sectionStyles": [
+        {
+          "name": "arc",
+          "critiqued": false,
+          "approved": false
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": false,
+          "approved": false
+        }
+      ]
     },
     {
-      "path": "/us/en/our-impact/reporting/gender-equality-index---ups-france-",
+      "path": "/us/en/our-impact/reporting/gender-equality-index-ups-france",
       "sourceUrl": "https://about.ups.com/us/en/our-impact/reporting/gender-equality-index---ups-france-.html",
+      "importScript": "import-universal",
       "imported": true,
       "importValidated": false,
       "blocks": [
@@ -4406,25 +4530,9 @@
           "name": "social-share",
           "critiqued": false,
           "approved": false
-        },
-        {
-          "name": "cards-stories",
-          "critiqued": false,
-          "approved": false
         }
       ],
-      "sectionStyles": [
-        {
-          "name": "highlight",
-          "critiqued": false,
-          "approved": false
-        },
-        {
-          "name": "accent-bar",
-          "critiqued": false,
-          "approved": false
-        }
-      ]
+      "sectionStyles": []
     },
     {
       "path": "/us/en/our-impact/sustainability/key-highlights-from-ups-s-latest-sustainability-and-community-im",
@@ -4562,8 +4670,25 @@
       "sourceUrl": "https://about.ups.com/us/en/thank-a-ups-hero.html",
       "imported": true,
       "importValidated": false,
-      "blocks": [],
-      "sectionStyles": []
+      "blocks": [
+        {
+          "name": "cards-stories",
+          "critiqued": false,
+          "approved": false
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "accent-bar",
+          "critiqued": false,
+          "approved": false
+        },
+        {
+          "name": "spacing-l",
+          "critiqued": false,
+          "approved": false
+        }
+      ]
     }
   ]
 }

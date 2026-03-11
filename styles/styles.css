@@ -242,6 +242,37 @@ main .default-content-wrapper blockquote p {
   margin: 0;
 }
 
+/* ===== DATA TABLES ===== */
+main .default-content-wrapper table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: var(--body-font-size-m);
+  line-height: 24px;
+}
+
+main .default-content-wrapper table th,
+main .default-content-wrapper table td {
+  padding: var(--spacing-xs);
+  border: 1px solid var(--text-color);
+  vertical-align: middle;
+}
+
+main .default-content-wrapper table th {
+  background: var(--link-color);
+  color: #fff;
+  font-weight: 400;
+  text-align: center;
+}
+
+main .default-content-wrapper table tr:nth-child(even) {
+  background: var(--light-color);
+}
+
+main .default-content-wrapper table td:not(:first-child) {
+  text-align: center;
+}
+
 /* ===== ACCENT-BAR SECTION STYLE ===== */
 main .section.accent-bar .default-content-wrapper h1::after,
 main .section.accent-bar .default-content-wrapper h2::after {

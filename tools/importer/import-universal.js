@@ -345,7 +345,6 @@ function findRichtextContainers(bodyContainer, altContainer) {
     const cmpText = bodyContainer.querySelector('.cmp-text');
     if (cmpText && cmpText.children.length > 0) {
       containers.push(cmpText);
-      return containers;
     }
   }
 
@@ -438,6 +437,63 @@ function cloneList(source, document) {
   return list;
 }
 
+function cloneCellContent(source, target, document) {
+  source.childNodes.forEach((node) => {
+    if (node.nodeType === 3) {
+      const text = node.textContent;
+      if (text.trim()) target.append(document.createTextNode(text));
+    } else if (node.nodeType === 1) {
+      const tag = node.tagName.toLowerCase();
+      if (tag === 'p') {
+        // Recurse into <p> to extract inline content
+        cloneCellContent(node, target, document);
+        // Add line break between paragraphs if more content follows
+        if (node.nextElementSibling) target.append(document.createElement('br'));
+      } else if (tag === 'strong' || tag === 'b') {
+        const strong = document.createElement('strong');
+        cloneCellContent(node, strong, document);
+        target.append(strong);
+      } else if (tag === 'em' || tag === 'i') {
+        const em = document.createElement('em');
+        cloneCellContent(node, em, document);
+        target.append(em);
+      } else if (tag === 'br') {
+        target.append(document.createElement('br'));
+      } else if (tag === 'a') {
+        const a = document.createElement('a');
+        a.href = node.getAttribute('href') || node.href;
+        a.textContent = node.textContent;
+        target.append(a);
+      } else {
+        // For other elements, recurse into children
+        cloneCellContent(node, target, document);
+      }
+    }
+  });
+}
+
+function cloneDataTable(sourceTable, document) {
+  const rows = sourceTable.querySelectorAll('tr');
+  if (rows.length === 0) return null;
+
+  const table = document.createElement('table');
+  const tbody = document.createElement('tbody');
+  table.append(tbody);
+
+  rows.forEach((row, rowIdx) => {
+    const tr = document.createElement('tr');
+    row.querySelectorAll('td, th').forEach((cell) => {
+      const isHeader = rowIdx === 0;
+      const newCell = document.createElement(isHeader ? 'th' : 'td');
+      cloneCellContent(cell, newCell, document);
+      tr.append(newCell);
+    });
+    tbody.append(tr);
+  });
+
+  return table;
+}
+
 function extractContentElement(el, content, document) {
   const tag = el.tagName;
 
@@ -488,6 +544,9 @@ function extractContentElement(el, content, document) {
     newImg.src = el.src;
     newImg.alt = el.alt || '';
     content.push(newImg);
+  } else if (tag === 'TABLE') {
+    const newTable = cloneDataTable(el, document);
+    if (newTable) content.push(newTable);
   } else if (tag === 'DIV') {
     extractFromDiv(el, content, document);
   }
@@ -621,36 +680,43 @@ function transformArticle(payload) {
       }
     }
 
-    const newRelated = document.createDocumentFragment();
-
-    if (relatedH2) {
-      const h2 = document.createElement('h2');
-      h2.textContent = relatedH2.textContent.trim();
-      newRelated.append(h2);
-    }
-
     const cardsTable = relatedSection.querySelector('table');
-    if (cardsTable) {
-      const rows = cardsTable.querySelectorAll('tr');
-      for (let i = MAX_RELATED_CARDS + 1; i < rows.length; i++) {
-        rows[i].remove();
+    const hasContent = relatedH2 || cardsTable;
+
+    // Only create related section if there is actual content (h2 or cards)
+    if (hasContent) {
+      const newRelated = document.createDocumentFragment();
+
+      if (relatedH2) {
+        const h2 = document.createElement('h2');
+        h2.textContent = relatedH2.textContent.trim();
+        newRelated.append(h2);
       }
-      newRelated.append(cardsTable);
-    }
 
-    const metaBlock = WebImporter.Blocks.createBlock(document, {
-      name: 'Section Metadata',
-      cells: [[['Style'], ['highlight, accent-bar']]],
-    });
-    newRelated.append(metaBlock);
+      if (cardsTable) {
+        const rows = cardsTable.querySelectorAll('tr');
+        for (let i = MAX_RELATED_CARDS + 1; i < rows.length; i++) {
+          rows[i].remove();
+        }
+        newRelated.append(cardsTable);
+      }
 
-    const sectionBreak = document.createElement('hr');
-    if (relatedSection.parentNode) {
-      relatedSection.parentNode.insertBefore(sectionBreak, relatedSection);
-      relatedSection.replaceWith(newRelated);
-    } else {
-      main.append(sectionBreak);
-      main.append(newRelated);
+      const metaBlock = WebImporter.Blocks.createBlock(document, {
+        name: 'Section Metadata',
+        cells: [[['Style'], ['highlight, accent-bar']]],
+      });
+      newRelated.append(metaBlock);
+
+      const sectionBreak = document.createElement('hr');
+      if (relatedSection.parentNode) {
+        relatedSection.parentNode.insertBefore(sectionBreak, relatedSection);
+        relatedSection.replaceWith(newRelated);
+      } else {
+        main.append(sectionBreak);
+        main.append(newRelated);
+      }
+    } else if (relatedSection.parentNode) {
+      relatedSection.remove();
     }
   }
 

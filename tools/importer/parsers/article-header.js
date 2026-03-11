@@ -75,8 +75,10 @@ export default function parse(element, { document, url }) {
   const readTimeEl = element.querySelector('.upspr-read-time');
   const bylineCell = [];
   const parts = [];
-  if (dateEl) parts.push(dateEl.textContent.trim());
-  if (readTimeEl) parts.push(toTitleCase(readTimeEl.textContent.trim()));
+  const dateText = dateEl ? dateEl.textContent.trim() : '';
+  const readText = readTimeEl ? toTitleCase(readTimeEl.textContent.trim()) : '';
+  if (dateText) parts.push(dateText);
+  if (readText) parts.push(readText);
   if (parts.length > 0) {
     const p = document.createElement('p');
     p.textContent = parts.join(' | ');

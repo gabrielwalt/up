@@ -20,6 +20,7 @@ Migrating UPS "About" site (https://about.ups.com/us/en/home.html) to Adobe Edge
 12. **Code must be compatible with DA markup** - DA (Document Authoring) wraps inline content in `<p>` tags in `.plain.html` output. Block JS and CSS must handle this gracefully with flexible selectors — never add JS workarounds to unwrap DA markup. See "DA Markup Compatibility" section.
 13. **Always produce `.html` files for content** - The user previews `.html` files only. Import tools create `.plain.html`, but the user cannot see those. Always ensure a `.html` file exists as the final deliverable. See "Content File Formats" in Content Architecture.
 14. **Keep `/sitemap.json` up-to-date at all times** - Update the sitemap whenever pages are discovered, imported, re-imported, refactored, validated, critiqued, or approved. This is the master tracker for migration progress. See "Sitemap Maintenance" section.
+15. **Keep sitemap blocks[] current after every content change** - After running import scripts, re-importing pages, or changing page content, immediately update the affected page's `blocks[]` and `sectionStyles[]` in `/sitemap.json`. Before refactoring block CSS/JS, query the sitemap to find all affected pages and verify changes on them.
 
 ---
 
@@ -502,6 +503,9 @@ When working on this project, periodically verify:
 3. **Don't mark validated/critiqued/approved prematurely** — Only set these flags after the corresponding step is actually completed and verified.
 4. **Paths use no extension** — Page paths are stored without `.html` (e.g., `/us/en/home`, not `/us/en/home.html`).
 5. **Source URLs are the original site URLs** — Always include the full `https://about.ups.com/...` URL.
+6. **Keep blocks[] populated for ALL pages** — Every page must have its `blocks[]` and `sectionStyles[]` arrays reflecting the actual blocks and section styles present in the content. Pages with no blocks should have `blocks: []`.
+7. **Update blocks[] after every content operation** — After running import scripts, re-importing pages, or executing any user request that changes page content (adding/removing blocks, changing section styles), immediately update the affected page's `blocks[]` and `sectionStyles[]` arrays to match the new content.
+8. **Use blocks[] for impact analysis** — Before refactoring a block's CSS/JS or modifying shared styles, query the sitemap to find all pages that use that block. Preview or verify changes on those pages to ensure nothing breaks. Example: changing `cards-stories` CSS should prompt checking all pages where `cards-stories` appears in `blocks[]`.
 
 ---
 
@@ -528,6 +532,7 @@ All content pages in this project and their source URLs.
 | `/content/us/en/our-company/great-employer.plain.html` | https://about.ups.com/us/en/our-company/great-employer.html | Great Employer topic hub (topic-hub template) |
 | `/content/us/en/our-company/suppliers.plain.html` | https://about.ups.com/us/en/our-company/suppliers.html | Suppliers topic hub (topic-hub template) |
 | `/content/us/en/newsroom.html` | https://about.ups.com/us/en/newsroom.html | Newsroom topic hub (topic-hub template) |
+| `/content/us/en/our-impact/reporting/gender-equality-index-ups-france.html` | https://about.ups.com/us/en/our-impact/reporting/gender-equality-index---ups-france-.html | Gender Equality Index article (with data table) |
 | `/content/nav.html` | Derived from https://about.ups.com/us/en/home.html | Navigation fragment |
 | `/content/footer.html` | Derived from https://about.ups.com/us/en/home.html | Footer fragment |
 
@@ -838,6 +843,7 @@ Only two breakpoints, derived from the UPS source site. Content flows fluidly be
 - **Page templates**: Add `Template: template-name` to page metadata for page-specific styles
 - **HTML in table cells**: Markdown syntax (like `## Heading`) is NOT parsed inside table cells. Use HTML tags (`<h2>Heading</h2>`) when you need structured content in block tables.
 - **One row per item**: In block tables (carousel, accordion), each row becomes one item/slide. Combine all content for an item into a single row using HTML.
+- **Data tables vs block tables**: In EDS, `<table>` elements are converted to blocks by `convertBlockTables()` in scripts.js. To include an actual data table (not a block), ensure the first cell of the first row is empty or contains multi-word data text (not a valid block name). The `convertBlockTables()` function checks the first cell — if `toClassName()` returns an empty string, the table passes through as a native HTML table. Use `<th>` for header cells and `<td>` for data cells. Style data tables in `styles.css` under `main .default-content-wrapper table`. Note: the `.plain.html` import format converts all tables to divs, so data tables only render correctly in `.html` files.
 
 ---
 
@@ -1584,6 +1590,8 @@ Always include ARIA attributes on interactive elements:
 29. **Import scripts: use DOM-walking, not rigid section assembly** — Parsers call `element.replaceWith(table)` which detaches the original element reference. Never search stale `block.element` for tables after parsing. Instead, walk the DOM after all parsers run to collect tables and default content in natural document order. This also handles pages with different block orders using the same template. See `import-universal.js` for the reference implementation.
 30. **User previews `.html` only, not `.plain.html`** — The user's preview environment only shows `.html` files. Import tools produce `.plain.html` but the user cannot see those. An import is not complete until a `.html` file exists. See "Content File Formats" in Content Architecture.
 31. **Always use `import-universal.bundle.js` for all imports** — The universal import script handles every page type (articles and standard pages). No per-template scripts exist — only the universal script.
+32. **Data tables pass through `convertBlockTables()`** — A `<table>` in content whose first cell is empty or doesn't form a valid block name is left as a native HTML table. Use `<th>` for header rows. Style with `main .default-content-wrapper table` selectors. Note: `.plain.html` format converts ALL tables to divs (losing table structure), so data tables only work correctly in `.html` files.
+33. **Keep sitemap blocks[] current after every content change** — After imports, re-imports, or any content modification, update the affected page's `blocks[]` and `sectionStyles[]` in `/sitemap.json`. Before refactoring block CSS/JS, query the sitemap to find all affected pages.
 
 ---
 
@@ -1696,6 +1704,33 @@ main > .section.arc::after {
   background-color: transparent;
   z-index: -1;
   pointer-events: none;
+}
+```
+
+### Data Table Pattern (native HTML tables in default content)
+```css
+main .default-content-wrapper table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: var(--body-font-size-s);
+}
+
+main .default-content-wrapper table th {
+  background: var(--link-color);
+  color: #fff;
+  font-weight: 700;
+  padding: var(--spacing-xs) var(--spacing-s);
+  text-align: center;
+}
+
+main .default-content-wrapper table td {
+  padding: var(--spacing-xs) var(--spacing-s);
+  border-bottom: 1px solid var(--color-border);
+}
+
+main .default-content-wrapper table td:not(:first-child) {
+  text-align: center;
 }
 ```
 
