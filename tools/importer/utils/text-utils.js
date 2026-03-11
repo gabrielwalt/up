@@ -27,6 +27,12 @@ export function toTitleCase(text) {
   if (!text || text.length < 3) return text;
   if (text !== text.toUpperCase()) return text;
 
+  // Skip strings that are primarily numbers/symbols (e.g. "4B+", "$19K+", "~460K")
+  // If less than half of non-whitespace characters are letters, it's a stat, not prose
+  const nonWhitespace = text.replace(/\s/g, '');
+  const letterCount = (nonWhitespace.match(/[a-zA-Z]/g) || []).length;
+  if (letterCount < nonWhitespace.length / 2) return text;
+
   return text.split(/(\s+)/).map((segment) => {
     if (/^\s+$/.test(segment)) return segment;
     // Handle hyphenated words

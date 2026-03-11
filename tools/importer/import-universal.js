@@ -683,22 +683,7 @@ function transformStandard(payload) {
     }
   });
 
-  // 4b. Limit cards-stories blocks to 3 items
-  main.querySelectorAll('table').forEach((table) => {
-    const firstRow = table.querySelector('tr');
-    if (!firstRow) return;
-    const firstCell = firstRow.querySelector('th') || firstRow.querySelector('td');
-    if (!firstCell) return;
-    const blockName = firstCell.textContent.trim().toLowerCase();
-    if (blockName === 'cards stories') {
-      const rows = Array.from(table.querySelectorAll('tr'));
-      if (rows.length > 4) {
-        rows.slice(4).forEach((row) => row.remove());
-      }
-    }
-  });
-
-  // 4c. Format HELP focus areas text
+  // 4b. Format HELP focus areas text
   main.querySelectorAll('p').forEach((p) => {
     const text = p.textContent;
     if (text.includes('Health') && text.includes('Humanitarian Relief') && text.includes('\u2022')) {
@@ -715,14 +700,17 @@ function transformStandard(payload) {
     }
   });
 
+  // 4c. Promote first heading to H1 if it isn't already
+  const firstHeading = main.querySelector('h1, h2, h3, h4, h5, h6');
+  if (firstHeading && firstHeading.tagName !== 'H1') {
+    const h1 = document.createElement('h1');
+    h1.textContent = firstHeading.textContent;
+    firstHeading.replaceWith(h1);
+  }
+
   // Phase 5: Walk DOM and collect all content in document order
   const items = [];
   collectContent(main, items);
-
-  // 5a. Promote first heading to page-title type so it gets its own section
-  if (items.length > 0 && items[0].type === 'heading') {
-    items[0].type = 'h1';
-  }
 
   // Phase 6: Group into sections (wrapper styles read from table data attributes)
   const sections = groupIntoSections(items);
