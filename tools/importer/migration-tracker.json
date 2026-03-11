@@ -1,0 +1,4709 @@
+{
+  "$schema": "migration-tracker-schema",
+  "$version": "1.0.0",
+  "$description": "Tracks all pages in the UPS About site migration to AEM Edge Delivery Services. Source of truth for import status, validation, and styling approval.",
+  "fragments": [
+    {
+      "path": "/nav",
+      "imported": true,
+      "importValidated": true,
+      "critiqued": true,
+      "approved": true
+    },
+    {
+      "path": "/footer",
+      "imported": true,
+      "importValidated": true,
+      "critiqued": true,
+      "approved": true
+    }
+  ],
+  "pages": [
+    {
+      "path": "/us/en/home",
+      "sourceUrl": "https://about.ups.com/us/en/home.html",
+      "importScript": "import-home",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "hero-featured",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "columns-stats",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "columns-feature",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "arc-gradient",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/newsroom",
+      "sourceUrl": "https://about.ups.com/us/en/newsroom.html",
+      "importScript": "import-topic-hub",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "hero-featured",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "contact-card",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "arc",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-company",
+      "sourceUrl": "https://about.ups.com/us/en/our-company.html",
+      "importScript": "import-company-hub",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "hero-featured",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "fact-sheets",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "columns-feature",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "columns-quote",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "arc",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-company/great-employer",
+      "sourceUrl": "https://about.ups.com/us/en/our-company/great-employer.html",
+      "importScript": "import-topic-hub",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "hero-featured",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "fact-sheets",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "columns-feature",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "arc",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "spacing-l",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "spacing-xl",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-company/our-culture",
+      "sourceUrl": "https://about.ups.com/us/en/our-company/our-culture.html",
+      "importScript": "import-company-culture",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "columns-media",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "arc-wave",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-company/our-strategy",
+      "sourceUrl": "https://about.ups.com/us/en/our-company/our-strategy.html",
+      "importScript": "import-company-strategy",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "hero-featured",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "columns-feature",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": []
+    },
+    {
+      "path": "/us/en/our-company/suppliers",
+      "sourceUrl": "https://about.ups.com/us/en/our-company/suppliers.html",
+      "importScript": "import-topic-hub",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "hero-featured",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "spacing-l",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-impact",
+      "sourceUrl": "https://about.ups.com/us/en/our-impact.html",
+      "importScript": "import-our-impact",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "navigation-tabs",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "columns-feature",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-awards",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "columns-quote",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "arc-gradient",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-impact/community",
+      "sourceUrl": "https://about.ups.com/us/en/our-impact/community.html",
+      "importScript": "import-topic-hub",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "hero-featured",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "columns-feature",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "fact-sheets",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "arc",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "spacing-l",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "spacing-xl",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-impact/sustainability",
+      "sourceUrl": "https://about.ups.com/us/en/our-impact/sustainability.html",
+      "importScript": "import-topic-hub",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "hero-featured",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "fact-sheets",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "arc",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "spacing-l",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories.html",
+      "importScript": "import-story-hub",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "hero-featured",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "arc",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/customer-first",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/customer-first.html",
+      "importScript": "import-story-category",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "arc",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/customer-first/3-reasons-you-can-trust-ups-to-ship-luxury-watches-around-the-wo",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/customer-first/3-reasons-you-can-trust-ups-to-ship-luxury-watches-around-the-wo.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/customer-first/3-ways-ups-helps-businesses-navigate-global-trade-and-tariffs",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/customer-first/3-ways-ups-helps-businesses-navigate-global-trade-and-tariffs.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/customer-first/4-key-takeaways-from-ups-s-2025-impact-summit",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/customer-first/4-key-takeaways-from-ups-s-2025-impact-summit.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/customer-first/4-things-you-need-to-know-from-ups-s-q2-2025-earnings-announceme",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/customer-first/4-things-you-need-to-know-from-ups-s-q2-2025-earnings-announceme.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/customer-first/5-things-every-business-should-know-about-returns-in-2025-and-be",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/customer-first/5-things-every-business-should-know-about-returns-in-2025-and-be.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/customer-first/5-things-you-didn-t-know-the-ups-store-could-do-for-your-small-b",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/customer-first/5-things-you-didn-t-know-the-ups-store-could-do-for-your-small-b.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/customer-first/a-peek-into-peak-shipping-season-at-ups",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/customer-first/a-peek-into-peak-shipping-season-at-ups.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/customer-first/beat-the-holiday-rush-shop-early-ship-early-with-ups",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/customer-first/beat-the-holiday-rush-shop-early-ship-early-with-ups.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/customer-first/college-student-essentials-shipped-by-ups",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/customer-first/college-student-essentials-shipped-by-ups.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/customer-first/delivering-iconic-flavors-with-ups-the-recipe-behind-goldbelly",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/customer-first/delivering-iconic-flavors-with-ups-the-recipe-behind-goldbelly.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/customer-first/fresh-products-need-a-reliable-shipper",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/customer-first/fresh-products-need-a-reliable-shipper.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/customer-first/get-everything-you-need-to-make-valentine-s-day-extra-special-d",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/customer-first/get-everything-you-need-to-make-valentine-s-day-extra-special-d.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/customer-first/how-one-entrepreneur-got-a-surprise-mentorship-session-with-emma",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/customer-first/how-one-entrepreneur-got-a-surprise-mentorship-session-with-emma.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/customer-first/how-ups-powers-small-business-growth",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/customer-first/how-ups-powers-small-business-growth.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/customer-first/new-shelves-new-customers-same-reliable-shipper",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/customer-first/new-shelves-new-customers-same-reliable-shipper.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/customer-first/our-favorite-moments-delivering-what-matters-in-2025",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/customer-first/our-favorite-moments-delivering-what-matters-in-2025.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/customer-first/sanmar-and-ups-an-iconic-partnership-delivering-world-class-spe",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/customer-first/sanmar-and-ups-an-iconic-partnership-delivering-world-class-spe.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/customer-first/seamus-golf-swings-big-through-ups-s-ryder-cup-partnership",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/customer-first/seamus-golf-swings-big-through-ups-s-ryder-cup-partnership.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/customer-first/see-how-coco-gauff-emma-grede-and-ups-help-deliver-sweet-succes",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/customer-first/see-how-coco-gauff-emma-grede-and-ups-help-deliver-sweet-succes.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/customer-first/see-how-ups-delivers-for-one-luxury-bag-brand-crafted-by-african",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/customer-first/see-how-ups-delivers-for-one-luxury-bag-brand-crafted-by-african.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/customer-first/shipping-tips-to-get-the-most-out-of-your-holiday-sales",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/customer-first/shipping-tips-to-get-the-most-out-of-your-holiday-sales.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/customer-first/shop-small-ship-smart",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/customer-first/shop-small-ship-smart.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/customer-first/shoppers-say-goodbye-to-surprise-tariff-expenses-with-ups-global",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/customer-first/shoppers-say-goodbye-to-surprise-tariff-expenses-with-ups-global.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/customer-first/small-business-big-growth",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/customer-first/small-business-big-growth.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/customer-first/smarter-supply-chains-start-here-with-ups-expertise-leading-th",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/customer-first/smarter-supply-chains-start-here-with-ups-expertise-leading-th.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/customer-first/subway-takes-creator-kareem-rahma-teams-up-with-ups-for-small",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/customer-first/subway-takes-creator-kareem-rahma-teams-up-with-ups-for-small.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/customer-first/surf-shop-catches-the-ups-wave-when-previous-carrier-wipes-out",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/customer-first/surf-shop-catches-the-ups-wave-when-previous-carrier-wipes-out.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/customer-first/the-judges-have-spoken-ups-recognized-for-culture-reputation-a",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/customer-first/the-judges-have-spoken-ups-recognized-for-culture-reputation-a.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/customer-first/the-ups-store-small-biz-challenge",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/customer-first/the-ups-store-small-biz-challenge.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/customer-first/ups-and-american-express-collaborate-to-make-logistics-and-payme",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/customer-first/ups-and-american-express-collaborate-to-make-logistics-and-payme.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/customer-first/ups-and-lfc-celebrate-the-unstoppable-spirit-of-liverpool-busi0",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/customer-first/ups-and-lfc-celebrate-the-unstoppable-spirit-of-liverpool-busi0.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/customer-first/ups-helps-businesses-grow-with-sustainable-shipping-and-easy-ret",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/customer-first/ups-helps-businesses-grow-with-sustainable-shipping-and-easy-ret.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/customer-first/ups-leads-the-way-in-on-time-delivery-during-the-2025-holiday-se",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/customer-first/ups-leads-the-way-in-on-time-delivery-during-the-2025-holiday-se.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/customer-first/ups-partners-with-serial-entrepreneur-emma-grede-and-tennis-grea",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/customer-first/ups-partners-with-serial-entrepreneur-emma-grede-and-tennis-grea.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/customer-first/ups-tees-up-for-the-2025-ryder-cup",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/customer-first/ups-tees-up-for-the-2025-ryder-cup.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/customer-first/what-brings-us-together-our-holiday-ups-express-box-delivers",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/customer-first/what-brings-us-together-our-holiday-ups-express-box-delivers.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/customer-first/woodworking-company-s-export-business-booms-with-help-from-ups",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/customer-first/woodworking-company-s-export-business-booms-with-help-from-ups.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/innovation-driven",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/innovation-driven.html",
+      "importScript": "import-story-category",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "arc",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/innovation-driven/3-things-you-need-to-know-about-the-future-of-healthcare-logisti",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/innovation-driven/3-things-you-need-to-know-about-the-future-of-healthcare-logisti.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/innovation-driven/3-ways-ups-healthcare-delivers-temperature-sensitive-biologics-l",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/innovation-driven/3-ways-ups-healthcare-delivers-temperature-sensitive-biologics-l.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/innovation-driven/3-ways-ups-is-using-smart-tech-today-to-deliver-a-more-sustainab",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/innovation-driven/3-ways-ups-is-using-smart-tech-today-to-deliver-a-more-sustainab.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/innovation-driven/5-ways-the-new-ups-velocity-facility-orchestrates",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/innovation-driven/5-ways-the-new-ups-velocity-facility-orchestrates.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/innovation-driven/alternative-fuel-technology-showcased-at-expo-2020",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/innovation-driven/alternative-fuel-technology-showcased-at-expo-2020.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/innovation-driven/courage-to-change-how-ups-transformed-to-lead-the-future-of-glo",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/innovation-driven/courage-to-change-how-ups-transformed-to-lead-the-future-of-glo.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/innovation-driven/drone-covid-vaccine-deliveries",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/innovation-driven/drone-covid-vaccine-deliveries.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/innovation-driven/experience-ups-innovations-at-expo",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/innovation-driven/experience-ups-innovations-at-expo.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/innovation-driven/flightless-birds-land-safely-at-world-expo-in-dubai",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/innovation-driven/flightless-birds-land-safely-at-world-expo-in-dubai.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/innovation-driven/forest-of-the-future",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/innovation-driven/forest-of-the-future.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/innovation-driven/head-of-supply-chain-solutions-at-ups-talks-4-emerging-trends-in",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/innovation-driven/head-of-supply-chain-solutions-at-ups-talks-4-emerging-trends-in.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/innovation-driven/how-ups-is-helping-customers-with-sustainable-logistics",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/innovation-driven/how-ups-is-helping-customers-with-sustainable-logistics.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/innovation-driven/innovation-fuels-global-logistics",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/innovation-driven/innovation-fuels-global-logistics.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/innovation-driven/lessons-from-the-e-bike-journey-of-ups",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/innovation-driven/lessons-from-the-e-bike-journey-of-ups.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/innovation-driven/mobile-training-academy-brings-safety-focused-driver-training-to",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/innovation-driven/mobile-training-academy-brings-safety-focused-driver-training-to.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/innovation-driven/new-chief-digital-and-technology-officer",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/innovation-driven/new-chief-digital-and-technology-officer.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/innovation-driven/new-state-of-the-art-ups-facility-opens-in-tacoma-washington",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/innovation-driven/new-state-of-the-art-ups-facility-opens-in-tacoma-washington.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/innovation-driven/new-ups-electric-vehicles-hit-the-streets-of-europe",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/innovation-driven/new-ups-electric-vehicles-hit-the-streets-of-europe.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/innovation-driven/renewable-natural-gas-is-an-important-part-of-ups-strategy-to-in",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/innovation-driven/renewable-natural-gas-is-an-important-part-of-ups-strategy-to-in.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/innovation-driven/top-5-takeaways-from-ups-s-q3-2025-earnings-announcement",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/innovation-driven/top-5-takeaways-from-ups-s-q3-2025-earnings-announcement.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/innovation-driven/ups-adds-two-new-cross-docks-in-europe-to-meet-growing-healthcar",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/innovation-driven/ups-adds-two-new-cross-docks-in-europe-to-meet-growing-healthcar.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/innovation-driven/ups-and-google-cloud",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/innovation-driven/ups-and-google-cloud.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/innovation-driven/ups-and-koda-ship-first-ever-unattended-kidney-on-a-pump",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/innovation-driven/ups-and-koda-ship-first-ever-unattended-kidney-on-a-pump.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/innovation-driven/ups-cambridge-cycle-hub-paves-the-way-for-sustainable-city-deliv",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/innovation-driven/ups-cambridge-cycle-hub-paves-the-way-for-sustainable-city-deliv.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/innovation-driven/ups-healthcare-upgrades-two-facilities-in-italy-with-55-million",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/innovation-driven/ups-healthcare-upgrades-two-facilities-in-italy-with-55-million.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/innovation-driven/ups-is-improving-careers-and-access-to-opportunity-with-the-help",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/innovation-driven/ups-is-improving-careers-and-access-to-opportunity-with-the-help.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/innovation-driven/ups-opens-first-dedicated-healthcare-facility-in-ireland",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/innovation-driven/ups-opens-first-dedicated-healthcare-facility-in-ireland.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/innovation-driven/ups-opens-new-technology-center-in-chennai-india",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/innovation-driven/ups-opens-new-technology-center-in-chennai-india.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/innovation-driven/ups-recognized-as-one-of-2023-s-most-innovative-companies",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/innovation-driven/ups-recognized-as-one-of-2023-s-most-innovative-companies.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/innovation-driven/ups-s-deliverydefense-pits-ai-against-criminals",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/innovation-driven/ups-s-deliverydefense-pits-ai-against-criminals.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/innovation-driven/ups-takes-center-stage-at-google-cloud-next-24-and-rfid-journal",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/innovation-driven/ups-takes-center-stage-at-google-cloud-next-24-and-rfid-journal.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/innovation-driven/ups-teams-up-with-rubicon",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/innovation-driven/ups-teams-up-with-rubicon.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/innovation-driven/virtual-reality-helping-to-create-safety-for-ups-drivers",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/innovation-driven/virtual-reality-helping-to-create-safety-for-ups-drivers.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/people-led",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/people-led.html",
+      "importScript": "import-story-category",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "arc",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/people-led/40-years-of-service-and-a-lifetime-of-ups-pride",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/people-led/40-years-of-service-and-a-lifetime-of-ups-pride.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/people-led/7-things-you-didnt-know-about-ups-and-its-browntail-jets",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/people-led/7-things-you-didnt-know-about-ups-and-its-browntail-jets.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/people-led/a-letter-to-the-jarvis-family",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/people-led/a-letter-to-the-jarvis-family.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/people-led/a-look-at-the-pioneering-women-who-shaped-ups-history",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/people-led/a-look-at-the-pioneering-women-who-shaped-ups-history.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/people-led/backed-by-ups-one-mother-s-story-of-resilience-and-support",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/people-led/backed-by-ups-one-mother-s-story-of-resilience-and-support.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/people-led/celebrating-ups-driver-george-lodovico-for-55-years-of-safe-driv",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/people-led/celebrating-ups-driver-george-lodovico-for-55-years-of-safe-driv.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/people-led/cheers-to-118-years-of-ups",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/people-led/cheers-to-118-years-of-ups.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/people-led/from-our-customers-hearts-to-ups-words-of-gratitude-for-extrao",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/people-led/from-our-customers-hearts-to-ups-words-of-gratitude-for-extrao.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/people-led/from-the-er-to-ups-one-mom-s-journey-to-flexibility-and-opportu",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/people-led/from-the-er-to-ups-one-mom-s-journey-to-flexibility-and-opportu.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/people-led/from-the-philippines-to-ireland-we-deliver-the-holidays",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/people-led/from-the-philippines-to-ireland-we-deliver-the-holidays.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/people-led/from-ups-scholar-to-the-ups-store-owner-and-everything-in-betw",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/people-led/from-ups-scholar-to-the-ups-store-owner-and-everything-in-betw.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/people-led/how-one-ups-driver-mastered-arizona-s-desert-summers",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/people-led/how-one-ups-driver-mastered-arizona-s-desert-summers.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/people-led/how-one-ups-employee-turned-a-job-into-a-thriving-career",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/people-led/how-one-ups-employee-turned-a-job-into-a-thriving-career.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/people-led/how-one-ups-leaders-personal-tragedy-ignited-a-passion-for-safet",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/people-led/how-one-ups-leaders-personal-tragedy-ignited-a-passion-for-safet.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/people-led/how-ups-helped-one-employee-find-and-pursue-their-passion",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/people-led/how-ups-helped-one-employee-find-and-pursue-their-passion.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/people-led/iconic-ups-delivery-vehicles-get-new-flair",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/people-led/iconic-ups-delivery-vehicles-get-new-flair.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/people-led/in-memory-of-ken-jarvis",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/people-led/in-memory-of-ken-jarvis.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/people-led/keeping-seasonal-workers-safe",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/people-led/keeping-seasonal-workers-safe.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/people-led/meet-cal-murray",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/people-led/meet-cal-murray.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/people-led/meet-malina-downey-a-ups-engineer-powering-holiday-operations",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/people-led/meet-malina-downey-a-ups-engineer-powering-holiday-operations.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/people-led/meet-the-ups-ready-team-on-call-to-serve-during-the-busiest-time",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/people-led/meet-the-ups-ready-team-on-call-to-serve-during-the-busiest-time.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/people-led/national-human-trafficking-prevention-month",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/people-led/national-human-trafficking-prevention-month.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/people-led/peak-wrap-up",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/people-led/peak-wrap-up.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/people-led/special-olympics-coach-builds-lasting-career-in-a-specialist-rol",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/people-led/special-olympics-coach-builds-lasting-career-in-a-specialist-rol.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/people-led/sunshine-state-ups-driver-turns-personal-loss-into-heat-safety-l",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/people-led/sunshine-state-ups-driver-turns-personal-loss-into-heat-safety-l.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/people-led/the-road-to-excellence-ups-drivers-at-the-national-truck-driving",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/people-led/the-road-to-excellence-ups-drivers-at-the-national-truck-driving.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/people-led/the-safest-wheels-on-the-road",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/people-led/the-safest-wheels-on-the-road.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/people-led/the-ups-store-bags-fifth-win-at-the-tournament-of-roses",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/people-led/the-ups-store-bags-fifth-win-at-the-tournament-of-roses.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/people-led/thirsty-for-safety-how-one-ups-driver-is-making-a-splash",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/people-led/thirsty-for-safety-how-one-ups-driver-is-making-a-splash.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/people-led/ups-delivers-holiday-shipping-with-flexibility-visibility-and-e",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/people-led/ups-delivers-holiday-shipping-with-flexibility-visibility-and-e.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/people-led/ups-driver-joel-reyez-shares-his-tips-to-working-in-the-heat",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/people-led/ups-driver-joel-reyez-shares-his-tips-to-working-in-the-heat.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/people-led/ups-driver-retires-after-58-years-and-over-5-million-accident-free-miles",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/people-led/ups-driver-retires-after-58-years-and-over-5-million-accident-free-miles.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/people-led/ups-drivers-shine-at-2025-national-truck-driving-championships",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/people-led/ups-drivers-shine-at-2025-national-truck-driving-championships.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/people-led/ups-unveils-prosperous-daruma-express-envelope-design-in-japan",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/people-led/ups-unveils-prosperous-daruma-express-envelope-design-in-japan.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/people-led/upss-holiday-hiring-spree",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/people-led/upss-holiday-hiring-spree.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-stories/people-led/what-can-brown-noise-do-for-you",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/people-led/what-can-brown-noise-do-for-you.html",
+      "importScript": "import-story-article",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "social-share",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": true,
+          "approved": true
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": true,
+          "approved": true
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": true,
+          "approved": true
+        }
+      ]
+    },
+    {
+      "path": "/us/en/all-stories",
+      "sourceUrl": "https://about.ups.com/us/en/all-stories.html",
+      "importScript": "import-story-category",
+      "imported": false,
+      "importValidated": false,
+      "blocks": [
+        {
+          "name": "cards-stories",
+          "critiqued": false,
+          "approved": false
+        }
+      ],
+      "sectionStyles": []
+    },
+    {
+      "path": "/us/en/newsroom/awards-and-recognition",
+      "sourceUrl": "https://about.ups.com/us/en/newsroom/awards-and-recognition.html",
+      "importScript": null,
+      "imported": false,
+      "importValidated": false,
+      "blocks": [],
+      "sectionStyles": []
+    },
+    {
+      "path": "/us/en/newsroom/facebook-rules",
+      "sourceUrl": "https://about.ups.com/us/en/newsroom/facebook-rules.html",
+      "importScript": "import-story-article",
+      "imported": false,
+      "importValidated": false,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": false,
+          "approved": false
+        },
+        {
+          "name": "social-share",
+          "critiqued": false,
+          "approved": false
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": false,
+          "approved": false
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": false,
+          "approved": false
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": false,
+          "approved": false
+        }
+      ]
+    },
+    {
+      "path": "/us/en/newsroom/press-releases",
+      "sourceUrl": "https://about.ups.com/us/en/newsroom/press-releases.html",
+      "importScript": null,
+      "imported": false,
+      "importValidated": false,
+      "blocks": [],
+      "sectionStyles": []
+    },
+    {
+      "path": "/us/en/newsroom/statements",
+      "sourceUrl": "https://about.ups.com/us/en/newsroom/statements.html",
+      "importScript": null,
+      "imported": false,
+      "importValidated": false,
+      "blocks": [],
+      "sectionStyles": []
+    },
+    {
+      "path": "/us/en/our-company/global-presence",
+      "sourceUrl": "https://about.ups.com/us/en/our-company/global-presence.html",
+      "importScript": null,
+      "imported": false,
+      "importValidated": false,
+      "blocks": [],
+      "sectionStyles": []
+    },
+    {
+      "path": "/us/en/our-company/governance/carbon-neutral-credentials",
+      "sourceUrl": "https://about.ups.com/us/en/our-company/governance/carbon-neutral-credentials.html",
+      "importScript": "import-story-article",
+      "imported": false,
+      "importValidated": false,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": false,
+          "approved": false
+        },
+        {
+          "name": "social-share",
+          "critiqued": false,
+          "approved": false
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": false,
+          "approved": false
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": false,
+          "approved": false
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": false,
+          "approved": false
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-company/governance/transparency-rule",
+      "sourceUrl": "https://about.ups.com/us/en/our-company/governance/transparency-rule.html",
+      "importScript": "import-story-article",
+      "imported": false,
+      "importValidated": false,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": false,
+          "approved": false
+        },
+        {
+          "name": "social-share",
+          "critiqued": false,
+          "approved": false
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": false,
+          "approved": false
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": false,
+          "approved": false
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": false,
+          "approved": false
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-company/leadership",
+      "sourceUrl": "https://about.ups.com/us/en/our-company/leadership.html",
+      "importScript": null,
+      "imported": false,
+      "importValidated": false,
+      "blocks": [],
+      "sectionStyles": []
+    },
+    {
+      "path": "/us/en/our-company/our-history",
+      "sourceUrl": "https://about.ups.com/us/en/our-company/our-history.html",
+      "importScript": null,
+      "imported": false,
+      "importValidated": false,
+      "blocks": [],
+      "sectionStyles": []
+    },
+    {
+      "path": "/us/en/our-impact/community/the-ups-foundation-mission-and-purpose",
+      "sourceUrl": "https://about.ups.com/us/en/our-impact/community/the-ups-foundation-mission-and-purpose.html",
+      "importScript": "import-story-article",
+      "imported": false,
+      "importValidated": false,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": false,
+          "approved": false
+        },
+        {
+          "name": "social-share",
+          "critiqued": false,
+          "approved": false
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": false,
+          "approved": false
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": false,
+          "approved": false
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": false,
+          "approved": false
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-impact/community/ups-foundation-leadership",
+      "sourceUrl": "https://about.ups.com/us/en/our-impact/community/ups-foundation-leadership.html",
+      "importScript": null,
+      "imported": false,
+      "importValidated": false,
+      "blocks": [],
+      "sectionStyles": []
+    },
+    {
+      "path": "/us/en/our-impact/reporting",
+      "sourceUrl": "https://about.ups.com/us/en/our-impact/reporting.html",
+      "importScript": null,
+      "imported": false,
+      "importValidated": false,
+      "blocks": [],
+      "sectionStyles": []
+    },
+    {
+      "path": "/us/en/our-impact/reporting/gender-equality-index---ups-france-",
+      "sourceUrl": "https://about.ups.com/us/en/our-impact/reporting/gender-equality-index---ups-france-.html",
+      "importScript": "import-story-article",
+      "imported": false,
+      "importValidated": false,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": false,
+          "approved": false
+        },
+        {
+          "name": "social-share",
+          "critiqued": false,
+          "approved": false
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": false,
+          "approved": false
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": false,
+          "approved": false
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": false,
+          "approved": false
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-impact/sustainability/key-highlights-from-ups-s-latest-sustainability-and-community-im",
+      "sourceUrl": "https://about.ups.com/us/en/our-impact/sustainability/key-highlights-from-ups-s-latest-sustainability-and-community-im.html",
+      "importScript": "import-story-article",
+      "imported": false,
+      "importValidated": false,
+      "blocks": [
+        {
+          "name": "article-header",
+          "critiqued": false,
+          "approved": false
+        },
+        {
+          "name": "social-share",
+          "critiqued": false,
+          "approved": false
+        },
+        {
+          "name": "cards-stories",
+          "critiqued": false,
+          "approved": false
+        }
+      ],
+      "sectionStyles": [
+        {
+          "name": "highlight",
+          "critiqued": false,
+          "approved": false
+        },
+        {
+          "name": "accent-bar",
+          "critiqued": false,
+          "approved": false
+        }
+      ]
+    },
+    {
+      "path": "/us/en/our-impact/ups-sustainability-and-social-impact-report",
+      "sourceUrl": "https://about.ups.com/us/en/our-impact/ups-sustainability-and-social-impact-report.html",
+      "importScript": "import-topic-hub",
+      "imported": false,
+      "importValidated": false,
+      "blocks": [
+        {
+          "name": "hero-featured",
+          "critiqued": false,
+          "approved": false
+        },
+        {
+          "name": "columns-quote",
+          "critiqued": false,
+          "approved": false
+        },
+        {
+          "name": "columns-feature",
+          "critiqued": false,
+          "approved": false
+        }
+      ],
+      "sectionStyles": []
+    },
+    {
+      "path": "/us/en/our-impact/ups-sustainability-and-social-impact-report/delivering-for-our-communities",
+      "sourceUrl": "https://about.ups.com/us/en/our-impact/ups-sustainability-and-social-impact-report/delivering-for-our-communities.html",
+      "importScript": null,
+      "imported": false,
+      "importValidated": false,
+      "blocks": [
+        {
+          "name": "hero-featured",
+          "critiqued": false,
+          "approved": false
+        },
+        {
+          "name": "columns-quote",
+          "critiqued": false,
+          "approved": false
+        },
+        {
+          "name": "columns-feature",
+          "critiqued": false,
+          "approved": false
+        }
+      ],
+      "sectionStyles": []
+    },
+    {
+      "path": "/us/en/our-impact/ups-sustainability-and-social-impact-report/delivering-for-our-people",
+      "sourceUrl": "https://about.ups.com/us/en/our-impact/ups-sustainability-and-social-impact-report/delivering-for-our-people.html",
+      "importScript": null,
+      "imported": false,
+      "importValidated": false,
+      "blocks": [
+        {
+          "name": "hero-featured",
+          "critiqued": false,
+          "approved": false
+        },
+        {
+          "name": "columns-quote",
+          "critiqued": false,
+          "approved": false
+        },
+        {
+          "name": "columns-feature",
+          "critiqued": false,
+          "approved": false
+        }
+      ],
+      "sectionStyles": []
+    },
+    {
+      "path": "/us/en/our-impact/ups-sustainability-and-social-impact-report/delivering-for-our-planet",
+      "sourceUrl": "https://about.ups.com/us/en/our-impact/ups-sustainability-and-social-impact-report/delivering-for-our-planet.html",
+      "importScript": null,
+      "imported": false,
+      "importValidated": false,
+      "blocks": [
+        {
+          "name": "hero-featured",
+          "critiqued": false,
+          "approved": false
+        },
+        {
+          "name": "columns-quote",
+          "critiqued": false,
+          "approved": false
+        },
+        {
+          "name": "columns-feature",
+          "critiqued": false,
+          "approved": false
+        }
+      ],
+      "sectionStyles": []
+    },
+    {
+      "path": "/us/en/thank-a-ups-hero",
+      "sourceUrl": "https://about.ups.com/us/en/thank-a-ups-hero.html",
+      "importScript": null,
+      "imported": false,
+      "importValidated": false,
+      "blocks": [],
+      "sectionStyles": []
+    }
+  ]
+}

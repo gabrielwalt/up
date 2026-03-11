@@ -18,6 +18,7 @@ Migrating UPS "About" site (https://about.ups.com/us/en/home.html) to Adobe Edge
 10. **NEVER push HTML content via Git** - Content and code are strictly separated. Content lives in the CMS (DA), code lives in Git. Never add `.html` files to Git, never modify `.gitignore` to track HTML files. See "Content Architecture" section.
 11. **NEVER commit or push to Git yourself** - The user handles all Git operations (commit, push, branch management). Only make code changes to files — leave staging, committing, and pushing to the user.
 12. **Code must be compatible with DA markup** - DA (Document Authoring) wraps inline content in `<p>` tags in `.plain.html` output. Block JS and CSS must handle this gracefully with flexible selectors — never add JS workarounds to unwrap DA markup. See "DA Markup Compatibility" section.
+13. **Always produce `.html` files for content** - The user previews `.html` files only. Import tools create `.plain.html`, but the user cannot see those. Always ensure a `.html` file exists as the final deliverable. See "Content File Formats" in Content Architecture.
 
 ---
 
@@ -262,6 +263,33 @@ This project follows the AEM Edge Delivery Services architecture where **content
 2. **Never modify `.gitignore` to track HTML files** — Content belongs in the CMS, not in the repo
 3. **Fragment content (nav, footer) comes from DA** — These are authored and previewed in DA, not committed to Git
 4. **Local `/content/` directory is for local dev only** — It mirrors DA content for local preview but is NOT tracked in Git
+
+### Content File Formats: `.html` vs `.plain.html`
+
+Two HTML file formats exist in the `/content/` directory:
+
+| Format | Purpose | User-visible? |
+|--------|---------|---------------|
+| **`.html`** | Full page with `<head>`, `<body>`, `<main>`, blocks, section separators | **Yes** — this is what the user previews |
+| **`.plain.html`** | DA content format — section divs with div-based blocks, no page shell | **No** — the user cannot see these in their preview |
+
+**The user always previews `.html` files.** The `.plain.html` format is invisible to them. When importing content, the `.html` file is the only deliverable that matters for user validation.
+
+**Import tool output:** The bulk import tool (`run-bulk-import.js`) creates `.plain.html` files. These are the DA-compatible content format but lack the full page shell. After an import, a `.html` file must also exist for the user to preview the result.
+
+**`.html` file format** (what the user sees):
+- Full HTML document: `<!DOCTYPE html>`, `<head>` with metadata/scripts, `<body>` with `<header>`, `<main>`, `<footer>`
+- Sections as `<div>` children of `<main>` with `<hr>` separators between them
+- Blocks as `<table>` elements (DA-compatible) — see "DA-Compatible Content HTML Format"
+- Metadata in `<head>` (title, description, og:image, nav, footer)
+
+**`.plain.html` file format** (import tool output, not user-visible):
+- Just section `<div>` wrappers with content
+- Blocks as `<div class="block-name">` (div format)
+- Includes a `<div class="metadata">` block with page metadata
+- No page shell, no `<head>`, no `<hr>` separators
+
+**Rule:** When the user asks to import or re-import a page, the work is not done until a `.html` file exists that they can preview. Never consider an import complete if only a `.plain.html` was produced.
 
 ### Fragment Loading: How Nav and Footer Work
 
@@ -1478,6 +1506,7 @@ Always include ARIA attributes on interactive elements:
 27. **`p.button-wrapper` must have `margin: 0`** — The global `p.button-wrapper` rule must NOT add margin. Spacing is handled by the `* + *` rule inside default-content-wrapper. Extra margin on button-wrapper leaks through section boundaries (where sections have `padding: 0`) and creates incorrect gaps.
 28. **Content HTML must be DA-compatible** — Blocks as `<table>` (not div-format), `<hr>` between section `<div>` wrappers, lowercase `<td>` block names. See "DA-Compatible Content HTML Format" in Migration Rules. Without this, DA merges all sections and/or loses block structure.
 29. **Import scripts: use DOM-walking, not rigid section assembly** — Parsers call `element.replaceWith(table)` which detaches the original element reference. Never search stale `block.element` for tables after parsing. Instead, walk the DOM after all parsers run to collect tables and default content in natural document order. This also handles pages with different block orders using the same template. See `import-topic-hub.js` for the reference pattern.
+30. **User previews `.html` only, not `.plain.html`** — The user's preview environment only shows `.html` files. Import tools produce `.plain.html` but the user cannot see those. An import is not complete until a `.html` file exists. See "Content File Formats" in Content Architecture.
 
 ---
 
