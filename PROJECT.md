@@ -14,14 +14,13 @@ Migrating UPS "About" site (https://about.ups.com/us/en/home.html) to Adobe Edge
 6. **Create variants, not new blocks** - When a content pattern is similar to an existing block but needs different styling, create a VARIANT of that block (not a new block). This maintains consistency and reduces code duplication.
 7. **Never import all-caps content as-is** - When source content is ALL CAPS in the DOM (e.g., "REPORTS AND DISCLOSURES"), convert it to Title Case or Sentence case in the HTML content and apply `text-transform: uppercase` via CSS instead. This preserves authoring flexibility and avoids requiring authors to type in all caps.
 8. **Don't rely on bold/strong for block-wide styling** - If an entire text element in a block needs to be bold or styled differently (like eyebrow labels or attribution text), apply `font-weight: 700` via CSS targeting the element position (e.g., `:first-child`). Reserve `<strong>` only for inline emphasis where the author wants to distinguish specific words from surrounding text.
-9. **Keep import scripts aligned with content HTML** - When changing content markup patterns, update all related parsers in `tools/importer/parsers/`. Content HTML is the source of truth; parsers must reproduce it exactly. See "Import Script Alignment" in Migration Rules.
+9. **Keep import scripts aligned with content `.plain.html`** - When changing content markup patterns, update all related parsers in `tools/importer/parsers/`. Content `.plain.html` is the source of truth; parsers must reproduce it exactly. See "Import Script Alignment" in Migration Rules.
 10. **NEVER push HTML content via Git** - Content and code are strictly separated. Content lives in the CMS (DA), code lives in Git. Never add `.html` files to Git, never modify `.gitignore` to track HTML files. See "Content Architecture" section.
 11. **NEVER commit or push to Git yourself** - The user handles all Git operations (commit, push, branch management). Only make code changes to files — leave staging, committing, and pushing to the user.
-12. **Code must be compatible with DA markup** - DA (Document Authoring) wraps inline content in `<p>` tags in `.plain.html` output. Block JS and CSS must handle this gracefully with flexible selectors — never add JS workarounds to unwrap DA markup. See "DA Markup Compatibility" section.
-13. **Always produce `.html` files for content** - The user previews `.html` files only. Import tools create `.plain.html`, but the user cannot see those. Always ensure a `.html` file exists as the final deliverable. See "Content File Formats" in Content Architecture.
+12. **Code must be compatible with DA markup** - DA (Document Authoring) wraps inline content in `<p>` tags. Block JS and CSS must handle this gracefully with flexible selectors — never add JS workarounds to unwrap DA markup. See "DA Markup Compatibility" section.
+13. **`.plain.html` is the single source of truth** - All content edits and updates are made directly to `.plain.html` files in `/content/`. No `.html` files exist in the content folder. `.plain.html` uses div-format blocks (`<div class="block-name">`) and section `<div>` wrappers — this is the format DA consumes. See "Content Architecture" section.
 14. **Keep `/sitemap.json` up-to-date at all times** - Update the sitemap whenever pages are discovered, imported, re-imported, refactored, validated, critiqued, or approved. This is the master tracker for migration progress. See "Sitemap Maintenance" section.
 15. **Keep sitemap blocks[] current after every content change** - After running import scripts, re-importing pages, or changing page content, immediately update the affected page's `blocks[]` and `sectionStyles[]` in `/sitemap.json`. Before refactoring block CSS/JS, query the sitemap to find all affected pages and verify changes on them.
-16. **`.html` is the sole content source of truth — NEVER manually edit `.plain.html`** - When creating, restructuring, or modifying page content (adding blocks, changing sections, updating text), ONLY create or edit the `.html` file. The `.plain.html` format is an import artifact produced exclusively by `run-bulk-import.js` — never manually create, edit, or treat `.plain.html` as the content source. If only a `.plain.html` exists for a page and the content needs changes, create/update the `.html` file, not the `.plain.html`. See "Content File Formats" in Content Architecture.
 
 ---
 
@@ -133,18 +132,18 @@ When encountering a content pattern that's similar to an existing block:
 
 ### Import Script Alignment
 
-**⚠️ CRITICAL: Import infrastructure (parsers, transformers, page-templates.json) MUST stay aligned with the actual content HTML structure.**
+**⚠️ CRITICAL: Import infrastructure (parsers, transformers, page-templates.json) MUST stay aligned with the actual `.plain.html` content structure.**
 
-The import scripts in `tools/importer/` are designed to reproduce the exact content structure found in `content/`. When the content structure changes (e.g., CSS-handled styling replaces inline markup), the parsers must be updated to match.
+The import scripts in `tools/importer/` produce `.plain.html` files (div format). When the content structure changes (e.g., CSS-handled styling replaces inline markup), the parsers must be updated to match.
 
 **Rules for keeping scripts aligned:**
 
-1. **Content HTML is the source of truth** — If the content HTML uses plain `<p>` for eyebrows, parsers must output plain `<p>` (not `<p><strong>...</strong></p>`).
+1. **Content `.plain.html` is the source of truth** — If the content uses plain `<p>` for eyebrows, parsers must output plain `<p>` (not `<p><strong>...</strong></p>`).
 2. **CSS handles presentation** — Bold, uppercase, colors, and spacing are all CSS concerns. Parsers should output clean semantic HTML and let block CSS handle visual styling.
 3. **Create clean DOM elements in parsers** — Always use `document.createElement()` to build output elements rather than pushing source DOM nodes directly. Source nodes carry classes, attributes, and inline styles from the original site that don't belong in EDS content.
 4. **Verify after content changes** — When modifying content markup patterns (e.g., removing `<strong>` wrappers from eyebrows), update ALL parsers that produce that pattern. Search across `tools/importer/parsers/` for the old pattern.
 5. **Never overwrite verified content** — When simulating an import to check alignment, compare the parser output against existing content HTML. Fix the parser to match the content, never the other way around.
-6. **Use DOM-walking for flexible page imports** — Parsers call `element.replaceWith(table)`, which detaches the original element. After all parsers run, walk the DOM to collect `<table>` elements (parsed blocks) and remaining headings/paragraphs (default content) in natural document order. Group into sections (H1 = own section, block table = closes section, headings/text = accumulate until next block). This approach handles pages with different block orders using the same import script. See `import-universal.js` for the reference implementation.
+6. **Use DOM-walking for flexible page imports** — Parsers call `element.replaceWith(blockDiv)`, which detaches the original element. After all parsers run, walk the DOM to collect block `<div>` elements and remaining headings/paragraphs (default content) in natural document order. Group into sections. This approach handles pages with different block orders using the same import script. See `import-universal.js` for the reference implementation.
 
 **Eyebrow text pattern (established):**
 - Content HTML: `<p>Eyebrow Text</p>` (plain paragraph)
@@ -156,99 +155,56 @@ The import scripts in `tools/importer/` are designed to reproduce the exact cont
 - Eyebrow dashes: `::before` pseudo-element, `width: 32px; height: 3px; background: #ffd100; border-radius: 5px;` positioned absolutely with `left: 0; top: 50%; transform: translateY(-50%);` and `padding-left: 40px` on the text element
 - Heading bars: `::after` pseudo-element on H1, `width: 80px; height: 4px; background: #ffdc40; border-radius: 5px; margin: 32px auto 0;` displayed as block
 
-### DA-Compatible Content HTML Format
+### `.plain.html` Content Format
 
-**⚠️ CRITICAL: Content HTML files in `/content/` must be DA-compatible so they work both locally (via `aem up`) and when uploaded to DA.**
+**All content files use `.plain.html` (div format).** This is the native format that DA produces and consumes.
 
-DA (Document Authoring) processes uploaded HTML differently from how `aem.js` processes it locally. The HTML must satisfy both systems. The `convertBlockTables()` and `<hr>` removal functions in `scripts.js` bridge these differences at runtime.
+**Checklist for every content `.plain.html` file:**
 
-**Checklist for every content HTML file:**
-
-1. **Blocks as `<table>` elements** (not `<div class="block-name">`)
-   - First row: `<tr><td>block-name</td></tr>` (lowercase, kebab-case)
-   - Use `<td>` (never `<th>`) for the block name cell
-   - Subsequent rows: one `<tr>` per content row with `<td>` per column
-   - For multi-column blocks: `<tr><td colspan="2">block-name</td></tr>`
-   - `scripts.js` `convertBlockTables()` converts these to div-format at runtime for `aem.js`
+1. **Blocks as `<div class="block-name">` elements**
+   - Block name as CSS class (lowercase, kebab-case)
+   - Each row is a `<div>` child, each column within a row is a nested `<div>`
+   - Variants: `<div class="block-name variant-name">`
    ```html
-   <!-- ✓ Correct (DA-compatible table format) -->
-   <table>
-     <tr><td>article-header</td></tr>
-     <tr><td><h1>Title</h1></td></tr>
-   </table>
-
-   <!-- ✗ Wrong (runtime div-format — DA won't recognize blocks) -->
+   <!-- Single-column block -->
    <div class="article-header">
      <div><div><h1>Title</h1></div></div>
    </div>
+
+   <!-- Multi-column block -->
+   <div class="cards-stories">
+     <div><div><picture>...</picture></div><div><h3>Title</h3></div></div>
+     <div><div><picture>...</picture></div><div><h3>Title</h3></div></div>
+   </div>
    ```
 
-2. **Section separators as `<hr>` between `<div>` wrappers**
-   - Each section is a `<div>` child of `<main>` (for local dev compatibility)
-   - Add `<hr>` between sections so DA recognizes section boundaries
-   - DA ignores `<div>` wrappers but uses `<hr>` as section break markers
-   - `scripts.js` removes `<hr>` from the DOM before decoration, so CSS adjacent sibling selectors (`+`) work correctly
+2. **Sections as top-level `<div>` wrappers** (no `<hr>` separators)
    ```html
-   <main>
-     <div>
-       <!-- Section 1 content -->
+   <div>
+     <!-- Section 1 content -->
+   </div>
+   <div>
+     <!-- Section 2 content -->
+     <div class="section-metadata">
+       <div><div>Style</div><div>highlight</div></div>
      </div>
-     <hr>
-     <div>
-       <!-- Section 2 content -->
-     </div>
-     <hr>
-     <div>
-       <!-- Section 3 content -->
-       <table>
-         <tr><td colspan="2">section-metadata</td></tr>
-         <tr><td>Style</td><td>highlight</td></tr>
-       </table>
-     </div>
-   </main>
+   </div>
    ```
 
-3. **`<head>` must match the standard format**
+3. **Page metadata as `<div class="metadata">` at the end**
    ```html
-   <head>
-   <meta
-     http-equiv="Content-Security-Policy"
-     content="script-src 'nonce-aem' 'strict-dynamic' 'unsafe-inline' http: https:; base-uri 'self'; object-src 'none';"
-     move-to-http-header="true"
-   >
-   <title>Page Title</title>
-   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-   <meta name="description" content="Page description"/>
-   <meta property="og:image" content="https://about.ups.com/content/dam/upsstories/images/logo/ups-social-share-logo.jpg"/>
-   <meta name="nav" content="/content/nav"/>
-   <meta name="footer" content="/content/footer"/>
-   <script nonce="aem" src="/scripts/aem.js" type="module"></script>
-   <script nonce="aem" src="/scripts/scripts.js" type="module"></script>
-   <link rel="stylesheet" href="/styles/styles.css"/>
-   </head>
-   ```
-   Required elements:
-   - CSP meta tag with `move-to-http-header="true"`
-   - `nonce="aem"` on both `<script>` tags
-   - `og:image` meta property
-   - `nav` and `footer` meta tags pointing to `/content/nav` and `/content/footer`
-   - Self-closing `<meta>` tags (with `/>`)
-
-4. **Body structure**
-   ```html
-   <body>
-   <header></header>
-   <main>
-     <!-- sections with <hr> separators -->
-   </main>
-   <footer></footer>
-   </body>
+   <div class="metadata">
+     <div><div>Title</div><div>Page Title</div></div>
+     <div><div>Description</div><div>Page description</div></div>
+     <div><div>Image</div><div><picture>...</picture></div></div>
+     <div><div>nav</div><div>/content/nav</div></div>
+     <div><div>footer</div><div>/content/footer</div></div>
+   </div>
    ```
 
-**What happens without these rules:**
-- Missing `<table>` format → DA shows no block structure, only default content
-- Missing `<hr>` separators → DA merges all sections into one, applying section-metadata styles (e.g., `highlight`) to the entire page
-- Missing `<hr>` removal in JS → `<hr>` elements in the DOM break CSS `+` adjacent sibling selectors, causing layout rules to not match
+4. **No page shell** — no `<!DOCTYPE>`, no `<html>`, no `<head>`, no `<body>`, no `<header>`, no `<footer>`
+
+**Data tables**: In `.plain.html` format, all tables are converted to divs. Data tables (non-block tables) should be handled through block implementations or other means.
 
 ---
 
@@ -267,34 +223,44 @@ This project follows the AEM Edge Delivery Services architecture where **content
 3. **Fragment content (nav, footer) comes from DA** — These are authored and previewed in DA, not committed to Git
 4. **Local `/content/` directory is for local dev only** — It mirrors DA content for local preview but is NOT tracked in Git
 
-### Content File Formats: `.html` vs `.plain.html`
+### Content File Format: `.plain.html`
 
-Two HTML file formats exist in the `/content/` directory:
+**`.plain.html` is the single source of truth.** All content edits and updates are made directly to `.plain.html` files in the `/content/` folder. No `.html` or `.md` files exist in the content folder.
 
-| Format | Purpose | User-visible? |
-|--------|---------|---------------|
-| **`.html`** | Full page with `<head>`, `<body>`, `<main>`, blocks, section separators | **Yes** — this is what the user previews |
-| **`.plain.html`** | DA content format — section divs with div-based blocks, no page shell | **No** — the user cannot see these in their preview |
+**`.plain.html` format** (what you edit and what DA consumes):
+- Section `<div>` wrappers with content
+- Blocks as `<div class="block-name">` (div format, not table format)
+- Includes a `<div class="metadata">` block with page metadata (title, description, og:image, template)
+- No page shell, no `<head>`, no `<hr>` separators, no `<header>`, no `<footer>`
 
-**The `.html` file is the sole source of truth for content.** It is the only file the user can preview, and the only file you should ever create or edit when working with page content. When restructuring content (adding/removing blocks, changing sections, updating text), always modify the `.html` file — never the `.plain.html`.
+**Example `.plain.html` structure:**
+```html
+<div>
+  <h1>Page Title</h1>
+  <p>Introduction text.</p>
+</div>
+<div>
+  <div class="cards-stories">
+    <div><div><picture>...</picture></div><div><p>Eyebrow</p><h3>Title</h3></div></div>
+    <div><div><picture>...</picture></div><div><p>Eyebrow</p><h3>Title</h3></div></div>
+  </div>
+  <div class="section-metadata">
+    <div><div>Style</div><div>highlight</div></div>
+  </div>
+</div>
+<div class="metadata">
+  <div><div>Title</div><div>Page Title</div></div>
+  <div><div>Description</div><div>Page description</div></div>
+  <div><div>Image</div><div><picture>...</picture></div></div>
+</div>
+```
 
-**`.plain.html` is an import artifact only.** It is produced exclusively by `run-bulk-import.js` and must NEVER be manually created or edited. If a page only has a `.plain.html` file, create a new `.html` file — do not modify the `.plain.html`.
-
-**Import tool output:** The bulk import tool (`run-bulk-import.js`) creates `.plain.html` files. These are the DA-compatible content format but lack the full page shell. After an import, a `.html` file must also exist for the user to preview the result.
-
-**`.html` file format** (what the user sees):
-- Full HTML document: `<!DOCTYPE html>`, `<head>` with metadata/scripts, `<body>` with `<header>`, `<main>`, `<footer>`
-- Sections as `<div>` children of `<main>` with `<hr>` separators between them
-- Blocks as `<table>` elements (DA-compatible) — see "DA-Compatible Content HTML Format"
-- Metadata in `<head>` (title, description, og:image, nav, footer)
-
-**`.plain.html` file format** (import tool output, not user-visible):
-- Just section `<div>` wrappers with content
-- Blocks as `<div class="block-name">` (div format)
-- Includes a `<div class="metadata">` block with page metadata
-- No page shell, no `<head>`, no `<hr>` separators
-
-**Rule:** When the user asks to import or re-import a page, the work is not done until a `.html` file exists that they can preview. Never consider an import complete if only a `.plain.html` was produced.
+**Key rules:**
+- Blocks use **div format**: `<div class="block-name">` with nested `<div>` rows and columns
+- Sections are `<div>` wrappers at the top level (no `<hr>` separators needed)
+- Section metadata is a `<div class="section-metadata">` inside its section `<div>`
+- Page metadata goes in a `<div class="metadata">` at the end
+- No full page shell (`<!DOCTYPE>`, `<head>`, `<body>`) — just the content divs
 
 ### Fragment Loading: How Nav and Footer Work
 
@@ -302,17 +268,17 @@ The header and footer blocks load their content as **fragments** via `loadFragme
 
 1. `header.js` fetches `{navPath}.plain.html` (default: `/nav`)
 2. `footer.js` fetches `{footerPath}.plain.html` (default: `/footer`)
-3. The `.plain.html` format is a clean HTML representation of the authored content
+3. The `.plain.html` format is the standard content format
+
+**Fragment files are `.plain.html` like all other content.** `nav.plain.html` and `footer.plain.html` exist on disk in `/content/` and are edited directly.
 
 **Path resolution on deployed vs local:**
 - **Deployed** (aem.page/aem.live): Content at root paths — `/nav.plain.html`, `/footer.plain.html`
 - **Local dev** (localhost:3000): Content at `/content/nav.plain.html` (page metadata overrides the default path)
 
-The local page HTML has `<meta name="nav" content="/content/nav"/>` which overrides the default `/nav` path. On deployed, this meta tag is absent, so the default `/nav` path is used — which correctly resolves to DA content.
-
 ### DA Markup Compatibility
 
-**DA (Document Authoring) wraps inline content in `<p>` tags** in its `.plain.html` output. This is standard DA behavior and must NOT be worked around by unwrapping in JS.
+**DA (Document Authoring) wraps inline content in `<p>` tags** in its output. This is standard DA behavior and must NOT be worked around by unwrapping in JS.
 
 **Example — nav link in DA output:**
 ```html
@@ -448,8 +414,8 @@ When working on this project, periodically verify:
 - **Icons**: `/icons/` (`search.svg`, `ups-logo.svg`)
 - **Icon font**: `/fonts/upspricons.woff` — UPS icon font (button chevron `\e60f`, circle arrow `\e603`)
 - **Web fonts**: `/fonts/` (`roboto-regular.woff2`, `roboto-medium.woff2`, `roboto-bold.woff2`, `roboto-condensed-bold.woff2`)
-- **Navigation**: Authored in DA, served at `/nav.plain.html` (deployed) or `/content/nav.plain.html` (local dev)
-- **Footer**: Authored in DA, served at `/footer.plain.html` (deployed) or `/content/footer.plain.html` (local dev)
+- **Navigation**: Fragment at `/content/nav.plain.html` — loaded by header block via `loadFragment()`
+- **Footer**: Fragment at `/content/footer.plain.html` — loaded by footer block via `loadFragment()`
 - **Import infrastructure**: `/tools/importer/` (page-templates.json, parsers/, transformers/)
 - **Sitemap**: `/sitemap.json` — Master tracker for all pages, import status, block usage, validation, and approval state. **Must be kept up-to-date at all times** (see Sitemap Maintenance section).
 
@@ -512,39 +478,49 @@ When working on this project, periodically verify:
 
 ## Pages Inventory
 
-All content pages in this project and their source URLs.
+All content pages in this project and their source URLs. All content files use `.plain.html` format.
 
-| Local Path | Origin URL | Description |
-|------------|-----------|-------------|
-| `/content/us/en/home.html` | https://about.ups.com/us/en/home.html | Homepage |
-| `/content/us/en/our-impact.html` | https://about.ups.com/us/en/our-impact.html | Our Impact landing page |
-| `/content/us/en/our-company.plain.html` | https://about.ups.com/us/en/our-company.html | Our Company landing page |
-| `/content/us/en/our-company/our-strategy.plain.html` | https://about.ups.com/us/en/our-company/our-strategy.html | Our Strategy page |
-| `/content/us/en/our-company/our-culture.html` | https://about.ups.com/us/en/our-company/our-culture.html | Our Culture page |
-| `/content/us/en/our-stories.plain.html` | https://about.ups.com/us/en/our-stories.html | Our Stories listing page |
-| `/content/us/en/our-stories/customer-first.plain.html` | https://about.ups.com/us/en/our-stories/customer-first.html | Customer First category page |
-| `/content/us/en/our-stories/innovation-driven.plain.html` | https://about.ups.com/us/en/our-stories/innovation-driven.html | Innovation Driven category page |
-| `/content/us/en/our-stories/people-led.plain.html` | https://about.ups.com/us/en/our-stories/people-led.html | People Led category page |
-| `/content/us/en/our-stories/customer-first/*.plain.html` | 37 story articles | Customer First stories (bulk imported) |
-| `/content/us/en/our-stories/innovation-driven/*.plain.html` | 33 story articles | Innovation Driven stories (bulk imported) |
-| `/content/us/en/our-stories/people-led/*.plain.html` | 36 story articles | People Led stories (bulk imported) |
-| `/content/us/en/our-impact/community.plain.html` | https://about.ups.com/us/en/our-impact/community.html | Community topic hub (topic-hub template) |
-| `/content/us/en/our-impact/sustainability.plain.html` | https://about.ups.com/us/en/our-impact/sustainability.html | Sustainability topic hub (topic-hub template) |
-| `/content/us/en/our-company/great-employer.plain.html` | https://about.ups.com/us/en/our-company/great-employer.html | Great Employer topic hub (topic-hub template) |
-| `/content/us/en/our-company/suppliers.plain.html` | https://about.ups.com/us/en/our-company/suppliers.html | Suppliers topic hub (topic-hub template) |
-| `/content/us/en/newsroom.html` | https://about.ups.com/us/en/newsroom.html | Newsroom topic hub (topic-hub template) |
-| `/content/us/en/our-impact/reporting/gender-equality-index-ups-france.html` | https://about.ups.com/us/en/our-impact/reporting/gender-equality-index---ups-france-.html | Gender Equality Index article (with data table) |
-| `/content/nav.html` | Derived from https://about.ups.com/us/en/home.html | Navigation fragment |
-| `/content/footer.html` | Derived from https://about.ups.com/us/en/home.html | Footer fragment |
+| Local Path | Origin URL | Description | Status |
+|------------|-----------|-------------|--------|
+| `/content/us/en/our-company.plain.html` | https://about.ups.com/us/en/our-company.html | Our Company landing page | ✅ has .plain.html |
+| `/content/us/en/our-company/suppliers.plain.html` | https://about.ups.com/us/en/our-company/suppliers.html | Suppliers topic hub | ✅ has .plain.html |
+| `/content/us/en/our-company/our-strategy.plain.html` | https://about.ups.com/us/en/our-company/our-strategy.html | Our Strategy page | ✅ has .plain.html |
+| `/content/us/en/our-stories.plain.html` | https://about.ups.com/us/en/our-stories.html | Our Stories listing page | ✅ has .plain.html |
+| `/content/us/en/our-stories/customer-first.plain.html` | https://about.ups.com/us/en/our-stories/customer-first.html | Customer First category page | ✅ has .plain.html |
+| `/content/us/en/our-stories/innovation-driven.plain.html` | https://about.ups.com/us/en/our-stories/innovation-driven.html | Innovation Driven category page | ✅ has .plain.html |
+| `/content/us/en/our-stories/people-led.plain.html` | https://about.ups.com/us/en/our-stories/people-led.html | People Led category page | ✅ has .plain.html |
+| `/content/us/en/our-stories/customer-first/*.plain.html` | 37 story articles | Customer First stories | ✅ has .plain.html |
+| `/content/us/en/our-stories/innovation-driven/*.plain.html` | 27 story articles | Innovation Driven stories | ✅ has .plain.html |
+| `/content/us/en/our-stories/people-led/*.plain.html` | 36 story articles | People Led stories | ✅ has .plain.html |
+| `/content/us/en/our-impact/community.plain.html` | https://about.ups.com/us/en/our-impact/community.html | Community topic hub | ✅ has .plain.html |
+| `/content/us/en/our-impact/sustainability.plain.html` | https://about.ups.com/us/en/our-impact/sustainability.html | Sustainability topic hub | ✅ has .plain.html |
+| `/content/us/en/our-company/great-employer.plain.html` | https://about.ups.com/us/en/our-company/great-employer.html | Great Employer topic hub | ✅ has .plain.html |
+| `/content/nav.plain.html` | Derived from https://about.ups.com/us/en/home.html | Navigation fragment | ✅ has .plain.html |
+| `/content/footer.plain.html` | Derived from https://about.ups.com/us/en/home.html | Footer fragment | ✅ has .plain.html |
+| `/content/us/en/home` | https://about.ups.com/us/en/home.html | Homepage | ❌ needs re-import as .plain.html |
+| `/content/us/en/our-impact` | https://about.ups.com/us/en/our-impact.html | Our Impact landing page | ❌ needs re-import as .plain.html |
+| `/content/us/en/our-impact/reporting` | https://about.ups.com/us/en/our-impact/reporting.html | Reporting page | ❌ needs re-import as .plain.html |
+| `/content/us/en/our-impact/reporting/gender-equality-index-ups-france` | https://about.ups.com/us/en/our-impact/reporting/gender-equality-index---ups-france-.html | Gender Equality Index article | ❌ needs re-import as .plain.html |
+| `/content/us/en/our-company/our-culture` | https://about.ups.com/us/en/our-company/our-culture.html | Our Culture page | ❌ needs re-import as .plain.html |
+| `/content/us/en/our-company/our-history` | https://about.ups.com/us/en/our-company/our-history.html | Our History page | ❌ needs re-import as .plain.html |
+| `/content/us/en/our-company/leadership` | https://about.ups.com/us/en/our-company/leadership.html | Leadership page | ❌ needs re-import as .plain.html |
+| `/content/us/en/newsroom` | https://about.ups.com/us/en/newsroom.html | Newsroom topic hub | ❌ needs re-import as .plain.html |
+| `/content/us/en/newsroom/awards-and-recognition` | https://about.ups.com/us/en/newsroom/awards-and-recognition.html | Awards & Recognition page | ❌ needs re-import as .plain.html |
+| `/content/us/en/our-impact/sustainability/key-highlights-*` | https://about.ups.com/us/en/our-impact/sustainability/key-highlights-from-ups-s-latest-sustainability-and-community-im.html | Sustainability Key Highlights | ❌ needs re-import as .plain.html |
+| `/content/us/en/our-impact/ups-sustainability-and-social-impact-report/delivering-for-our-*` | 3 Delivering For pages | Delivering For Our Communities/People/Planet | ❌ needs re-import as .plain.html |
+| `/content/us/en/our-impact/community/ups-foundation-leadership` | https://about.ups.com/us/en/our-impact/community/ups-foundation-leadership.html | UPS Foundation Leadership | ❌ needs re-import as .plain.html |
+| `/content/us/en/thank-a-ups-hero` | https://about.ups.com/us/en/thank-a-ups-hero.html | Thank a UPS Hero | ❌ needs re-import as .plain.html |
 
-**URL mapping convention**: Local paths follow the origin URL structure with `/content/` prefix.
+**URL mapping convention**: Local paths follow the origin URL structure with `/content/` prefix. All content files use `.plain.html` extension.
+
+**Pages marked ❌ needs re-import as .plain.html**: These previously existed only as `.html` (table format). They were deleted and need to be re-imported as `.plain.html` (div format).
 
 ### Bulk Publish URL List
 
 When asked to list all page URLs (e.g., "list all pages", "bulk publish", "bulk preview"):
 
-1. Scan `/workspace/content/` for all `.html` files (exclude `.plain.html` duplicates)
-2. For each file, strip the `/workspace/content/` prefix and the `.html` extension to get the path
+1. Scan `/workspace/content/` for all `.plain.html` files
+2. For each file, strip the `/workspace/content/` prefix and the `.plain.html` extension to get the path
 3. Output each as `https://main--up--gabrielwalt.aem.page/{path}`
 4. Include ALL pages and fragments (nav, footer)
 5. Output the URLs inside a fenced code block — one per line, no headers, no extra text
@@ -553,35 +529,13 @@ When asked to list all page URLs (e.g., "list all pages", "bulk publish", "bulk 
 
 ## Fragment Files
 
-Fragment files (`nav`, `footer`) are **authored in DA** and loaded by blocks at runtime via `loadFragment()`. They are NOT committed to Git.
+Fragment files (`nav`, `footer`) are `.plain.html` like all other content. They are **authored in DA** and loaded by blocks at runtime via `loadFragment()`. They are NOT committed to Git.
 
 **Content source**: DA at `content.da.live/gabrielwalt/up/`
 **Deployed paths**: `/nav.plain.html`, `/footer.plain.html` (served by AEM)
 **Local dev paths**: `/content/nav.plain.html`, `/content/footer.plain.html` (for local preview only)
 
-**⚠️ CRITICAL**: Fragment files must NOT have `<header></header>` or `<footer></footer>` tags in their HTML structure. These tags cause AEM to try loading header/footer blocks on the fragment page itself, creating recursive loading issues.
-
-**Correct fragment structure**:
-```html
-<!DOCTYPE html>
-<html>
-<head>...</head>
-<body>
-<main>
-  <!-- Fragment content here -->
-</main>
-</body>
-</html>
-```
-
-**Wrong** (causes duplicate header/recursion):
-```html
-<body>
-<header></header>  <!-- ✗ Don't include -->
-<main>...</main>
-<footer></footer>  <!-- ✗ Don't include -->
-</body>
-```
+**Fragment `.plain.html` format**: Same div-format as all other content files — section `<div>` wrappers with block `<div class="block-name">` elements. No page shell, no `<header>` or `<footer>` tags.
 
 **DA markup note**: DA wraps inline content in `<p>` tags. Block CSS/JS must handle this — see "DA Markup Compatibility" in Content Architecture section.
 
@@ -844,7 +798,7 @@ Only two breakpoints, derived from the UPS source site. Content flows fluidly be
 - **Page templates**: Add `Template: template-name` to page metadata for page-specific styles
 - **HTML in table cells**: Markdown syntax (like `## Heading`) is NOT parsed inside table cells. Use HTML tags (`<h2>Heading</h2>`) when you need structured content in block tables.
 - **One row per item**: In block tables (carousel, accordion), each row becomes one item/slide. Combine all content for an item into a single row using HTML.
-- **Data tables vs block tables**: In EDS, `<table>` elements are converted to blocks by `convertBlockTables()` in scripts.js. To include an actual data table (not a block), ensure the first cell of the first row is empty or contains multi-word data text (not a valid block name). The `convertBlockTables()` function checks the first cell — if `toClassName()` returns an empty string, the table passes through as a native HTML table. Use `<th>` for header cells and `<td>` for data cells. Style data tables in `styles.css` under `main .default-content-wrapper table`. Note: the `.plain.html` import format converts all tables to divs, so data tables only render correctly in `.html` files.
+- **Data tables vs block tables**: In EDS, `<table>` elements are converted to blocks by `convertBlockTables()` in scripts.js. To include an actual data table (not a block), ensure the first cell of the first row is empty or contains multi-word data text (not a valid block name). The `convertBlockTables()` function checks the first cell — if `toClassName()` returns an empty string, the table passes through as a native HTML table. Use `<th>` for header cells and `<td>` for data cells. Style data tables in `styles.css` under `main .default-content-wrapper table`.
 
 ---
 
@@ -883,6 +837,7 @@ Applied via `section-metadata` block with `Style: style-name`. Multiple styles c
 | `dark` | `.section.dark` | Dark brown background (`#351c15`), inverts text/links to white |
 | `spacing-l` | `.section.spacing-l` | Adds 80px (`--spacing-4xl`) margin-top to section |
 | `spacing-xl` | `.section.spacing-xl` | Adds 160px margin-top to section |
+| `spacing-2xl` | `.section.spacing-2xl` | Adds 240px margin-top to section |
 
 **Example usage in content:**
 ```html
@@ -1755,13 +1710,12 @@ Always include ARIA attributes on interactive elements:
 25. **DA wraps inline content in `<p>` tags** - Block JS/CSS must use flexible selectors (e.g., `:scope > a, :scope > p > a`) to handle both direct children and p-wrapped children from DA. Never add JS unwrapping logic — fix compatibility in CSS with button resets and in JS with dual selectors.
 26. **Fragment default paths are root-relative** - `header.js` defaults to `/nav`, `footer.js` defaults to `/footer`. Local dev pages override these via `<meta name="nav" content="/content/nav"/>`. On deployed (DA), no override exists — the default root path is used.
 27. **`p.button-wrapper` must have `margin: 0`** — The global `p.button-wrapper` rule must NOT add margin. Spacing is handled by the `* + *` rule inside default-content-wrapper. Extra margin on button-wrapper leaks through section boundaries (where sections have `padding: 0`) and creates incorrect gaps.
-28. **Content HTML must be DA-compatible** — Blocks as `<table>` (not div-format), `<hr>` between section `<div>` wrappers, lowercase `<td>` block names. See "DA-Compatible Content HTML Format" in Migration Rules. Without this, DA merges all sections and/or loses block structure.
-29. **Import scripts: use DOM-walking, not rigid section assembly** — Parsers call `element.replaceWith(table)` which detaches the original element reference. Never search stale `block.element` for tables after parsing. Instead, walk the DOM after all parsers run to collect tables and default content in natural document order. This also handles pages with different block orders using the same template. See `import-universal.js` for the reference implementation.
-30. **User previews `.html` only, not `.plain.html`** — The user's preview environment only shows `.html` files. Import tools produce `.plain.html` but the user cannot see those. An import is not complete until a `.html` file exists. See "Content File Formats" in Content Architecture.
+28. **Content files use `.plain.html` div format** — Blocks as `<div class="block-name">`, sections as top-level `<div>` wrappers, metadata as `<div class="metadata">`. No page shell, no `<hr>` separators. See "`.plain.html` Content Format" in Migration Rules.
+29. **Import scripts: use DOM-walking, not rigid section assembly** — Parsers call `element.replaceWith(blockDiv)` which detaches the original element reference. Never search stale `block.element` after parsing. Instead, walk the DOM after all parsers run to collect block divs and default content in natural document order. This also handles pages with different block orders using the same template. See `import-universal.js` for the reference implementation.
+30. **`.plain.html` is the single source of truth** — All content edits go directly in `.plain.html` files. No `.html` or `.md` files should exist in the content folder. This is the format DA consumes and produces.
 31. **Always use `import-universal.bundle.js` for all imports** — The universal import script handles every page type (articles and standard pages). No per-template scripts exist — only the universal script.
-32. **Data tables pass through `convertBlockTables()`** — A `<table>` in content whose first cell is empty or doesn't form a valid block name is left as a native HTML table. Use `<th>` for header rows. Style with `main .default-content-wrapper table` selectors. Note: `.plain.html` format converts ALL tables to divs (losing table structure), so data tables only work correctly in `.html` files.
+32. **Data tables in `.plain.html`** — The `.plain.html` format converts all tables to divs. Data tables (non-block HTML tables) need special handling in `.plain.html` content — consider block implementations or other approaches since native `<table>` elements are not preserved.
 33. **Keep sitemap blocks[] current after every content change** — After imports, re-imports, or any content modification, update the affected page's `blocks[]` and `sectionStyles[]` in `/sitemap.json`. Before refactoring block CSS/JS, query the sitemap to find all affected pages.
-34. **`.html` is the sole content source of truth** — When creating, restructuring, or modifying page content, ONLY work with `.html` files. NEVER manually create or edit `.plain.html` files — they are import artifacts produced exclusively by `run-bulk-import.js`. If only a `.plain.html` exists and content needs changes, create/update the `.html` file instead. The `.html` file is what the user previews and what you must deliver.
 
 ---
 

@@ -60,10 +60,11 @@ export default function decorate(block) {
     ol.append(li);
   }
 
-  // Current page (plain text, not clickable)
+  // Current page (plain text, not clickable) — use page title if available
   const currentLi = document.createElement('li');
   currentLi.classList.add('active');
-  currentLi.textContent = slugToLabel(segments[segments.length - 1]);
+  const pageTitle = document.title?.split('|')[0]?.trim();
+  currentLi.textContent = pageTitle || slugToLabel(segments[segments.length - 1]);
   ol.append(currentLi);
 
   nav.append(ol);

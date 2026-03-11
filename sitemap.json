@@ -39,7 +39,7 @@
       "path": "/us/en/newsroom",
       "sourceUrl": "https://about.ups.com/us/en/newsroom.html",
       "imported": true,
-      "importValidated": true,
+      "importValidated": false,
       "blocks": [
         "hero-featured",
         "cards-stories",
@@ -70,7 +70,7 @@
       "path": "/us/en/our-company/great-employer",
       "sourceUrl": "https://about.ups.com/us/en/our-company/great-employer.html",
       "imported": true,
-      "importValidated": true,
+      "importValidated": false,
       "blocks": [
         "hero-featured",
         "fact-sheets",
@@ -111,7 +111,7 @@
       "path": "/us/en/our-company/suppliers",
       "sourceUrl": "https://about.ups.com/us/en/our-company/suppliers.html",
       "imported": true,
-      "importValidated": true,
+      "importValidated": false,
       "blocks": [
         "hero-featured"
       ],
@@ -140,7 +140,7 @@
       "path": "/us/en/our-impact/community",
       "sourceUrl": "https://about.ups.com/us/en/our-impact/community.html",
       "imported": true,
-      "importValidated": true,
+      "importValidated": false,
       "blocks": [
         "hero-featured",
         "columns-feature",
@@ -158,7 +158,7 @@
       "path": "/us/en/our-impact/sustainability",
       "sourceUrl": "https://about.ups.com/us/en/our-impact/sustainability.html",
       "imported": true,
-      "importValidated": true,
+      "importValidated": false,
       "blocks": [
         "hero-featured",
         "fact-sheets",
@@ -349,7 +349,7 @@
       "path": "/us/en/our-stories/customer-first/fresh-products-need-a-reliable-shipper",
       "sourceUrl": "https://about.ups.com/us/en/our-stories/customer-first/fresh-products-need-a-reliable-shipper.html",
       "imported": true,
-      "importValidated": true,
+      "importValidated": false,
       "blocks": [
         "article-header",
         "social-share",
@@ -364,7 +364,7 @@
       "path": "/us/en/our-stories/customer-first/get-everything-you-need-to-make-valentine-s-day-extra-special-d",
       "sourceUrl": "https://about.ups.com/us/en/our-stories/customer-first/get-everything-you-need-to-make-valentine-s-day-extra-special-d.html",
       "imported": true,
-      "importValidated": true,
+      "importValidated": false,
       "blocks": [
         "article-header",
         "social-share",
@@ -394,7 +394,7 @@
       "path": "/us/en/our-stories/customer-first/how-ups-powers-small-business-growth",
       "sourceUrl": "https://about.ups.com/us/en/our-stories/customer-first/how-ups-powers-small-business-growth.html",
       "imported": true,
-      "importValidated": true,
+      "importValidated": false,
       "blocks": [
         "article-header",
         "social-share",
@@ -409,7 +409,7 @@
       "path": "/us/en/our-stories/customer-first/new-shelves-new-customers-same-reliable-shipper",
       "sourceUrl": "https://about.ups.com/us/en/our-stories/customer-first/new-shelves-new-customers-same-reliable-shipper.html",
       "imported": true,
-      "importValidated": true,
+      "importValidated": false,
       "blocks": [
         "article-header",
         "social-share",
@@ -739,7 +739,7 @@
       "path": "/us/en/our-stories/customer-first/woodworking-company-s-export-business-booms-with-help-from-ups",
       "sourceUrl": "https://about.ups.com/us/en/our-stories/customer-first/woodworking-company-s-export-business-booms-with-help-from-ups.html",
       "imported": true,
-      "importValidated": true,
+      "importValidated": false,
       "blocks": [
         "article-header",
         "social-share",
@@ -1408,7 +1408,7 @@
       "path": "/us/en/our-stories/people-led/from-the-philippines-to-ireland-we-deliver-the-holidays",
       "sourceUrl": "https://about.ups.com/us/en/our-stories/people-led/from-the-philippines-to-ireland-we-deliver-the-holidays.html",
       "imported": true,
-      "importValidated": true,
+      "importValidated": false,
       "blocks": [
         "article-header",
         "social-share",
@@ -1588,7 +1588,7 @@
       "path": "/us/en/our-stories/people-led/national-human-trafficking-prevention-month",
       "sourceUrl": "https://about.ups.com/us/en/our-stories/people-led/national-human-trafficking-prevention-month.html",
       "imported": true,
-      "importValidated": true,
+      "importValidated": false,
       "blocks": [
         "article-header",
         "social-share",
@@ -1603,7 +1603,7 @@
       "path": "/us/en/our-stories/people-led/peak-wrap-up",
       "sourceUrl": "https://about.ups.com/us/en/our-stories/people-led/peak-wrap-up.html",
       "imported": true,
-      "importValidated": true,
+      "importValidated": false,
       "blocks": [
         "article-header",
         "social-share",
@@ -1813,7 +1813,7 @@
       "path": "/us/en/all-stories",
       "sourceUrl": "https://about.ups.com/us/en/all-stories.html",
       "imported": true,
-      "importValidated": true,
+      "importValidated": false,
       "blocks": [
         "cards-stories"
       ],
@@ -1838,7 +1838,7 @@
       "path": "/us/en/newsroom/facebook-rules",
       "sourceUrl": "https://about.ups.com/us/en/newsroom/facebook-rules.html",
       "imported": true,
-      "importValidated": true,
+      "importValidated": false,
       "blocks": [
         "article-header",
         "social-share",
@@ -1853,7 +1853,7 @@
       "path": "/us/en/newsroom/press-releases",
       "sourceUrl": "https://about.ups.com/us/en/newsroom/press-releases.html",
       "imported": true,
-      "importValidated": true,
+      "importValidated": false,
       "blocks": [
         "cards-stories"
       ],
@@ -1866,7 +1866,7 @@
       "path": "/us/en/newsroom/statements",
       "sourceUrl": "https://about.ups.com/us/en/newsroom/statements.html",
       "imported": true,
-      "importValidated": true,
+      "importValidated": false,
       "blocks": [
         "cards-stories"
       ],
@@ -1879,7 +1879,7 @@
       "path": "/us/en/our-company/global-presence",
       "sourceUrl": "https://about.ups.com/us/en/our-company/global-presence.html",
       "imported": true,
-      "importValidated": true,
+      "importValidated": false,
       "blocks": [
         "cards-stories"
       ],
@@ -1892,7 +1892,7 @@
       "path": "/us/en/our-company/governance/carbon-neutral-credentials",
       "sourceUrl": "https://about.ups.com/us/en/our-company/governance/carbon-neutral-credentials.html",
       "imported": true,
-      "importValidated": true,
+      "importValidated": false,
       "blocks": [
         "article-header",
         "social-share",
@@ -1907,7 +1907,7 @@
       "path": "/us/en/our-company/governance/transparency-rule",
       "sourceUrl": "https://about.ups.com/us/en/our-company/governance/transparency-rule.html",
       "imported": true,
-      "importValidated": true,
+      "importValidated": false,
       "blocks": [
         "article-header",
         "social-share",
@@ -1922,7 +1922,7 @@
       "path": "/us/en/our-company/leadership",
       "sourceUrl": "https://about.ups.com/us/en/our-company/leadership.html",
       "imported": true,
-      "importValidated": true,
+      "importValidated": false,
       "blocks": [
         "cards-leadership"
       ],
@@ -1942,14 +1942,14 @@
       ],
       "sectionStyles": [
         "arc",
-        "spacing-xl"
+        "spacing-2xl"
       ]
     },
     {
       "path": "/us/en/our-impact/community/the-ups-foundation-mission-and-purpose",
       "sourceUrl": "https://about.ups.com/us/en/our-impact/community/the-ups-foundation-mission-and-purpose.html",
       "imported": true,
-      "importValidated": true,
+      "importValidated": false,
       "blocks": [
         "article-header",
         "social-share",
@@ -1966,11 +1966,11 @@
       "imported": true,
       "importValidated": false,
       "blocks": [
-        "cards-leadership"
+        "cards-leadership",
+        "navigation-tabs"
       ],
       "sectionStyles": [
         "arc",
-        "accent-bar",
         "spacing-l"
       ]
     },
@@ -1984,7 +1984,8 @@
       ],
       "sectionStyles": [
         "arc",
-        "accent-bar"
+        "spacing-2xl",
+        "spacing-l"
       ]
     },
     {
@@ -2018,7 +2019,7 @@
       "path": "/us/en/our-impact/ups-sustainability-and-social-impact-report",
       "sourceUrl": "https://about.ups.com/us/en/our-impact/ups-sustainability-and-social-impact-report.html",
       "imported": true,
-      "importValidated": true,
+      "importValidated": false,
       "blocks": [
         "hero-featured",
         "columns-quote",

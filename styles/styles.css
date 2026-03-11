@@ -660,3 +660,7 @@ main > .section.spacing-l {
 main > .section.spacing-xl {
   margin-top: 160px;
 }
+
+main > .section.spacing-2xl {
+  margin-top: 240px;
+}
