@@ -1,3 +1,5 @@
+/* stylelint-disable no-descending-specificity */
+
 /* ===== NAVIGATION-TABS BLOCK ===== */
 .navigation-tabs {
   display: flex;
@@ -87,6 +89,45 @@
   background-image: none;
 }
 
+/* ===== INLINE VARIANT (governance sub-nav) ===== */
+
+.navigation-tabs.navigation-tabs-inline {
+  gap: 0;
+  padding: var(--spacing-m) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.navigation-tabs.navigation-tabs-inline > div {
+  flex: none;
+  max-width: none;
+  box-shadow: none;
+}
+
+.navigation-tabs.navigation-tabs-inline a:any-link,
+.navigation-tabs.navigation-tabs-inline a.button:any-link {
+  padding: var(--spacing-xs) var(--spacing-m);
+  background: none;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  font-size: var(--body-font-size-m);
+  font-weight: 700;
+  color: var(--text-color);
+}
+
+.navigation-tabs.navigation-tabs-inline a:any-link:hover,
+.navigation-tabs.navigation-tabs-inline a.button:any-link:hover {
+  box-shadow: none;
+  color: var(--link-color);
+  text-decoration: underline;
+  background: none;
+}
+
+/* Hide arrow icon in inline variant */
+.navigation-tabs.navigation-tabs-inline .navigation-tabs-arrow {
+  display: none;
+}
+
 /* ===== MOBILE ===== */
 
 /* --viewport-desktop */
@@ -100,5 +141,12 @@
   .navigation-tabs > div {
     flex: none;
     max-width: 100%;
+  }
+
+  /* Inline variant stays horizontal on mobile, wraps */
+  .navigation-tabs.navigation-tabs-inline {
+    flex-flow: row wrap;
+    gap: 0;
+    padding: var(--spacing-s) 0;
   }
 }

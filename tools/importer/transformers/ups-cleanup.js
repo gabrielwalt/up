@@ -117,6 +117,14 @@ export default function transform(hookName, element, payload) {
       'footer'
     ]);
 
+    // Remove investor site "Email Alerts" / "Contacts" footer links
+    // These appear as a standalone <ul> on investors.ups.com pages, outside <footer>
+    const emailAlertsLink = element.querySelector('a[href$="/news-events/email-alerts"]');
+    if (emailAlertsLink) {
+      const ul = emailAlertsLink.closest('ul');
+      if (ul) ul.remove();
+    }
+
     // Remove tracking pixels (e.g., rlcdn.com, doubleclick, etc.)
     const trackingPixels = element.querySelectorAll('img[src*="rlcdn.com"], img[src*="doubleclick.net"], img[src*="demdex.net"]');
     trackingPixels.forEach((img) => {

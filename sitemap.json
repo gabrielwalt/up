@@ -957,7 +957,10 @@
       "importValidated": false,
       "critiqued": false,
       "approved": false,
-      "blocks": [],
+      "blocks": [
+        "navigation-tabs",
+        "cards-reports"
+      ],
       "sectionStyles": [
         "spacing-l"
       ]
@@ -1177,7 +1180,9 @@
       "importValidated": false,
       "critiqued": false,
       "approved": false,
-      "blocks": [],
+      "blocks": [
+        "leadership-bio"
+      ],
       "sectionStyles": []
     },
     {
@@ -1187,7 +1192,9 @@
       "importValidated": false,
       "critiqued": false,
       "approved": false,
-      "blocks": [],
+      "blocks": [
+        "leadership-bio"
+      ],
       "sectionStyles": []
     },
     {
@@ -1197,7 +1204,9 @@
       "importValidated": false,
       "critiqued": false,
       "approved": false,
-      "blocks": [],
+      "blocks": [
+        "leadership-bio"
+      ],
       "sectionStyles": []
     },
     {
@@ -1207,7 +1216,9 @@
       "importValidated": false,
       "critiqued": false,
       "approved": false,
-      "blocks": [],
+      "blocks": [
+        "leadership-bio"
+      ],
       "sectionStyles": []
     },
     {
@@ -1217,7 +1228,9 @@
       "importValidated": false,
       "critiqued": false,
       "approved": false,
-      "blocks": [],
+      "blocks": [
+        "leadership-bio"
+      ],
       "sectionStyles": []
     },
     {
@@ -1227,7 +1240,9 @@
       "importValidated": false,
       "critiqued": false,
       "approved": false,
-      "blocks": [],
+      "blocks": [
+        "leadership-bio"
+      ],
       "sectionStyles": []
     },
     {
@@ -1237,7 +1252,9 @@
       "importValidated": false,
       "critiqued": false,
       "approved": false,
-      "blocks": [],
+      "blocks": [
+        "leadership-bio"
+      ],
       "sectionStyles": []
     },
     {
@@ -1247,7 +1264,9 @@
       "importValidated": false,
       "critiqued": false,
       "approved": false,
-      "blocks": [],
+      "blocks": [
+        "leadership-bio"
+      ],
       "sectionStyles": []
     },
     {
@@ -1257,7 +1276,9 @@
       "importValidated": false,
       "critiqued": false,
       "approved": false,
-      "blocks": [],
+      "blocks": [
+        "leadership-bio"
+      ],
       "sectionStyles": []
     },
     {
@@ -1267,7 +1288,9 @@
       "importValidated": false,
       "critiqued": false,
       "approved": false,
-      "blocks": [],
+      "blocks": [
+        "leadership-bio"
+      ],
       "sectionStyles": []
     },
     {
@@ -1277,7 +1300,9 @@
       "importValidated": false,
       "critiqued": false,
       "approved": false,
-      "blocks": [],
+      "blocks": [
+        "leadership-bio"
+      ],
       "sectionStyles": []
     },
     {
@@ -1287,7 +1312,9 @@
       "importValidated": false,
       "critiqued": false,
       "approved": false,
-      "blocks": [],
+      "blocks": [
+        "leadership-bio"
+      ],
       "sectionStyles": []
     },
     {
@@ -1297,7 +1324,9 @@
       "importValidated": false,
       "critiqued": false,
       "approved": false,
-      "blocks": [],
+      "blocks": [
+        "leadership-bio"
+      ],
       "sectionStyles": []
     },
     {
@@ -1307,7 +1336,9 @@
       "importValidated": false,
       "critiqued": false,
       "approved": false,
-      "blocks": [],
+      "blocks": [
+        "leadership-bio"
+      ],
       "sectionStyles": []
     },
     {
@@ -1317,7 +1348,9 @@
       "importValidated": false,
       "critiqued": false,
       "approved": false,
-      "blocks": [],
+      "blocks": [
+        "leadership-bio"
+      ],
       "sectionStyles": []
     },
     {
@@ -1327,7 +1360,9 @@
       "importValidated": false,
       "critiqued": false,
       "approved": false,
-      "blocks": [],
+      "blocks": [
+        "leadership-bio"
+      ],
       "sectionStyles": []
     },
     {
@@ -1337,7 +1372,9 @@
       "importValidated": false,
       "critiqued": false,
       "approved": false,
-      "blocks": [],
+      "blocks": [
+        "leadership-bio"
+      ],
       "sectionStyles": []
     },
     {
@@ -1347,7 +1384,9 @@
       "importValidated": false,
       "critiqued": false,
       "approved": false,
-      "blocks": [],
+      "blocks": [
+        "leadership-bio"
+      ],
       "sectionStyles": []
     },
     {
@@ -1357,7 +1396,9 @@
       "importValidated": false,
       "critiqued": false,
       "approved": false,
-      "blocks": [],
+      "blocks": [
+        "leadership-bio"
+      ],
       "sectionStyles": []
     },
     {
@@ -1367,7 +1408,9 @@
       "importValidated": false,
       "critiqued": false,
       "approved": false,
-      "blocks": [],
+      "blocks": [
+        "leadership-bio"
+      ],
       "sectionStyles": []
     },
     {
@@ -1964,7 +2007,9 @@
       "importValidated": false,
       "critiqued": false,
       "approved": false,
-      "blocks": [],
+      "blocks": [
+        "leadership-bio"
+      ],
       "sectionStyles": []
     },
     {
@@ -4489,6 +4534,70 @@
       "sectionStyles": [
         "spacing-l"
       ]
+    },
+    {
+      "path": "/corporategovernance/board-committees",
+      "sourceUrl": "https://investors.ups.com/corporategovernance/board-committees",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        "navigation-tabs",
+        "data-table"
+      ],
+      "sectionStyles": []
+    },
+    {
+      "path": "/corporategovernance/governance-documents",
+      "sourceUrl": "https://investors.ups.com/corporategovernance/governance-documents",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        "navigation-tabs",
+        "cards-reports"
+      ],
+      "sectionStyles": []
+    },
+    {
+      "path": "/corporategovernance/contact-the-board",
+      "sourceUrl": "https://investors.ups.com/corporategovernance/contact-the-board",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        "navigation-tabs"
+      ],
+      "sectionStyles": []
+    },
+    {
+      "path": "/corporategovernance/ups-code-of-conduct-and-ethics",
+      "sourceUrl": "https://investors.ups.com/corporategovernance/ups-code-of-conduct-and-ethics",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        "navigation-tabs",
+        "cards-reports"
+      ],
+      "sectionStyles": []
+    },
+    {
+      "path": "/corporategovernance/political-engagement-policy",
+      "sourceUrl": "https://investors.ups.com/corporategovernance/political-engagement-policy",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        "navigation-tabs"
+      ],
+      "sectionStyles": []
+    },
+    {
+      "path": "/corporategovernance/political-engagement-policy/archive",
+      "sourceUrl": "https://investors.ups.com/corporategovernance/political-engagement-policy/archive",
+      "imported": true,
+      "importValidated": true,
+      "blocks": [
+        "navigation-tabs",
+        "cards-reports"
+      ],
+      "sectionStyles": []
     }
   ]
 }

@@ -878,11 +878,12 @@ Complete reference of all blocks and their variants.
 | **embed** | `/blocks/embed/` | — | YouTube video embed with responsive 16:9 aspect ratio |
 | **social-share** | `/blocks/social-share/` | — | Social media share links (Facebook, Twitter, LinkedIn, Email) |
 | **cards-leadership** | `/blocks/cards-leadership/` | — | Horizontal person cards with portrait, name, title in 2-col grid |
-| **cards-reports** | `/blocks/cards-reports/` | — | Horizontal document cards with thumbnail, title, action link |
+| **cards-reports** | `/blocks/cards-reports/` | `cards-reports-text` | Horizontal document cards with thumbnail, title, action link |
 | **awards-list** | `/blocks/awards-list/` | — | Year-tabbed list of award entries with eyebrow, title, meta |
 | **timeline** | `/blocks/timeline/` | — | Vertical timeline with period nav sidebar and scroll spy |
 | **form** | `/blocks/form/` | — | Styled form with text, email, textarea, select, submit fields |
 | **data-table** | `/blocks/data-table/` | — | Converts div structure to native HTML `<table>` for data tables |
+| **leadership-bio** | `/blocks/leadership-bio/` | — | Two-column bio: text (name, title, paragraphs) left, portrait right |
 
 **Boilerplate blocks** (vanilla, unmodified): `cards`, `columns`, `hero`
 
@@ -1389,12 +1390,20 @@ Loads the referenced fragment HTML and inserts it into the page.
 | Variant | Class | Purpose |
 |---------|-------|---------|
 | Default | `.cards-reports` | Horizontal document cards with thumbnail, title, and action link |
+| cards-reports-text | `.cards-reports.cards-reports-text` | Text-only document list without thumbnails |
 
-**Authoring:**
+**Authoring (default):**
 ```
 | Cards-Reports |
 | --- | --- |
 | <picture>thumbnail</picture> | <h3>Document Title</h3><p><a href="...">Download</a></p> |
+```
+
+**Authoring (cards-reports-text):**
+```
+| Cards-Reports (cards-reports-text) |
+| --- | --- |
+| | <h3>Document Title</h3><p><a href="...">Download</a></p> |
 ```
 
 **Features**:
@@ -1404,11 +1413,19 @@ Loads the referenced fragment HTML and inserts it into the page.
 - Box shadow, 8px border-radius
 - DA button reset for action links
 
+**cards-reports-text specifics**:
+- Hides image column, full-width single-column list
+- No card shadow, dotted bottom border between items
+- Title in link color (blue), action link as pill button with border
+- Action link has chevron `>` after text
+- Horizontal flex layout: title left, action button right
+
 **Responsive behavior**:
 - Mobile: single column, max-width 450px centered, 103px thumbnail
 - Desktop (>=992px): 2-column grid (50% each), 180px thumbnail, `box-sizing: border-box`
+- Text variant: single column at all sizes
 
-**Used on**: Reporting
+**Used on**: Reporting (default), Governance Documents, Code of Conduct, Political Engagement Archive (text variant)
 
 ---
 
@@ -1541,6 +1558,40 @@ Loads the referenced fragment HTML and inserts it into the page.
 
 ---
 
+### leadership-bio
+
+**Location**: `/blocks/leadership-bio/`
+
+| Variant | Class | Purpose |
+|---------|-------|---------|
+| Default | `.leadership-bio` | Two-column bio layout: text left, portrait image right |
+
+**Authoring:**
+```
+| Leadership-Bio |
+| -------------- |
+| <picture>portrait image</picture> |
+| <h1>Name</h1><p>Job Title</p><p>Bio paragraph...</p><p><strong>Subheading</strong></p><p>More text...</p> |
+```
+
+**Features**:
+- 2-row block: Row 1 = portrait image, Row 2 = text content (name, title, bio paragraphs)
+- JS restructures into two-column layout with `.leadership-bio-container`
+- H1 name: 48px desktop / 40px mobile, font-weight 500
+- Job title: first `<p>` styled as muted grey (`var(--color-muted)`), 24px desktop / 16px mobile
+- Body paragraphs: 16px, 32px margin-bottom
+- Bold subheadings (`<strong>`) rendered at normal weight (CSS override `font-weight: inherit`)
+- Image set to eager loading (JS overrides `loading="lazy"`)
+- DA button reset styles included
+
+**Responsive behavior**:
+- Mobile: column-reverse (image on top, text below), full-width image, no border-radius
+- Desktop (>=992px): row layout, 58.333% text + 33.333% image with auto margin-left, 8px border-radius, 80px margin-top on image to align with body text
+
+**Used on**: All 20 company leadership bios, 1 foundation leadership bio (nikki-clifton)
+
+---
+
 ## Import Infrastructure
 
 Import scripts for bulk content migration are in `/tools/importer/`.
@@ -1552,7 +1603,7 @@ Import scripts for bulk content migration are in `/tools/importer/`.
 - **Article pages**: Auto-detected via `.pr15-details` selector → article-header, body content, embed, social-share, related stories
 - **Standard pages**: All other pages → block registry detection, DOM walking, section grouping with wrapper-aware styles
 
-The script includes all 18 block parsers and the cleanup transformer. It detects section wrapper contexts (arc, highlight, arc-wave) before cleanup runs, then applies appropriate section-metadata styles in the output.
+The script includes all 22 block parsers and the cleanup transformer. It detects section wrapper contexts (arc, highlight, arc-wave) before cleanup runs, then applies appropriate section-metadata styles in the output.
 
 **Bundling** (must re-bundle after ANY change to import-universal.js, parsers, or transformers):
 ```bash
@@ -1590,7 +1641,14 @@ node run-bulk-import.js --import-script tools/importer/import-universal.bundle.j
 | `parsers/timeline.js` | Parser for timeline block (our-history page) |
 | `parsers/awards-list.js` | Parser for awards-list block (awards-and-recognition page) |
 | `parsers/form.js` | Parser for form block (contact/speaker request forms) |
-| `transformers/ups-cleanup.js` | Site-wide DOM cleanup transformer |
+| `parsers/leadership-bio.js` | Parser for leadership-bio block (executive/foundation bios) |
+| `parsers/governance-cards.js` | Parser for cards-reports on investors.ups.com governance page |
+| `parsers/governance-subnav.js` | Parser for navigation-tabs on investors.ups.com governance page |
+| `parsers/governance-banner.js` | Parser for page banner on investors.ups.com governance pages |
+| `parsers/governance-asset-list.js` | Parser for document download lists (`.module-asset-list`) → cards-reports-text block |
+| `parsers/governance-table.js` | Parser for board committee HTML table → data-table block |
+| `parsers/footer-funnel.js` | Parser for footer funnel links (navigation-tabs) — currently blocked by cleanup transformer |
+| `transformers/ups-cleanup.js` | Site-wide DOM cleanup transformer (includes investor site footer link removal) |
 
 ---
 

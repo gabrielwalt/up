@@ -1,7 +1,7 @@
 /* eslint-disable */
 /* global WebImporter */
 
-// PARSER IMPORTS — all 19 parsers
+// PARSER IMPORTS — all 25 parsers
 import articleHeaderParser from './parsers/article-header.js';
 import columnsStatsParser from './parsers/columns-stats.js';
 import heroFeaturedParser from './parsers/hero-featured.js';
@@ -20,6 +20,13 @@ import cardsReportsParser from './parsers/cards-reports.js';
 import timelineParser from './parsers/timeline.js';
 import awardsListParser from './parsers/awards-list.js';
 import formParser from './parsers/form.js';
+import leadershipBioParser from './parsers/leadership-bio.js';
+import governanceCardsParser from './parsers/governance-cards.js';
+import governanceSubnavParser from './parsers/governance-subnav.js';
+import footerFunnelParser from './parsers/footer-funnel.js';
+import governanceBannerParser from './parsers/governance-banner.js';
+import governanceAssetListParser from './parsers/governance-asset-list.js';
+import governanceTableParser from './parsers/governance-table.js';
 
 // TRANSFORMER IMPORTS
 import upsCleanupTransformer from './transformers/ups-cleanup.js';
@@ -33,6 +40,7 @@ import upsCleanupTransformer from './transformers/ups-cleanup.js';
  */
 const BLOCK_REGISTRY = [
   { name: 'article-header',    selectors: ['.pr15-details'],                                                    parser: articleHeaderParser },
+  { name: 'leadership-bio',    selectors: ['.upspr-bio'],                                                       parser: leadershipBioParser },
   { name: 'columns-stats',     selectors: ['.upspr-heroimage.vertical-hero'],                                   parser: columnsStatsParser },
   { name: 'hero-featured',     selectors: ['.upspr-heroimage'],                                                 parser: heroFeaturedParser },
   { name: 'columns-media',     selectors: ['.herogrid', '#list-container'],                                     parser: columnsMediaParser },
@@ -42,11 +50,17 @@ const BLOCK_REGISTRY = [
   { name: 'columns-quote',     selectors: ['.upspr-testimonial'],                                               parser: columnsQuoteParser },
   { name: 'fact-sheets',       selectors: ['.upspr-facts-container', '.upspr-stats-container'],                  parser: factSheetsParser },
   { name: 'navigation-tabs',   selectors: ['.upspr-navigation-tabs'],                                           parser: navigationTabsParser },
+  { name: 'footer-funnel',     selectors: ['.upspr-footer_top'],                                                parser: footerFunnelParser },
   { name: 'contact-card',      selectors: ['.upspr-contactus'],                                                 parser: contactCardParser },
   { name: 'social-share',      selectors: ['.upspr-socialmedia'],                                               parser: socialShareParser },
   { name: 'embed',             selectors: ['iframe[src*="youtube"]'],                                           parser: embedParser },
   { name: 'cards-leadership',  selectors: ['.upspr-leadership-container'],                                      parser: cardsLeadershipParser },
   { name: 'cards-reports',     selectors: ['.upspr-reporting'],                                                  parser: cardsReportsParser },
+  { name: 'governance-banner', selectors: ['.module-page-banner'],                                                parser: governanceBannerParser },
+  { name: 'governance-cards',  selectors: ['.module-teasers'],                                                   parser: governanceCardsParser },
+  { name: 'governance-subnav', selectors: ['.sub-navigation-wrapper'],                                           parser: governanceSubnavParser },
+  { name: 'governance-table', selectors: ['.main-content > table'],                                              parser: governanceTableParser },
+  { name: 'governance-asset-list', selectors: ['.module-asset-list'],                                            parser: governanceAssetListParser },
   { name: 'timeline',          selectors: ['.upspr-our-history'],                                                parser: timelineParser },
   { name: 'awards-list',       selectors: ['.ups-tabs'],                                                         parser: awardsListParser },
   { name: 'form',              selectors: ['.aemformcontainer'],                                                 parser: formParser },

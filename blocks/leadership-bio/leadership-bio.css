@@ -1,0 +1,135 @@
+/* stylelint-disable no-descending-specificity */
+
+/* ===== LEADERSHIP BIO ===== */
+
+main > div:has(.leadership-bio) {
+  max-width: var(--content-max-width);
+}
+
+/* ===== CONTAINER (flex row, reverses on mobile) ===== */
+
+.leadership-bio .leadership-bio-container {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 0;
+}
+
+/* ===== TEXT COLUMN ===== */
+
+.leadership-bio .leadership-bio-text {
+  padding: var(--spacing-m) 0 0;
+}
+
+.leadership-bio .leadership-bio-text h1 {
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--text-color);
+  margin: 0 0 var(--spacing-xs);
+}
+
+.leadership-bio .leadership-bio-text > p:first-of-type {
+  font-size: var(--body-font-size-m);
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--color-muted);
+  margin: 0 0 var(--spacing-m);
+}
+
+.leadership-bio .leadership-bio-text > p:not(:first-of-type) {
+  font-size: var(--body-font-size-m);
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--text-color);
+  margin: 0 0 var(--spacing-l);
+}
+
+/* Bold subheadings render at normal weight (source site overrides strong) */
+.leadership-bio .leadership-bio-text strong {
+  font-weight: inherit;
+}
+
+/* ===== IMAGE COLUMN ===== */
+
+.leadership-bio .leadership-bio-image {
+  width: 100%;
+}
+
+.leadership-bio .leadership-bio-image picture {
+  display: block;
+  width: 100%;
+}
+
+.leadership-bio .leadership-bio-image img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+}
+
+/* ===== DA BUTTON RESET ===== */
+
+.leadership-bio a.button:any-link {
+  display: inline;
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  background: none;
+  color: var(--link-color);
+  font-size: inherit;
+  font-weight: inherit;
+  white-space: normal;
+}
+
+.leadership-bio a.button:any-link:hover {
+  background: none;
+  border: none;
+  color: var(--link-hover-color);
+}
+
+.leadership-bio a.button:any-link::after {
+  content: none;
+}
+
+.leadership-bio .button-wrapper {
+  all: unset;
+}
+
+/* ===== DESKTOP ===== */
+
+/* --viewport-desktop */
+@media (width >= 992px) {
+  .leadership-bio .leadership-bio-container {
+    flex-direction: row;
+    gap: 0;
+  }
+
+  .leadership-bio .leadership-bio-text {
+    flex: 0 0 58.333%;
+    padding: 0;
+    padding-right: var(--spacing-l);
+    box-sizing: border-box;
+  }
+
+  .leadership-bio .leadership-bio-text h1 {
+    font-size: 48px;
+    line-height: 1.33;
+  }
+
+  .leadership-bio .leadership-bio-text > p:first-of-type {
+    font-size: var(--heading-font-size-m);
+    line-height: 1.33;
+  }
+
+  .leadership-bio .leadership-bio-image {
+    flex: 0 0 33.333%;
+    margin-left: auto;
+    margin-top: var(--spacing-4xl);
+  }
+
+  .leadership-bio .leadership-bio-image img {
+    border-radius: var(--radius-m);
+  }
+}

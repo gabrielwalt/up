@@ -82,10 +82,10 @@ main > div:has(.cards-reports) {
 /* ===== ACTION LINK ===== */
 
 .cards-reports .cards-reports-action {
-  font-size: var(--body-font-size-xs);
-  font-weight: 700;
+  font-size: var(--body-font-size-m);
+  font-weight: 400;
   color: var(--link-color);
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .cards-reports .cards-reports-action:hover {
@@ -102,10 +102,10 @@ main > div:has(.cards-reports) {
   padding: 0;
   background: none;
   color: var(--link-color);
-  font-size: var(--body-font-size-xs);
-  font-weight: 700;
+  font-size: var(--body-font-size-m);
+  font-weight: 400;
   white-space: normal;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .cards-reports a.button:any-link::after {
@@ -120,6 +120,68 @@ main > div:has(.cards-reports) {
 
 .cards-reports .button-wrapper {
   all: unset;
+}
+
+/* ===== TEXT-ONLY VARIANT (cards-reports-text) ===== */
+
+/* Document list without thumbnail images — used on governance sub-pages */
+
+.cards-reports.cards-reports-text .cards-reports-image {
+  display: none;
+}
+
+.cards-reports.cards-reports-text .cards-reports-card {
+  max-width: 100%;
+  padding: 0;
+}
+
+.cards-reports.cards-reports-text .cards-reports-inner {
+  box-shadow: none;
+  border-radius: 0;
+  border-bottom: 1px dotted var(--color-border);
+  min-height: auto;
+  align-items: center;
+}
+
+.cards-reports.cards-reports-text .cards-reports-details {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-m);
+  padding: var(--spacing-s) 0;
+}
+
+.cards-reports.cards-reports-text .cards-reports-details h3 {
+  font-size: var(--body-font-size-m);
+  font-weight: 400;
+  margin: 0;
+  flex: 1;
+  color: var(--link-color);
+}
+
+.cards-reports.cards-reports-text .cards-reports-action,
+.cards-reports.cards-reports-text a.button:any-link {
+  flex-shrink: 0;
+  font-size: var(--body-font-size-s);
+  font-weight: 400;
+  color: var(--link-color);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  padding: 6px var(--spacing-s);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.cards-reports.cards-reports-text .cards-reports-action::after,
+.cards-reports.cards-reports-text a.button:any-link::after {
+  content: " \203A";
+}
+
+.cards-reports.cards-reports-text .cards-reports-action:hover,
+.cards-reports.cards-reports-text a.button:any-link:hover {
+  color: var(--link-hover-color);
+  border-color: var(--link-hover-color);
+  background: none;
 }
 
 /* ===== DESKTOP ===== */
@@ -146,5 +208,22 @@ main > div:has(.cards-reports) {
   .cards-reports .cards-reports-details h3 {
     font-size: var(--heading-font-size-m);
     line-height: 1.33;
+  }
+
+  /* Text-only variant: single column at all sizes */
+  .cards-reports.cards-reports-text .cards-reports-card {
+    flex: 0 0 100%;
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  .cards-reports.cards-reports-text .cards-reports-details {
+    padding: var(--spacing-s) 0;
+  }
+
+  .cards-reports.cards-reports-text .cards-reports-details h3 {
+    font-size: var(--heading-font-size-s);
+    line-height: 1.5;
   }
 }
