@@ -21,6 +21,11 @@ Migrating UPS "About" site (https://about.ups.com/us/en/home.html) to Adobe Edge
 13. **`.plain.html` is the single source of truth** - All content edits and updates are made directly to `.plain.html` files in `/content/`. No `.html` files exist in the content folder. `.plain.html` uses div-format blocks (`<div class="block-name">`) and section `<div>` wrappers — this is the format DA consumes. See "Content Architecture" section.
 14. **Keep `/sitemap.json` up-to-date at all times** - Update the sitemap whenever pages are discovered, imported, re-imported, refactored, validated, critiqued, or approved. This is the master tracker for migration progress. See "Sitemap Maintenance" section.
 15. **Keep sitemap blocks[] current after every content change** - After running import scripts, re-importing pages, or changing page content, immediately update the affected page's `blocks[]` and `sectionStyles[]` in `/sitemap.json`. Before refactoring block CSS/JS, query the sitemap to find all affected pages and verify changes on them.
+16. **NEVER allow `.html` (non-`.plain.html`) or `.md` files in the content area** - The `/content/` directory must ONLY contain `.plain.html` files. If you find any `.html` (that aren't `.plain.html`) or `.md` files in the content area, delete them immediately. Import scripts must only produce `.plain.html` output. This is non-negotiable.
+17. **Parser-first content workflow (NEVER edit `.plain.html` directly as first resort)** - Content changes MUST go through the import pipeline: update parsers in `tools/importer/parsers/` → re-bundle → re-import. Direct `.plain.html` edits are a LAST RESORT only. If you do edit `.plain.html` directly, you MUST immediately update all impacted parsers to match and verify via a test re-import. Failure to do this causes parser/content drift that breaks future imports.
+18. **Check sitemap before modifying ANY parser** - Before changing a parser, query `/sitemap.json` to identify ALL pages that use the affected block. If any of those pages are already validated (`importValidated: true`) or approved (`approved: true`), the parser change could regress them. Flag this to the user before proceeding.
+19. **Assess cross-page re-import needs after block/style changes** - When modifying a block's CSS/JS or a parser, check the sitemap for ALL other pages using that block or section style. Assess whether those pages need re-importing and/or re-validation. If the change is structural (parser output changed), re-import is mandatory for all affected pages. If the change is cosmetic (CSS-only), re-validation may suffice.
+20. **Always update sitemap blocks[] and sectionStyles[] after EVERY import** - After running import scripts on any page (new import or re-import), immediately update that page's `blocks[]` and `sectionStyles[]` arrays in `/sitemap.json` to reflect the actual content produced. This is not optional — it must happen as part of every import operation, without exception.
 
 ---
 
@@ -134,6 +139,8 @@ When encountering a content pattern that's similar to an existing block:
 
 **⚠️ CRITICAL: Import infrastructure (parsers, transformers, page-templates.json) MUST stay aligned with the actual `.plain.html` content structure.**
 
+**⚠️ PARSER-FIRST WORKFLOW (MANDATORY): The import pipeline is the canonical way to produce and update content. NEVER edit `.plain.html` files directly as a first approach. Instead: update parsers → re-bundle → re-import. Direct content edits create parser/content drift that silently breaks future imports and causes regressions across all pages using the same parsers.**
+
 The import scripts in `tools/importer/` produce `.plain.html` files (div format). When the content structure changes (e.g., CSS-handled styling replaces inline markup), the parsers must be updated to match.
 
 **Rules for keeping scripts aligned:**
@@ -144,6 +151,8 @@ The import scripts in `tools/importer/` produce `.plain.html` files (div format)
 4. **Verify after content changes** — When modifying content markup patterns (e.g., removing `<strong>` wrappers from eyebrows), update ALL parsers that produce that pattern. Search across `tools/importer/parsers/` for the old pattern.
 5. **Never overwrite verified content** — When simulating an import to check alignment, compare the parser output against existing content HTML. Fix the parser to match the content, never the other way around.
 6. **Use DOM-walking for flexible page imports** — Parsers call `element.replaceWith(blockDiv)`, which detaches the original element. After all parsers run, walk the DOM to collect block `<div>` elements and remaining headings/paragraphs (default content) in natural document order. Group into sections. This approach handles pages with different block orders using the same import script. See `import-universal.js` for the reference implementation.
+7. **If you MUST edit `.plain.html` directly — update parsers immediately after** — Direct edits are a last resort (e.g., one-off content fix that doesn't apply to other pages). After ANY direct edit, you MUST: (a) update all impacted parsers in `tools/importer/parsers/` to produce the same output, (b) re-bundle the import script, and (c) run a test import to verify the parser now matches the edited content. If you skip this step, the next re-import will overwrite your manual changes.
+8. **Check sitemap for cross-page impact before modifying parsers** — Before changing any parser, query `/sitemap.json` to find ALL pages using the affected block. If pages are already `importValidated: true` or `approved: true`, warn the user that the parser change may require re-importing and re-validating those pages. Never silently modify a parser used by validated pages.
 
 **Eyebrow text pattern (established):**
 - Content HTML: `<p>Eyebrow Text</p>` (plain paragraph)
@@ -222,10 +231,11 @@ This project follows the AEM Edge Delivery Services architecture where **content
 2. **Never modify `.gitignore` to track HTML files** — Content belongs in the CMS, not in the repo
 3. **Fragment content (nav, footer) comes from DA** — These are authored and previewed in DA, not committed to Git
 4. **Local `/content/` directory is for local dev only** — It mirrors DA content for local preview but is NOT tracked in Git
+5. **ZERO tolerance for `.html` (non-`.plain.html`) or `.md` files in `/content/`** — The content area must ONLY contain `.plain.html` files. If you encounter any `.html` files (that aren't `.plain.html`) or `.md` files in the content directory tree, delete them immediately. Import scripts must NEVER produce these formats. This rule has no exceptions.
 
 ### Content File Format: `.plain.html`
 
-**`.plain.html` is the single source of truth.** All content edits and updates are made directly to `.plain.html` files in the `/content/` folder. No `.html` or `.md` files exist in the content folder.
+**`.plain.html` is the single source of truth.** All content edits and updates are made directly to `.plain.html` files in the `/content/` folder. **No `.html` (non-`.plain.html`) or `.md` files may exist anywhere in the content folder tree — if found, they must be deleted immediately.** Only `.plain.html` files are valid content.
 
 **`.plain.html` format** (what you edit and what DA consumes):
 - Section `<div>` wrappers with content
@@ -430,14 +440,15 @@ When working on this project, periodically verify:
 | Event | Required Update |
 |-------|-----------------|
 | **New page discovered on original site** | Add entry to `pages[]` with `sourceUrl`, `imported: false` |
-| **Page imported (content created)** | Set `imported: true`, populate `blocks[]` and `sectionStyles[]` |
-| **Import re-run on existing page** | Update `blocks[]` and `sectionStyles[]` if they changed |
+| **Page imported (content created)** | Set `imported: true`, populate `blocks[]` and `sectionStyles[]` — **MANDATORY, not optional** |
+| **Import re-run on existing page** | Update `blocks[]` and `sectionStyles[]` to match new content — even if you think nothing changed |
 | **Import validated** | Set `importValidated: true` |
 | **Page critiqued/approved** | Set `critiqued: true` / `approved: true` on the page entry |
 | **Content refactored (blocks changed)** | Update `blocks[]` to reflect current block composition |
 | **Section style added/removed** | Update `sectionStyles[]` to match current content |
 | **Page removed** | Remove the entry from `pages[]` |
 | **New fragment created** | Add entry to `fragments[]` |
+| **Parser modified** | Check ALL pages using that parser's block — reset `importValidated` to `false` on affected pages if their content may have changed |
 
 ### Structure Reference
 
@@ -469,70 +480,26 @@ When working on this project, periodically verify:
 4. **Source URLs are the original site URLs** — Always include the full `https://about.ups.com/...` URL.
 5. **Keep blocks[] populated for ALL pages** — `blocks[]` and `sectionStyles[]` are simple string arrays (e.g., `["cards-stories", "hero-featured"]`). Every page must have these arrays reflecting the actual blocks and section styles present in the content. Pages with no blocks should have `blocks: []`.
 6. **Update blocks[] after every content operation** — After running import scripts, re-importing pages, or executing any user request that changes page content (adding/removing blocks, changing section styles), immediately update the affected page's `blocks[]` and `sectionStyles[]` arrays to match the new content.
-7. **Use blocks[] for impact analysis** — Before refactoring a block's CSS/JS or modifying shared styles, query the sitemap to find all pages that use that block. Preview or verify changes on those pages to ensure nothing breaks. Example: changing `cards-stories` CSS should prompt checking all pages where `cards-stories` appears in `blocks[]`.
+7. **Use blocks[] for impact analysis before ANY parser or block change** — Before modifying a parser, block CSS/JS, or section style, query the sitemap to find ALL pages that use that block or style. This is MANDATORY, not optional. If any affected pages have `importValidated: true` or `approved: true`, you MUST warn the user before proceeding and assess whether those pages need re-importing and re-validation. Example: changing the `cards-stories` parser requires checking every page where `cards-stories` appears in `blocks[]`.
+8. **Assess re-import needs after structural changes** — When a parser change alters the output HTML structure (not just cosmetic fixes), ALL pages using that parser's block MUST be re-imported to stay consistent. Reset `importValidated: false` on those pages. For CSS-only changes, re-validation (visual check) may suffice without re-import, but flag the affected pages to the user regardless.
+9. **Sitemap is the safety net for cross-page regressions** — The sitemap exists specifically to prevent blind changes that break already-validated pages. Treat it as a pre-flight checklist: check it BEFORE making changes, update it AFTER making changes. Never skip this discipline.
 
 ---
 
 ## Pages Inventory
 
-All content pages in this project and their source URLs. All content files use `.plain.html` format.
+**All page and fragment tracking is in `/sitemap.json`.** Do not duplicate page listings here — the sitemap is the single source of truth for all pages, their source URLs, import status, block usage, section styles, and validation state. See "Sitemap Maintenance" section for the full schema and update rules.
 
-| Local Path | Origin URL | Description |
-|------------|-----------|-------------|
-| `/content/nav.plain.html` | Derived from source site | Navigation fragment |
-| `/content/footer.plain.html` | Derived from source site | Footer fragment |
-| `/content/us/en/home.plain.html` | https://about.ups.com/us/en/home.html | Homepage |
-| `/content/us/en/all-stories.plain.html` | https://about.ups.com/us/en/all-stories.html | All Stories listing |
-| `/content/us/en/thank-a-ups-hero.plain.html` | https://about.ups.com/us/en/thank-a-ups-hero.html | Thank a UPS Hero form |
-| `/content/us/en/our-company.plain.html` | https://about.ups.com/us/en/our-company.html | Our Company landing page |
-| `/content/us/en/our-company/our-strategy.plain.html` | https://about.ups.com/us/en/our-company/our-strategy.html | Our Strategy page |
-| `/content/us/en/our-company/our-culture.plain.html` | https://about.ups.com/us/en/our-company/our-culture.html | Our Culture page |
-| `/content/us/en/our-company/our-history.plain.html` | https://about.ups.com/us/en/our-company/our-history.html | Our History timeline |
-| `/content/us/en/our-company/leadership.plain.html` | https://about.ups.com/us/en/our-company/leadership.html | Leadership page |
-| `/content/us/en/our-company/great-employer.plain.html` | https://about.ups.com/us/en/our-company/great-employer.html | Great Employer topic hub |
-| `/content/us/en/our-company/suppliers.plain.html` | https://about.ups.com/us/en/our-company/suppliers.html | Suppliers topic hub |
-| `/content/us/en/our-company/global-presence.plain.html` | https://about.ups.com/us/en/our-company/global-presence.html | Global Presence page |
-| `/content/us/en/our-company/governance/carbon-neutral-credentials.plain.html` | https://about.ups.com/us/en/our-company/governance/carbon-neutral-credentials.html | Carbon Neutral Credentials article |
-| `/content/us/en/our-company/governance/transparency-rule.plain.html` | https://about.ups.com/us/en/our-company/governance/transparency-rule.html | Transparency Rule article |
-| `/content/us/en/our-impact.plain.html` | https://about.ups.com/us/en/our-impact.html | Our Impact landing page |
-| `/content/us/en/our-impact/community.plain.html` | https://about.ups.com/us/en/our-impact/community.html | Community topic hub |
-| `/content/us/en/our-impact/community/ups-foundation-leadership.plain.html` | https://about.ups.com/us/en/our-impact/community/ups-foundation-leadership.html | UPS Foundation Leadership |
-| `/content/us/en/our-impact/community/the-ups-foundation-mission-and-purpose.plain.html` | https://about.ups.com/us/en/our-impact/community/the-ups-foundation-mission-and-purpose.html | UPS Foundation Mission article |
-| `/content/us/en/our-impact/sustainability.plain.html` | https://about.ups.com/us/en/our-impact/sustainability.html | Sustainability topic hub |
-| `/content/us/en/our-impact/sustainability/key-highlights-*.plain.html` | https://about.ups.com/us/en/our-impact/sustainability/key-highlights-from-ups-s-latest-sustainability-and-community-im.html | Sustainability Key Highlights article |
-| `/content/us/en/our-impact/reporting.plain.html` | https://about.ups.com/us/en/our-impact/reporting.html | Reporting page |
-| `/content/us/en/our-impact/reporting/gender-equality-index-ups-france.plain.html` | https://about.ups.com/us/en/our-impact/reporting/gender-equality-index---ups-france-.html | Gender Equality Index article |
-| `/content/us/en/our-impact/ups-sustainability-and-social-impact-report.plain.html` | https://about.ups.com/us/en/our-impact/ups-sustainability-and-social-impact-report.html | Sustainability & Social Impact Report |
-| `/content/us/en/our-impact/ups-sustainability-and-social-impact-report/delivering-for-our-communities.plain.html` | (corresponding source URL) | Delivering For Our Communities |
-| `/content/us/en/our-impact/ups-sustainability-and-social-impact-report/delivering-for-our-people.plain.html` | (corresponding source URL) | Delivering For Our People |
-| `/content/us/en/our-impact/ups-sustainability-and-social-impact-report/delivering-for-our-planet.plain.html` | (corresponding source URL) | Delivering For Our Planet |
-| `/content/us/en/our-stories.plain.html` | https://about.ups.com/us/en/our-stories.html | Our Stories listing page |
-| `/content/us/en/our-stories/customer-first.plain.html` | https://about.ups.com/us/en/our-stories/customer-first.html | Customer First category page |
-| `/content/us/en/our-stories/innovation-driven.plain.html` | https://about.ups.com/us/en/our-stories/innovation-driven.html | Innovation Driven category page |
-| `/content/us/en/our-stories/people-led.plain.html` | https://about.ups.com/us/en/our-stories/people-led.html | People Led category page |
-| `/content/us/en/our-stories/customer-first/*.plain.html` | 36 story articles | Customer First stories |
-| `/content/us/en/our-stories/innovation-driven/*.plain.html` | 33 story articles | Innovation Driven stories |
-| `/content/us/en/our-stories/people-led/*.plain.html` | 35 story articles | People Led stories |
-| `/content/us/en/newsroom.plain.html` | https://about.ups.com/us/en/newsroom.html | Newsroom topic hub |
-| `/content/us/en/newsroom/awards-and-recognition.plain.html` | https://about.ups.com/us/en/newsroom/awards-and-recognition.html | Awards & Recognition page |
-| `/content/us/en/newsroom/press-releases.plain.html` | https://about.ups.com/us/en/newsroom/press-releases.html | Press Releases listing |
-| `/content/us/en/newsroom/statements.plain.html` | https://about.ups.com/us/en/newsroom/statements.html | Statements listing |
-| `/content/us/en/newsroom/facebook-rules.plain.html` | https://about.ups.com/us/en/newsroom/facebook-rules.html | Facebook Rules article |
-
-**Total**: 138 pages + 2 fragments. All pages use `.plain.html` format and `import-universal` script.
-
-**URL mapping convention**: Local paths follow the origin URL structure with `/content/` prefix. All content files use `.plain.html` extension.
-
-**Dead source URLs removed** (returned 404 from source site): `get-everything-you-need-to-make-valentine-s-day-extra-special-d`, `new-shelves-new-customers-same-reliable-shipper`, `from-the-philippines-to-ireland-we-deliver-the-holidays`.
+**URL mapping convention**: Local paths follow the origin URL structure with `/content/` prefix. All content files use `.plain.html` extension. Paths in sitemap.json omit the extension (e.g., `/us/en/home`).
 
 ### Bulk Publish URL List
 
 When asked to list all page URLs (e.g., "list all pages", "bulk publish", "bulk preview"):
 
-1. Scan `/workspace/content/` for all `.plain.html` files
-2. For each file, strip the `/workspace/content/` prefix and the `.plain.html` extension to get the path
+1. Read `/sitemap.json` and iterate over all `fragments[]` and `pages[]` entries
+2. For each entry, use its `path` field to construct the URL
 3. Output each as `https://main--up--gabrielwalt.aem.page/{path}`
-4. Include ALL pages and fragments (nav, footer)
+4. Include ALL pages and fragments
 5. Output the URLs inside a fenced code block — one per line, no headers, no extra text
 
 ---
@@ -1764,6 +1731,12 @@ Always include ARIA attributes on interactive elements:
 31. **Always use `import-universal.bundle.js` for all imports** — The universal import script handles every page type (articles and standard pages). No per-template scripts exist — only the universal script.
 32. **Data tables in `.plain.html`** — The `.plain.html` format converts all tables to divs. Use the `data-table` block for data tables: the import script outputs `Data-Table` as the block name, and `data-table.js` converts the div structure back to a native `<table>` at decoration time.
 33. **Keep sitemap blocks[] current after every content change** — After imports, re-imports, or any content modification, update the affected page's `blocks[]` and `sectionStyles[]` in `/sitemap.json`. Before refactoring block CSS/JS, query the sitemap to find all affected pages.
+34. **NEVER allow `.html` (non-`.plain.html`) or `.md` files in `/content/`** — The content area must contain ONLY `.plain.html` files. Delete any `.html` or `.md` files on sight. Import scripts must never produce these formats.
+35. **Parser-first, always** — Never edit `.plain.html` directly as a first approach. Update parsers → re-bundle → re-import. Direct edits are a last resort and MUST be followed by updating all impacted parsers and running a test import to verify alignment.
+36. **Check sitemap BEFORE modifying any parser** — Query `/sitemap.json` to find all pages using the affected block. If validated/approved pages exist, warn the user about potential regressions before proceeding with the parser change.
+37. **Assess re-import needs after every block/parser/style change** — Structural parser changes require re-importing ALL affected pages. CSS-only changes may only need re-validation. Always flag affected pages from the sitemap to the user and let them decide the scope.
+38. **Update sitemap after EVERY import without exception** — Updating `blocks[]` and `sectionStyles[]` in the sitemap is a mandatory part of every import operation, not a follow-up task. The import is not complete until the sitemap reflects the new content.
+39. **Direct `.plain.html` edits create parser debt** — If you must edit content directly, immediately update impacted parsers AND test via re-import. Unresolved parser/content drift guarantees regressions on the next bulk import.
 
 ---
 
