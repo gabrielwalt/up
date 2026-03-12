@@ -92,9 +92,9 @@ main > div:has(.cards-reports) {
   color: var(--link-hover-color);
 }
 
-/* ===== DA BUTTON RESET ===== */
+/* ===== DA BUTTON RESET (default variant only) ===== */
 
-.cards-reports a.button:any-link {
+.cards-reports:not(.cards-reports-text) a.button:any-link {
   display: inline;
   margin: 0;
   border: none;
@@ -108,17 +108,17 @@ main > div:has(.cards-reports) {
   text-decoration: none;
 }
 
-.cards-reports a.button:any-link::after {
+.cards-reports:not(.cards-reports-text) a.button:any-link::after {
   content: none;
 }
 
-.cards-reports a.button:any-link:hover {
+.cards-reports:not(.cards-reports-text) a.button:any-link:hover {
   background: none;
   border: none;
   color: var(--link-hover-color);
 }
 
-.cards-reports .button-wrapper {
+.cards-reports:not(.cards-reports-text) .button-wrapper {
   all: unset;
 }
 
@@ -159,29 +159,10 @@ main > div:has(.cards-reports) {
   color: var(--link-color);
 }
 
-.cards-reports.cards-reports-text .cards-reports-action,
-.cards-reports.cards-reports-text a.button:any-link {
+/* Text variant: action links use standard EDS .button styling */
+.cards-reports.cards-reports-text .cards-reports-action {
   flex-shrink: 0;
-  font-size: var(--body-font-size-s);
-  font-weight: 400;
-  color: var(--link-color);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-pill);
-  padding: 6px var(--spacing-s);
-  text-decoration: none;
   white-space: nowrap;
-}
-
-.cards-reports.cards-reports-text .cards-reports-action::after,
-.cards-reports.cards-reports-text a.button:any-link::after {
-  content: " \203A";
-}
-
-.cards-reports.cards-reports-text .cards-reports-action:hover,
-.cards-reports.cards-reports-text a.button:any-link:hover {
-  color: var(--link-hover-color);
-  border-color: var(--link-hover-color);
-  background: none;
 }
 
 /* ===== DESKTOP ===== */

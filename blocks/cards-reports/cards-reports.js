@@ -10,6 +10,7 @@
  * @param {Element} block
  */
 export default function decorate(block) {
+  const isText = block.classList.contains('cards-reports-text');
   const rows = [...block.children];
   const grid = document.createElement('ul');
   grid.className = 'cards-reports-grid';
@@ -50,9 +51,14 @@ export default function decorate(block) {
     if (linkP) {
       const link = linkP.querySelector('a');
       if (link) {
-        link.className = 'cards-reports-action';
-        // Remove button styling if applied
-        link.classList.remove('button', 'primary', 'secondary', 'accent');
+        if (isText) {
+          // Text variant: keep .button class for standard EDS button styling
+          link.classList.add('cards-reports-action');
+        } else {
+          // Default variant: reset button styling for inline link
+          link.className = 'cards-reports-action';
+          link.classList.remove('button', 'primary', 'secondary', 'accent');
+        }
         details.append(link);
       }
     }

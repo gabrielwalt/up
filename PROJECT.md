@@ -870,7 +870,7 @@ Complete reference of all blocks and their variants.
 | **cards-stories** | `/blocks/cards-stories/` | — | Image + text story cards in a clickable grid |
 | **hero-featured** | `/blocks/hero-featured/` | `hero-featured-right` | Hero with background image and white card overlay |
 | **contact-card** | `/blocks/contact-card/` | — | Contact info card with title, two columns, and vertical separator |
-| **navigation-tabs** | `/blocks/navigation-tabs/` | — | Card-style navigation links with arrow icons |
+| **navigation-tabs** | `/blocks/navigation-tabs/` | `navigation-tabs-inline` | Card-style or inline navigation links with active tab indicator |
 | **fact-sheets** | `/blocks/fact-sheets/` | — | Responsive stat grid with icons, numbers, labels, and CTA |
 | **columns-media** | `/blocks/columns-media/` | — | Asymmetric image + text (1/3 + 2/3), image on either side |
 | **breadcrumb** | `/blocks/breadcrumb/` | — | Auto-generated breadcrumb from URL path segments |
@@ -884,6 +884,7 @@ Complete reference of all blocks and their variants.
 | **form** | `/blocks/form/` | — | Styled form with text, email, textarea, select, submit fields |
 | **data-table** | `/blocks/data-table/` | — | Converts div structure to native HTML `<table>` for data tables |
 | **leadership-bio** | `/blocks/leadership-bio/` | — | Two-column bio: text (name, title, paragraphs) left, portrait right |
+| **investor-links** | `/blocks/investor-links/` | — | Centered quick links (Email Alerts, Contacts) with icons |
 
 **Boilerplate blocks** (vanilla, unmodified): `cards`, `columns`, `hero`
 
@@ -1112,10 +1113,34 @@ Right variant:
 | Variant | Class | Purpose |
 |---------|-------|---------|
 | Default | `.navigation-tabs` | Card-style navigation links with arrow icons |
+| navigation-tabs-inline | `.navigation-tabs.navigation-tabs-inline` | Horizontal inline text links with active tab indicator |
+
+**Authoring (default - card style):**
+```
+| Navigation-Tabs |
+| --------------- |
+| [Link Text](url) |
+| [Link Text](url) |
+```
+
+**Authoring (inline - text links):**
+```
+| Navigation-Tabs (navigation-tabs-inline) |
+| ---------------------------------------- |
+| [Link Text](url) |
+| [Link Text](url) |
+```
 
 **Features**:
-- Row of clickable cards with heading and right-arrow icon
-- Used for sub-navigation within a page section
+- Default variant: Row of clickable cards with heading and right-arrow icon
+- Inline variant: Horizontal text links, centered, with bottom border separator
+- Active tab detection: JS normalizes current page path and compares against link paths, adding `navigation-tabs-active` class
+- Active tab indicator: Gold `::before` pseudo-element (24px wide, 3px tall) centered under the active link
+- DA button reset: removes `.button` and `.button-wrapper` classes from links
+
+**Responsive behavior**:
+- Default: cards stack on mobile, horizontal on desktop
+- Inline: horizontal row at all viewports, centered via flexbox
 
 ---
 
@@ -1592,6 +1617,36 @@ Loads the referenced fragment HTML and inserts it into the page.
 
 ---
 
+### investor-links
+
+**Location**: `/blocks/investor-links/`
+
+| Variant | Class | Purpose |
+|---------|-------|---------|
+| Default | `.investor-links` | Centered quick links with icons (Email Alerts, Contacts) |
+
+**Authoring:**
+```
+| Investor-Links |
+| -------------- |
+| [Email Alerts](url) |
+| [Contacts](url) |
+```
+
+**Features**:
+- Horizontal centered layout with icons prepended to each link
+- Icon detection from link text: "email"/"alert" → envelope icon (✉), "contact" → person icon (👤)
+- Icons via Unicode characters in `::before` pseudo-elements on `.investor-links-icon` spans
+- Border-top separator (`1px solid var(--color-border)`)
+- DA button reset: removes all button styling from links
+
+**Responsive behavior**:
+- All viewports: horizontal flex row, centered, `var(--spacing-l)` gap
+
+**Used on**: All 6 governance sub-pages (governance-documents, board-committees, contact-the-board, ups-code-of-conduct-and-ethics, political-engagement-policy, political-engagement-policy/archive)
+
+---
+
 ## Import Infrastructure
 
 Import scripts for bulk content migration are in `/tools/importer/`.
@@ -1603,7 +1658,7 @@ Import scripts for bulk content migration are in `/tools/importer/`.
 - **Article pages**: Auto-detected via `.pr15-details` selector → article-header, body content, embed, social-share, related stories
 - **Standard pages**: All other pages → block registry detection, DOM walking, section grouping with wrapper-aware styles
 
-The script includes all 22 block parsers and the cleanup transformer. It detects section wrapper contexts (arc, highlight, arc-wave) before cleanup runs, then applies appropriate section-metadata styles in the output.
+The script includes all 23 block parsers and the cleanup transformer. It detects section wrapper contexts (arc, highlight, arc-wave) before cleanup runs, then applies appropriate section-metadata styles in the output.
 
 **Bundling** (must re-bundle after ANY change to import-universal.js, parsers, or transformers):
 ```bash
@@ -1647,6 +1702,7 @@ node run-bulk-import.js --import-script tools/importer/import-universal.bundle.j
 | `parsers/governance-banner.js` | Parser for page banner on investors.ups.com governance pages |
 | `parsers/governance-asset-list.js` | Parser for document download lists (`.module-asset-list`) → cards-reports-text block |
 | `parsers/governance-table.js` | Parser for board committee HTML table → data-table block |
+| `parsers/investor-links.js` | Parser for investor quick links (Email Alerts, Contacts) on governance pages |
 | `parsers/footer-funnel.js` | Parser for footer funnel links (navigation-tabs) — currently blocked by cleanup transformer |
 | `transformers/ups-cleanup.js` | Site-wide DOM cleanup transformer (includes investor site footer link removal) |
 

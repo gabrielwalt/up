@@ -117,12 +117,14 @@ export default function transform(hookName, element, payload) {
       'footer'
     ]);
 
-    // Remove investor site "Email Alerts" / "Contacts" footer links
-    // These appear as a standalone <ul> on investors.ups.com pages, outside <footer>
+    // Investor site "Email Alerts" / "Contacts" quick links
+    // Preserved for investor-links parser — mark with class so parser can find it
     const emailAlertsLink = element.querySelector('a[href$="/news-events/email-alerts"]');
     if (emailAlertsLink) {
       const ul = emailAlertsLink.closest('ul');
-      if (ul) ul.remove();
+      if (ul && !ul.closest('.module-quick-links')) {
+        ul.classList.add('module-quick-links');
+      }
     }
 
     // Remove tracking pixels (e.g., rlcdn.com, doubleclick, etc.)

@@ -1,7 +1,7 @@
 /* eslint-disable */
 /* global WebImporter */
 
-// PARSER IMPORTS — all 25 parsers
+// PARSER IMPORTS — all 26 parsers
 import articleHeaderParser from './parsers/article-header.js';
 import columnsStatsParser from './parsers/columns-stats.js';
 import heroFeaturedParser from './parsers/hero-featured.js';
@@ -27,6 +27,7 @@ import footerFunnelParser from './parsers/footer-funnel.js';
 import governanceBannerParser from './parsers/governance-banner.js';
 import governanceAssetListParser from './parsers/governance-asset-list.js';
 import governanceTableParser from './parsers/governance-table.js';
+import investorLinksParser from './parsers/investor-links.js';
 
 // TRANSFORMER IMPORTS
 import upsCleanupTransformer from './transformers/ups-cleanup.js';
@@ -61,6 +62,7 @@ const BLOCK_REGISTRY = [
   { name: 'governance-subnav', selectors: ['.sub-navigation-wrapper'],                                           parser: governanceSubnavParser },
   { name: 'governance-table', selectors: ['.main-content > table'],                                              parser: governanceTableParser },
   { name: 'governance-asset-list', selectors: ['.module-asset-list'],                                            parser: governanceAssetListParser },
+  { name: 'investor-links',    selectors: ['.module-quick-links'],                                               parser: investorLinksParser },
   { name: 'timeline',          selectors: ['.upspr-our-history'],                                                parser: timelineParser },
   { name: 'awards-list',       selectors: ['.ups-tabs'],                                                         parser: awardsListParser },
   { name: 'form',              selectors: ['.aemformcontainer'],                                                 parser: formParser },
