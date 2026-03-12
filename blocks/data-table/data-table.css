@@ -1,0 +1,31 @@
+/* stylelint-disable no-descending-specificity */
+
+.data-table table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: var(--body-font-size-m);
+  line-height: 24px;
+}
+
+.data-table th,
+.data-table td {
+  padding: var(--spacing-xs);
+  border: 1px solid var(--text-color);
+  vertical-align: middle;
+}
+
+.data-table th {
+  background: var(--link-color);
+  color: #fff;
+  font-weight: 400;
+  text-align: center;
+}
+
+.data-table tr:nth-child(even) {
+  background: var(--light-color);
+}
+
+.data-table td:not(:first-child) {
+  text-align: center;
+}

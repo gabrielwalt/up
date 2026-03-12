@@ -430,7 +430,7 @@ When working on this project, periodically verify:
 | Event | Required Update |
 |-------|-----------------|
 | **New page discovered on original site** | Add entry to `pages[]` with `sourceUrl`, `imported: false` |
-| **Page imported (content created)** | Set `imported: true`, update `importScript`, populate `blocks[]` and `sectionStyles[]` |
+| **Page imported (content created)** | Set `imported: true`, populate `blocks[]` and `sectionStyles[]` |
 | **Import re-run on existing page** | Update `blocks[]` and `sectionStyles[]` if they changed |
 | **Import validated** | Set `importValidated: true` |
 | **Page critiqued/approved** | Set `critiqued: true` / `approved: true` on the page entry |
@@ -438,7 +438,6 @@ When working on this project, periodically verify:
 | **Section style added/removed** | Update `sectionStyles[]` to match current content |
 | **Page removed** | Remove the entry from `pages[]` |
 | **New fragment created** | Add entry to `fragments[]` |
-| **Import script changed** | Update `importScript` field on affected pages |
 
 ### Structure Reference
 
@@ -451,7 +450,6 @@ When working on this project, periodically verify:
     {
       "path": "/us/en/page-name",
       "sourceUrl": "https://about.ups.com/us/en/page-name.html",
-      "importScript": "import-universal",
       "imported": true,
       "importValidated": false,
       "critiqued": false,
@@ -466,13 +464,12 @@ When working on this project, periodically verify:
 ### Rules
 
 1. **Always update after any content change** — If blocks are added, removed, or restructured on a page, update the corresponding `blocks[]` array immediately.
-2. **Keep `importScript` current** — When pages move to a new import script (e.g., from per-page scripts to `import-universal`), update the field.
-3. **Don't mark validated/critiqued/approved prematurely** — These flags live at the page level (not on individual blocks or styles). Only set them after the corresponding step is actually completed and verified.
-4. **Paths use no extension** — Page paths are stored without `.html` (e.g., `/us/en/home`, not `/us/en/home.html`).
-5. **Source URLs are the original site URLs** — Always include the full `https://about.ups.com/...` URL.
-6. **Keep blocks[] populated for ALL pages** — `blocks[]` and `sectionStyles[]` are simple string arrays (e.g., `["cards-stories", "hero-featured"]`). Every page must have these arrays reflecting the actual blocks and section styles present in the content. Pages with no blocks should have `blocks: []`.
-7. **Update blocks[] after every content operation** — After running import scripts, re-importing pages, or executing any user request that changes page content (adding/removing blocks, changing section styles), immediately update the affected page's `blocks[]` and `sectionStyles[]` arrays to match the new content.
-8. **Use blocks[] for impact analysis** — Before refactoring a block's CSS/JS or modifying shared styles, query the sitemap to find all pages that use that block. Preview or verify changes on those pages to ensure nothing breaks. Example: changing `cards-stories` CSS should prompt checking all pages where `cards-stories` appears in `blocks[]`.
+2. **Don't mark validated/critiqued/approved prematurely** — These flags live at the page level (not on individual blocks or styles). Only set them after the corresponding step is actually completed and verified.
+3. **Paths use no extension** — Page paths are stored without `.html` (e.g., `/us/en/home`, not `/us/en/home.html`).
+4. **Source URLs are the original site URLs** — Always include the full `https://about.ups.com/...` URL.
+5. **Keep blocks[] populated for ALL pages** — `blocks[]` and `sectionStyles[]` are simple string arrays (e.g., `["cards-stories", "hero-featured"]`). Every page must have these arrays reflecting the actual blocks and section styles present in the content. Pages with no blocks should have `blocks: []`.
+6. **Update blocks[] after every content operation** — After running import scripts, re-importing pages, or executing any user request that changes page content (adding/removing blocks, changing section styles), immediately update the affected page's `blocks[]` and `sectionStyles[]` arrays to match the new content.
+7. **Use blocks[] for impact analysis** — Before refactoring a block's CSS/JS or modifying shared styles, query the sitemap to find all pages that use that block. Preview or verify changes on those pages to ensure nothing breaks. Example: changing `cards-stories` CSS should prompt checking all pages where `cards-stories` appears in `blocks[]`.
 
 ---
 
@@ -918,6 +915,7 @@ Complete reference of all blocks and their variants.
 | **awards-list** | `/blocks/awards-list/` | — | Year-tabbed list of award entries with eyebrow, title, meta |
 | **timeline** | `/blocks/timeline/` | — | Vertical timeline with period nav sidebar and scroll spy |
 | **form** | `/blocks/form/` | — | Styled form with text, email, textarea, select, submit fields |
+| **data-table** | `/blocks/data-table/` | — | Converts div structure to native HTML `<table>` for data tables |
 
 **Boilerplate blocks** (vanilla, unmodified): `cards`, `columns`, `hero`
 
@@ -1547,6 +1545,35 @@ Loads the referenced fragment HTML and inserts it into the page.
 
 ---
 
+### data-table
+
+**Location**: `/blocks/data-table/`
+
+| Variant | Class | Purpose |
+|---------|-------|---------|
+| Default | `.data-table` | Converts div block structure to native HTML `<table>` |
+
+**Authoring:**
+```
+| Data-Table |
+| --- | --- | --- |
+| Header 1 | Header 2 | Header 3 |
+| Row 1 Col 1 | Row 1 Col 2 | Row 1 Col 3 |
+```
+
+**Features**:
+- JS converts the div-based block structure into a native `<table>` element
+- First row becomes `<thead>` with `<th>` cells, remaining rows become `<tbody>` with `<td>` cells
+- Styled with blue header row, alternating grey row backgrounds, centered non-first columns
+- Necessary because the import pipeline (DOM → markdown → DA HTML) converts all `<table>` elements to divs
+
+**Responsive behavior**:
+- All viewports: full-width table, horizontal scroll on narrow viewports via container
+
+**Used on**: Gender Equality Index - UPS France
+
+---
+
 ## Import Infrastructure
 
 Import scripts for bulk content migration are in `/tools/importer/`.
@@ -1735,7 +1762,7 @@ Always include ARIA attributes on interactive elements:
 29. **Import scripts: use DOM-walking, not rigid section assembly** — Parsers call `element.replaceWith(blockDiv)` which detaches the original element reference. Never search stale `block.element` after parsing. Instead, walk the DOM after all parsers run to collect block divs and default content in natural document order. This also handles pages with different block orders using the same template. See `import-universal.js` for the reference implementation.
 30. **`.plain.html` is the single source of truth** — All content edits go directly in `.plain.html` files. No `.html` or `.md` files should exist in the content folder. This is the format DA consumes and produces.
 31. **Always use `import-universal.bundle.js` for all imports** — The universal import script handles every page type (articles and standard pages). No per-template scripts exist — only the universal script.
-32. **Data tables in `.plain.html`** — The `.plain.html` format converts all tables to divs. Data tables (non-block HTML tables) need special handling in `.plain.html` content — consider block implementations or other approaches since native `<table>` elements are not preserved.
+32. **Data tables in `.plain.html`** — The `.plain.html` format converts all tables to divs. Use the `data-table` block for data tables: the import script outputs `Data-Table` as the block name, and `data-table.js` converts the div structure back to a native `<table>` at decoration time.
 33. **Keep sitemap blocks[] current after every content change** — After imports, re-imports, or any content modification, update the affected page's `blocks[]` and `sectionStyles[]` in `/sitemap.json`. Before refactoring block CSS/JS, query the sitemap to find all affected pages.
 
 ---

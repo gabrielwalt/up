@@ -35,14 +35,42 @@ export default function parse(element, { document }) {
 
   const cells = [];
 
-  // Extract the section H2 heading before building the block
-  const sectionH2 = element.querySelector('.upspr-leader-head h2, h2');
+  // Extract the section H2 heading and optional CTA link before building the block
+  const leaderHead = element.querySelector('.upspr-leader-head');
   let h2Clone = null;
-  if (sectionH2) {
-    const text = sectionH2.textContent.trim();
-    if (text) {
-      h2Clone = document.createElement('h2');
-      h2Clone.textContent = text;
+  let ctaLink = null;
+  if (leaderHead) {
+    const sectionH2 = leaderHead.querySelector('h2');
+    if (sectionH2) {
+      const text = sectionH2.textContent.trim();
+      if (text) {
+        h2Clone = document.createElement('h2');
+        h2Clone.textContent = text;
+      }
+    }
+    // Extract CTA link (e.g., "Request a Speaker") next to the H2
+    const ctaAnchor = leaderHead.querySelector('.upspr-read-the-story a, a.upspr-link');
+    if (ctaAnchor) {
+      const href = ctaAnchor.getAttribute('href');
+      const text = ctaAnchor.textContent.trim();
+      if (href && text) {
+        const p = document.createElement('p');
+        const a = document.createElement('a');
+        a.href = href;
+        a.textContent = text;
+        p.append(a);
+        ctaLink = p;
+      }
+    }
+  } else {
+    // Fallback: look for h2 directly
+    const sectionH2 = element.querySelector('h2');
+    if (sectionH2) {
+      const text = sectionH2.textContent.trim();
+      if (text) {
+        h2Clone = document.createElement('h2');
+        h2Clone.textContent = text;
+      }
     }
   }
 
@@ -101,13 +129,10 @@ export default function parse(element, { document }) {
 
   const block = WebImporter.Blocks.createBlock(document, { name: 'Cards-Leadership', cells });
 
-  // Insert H2 heading before the block so it appears in the DOM walk
-  if (h2Clone) {
-    const fragment = document.createDocumentFragment();
-    fragment.append(h2Clone);
-    fragment.append(block);
-    element.replaceWith(fragment);
-  } else {
-    element.replaceWith(block);
-  }
+  // Insert H2 heading (and optional CTA link) before the block so they appear in the DOM walk
+  const fragment = document.createDocumentFragment();
+  if (h2Clone) fragment.append(h2Clone);
+  if (ctaLink) fragment.append(ctaLink);
+  fragment.append(block);
+  element.replaceWith(fragment);
 }

@@ -551,22 +551,24 @@ function cloneDataTable(sourceTable, document) {
   const rows = sourceTable.querySelectorAll('tr');
   if (rows.length === 0) return null;
 
-  const table = document.createElement('table');
-  const tbody = document.createElement('tbody');
-  table.append(tbody);
-
-  rows.forEach((row, rowIdx) => {
-    const tr = document.createElement('tr');
+  // Build cells array for a Data-Table block.
+  // The data-table block JS converts the div structure back to a native <table>.
+  // This is necessary because the import pipeline (DOM → markdown → DA HTML)
+  // converts all <table> elements to divs, losing the native table structure.
+  const cells = [];
+  rows.forEach((row) => {
+    const rowCells = [];
     row.querySelectorAll('td, th').forEach((cell) => {
-      const isHeader = rowIdx === 0;
-      const newCell = document.createElement(isHeader ? 'th' : 'td');
-      cloneCellContent(cell, newCell, document);
-      tr.append(newCell);
+      const div = document.createElement('div');
+      cloneCellContent(cell, div, document);
+      rowCells.push([div.innerHTML ? div : '']);
     });
-    tbody.append(tr);
+    if (rowCells.length > 0) cells.push(rowCells);
   });
 
-  return table;
+  if (cells.length === 0) return null;
+
+  return WebImporter.Blocks.createBlock(document, { name: 'Data-Table', cells });
 }
 
 function extractContentElement(el, content, document) {
