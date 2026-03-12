@@ -1,7 +1,7 @@
 /* eslint-disable */
 /* global WebImporter */
 
-// PARSER IMPORTS — all 14 parsers
+// PARSER IMPORTS — all 19 parsers
 import articleHeaderParser from './parsers/article-header.js';
 import columnsStatsParser from './parsers/columns-stats.js';
 import heroFeaturedParser from './parsers/hero-featured.js';
@@ -15,6 +15,11 @@ import navigationTabsParser from './parsers/navigation-tabs.js';
 import contactCardParser from './parsers/contact-card.js';
 import socialShareParser from './parsers/social-share.js';
 import embedParser from './parsers/embed.js';
+import cardsLeadershipParser from './parsers/cards-leadership.js';
+import cardsReportsParser from './parsers/cards-reports.js';
+import timelineParser from './parsers/timeline.js';
+import awardsListParser from './parsers/awards-list.js';
+import formParser from './parsers/form.js';
 
 // TRANSFORMER IMPORTS
 import upsCleanupTransformer from './transformers/ups-cleanup.js';
@@ -27,19 +32,24 @@ import upsCleanupTransformer from './transformers/ups-cleanup.js';
  * article-header, embed, and social-share are article-path-only — skipped in standard path.
  */
 const BLOCK_REGISTRY = [
-  { name: 'article-header',  selectors: ['.pr15-details'],                                                    parser: articleHeaderParser },
-  { name: 'columns-stats',   selectors: ['.upspr-heroimage.vertical-hero'],                                   parser: columnsStatsParser },
-  { name: 'hero-featured',   selectors: ['.upspr-heroimage'],                                                 parser: heroFeaturedParser },
-  { name: 'columns-media',   selectors: ['.herogrid', '#list-container'],                                     parser: columnsMediaParser },
-  { name: 'cards-awards',    selectors: ['.upspr-three-column-teaser:has(.upspr-three-col-text)'],             parser: cardsAwardsParser },
-  { name: 'cards-stories',   selectors: ['.upspr-homepage-latest-stories', '.upspr-three-column-teaser:has(.upspr-story-details)'], parser: cardsStoriesParser },
-  { name: 'columns-feature', selectors: ['.upspr-xd-card'],                                                   parser: columnsFeatureParser },
-  { name: 'columns-quote',   selectors: ['.upspr-testimonial'],                                               parser: columnsQuoteParser },
-  { name: 'fact-sheets',     selectors: ['.upspr-facts-container', '.upspr-stats-container'],                  parser: factSheetsParser },
-  { name: 'navigation-tabs', selectors: ['.upspr-navigation-tabs'],                                           parser: navigationTabsParser },
-  { name: 'contact-card',    selectors: ['.upspr-contactus'],                                                 parser: contactCardParser },
-  { name: 'social-share',    selectors: ['.upspr-socialmedia'],                                               parser: socialShareParser },
-  { name: 'embed',           selectors: ['iframe[src*="youtube"]'],                                           parser: embedParser },
+  { name: 'article-header',    selectors: ['.pr15-details'],                                                    parser: articleHeaderParser },
+  { name: 'columns-stats',     selectors: ['.upspr-heroimage.vertical-hero'],                                   parser: columnsStatsParser },
+  { name: 'hero-featured',     selectors: ['.upspr-heroimage'],                                                 parser: heroFeaturedParser },
+  { name: 'columns-media',     selectors: ['.herogrid', '#list-container'],                                     parser: columnsMediaParser },
+  { name: 'cards-awards',      selectors: ['.upspr-three-column-teaser:has(.upspr-three-col-text)'],             parser: cardsAwardsParser },
+  { name: 'cards-stories',     selectors: ['.upspr-homepage-latest-stories', '.upspr-three-column-teaser:has(.upspr-story-details)'], parser: cardsStoriesParser },
+  { name: 'columns-feature',   selectors: ['.upspr-xd-card'],                                                   parser: columnsFeatureParser },
+  { name: 'columns-quote',     selectors: ['.upspr-testimonial'],                                               parser: columnsQuoteParser },
+  { name: 'fact-sheets',       selectors: ['.upspr-facts-container', '.upspr-stats-container'],                  parser: factSheetsParser },
+  { name: 'navigation-tabs',   selectors: ['.upspr-navigation-tabs'],                                           parser: navigationTabsParser },
+  { name: 'contact-card',      selectors: ['.upspr-contactus'],                                                 parser: contactCardParser },
+  { name: 'social-share',      selectors: ['.upspr-socialmedia'],                                               parser: socialShareParser },
+  { name: 'embed',             selectors: ['iframe[src*="youtube"]'],                                           parser: embedParser },
+  { name: 'cards-leadership',  selectors: ['.upspr-leadership-container'],                                      parser: cardsLeadershipParser },
+  { name: 'cards-reports',     selectors: ['.upspr-reporting'],                                                  parser: cardsReportsParser },
+  { name: 'timeline',          selectors: ['.upspr-our-history'],                                                parser: timelineParser },
+  { name: 'awards-list',       selectors: ['.ups-tabs'],                                                         parser: awardsListParser },
+  { name: 'form',              selectors: ['.aemformcontainer'],                                                 parser: formParser },
 ];
 
 /** Blocks only used in the article path — skip in standard path */
@@ -87,27 +97,58 @@ function createSectionMetadataTable(document, style) {
 
 /**
  * Detect section wrapper contexts BEFORE cleanup removes wrapper classes.
- * Returns:
- *   - pageArc: 'arc' if H1 is inside an arc wrapper, null otherwise
- *   - wrapperMap: Map<Element, string> mapping block source elements to their wrapper style
+ *
+ * Data-driven approach: tags individual DOM elements with data attributes
+ * so that Phase 7 can read them when building section metadata.
+ *
+ * - Headings inside `.background-normal-arc` get `data-section-arc="true"`
+ * - Headings inside `.bg-brown` get `data-section-dark="true"`
+ * - Headings followed by `.upspr-under-eyebrow` get `data-accent-bar="true"`
+ * - Block source elements get wrapper style in `wrapperMap`
+ *
+ * Returns: { wrapperMap: Map<Element, string> }
  */
 function detectSectionContext(main) {
   const context = {
-    pageArc: null,
     wrapperMap: new Map(),
   };
 
-  // 1. Check first heading for arc wrapper
-  const firstHeading = main.querySelector('h1, h2');
-  if (firstHeading) {
-    const arcWrapper = firstHeading.closest('.background-normal-arc, .hero-in-arc');
-    if (arcWrapper) {
-      context.pageArc = 'arc';
-    }
-  }
+  // 1. Tag headings inside arc wrappers
+  main.querySelectorAll('.background-normal-arc, .hero-in-arc').forEach((wrapper) => {
+    if (wrapper.classList.contains('modal-header')) return;
+    wrapper.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((h) => {
+      h.dataset.sectionArc = 'true';
+    });
+  });
 
-  // 2. Build wrapper map for block elements
-  // Walk registry selectors (excluding article-only) and find styled ancestor wrappers
+  // 2. Tag headings inside dark wrappers
+  main.querySelectorAll('.bg-brown, .upspr-section-wrapper.bg-brown').forEach((wrapper) => {
+    wrapper.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((h) => {
+      h.dataset.sectionDark = 'true';
+    });
+  });
+
+  // 3. Tag headings that have accent-bar (.upspr-under-eyebrow follows the heading or its wrapper)
+  main.querySelectorAll('.upspr-under-eyebrow').forEach((el) => {
+    let heading = null;
+    const prev = el.previousElementSibling;
+    if (prev && /^H[1-6]$/.test(prev.tagName)) {
+      // Direct sibling: <h2>...</h2><div class="upspr-under-eyebrow">
+      heading = prev;
+    } else if (prev) {
+      // Previous sibling is a container — find heading inside it
+      heading = prev.querySelector('h1, h2, h3, h4, h5, h6');
+    }
+    if (!heading) {
+      // Fallback: search parent for a heading
+      heading = el.parentElement?.querySelector('h1, h2, h3, h4, h5, h6');
+    }
+    if (heading) {
+      heading.dataset.accentBar = 'true';
+    }
+  });
+
+  // 4. Build wrapper map for block source elements
   BLOCK_REGISTRY.forEach(({ name, selectors }) => {
     if (ARTICLE_ONLY_BLOCKS.has(name)) return;
 
@@ -119,11 +160,15 @@ function detectSectionContext(main) {
         return;
       }
       elements.forEach((el) => {
-        // Check for styled wrapper ancestors
+        const darkWrapper = el.closest('.bg-brown, .upspr-section-wrapper.bg-brown');
+        const arcWrapper = el.closest('.background-normal-arc:not(.modal-header)');
         const greyWrapper = el.closest('.upspr-section-wrapper__bg-grey_25');
-        const highlightWrapper = el.closest('.pr24-background-colour');
 
-        if (greyWrapper) {
+        if (darkWrapper) {
+          context.wrapperMap.set(el, 'dark');
+        } else if (arcWrapper) {
+          context.wrapperMap.set(el, 'arc');
+        } else if (greyWrapper) {
           // Distinguish arc-wave from highlight:
           // arc-wave = grey wrapper containing .herogrid (culture page intro)
           if (greyWrapper.querySelector('.herogrid')) {
@@ -131,10 +176,7 @@ function detectSectionContext(main) {
           } else {
             context.wrapperMap.set(el, 'highlight');
           }
-        } else if (highlightWrapper) {
-          context.wrapperMap.set(el, 'highlight');
         }
-        // null wrapper = no entry in map
       });
     });
   });
@@ -237,10 +279,12 @@ function collectContent(element, result) {
  * Wrapper-aware section grouping.
  *
  * Rules:
- * - H1 always gets its own section
- * - Blocks with a wrapper style stay in the same section as other blocks sharing that wrapper
- * - Blocks with null wrapper → add to current section, then flush (one block per section)
- * - Non-block items (heading/text/list) accumulate in the current section
+ * - H1 always starts a new section
+ * - Blocks with a styled wrapper merge with H1 (e.g., hero in arc on great-employer)
+ * - Blocks with null wrapper flush H1 section first (H1 gets its own section)
+ * - Non-H1 headings flush H1 sections (prevent H2 leaking into H1's arc section)
+ * - Headings immediately before a block stay with that block (section title + block)
+ * - Null-wrapper blocks flush immediately (one block per section)
  * - Wrapper context changes trigger a flush
  */
 function groupIntoSections(items) {
@@ -259,16 +303,33 @@ function groupIntoSections(items) {
   for (const item of items) {
     if (item.type === 'h1') {
       flush();
-      sections.push([item]);
+      current.push(item);
+      currentWrapper = undefined;
       continue;
     }
 
     if (item.type === 'block') {
       const wrapper = item.element.dataset.wrapperStyle || null;
 
-      // Flush accumulated non-block content before starting a block section
-      const hasNonBlockContent = current.some((i) => i.type !== 'block');
-      if (hasNonBlockContent) {
+      // Check if current section has H1 and block shares a styled wrapper
+      const hasH1 = current.some((i) => i.type === 'h1');
+      if (hasH1 && wrapper !== null) {
+        // Block shares a styled wrapper with H1 — keep in same section
+        current.push(item);
+        currentWrapper = wrapper;
+        continue;
+      }
+
+      // H1 section + null-wrapper block → flush H1 into its own section
+      if (hasH1 && wrapper === null) {
+        flush();
+      }
+
+      // Flush accumulated text/list/image content before starting a block section.
+      // Headings are NOT flushed — they stay with the block as section titles.
+      const hasTextContent = current.some((i) =>
+        i.type === 'text' || i.type === 'list' || i.type === 'blockquote' || i.type === 'image');
+      if (hasTextContent) {
         flush();
       }
 
@@ -293,7 +354,21 @@ function groupIntoSections(items) {
         }
       }
     } else {
-      // Non-block items accumulate in current section
+      // Non-block items: accumulate in current section
+      const hasH1 = current.some((i) => i.type === 'h1');
+      const hasBlock = current.some((i) => i.type === 'block');
+
+      // If H1+block completed section, flush before adding heading
+      if (hasH1 && hasBlock && item.type === 'heading') {
+        flush();
+      }
+
+      // If H1 section (no block yet) and this is a non-H1 heading, flush H1 first.
+      // Prevents headings from other page sections leaking into the H1's arc section.
+      if (hasH1 && !hasBlock && item.type === 'heading') {
+        flush();
+      }
+
       current.push(item);
     }
   }
@@ -790,6 +865,17 @@ function transformStandard(payload) {
     firstHeading.replaceWith(h1);
   }
 
+  // 4d. Convert standalone h4 to h6 (eyebrow sub-headings)
+  // After parsers run, h4 elements inside blocks are in <table> cells.
+  // Remaining h4 in default content (e.g. "Coupa Supplier Portal" on suppliers
+  // page) should become h6 eyebrows styled by global CSS.
+  main.querySelectorAll('h4').forEach((h4) => {
+    if (h4.closest('table')) return; // skip h4 inside block tables
+    const h6 = document.createElement('h6');
+    h6.textContent = h4.textContent;
+    h4.replaceWith(h6);
+  });
+
   // Phase 5: Walk DOM and collect all content in document order
   const items = [];
   collectContent(main, items);
@@ -798,8 +884,9 @@ function transformStandard(payload) {
   const sections = groupIntoSections(items);
 
   // Phase 7: Build output with section breaks and section metadata
+  // Data-driven: reads heading data attributes and block wrapper styles to determine
+  // which section styles to apply. No hardcoded defaults — only detected styles.
   main.innerHTML = '';
-  let firstH1SectionSeen = false;
   let firstHeadingSectionSeen = false;
 
   sections.forEach((section, index) => {
@@ -808,9 +895,10 @@ function transformStandard(payload) {
     }
 
     const isH1Section = section.some((item) => item.type === 'h1');
-    const startsWithHeading = section.length > 0 && section[0].type === 'heading';
+    const startsWithHeading = section.length > 0
+      && (section[0].type === 'heading' || section[0].type === 'h1');
 
-    // Determine wrapper style for this section (from block table data attributes)
+    // Determine wrapper style from block table data attributes
     let sectionWrapperStyle = null;
     for (const item of section) {
       if (item.type === 'block' && item.element.dataset.wrapperStyle) {
@@ -823,27 +911,51 @@ function transformStandard(payload) {
       main.appendChild(cleanClone(item, document));
     });
 
-    // Apply section styles
-    if (isH1Section) {
-      if (!firstH1SectionSeen) {
-        firstH1SectionSeen = true;
-        const style = sectionContext.pageArc
-          ? `${sectionContext.pageArc}, accent-bar`
-          : 'accent-bar';
-        main.appendChild(createSectionMetadataTable(document, style));
-      } else {
-        main.appendChild(createSectionMetadataTable(document, 'accent-bar, spacing-l'));
-      }
+    // Build section styles from detected context (heading data attrs + block wrappers)
+    const styles = [];
+
+    // Check heading-level data attributes
+    const sectionHeadings = section.filter(
+      (item) => item.type === 'h1' || item.type === 'heading',
+    );
+    const hasArc = sectionHeadings.some(
+      (item) => item.element.dataset && item.element.dataset.sectionArc === 'true',
+    );
+    const hasDark = sectionHeadings.some(
+      (item) => item.element.dataset && item.element.dataset.sectionDark === 'true',
+    );
+    const hasAccentBar = sectionHeadings.some(
+      (item) => item.element.dataset && item.element.dataset.accentBar === 'true',
+    );
+
+    // Background/wrapper style (priority: dark > arc > block wrapper)
+    if (hasDark || sectionWrapperStyle === 'dark') {
+      styles.push('dark');
+    } else if (hasArc || sectionWrapperStyle === 'arc') {
+      styles.push('arc');
     } else if (sectionWrapperStyle) {
-      // Section has a detected wrapper style (highlight, arc-wave)
-      main.appendChild(createSectionMetadataTable(document, sectionWrapperStyle));
-    } else if (startsWithHeading) {
-      if (!firstHeadingSectionSeen) {
-        main.appendChild(createSectionMetadataTable(document, 'spacing-l'));
-        firstHeadingSectionSeen = true;
-      } else {
-        main.appendChild(createSectionMetadataTable(document, 'spacing-xl'));
+      styles.push(sectionWrapperStyle);
+    }
+
+    // Accent-bar — only when explicitly detected via .upspr-under-eyebrow
+    if (hasAccentBar) {
+      styles.push('accent-bar');
+    }
+
+    // Spacing for heading-only sections without any detected wrapper style
+    if (startsWithHeading && !hasDark && !hasArc && !sectionWrapperStyle) {
+      if (!isH1Section) {
+        if (!firstHeadingSectionSeen) {
+          styles.push('spacing-l');
+          firstHeadingSectionSeen = true;
+        } else {
+          styles.push('spacing-xl');
+        }
       }
+    }
+
+    if (styles.length > 0) {
+      main.appendChild(createSectionMetadataTable(document, styles.join(', ')));
     }
   });
 

@@ -66,6 +66,7 @@ export default function decorate(block) {
 
       // Extract elements
       const children = [...content.children];
+      let afterTitle = false;
       children.forEach((el) => {
         if (el.tagName === 'P' && !el.querySelector('a') && !item.querySelector('.awards-list-eyebrow')) {
           // First plain p = eyebrow category
@@ -82,9 +83,14 @@ export default function decorate(block) {
         } else if (el.tagName === 'H3') {
           el.className = 'awards-list-title';
           item.append(el);
-        } else if (el.tagName === 'P' && !el.querySelector('a')) {
-          // Date + description paragraph
-          el.className = 'awards-list-meta';
+          afterTitle = true;
+        } else if (el.tagName === 'P' && !el.querySelector('a') && afterTitle && !item.querySelector('.awards-list-date')) {
+          // First plain p after title = date
+          el.className = 'awards-list-date';
+          item.append(el);
+        } else if (el.tagName === 'P' && !el.querySelector('a') && afterTitle) {
+          // Subsequent plain p after title = description
+          el.className = 'awards-list-desc';
           item.append(el);
         } else if (el.tagName === 'P' && el.querySelector('a')) {
           // Read More link

@@ -1,6 +1,5 @@
 /* eslint-disable */
 /* global WebImporter */
-import { toTitleCase } from '../utils/text-utils.js';
 
 /**
  * Transformer for UPS About site cleanup
@@ -12,6 +11,31 @@ import { toTitleCase } from '../utils/text-utils.js';
  * - Captured DOM during migration of https://about.ups.com/us/en/our-impact.html
  * - cleaned.html from page scraping phase
  */
+
+// Inlined from utils/text-utils.js (transformer validator injects as <script>, no ESM imports)
+const ACRONYMS = new Set([
+  'UPS', 'CEO', 'CFO', 'COO', 'CTO', 'CIO',
+  'ESG', 'DEI', 'CSR',
+  'US', 'UK', 'EU', 'UN',
+  'AI', 'IT', 'HR', 'PR',
+  'B2B', 'B2C', 'D2C',
+]);
+
+function toTitleCase(text) {
+  if (!text || text.length < 3) return text;
+  if (text !== text.toUpperCase()) return text;
+  const nonWhitespace = text.replace(/\s/g, '');
+  const letterCount = (nonWhitespace.match(/[a-zA-Z]/g) || []).length;
+  if (letterCount < nonWhitespace.length / 2) return text;
+  return text.split(/(\s+)/).map((segment) => {
+    if (/^\s+$/.test(segment)) return segment;
+    return segment.split(/([-,])/).map((part) => {
+      if (part === '-' || part === ',') return part;
+      if (ACRONYMS.has(part)) return part;
+      return part.charAt(0).toUpperCase() + part.slice(1).toLowerCase();
+    }).join('');
+  }).join('');
+}
 
 const TransformHook = {
   beforeTransform: 'beforeTransform',

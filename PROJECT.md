@@ -480,40 +480,53 @@ When working on this project, periodically verify:
 
 All content pages in this project and their source URLs. All content files use `.plain.html` format.
 
-| Local Path | Origin URL | Description | Status |
-|------------|-----------|-------------|--------|
-| `/content/us/en/our-company.plain.html` | https://about.ups.com/us/en/our-company.html | Our Company landing page | ✅ has .plain.html |
-| `/content/us/en/our-company/suppliers.plain.html` | https://about.ups.com/us/en/our-company/suppliers.html | Suppliers topic hub | ✅ has .plain.html |
-| `/content/us/en/our-company/our-strategy.plain.html` | https://about.ups.com/us/en/our-company/our-strategy.html | Our Strategy page | ✅ has .plain.html |
-| `/content/us/en/our-stories.plain.html` | https://about.ups.com/us/en/our-stories.html | Our Stories listing page | ✅ has .plain.html |
-| `/content/us/en/our-stories/customer-first.plain.html` | https://about.ups.com/us/en/our-stories/customer-first.html | Customer First category page | ✅ has .plain.html |
-| `/content/us/en/our-stories/innovation-driven.plain.html` | https://about.ups.com/us/en/our-stories/innovation-driven.html | Innovation Driven category page | ✅ has .plain.html |
-| `/content/us/en/our-stories/people-led.plain.html` | https://about.ups.com/us/en/our-stories/people-led.html | People Led category page | ✅ has .plain.html |
-| `/content/us/en/our-stories/customer-first/*.plain.html` | 37 story articles | Customer First stories | ✅ has .plain.html |
-| `/content/us/en/our-stories/innovation-driven/*.plain.html` | 27 story articles | Innovation Driven stories | ✅ has .plain.html |
-| `/content/us/en/our-stories/people-led/*.plain.html` | 36 story articles | People Led stories | ✅ has .plain.html |
-| `/content/us/en/our-impact/community.plain.html` | https://about.ups.com/us/en/our-impact/community.html | Community topic hub | ✅ has .plain.html |
-| `/content/us/en/our-impact/sustainability.plain.html` | https://about.ups.com/us/en/our-impact/sustainability.html | Sustainability topic hub | ✅ has .plain.html |
-| `/content/us/en/our-company/great-employer.plain.html` | https://about.ups.com/us/en/our-company/great-employer.html | Great Employer topic hub | ✅ has .plain.html |
-| `/content/nav.plain.html` | Derived from https://about.ups.com/us/en/home.html | Navigation fragment | ✅ has .plain.html |
-| `/content/footer.plain.html` | Derived from https://about.ups.com/us/en/home.html | Footer fragment | ✅ has .plain.html |
-| `/content/us/en/home` | https://about.ups.com/us/en/home.html | Homepage | ❌ needs re-import as .plain.html |
-| `/content/us/en/our-impact` | https://about.ups.com/us/en/our-impact.html | Our Impact landing page | ❌ needs re-import as .plain.html |
-| `/content/us/en/our-impact/reporting` | https://about.ups.com/us/en/our-impact/reporting.html | Reporting page | ❌ needs re-import as .plain.html |
-| `/content/us/en/our-impact/reporting/gender-equality-index-ups-france` | https://about.ups.com/us/en/our-impact/reporting/gender-equality-index---ups-france-.html | Gender Equality Index article | ❌ needs re-import as .plain.html |
-| `/content/us/en/our-company/our-culture` | https://about.ups.com/us/en/our-company/our-culture.html | Our Culture page | ❌ needs re-import as .plain.html |
-| `/content/us/en/our-company/our-history` | https://about.ups.com/us/en/our-company/our-history.html | Our History page | ❌ needs re-import as .plain.html |
-| `/content/us/en/our-company/leadership` | https://about.ups.com/us/en/our-company/leadership.html | Leadership page | ❌ needs re-import as .plain.html |
-| `/content/us/en/newsroom` | https://about.ups.com/us/en/newsroom.html | Newsroom topic hub | ❌ needs re-import as .plain.html |
-| `/content/us/en/newsroom/awards-and-recognition` | https://about.ups.com/us/en/newsroom/awards-and-recognition.html | Awards & Recognition page | ❌ needs re-import as .plain.html |
-| `/content/us/en/our-impact/sustainability/key-highlights-*` | https://about.ups.com/us/en/our-impact/sustainability/key-highlights-from-ups-s-latest-sustainability-and-community-im.html | Sustainability Key Highlights | ❌ needs re-import as .plain.html |
-| `/content/us/en/our-impact/ups-sustainability-and-social-impact-report/delivering-for-our-*` | 3 Delivering For pages | Delivering For Our Communities/People/Planet | ❌ needs re-import as .plain.html |
-| `/content/us/en/our-impact/community/ups-foundation-leadership` | https://about.ups.com/us/en/our-impact/community/ups-foundation-leadership.html | UPS Foundation Leadership | ❌ needs re-import as .plain.html |
-| `/content/us/en/thank-a-ups-hero` | https://about.ups.com/us/en/thank-a-ups-hero.html | Thank a UPS Hero | ❌ needs re-import as .plain.html |
+| Local Path | Origin URL | Description |
+|------------|-----------|-------------|
+| `/content/nav.plain.html` | Derived from source site | Navigation fragment |
+| `/content/footer.plain.html` | Derived from source site | Footer fragment |
+| `/content/us/en/home.plain.html` | https://about.ups.com/us/en/home.html | Homepage |
+| `/content/us/en/all-stories.plain.html` | https://about.ups.com/us/en/all-stories.html | All Stories listing |
+| `/content/us/en/thank-a-ups-hero.plain.html` | https://about.ups.com/us/en/thank-a-ups-hero.html | Thank a UPS Hero form |
+| `/content/us/en/our-company.plain.html` | https://about.ups.com/us/en/our-company.html | Our Company landing page |
+| `/content/us/en/our-company/our-strategy.plain.html` | https://about.ups.com/us/en/our-company/our-strategy.html | Our Strategy page |
+| `/content/us/en/our-company/our-culture.plain.html` | https://about.ups.com/us/en/our-company/our-culture.html | Our Culture page |
+| `/content/us/en/our-company/our-history.plain.html` | https://about.ups.com/us/en/our-company/our-history.html | Our History timeline |
+| `/content/us/en/our-company/leadership.plain.html` | https://about.ups.com/us/en/our-company/leadership.html | Leadership page |
+| `/content/us/en/our-company/great-employer.plain.html` | https://about.ups.com/us/en/our-company/great-employer.html | Great Employer topic hub |
+| `/content/us/en/our-company/suppliers.plain.html` | https://about.ups.com/us/en/our-company/suppliers.html | Suppliers topic hub |
+| `/content/us/en/our-company/global-presence.plain.html` | https://about.ups.com/us/en/our-company/global-presence.html | Global Presence page |
+| `/content/us/en/our-company/governance/carbon-neutral-credentials.plain.html` | https://about.ups.com/us/en/our-company/governance/carbon-neutral-credentials.html | Carbon Neutral Credentials article |
+| `/content/us/en/our-company/governance/transparency-rule.plain.html` | https://about.ups.com/us/en/our-company/governance/transparency-rule.html | Transparency Rule article |
+| `/content/us/en/our-impact.plain.html` | https://about.ups.com/us/en/our-impact.html | Our Impact landing page |
+| `/content/us/en/our-impact/community.plain.html` | https://about.ups.com/us/en/our-impact/community.html | Community topic hub |
+| `/content/us/en/our-impact/community/ups-foundation-leadership.plain.html` | https://about.ups.com/us/en/our-impact/community/ups-foundation-leadership.html | UPS Foundation Leadership |
+| `/content/us/en/our-impact/community/the-ups-foundation-mission-and-purpose.plain.html` | https://about.ups.com/us/en/our-impact/community/the-ups-foundation-mission-and-purpose.html | UPS Foundation Mission article |
+| `/content/us/en/our-impact/sustainability.plain.html` | https://about.ups.com/us/en/our-impact/sustainability.html | Sustainability topic hub |
+| `/content/us/en/our-impact/sustainability/key-highlights-*.plain.html` | https://about.ups.com/us/en/our-impact/sustainability/key-highlights-from-ups-s-latest-sustainability-and-community-im.html | Sustainability Key Highlights article |
+| `/content/us/en/our-impact/reporting.plain.html` | https://about.ups.com/us/en/our-impact/reporting.html | Reporting page |
+| `/content/us/en/our-impact/reporting/gender-equality-index-ups-france.plain.html` | https://about.ups.com/us/en/our-impact/reporting/gender-equality-index---ups-france-.html | Gender Equality Index article |
+| `/content/us/en/our-impact/ups-sustainability-and-social-impact-report.plain.html` | https://about.ups.com/us/en/our-impact/ups-sustainability-and-social-impact-report.html | Sustainability & Social Impact Report |
+| `/content/us/en/our-impact/ups-sustainability-and-social-impact-report/delivering-for-our-communities.plain.html` | (corresponding source URL) | Delivering For Our Communities |
+| `/content/us/en/our-impact/ups-sustainability-and-social-impact-report/delivering-for-our-people.plain.html` | (corresponding source URL) | Delivering For Our People |
+| `/content/us/en/our-impact/ups-sustainability-and-social-impact-report/delivering-for-our-planet.plain.html` | (corresponding source URL) | Delivering For Our Planet |
+| `/content/us/en/our-stories.plain.html` | https://about.ups.com/us/en/our-stories.html | Our Stories listing page |
+| `/content/us/en/our-stories/customer-first.plain.html` | https://about.ups.com/us/en/our-stories/customer-first.html | Customer First category page |
+| `/content/us/en/our-stories/innovation-driven.plain.html` | https://about.ups.com/us/en/our-stories/innovation-driven.html | Innovation Driven category page |
+| `/content/us/en/our-stories/people-led.plain.html` | https://about.ups.com/us/en/our-stories/people-led.html | People Led category page |
+| `/content/us/en/our-stories/customer-first/*.plain.html` | 36 story articles | Customer First stories |
+| `/content/us/en/our-stories/innovation-driven/*.plain.html` | 33 story articles | Innovation Driven stories |
+| `/content/us/en/our-stories/people-led/*.plain.html` | 35 story articles | People Led stories |
+| `/content/us/en/newsroom.plain.html` | https://about.ups.com/us/en/newsroom.html | Newsroom topic hub |
+| `/content/us/en/newsroom/awards-and-recognition.plain.html` | https://about.ups.com/us/en/newsroom/awards-and-recognition.html | Awards & Recognition page |
+| `/content/us/en/newsroom/press-releases.plain.html` | https://about.ups.com/us/en/newsroom/press-releases.html | Press Releases listing |
+| `/content/us/en/newsroom/statements.plain.html` | https://about.ups.com/us/en/newsroom/statements.html | Statements listing |
+| `/content/us/en/newsroom/facebook-rules.plain.html` | https://about.ups.com/us/en/newsroom/facebook-rules.html | Facebook Rules article |
+
+**Total**: 138 pages + 2 fragments. All pages use `.plain.html` format and `import-universal` script.
 
 **URL mapping convention**: Local paths follow the origin URL structure with `/content/` prefix. All content files use `.plain.html` extension.
 
-**Pages marked ❌ needs re-import as .plain.html**: These previously existed only as `.html` (table format). They were deleted and need to be re-imported as `.plain.html` (div format).
+**Dead source URLs removed** (returned 404 from source site): `get-everything-you-need-to-make-valentine-s-day-extra-special-d`, `new-shelves-new-customers-same-reliable-shipper`, `from-the-philippines-to-ireland-we-deliver-the-holidays`.
 
 ### Bulk Publish URL List
 
@@ -1545,14 +1558,17 @@ Import scripts for bulk content migration are in `/tools/importer/`.
 - **Article pages**: Auto-detected via `.pr15-details` selector → article-header, body content, embed, social-share, related stories
 - **Standard pages**: All other pages → block registry detection, DOM walking, section grouping with wrapper-aware styles
 
-The script includes all 13 block parsers and the cleanup transformer. It detects section wrapper contexts (arc, highlight, arc-wave) before cleanup runs, then applies appropriate section-metadata styles in the output.
+The script includes all 18 block parsers and the cleanup transformer. It detects section wrapper contexts (arc, highlight, arc-wave) before cleanup runs, then applies appropriate section-metadata styles in the output.
+
+**Bundling** (must re-bundle after ANY change to import-universal.js, parsers, or transformers):
+```bash
+npx esbuild tools/importer/import-universal.js --bundle --format=iife --global-name=CustomImportScript --outfile=tools/importer/import-universal.bundle.js
+```
+**⚠️ CRITICAL: Use `--format=iife --global-name=CustomImportScript`**. The bulk import runner injects the script as a `<script>` tag and looks for `window.CustomImportScript.default`. ESM format (`--format=esm`) will NOT work.
 
 **Usage:**
 ```bash
-# Single page
 node run-bulk-import.js --import-script tools/importer/import-universal.bundle.js --urls urls-file.txt
-
-# All pages use the same script — no per-template scripts needed
 ```
 
 ### File Reference
@@ -1575,6 +1591,11 @@ node run-bulk-import.js --import-script tools/importer/import-universal.bundle.j
 | `parsers/social-share.js` | Parser for social-share block (social media share links) |
 | `parsers/contact-card.js` | Parser for contact-card block (Media Relations section on newsroom) |
 | `parsers/navigation-tabs.js` | Parser for navigation-tabs block |
+| `parsers/cards-leadership.js` | Parser for cards-leadership block (leadership portraits) |
+| `parsers/cards-reports.js` | Parser for cards-reports block (report document cards) |
+| `parsers/timeline.js` | Parser for timeline block (our-history page) |
+| `parsers/awards-list.js` | Parser for awards-list block (awards-and-recognition page) |
+| `parsers/form.js` | Parser for form block (contact/speaker request forms) |
 | `transformers/ups-cleanup.js` | Site-wide DOM cleanup transformer |
 
 ---

@@ -285,7 +285,7 @@ main .section.accent-bar .default-content-wrapper h2::after {
   margin: var(--spacing-s) auto 0;
 }
 
-main .section.accent-bar .default-content-wrapper h6 {
+main .default-content-wrapper h6 {
   font-size: var(--eyebrow-size);
   font-weight: var(--eyebrow-weight);
   color: var(--color-muted);

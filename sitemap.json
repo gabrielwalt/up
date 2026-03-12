@@ -20,6 +20,17 @@
   ],
   "pages": [
     {
+      "path": "/us/en/all-stories",
+      "sourceUrl": "https://about.ups.com/us/en/all-stories.html",
+      "imported": true,
+      "importValidated": false,
+      "blocks": [
+        "cards-stories"
+      ],
+      "sectionStyles": [],
+      "importScript": "import-universal"
+    },
+    {
       "path": "/us/en/home",
       "sourceUrl": "https://about.ups.com/us/en/home.html",
       "imported": true,
@@ -33,7 +44,8 @@
       "sectionStyles": [
         "accent-bar",
         "arc-gradient"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/newsroom",
@@ -42,13 +54,73 @@
       "importValidated": false,
       "blocks": [
         "hero-featured",
+        "hero-featured-right",
         "cards-stories",
         "contact-card"
       ],
       "sectionStyles": [
         "arc",
+        "highlight"
+      ],
+      "importScript": "import-universal"
+    },
+    {
+      "path": "/us/en/newsroom/awards-and-recognition",
+      "sourceUrl": "https://about.ups.com/us/en/newsroom/awards-and-recognition.html",
+      "imported": true,
+      "importValidated": false,
+      "blocks": [
+        "cards-awards",
+        "awards-list"
+      ],
+      "sectionStyles": [
+        "accent-bar",
+        "dark",
+        "spacing-l"
+      ],
+      "importScript": "import-universal"
+    },
+    {
+      "path": "/us/en/newsroom/facebook-rules",
+      "sourceUrl": "https://about.ups.com/us/en/newsroom/facebook-rules.html",
+      "imported": true,
+      "importValidated": false,
+      "blocks": [
+        "article-header",
+        "social-share",
+        "cards-stories"
+      ],
+      "sectionStyles": [
+        "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
+    },
+    {
+      "path": "/us/en/newsroom/press-releases",
+      "sourceUrl": "https://about.ups.com/us/en/newsroom/press-releases.html",
+      "imported": true,
+      "importValidated": false,
+      "blocks": [
+        "cards-stories"
+      ],
+      "sectionStyles": [
+        "arc"
+      ],
+      "importScript": "import-universal"
+    },
+    {
+      "path": "/us/en/newsroom/statements",
+      "sourceUrl": "https://about.ups.com/us/en/newsroom/statements.html",
+      "imported": true,
+      "importValidated": false,
+      "blocks": [
+        "cards-stories"
+      ],
+      "sectionStyles": [
+        "arc"
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-company",
@@ -64,7 +136,49 @@
       "sectionStyles": [
         "arc",
         "highlight"
-      ]
+      ],
+      "importScript": "import-universal"
+    },
+    {
+      "path": "/us/en/our-company/global-presence",
+      "sourceUrl": "https://about.ups.com/us/en/our-company/global-presence.html",
+      "imported": true,
+      "importValidated": false,
+      "blocks": [
+        "cards-stories"
+      ],
+      "sectionStyles": [
+        "arc"
+      ],
+      "importScript": "import-universal"
+    },
+    {
+      "path": "/us/en/our-company/governance/carbon-neutral-credentials",
+      "sourceUrl": "https://about.ups.com/us/en/our-company/governance/carbon-neutral-credentials.html",
+      "imported": true,
+      "importValidated": false,
+      "blocks": [
+        "article-header",
+        "social-share",
+        "cards-stories"
+      ],
+      "sectionStyles": [
+        "highlight",
+        "accent-bar"
+      ],
+      "importScript": "import-universal"
+    },
+    {
+      "path": "/us/en/our-company/governance/transparency-rule",
+      "sourceUrl": "https://about.ups.com/us/en/our-company/governance/transparency-rule.html",
+      "imported": true,
+      "importValidated": false,
+      "blocks": [
+        "article-header",
+        "social-share"
+      ],
+      "sectionStyles": [],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-company/great-employer",
@@ -81,7 +195,23 @@
         "arc",
         "spacing-l",
         "spacing-xl"
-      ]
+      ],
+      "importScript": "import-universal"
+    },
+    {
+      "path": "/us/en/our-company/leadership",
+      "sourceUrl": "https://about.ups.com/us/en/our-company/leadership.html",
+      "imported": true,
+      "importValidated": false,
+      "blocks": [
+        "cards-leadership"
+      ],
+      "sectionStyles": [
+        "arc",
+        "spacing-l",
+        "spacing-xl"
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-company/our-culture",
@@ -93,7 +223,21 @@
       ],
       "sectionStyles": [
         "arc-wave"
-      ]
+      ],
+      "importScript": "import-universal"
+    },
+    {
+      "path": "/us/en/our-company/our-history",
+      "sourceUrl": "https://about.ups.com/us/en/our-company/our-history.html",
+      "imported": true,
+      "importValidated": false,
+      "blocks": [
+        "timeline"
+      ],
+      "sectionStyles": [
+        "arc"
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-company/our-strategy",
@@ -105,7 +249,8 @@
         "columns-feature",
         "cards-stories"
       ],
-      "sectionStyles": []
+      "sectionStyles": [],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-company/suppliers",
@@ -113,12 +258,13 @@
       "imported": true,
       "importValidated": false,
       "blocks": [
-        "hero-featured"
+        "hero-featured",
+        "hero-featured-right"
       ],
       "sectionStyles": [
-        "accent-bar",
         "spacing-l"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-impact",
@@ -134,7 +280,8 @@
       "sectionStyles": [
         "arc-gradient",
         "highlight"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-impact/community",
@@ -152,7 +299,66 @@
         "accent-bar",
         "spacing-l",
         "spacing-xl"
-      ]
+      ],
+      "importScript": "import-universal"
+    },
+    {
+      "path": "/us/en/our-impact/community/the-ups-foundation-mission-and-purpose",
+      "sourceUrl": "https://about.ups.com/us/en/our-impact/community/the-ups-foundation-mission-and-purpose.html",
+      "imported": true,
+      "importValidated": false,
+      "blocks": [
+        "article-header",
+        "social-share",
+        "cards-stories"
+      ],
+      "sectionStyles": [
+        "highlight",
+        "accent-bar"
+      ],
+      "importScript": "import-universal"
+    },
+    {
+      "path": "/us/en/our-impact/community/ups-foundation-leadership",
+      "sourceUrl": "https://about.ups.com/us/en/our-impact/community/ups-foundation-leadership.html",
+      "imported": true,
+      "importValidated": false,
+      "blocks": [
+        "cards-leadership",
+        "navigation-tabs"
+      ],
+      "sectionStyles": [
+        "spacing-l",
+        "spacing-xl"
+      ],
+      "importScript": "import-universal"
+    },
+    {
+      "path": "/us/en/our-impact/reporting",
+      "sourceUrl": "https://about.ups.com/us/en/our-impact/reporting.html",
+      "imported": true,
+      "importValidated": false,
+      "blocks": [
+        "cards-reports"
+      ],
+      "sectionStyles": [
+        "arc",
+        "spacing-l",
+        "spacing-xl"
+      ],
+      "importScript": "import-universal"
+    },
+    {
+      "path": "/us/en/our-impact/reporting/gender-equality-index-ups-france",
+      "sourceUrl": "https://about.ups.com/us/en/our-impact/reporting/gender-equality-index---ups-france-.html",
+      "importScript": "import-universal",
+      "imported": true,
+      "importValidated": false,
+      "blocks": [
+        "article-header",
+        "social-share"
+      ],
+      "sectionStyles": []
     },
     {
       "path": "/us/en/our-impact/sustainability",
@@ -165,10 +371,95 @@
         "cards-stories"
       ],
       "sectionStyles": [
-        "arc",
         "accent-bar",
         "spacing-l"
-      ]
+      ],
+      "importScript": "import-universal"
+    },
+    {
+      "path": "/us/en/our-impact/sustainability/key-highlights-from-ups-s-latest-sustainability-and-community-im",
+      "sourceUrl": "https://about.ups.com/us/en/our-impact/sustainability/key-highlights-from-ups-s-latest-sustainability-and-community-im.html",
+      "imported": true,
+      "importValidated": false,
+      "blocks": [
+        "article-header",
+        "social-share",
+        "cards-stories"
+      ],
+      "sectionStyles": [
+        "accent-bar",
+        "highlight"
+      ],
+      "importScript": "import-universal"
+    },
+    {
+      "path": "/us/en/our-impact/ups-sustainability-and-social-impact-report",
+      "sourceUrl": "https://about.ups.com/us/en/our-impact/ups-sustainability-and-social-impact-report.html",
+      "imported": true,
+      "importValidated": false,
+      "blocks": [
+        "hero-featured",
+        "columns-feature",
+        "columns-quote"
+      ],
+      "sectionStyles": [
+        "spacing-l"
+      ],
+      "importScript": "import-universal"
+    },
+    {
+      "path": "/us/en/our-impact/ups-sustainability-and-social-impact-report/delivering-for-our-communities",
+      "sourceUrl": "https://about.ups.com/us/en/our-impact/ups-sustainability-and-social-impact-report/delivering-for-our-communities.html",
+      "imported": true,
+      "importValidated": false,
+      "blocks": [
+        "hero-featured",
+        "hero-featured-right",
+        "fact-sheets",
+        "columns-feature",
+        "columns-quote",
+        "cards-stories"
+      ],
+      "sectionStyles": [
+        "spacing-l",
+        "spacing-xl"
+      ],
+      "importScript": "import-universal"
+    },
+    {
+      "path": "/us/en/our-impact/ups-sustainability-and-social-impact-report/delivering-for-our-people",
+      "sourceUrl": "https://about.ups.com/us/en/our-impact/ups-sustainability-and-social-impact-report/delivering-for-our-people.html",
+      "imported": true,
+      "importValidated": false,
+      "blocks": [
+        "hero-featured",
+        "fact-sheets",
+        "columns-quote",
+        "cards-stories"
+      ],
+      "sectionStyles": [
+        "spacing-l",
+        "spacing-xl"
+      ],
+      "importScript": "import-universal"
+    },
+    {
+      "path": "/us/en/our-impact/ups-sustainability-and-social-impact-report/delivering-for-our-planet",
+      "sourceUrl": "https://about.ups.com/us/en/our-impact/ups-sustainability-and-social-impact-report/delivering-for-our-planet.html",
+      "imported": true,
+      "importValidated": false,
+      "blocks": [
+        "hero-featured",
+        "hero-featured-right",
+        "fact-sheets",
+        "columns-quote",
+        "cards-stories"
+      ],
+      "sectionStyles": [
+        "spacing-l",
+        "spacing-xl"
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories",
@@ -181,7 +472,8 @@
       ],
       "sectionStyles": [
         "arc"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/customer-first",
@@ -193,7 +485,8 @@
       ],
       "sectionStyles": [
         "arc"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/customer-first/3-reasons-you-can-trust-ups-to-ship-luxury-watches-around-the-wo",
@@ -208,7 +501,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/customer-first/3-ways-ups-helps-businesses-navigate-global-trade-and-tariffs",
@@ -223,7 +517,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/customer-first/4-key-takeaways-from-ups-s-2025-impact-summit",
@@ -238,7 +533,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/customer-first/4-things-you-need-to-know-from-ups-s-q2-2025-earnings-announceme",
@@ -253,7 +549,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/customer-first/5-things-every-business-should-know-about-returns-in-2025-and-be",
@@ -268,7 +565,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/customer-first/5-things-you-didn-t-know-the-ups-store-could-do-for-your-small-b",
@@ -283,7 +581,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/customer-first/a-peek-into-peak-shipping-season-at-ups",
@@ -298,7 +597,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/customer-first/beat-the-holiday-rush-shop-early-ship-early-with-ups",
@@ -313,7 +613,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/customer-first/college-student-essentials-shipped-by-ups",
@@ -328,7 +629,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/customer-first/delivering-iconic-flavors-with-ups-the-recipe-behind-goldbelly",
@@ -343,7 +645,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/customer-first/fresh-products-need-a-reliable-shipper",
@@ -358,22 +661,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
-    },
-    {
-      "path": "/us/en/our-stories/customer-first/get-everything-you-need-to-make-valentine-s-day-extra-special-d",
-      "sourceUrl": "https://about.ups.com/us/en/our-stories/customer-first/get-everything-you-need-to-make-valentine-s-day-extra-special-d.html",
-      "imported": true,
-      "importValidated": false,
-      "blocks": [
-        "article-header",
-        "social-share",
-        "cards-stories"
       ],
-      "sectionStyles": [
-        "highlight",
-        "accent-bar"
-      ]
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/customer-first/how-one-entrepreneur-got-a-surprise-mentorship-session-with-emma",
@@ -388,7 +677,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/customer-first/how-ups-powers-small-business-growth",
@@ -403,22 +693,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
-    },
-    {
-      "path": "/us/en/our-stories/customer-first/new-shelves-new-customers-same-reliable-shipper",
-      "sourceUrl": "https://about.ups.com/us/en/our-stories/customer-first/new-shelves-new-customers-same-reliable-shipper.html",
-      "imported": true,
-      "importValidated": false,
-      "blocks": [
-        "article-header",
-        "social-share",
-        "cards-stories"
       ],
-      "sectionStyles": [
-        "highlight",
-        "accent-bar"
-      ]
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/customer-first/our-favorite-moments-delivering-what-matters-in-2025",
@@ -433,7 +709,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/customer-first/sanmar-and-ups-an-iconic-partnership-delivering-world-class-spe",
@@ -448,7 +725,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/customer-first/seamus-golf-swings-big-through-ups-s-ryder-cup-partnership",
@@ -463,7 +741,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/customer-first/see-how-coco-gauff-emma-grede-and-ups-help-deliver-sweet-succes",
@@ -478,7 +757,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/customer-first/see-how-ups-delivers-for-one-luxury-bag-brand-crafted-by-african",
@@ -493,7 +773,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/customer-first/shipping-tips-to-get-the-most-out-of-your-holiday-sales",
@@ -508,7 +789,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/customer-first/shop-small-ship-smart",
@@ -523,7 +805,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/customer-first/shoppers-say-goodbye-to-surprise-tariff-expenses-with-ups-global",
@@ -538,7 +821,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/customer-first/small-business-big-growth",
@@ -553,7 +837,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/customer-first/smarter-supply-chains-start-here-with-ups-expertise-leading-th",
@@ -568,7 +853,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/customer-first/subway-takes-creator-kareem-rahma-teams-up-with-ups-for-small",
@@ -583,7 +869,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/customer-first/surf-shop-catches-the-ups-wave-when-previous-carrier-wipes-out",
@@ -598,7 +885,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/customer-first/the-judges-have-spoken-ups-recognized-for-culture-reputation-a",
@@ -613,7 +901,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/customer-first/the-ups-store-small-biz-challenge",
@@ -628,7 +917,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/customer-first/ups-and-american-express-collaborate-to-make-logistics-and-payme",
@@ -637,6 +927,26 @@
       "importValidated": true,
       "blocks": [
         "article-header",
+        "social-share",
+        "cards-stories"
+      ],
+      "sectionStyles": [
+        "highlight",
+        "accent-bar"
+      ],
+      "importScript": "import-universal"
+    },
+    {
+      "path": "/us/en/our-stories/customer-first/ups-and-lfc-celebrate-liverpool",
+      "sourceUrl": "https://about.ups.com/us/en/our-stories/customer-first/ups-and-lfc-celebrate-liverpool.html",
+      "importScript": "import-universal",
+      "imported": true,
+      "importValidated": false,
+      "critiqued": false,
+      "approved": false,
+      "blocks": [
+        "article-header",
+        "embed",
         "social-share",
         "cards-stories"
       ],
@@ -658,7 +968,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/customer-first/ups-helps-businesses-grow-with-sustainable-shipping-and-easy-ret",
@@ -673,7 +984,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/customer-first/ups-leads-the-way-in-on-time-delivery-during-the-2025-holiday-se",
@@ -688,7 +1000,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/customer-first/ups-partners-with-serial-entrepreneur-emma-grede-and-tennis-grea",
@@ -703,7 +1016,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/customer-first/ups-tees-up-for-the-2025-ryder-cup",
@@ -718,7 +1032,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/customer-first/what-brings-us-together-our-holiday-ups-express-box-delivers",
@@ -733,7 +1048,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/customer-first/woodworking-company-s-export-business-booms-with-help-from-ups",
@@ -748,7 +1064,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/innovation-driven",
@@ -760,7 +1077,8 @@
       ],
       "sectionStyles": [
         "arc"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/innovation-driven/3-things-you-need-to-know-about-the-future-of-healthcare-logisti",
@@ -775,7 +1093,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/innovation-driven/3-ways-ups-healthcare-delivers-temperature-sensitive-biologics-l",
@@ -790,7 +1109,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/innovation-driven/3-ways-ups-is-using-smart-tech-today-to-deliver-a-more-sustainab",
@@ -805,7 +1125,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/innovation-driven/5-ways-the-new-ups-velocity-facility-orchestrates",
@@ -820,7 +1141,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/innovation-driven/alternative-fuel-technology-showcased-at-expo-2020",
@@ -835,7 +1157,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/innovation-driven/courage-to-change-how-ups-transformed-to-lead-the-future-of-glo",
@@ -850,7 +1173,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/innovation-driven/drone-covid-vaccine-deliveries",
@@ -865,7 +1189,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/innovation-driven/experience-ups-innovations-at-expo",
@@ -880,7 +1205,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/innovation-driven/flightless-birds-land-safely-at-world-expo-in-dubai",
@@ -895,7 +1221,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/innovation-driven/forest-of-the-future",
@@ -910,7 +1237,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/innovation-driven/head-of-supply-chain-solutions-at-ups-talks-4-emerging-trends-in",
@@ -925,7 +1253,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/innovation-driven/how-ups-is-helping-customers-with-sustainable-logistics",
@@ -940,7 +1269,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/innovation-driven/innovation-fuels-global-logistics",
@@ -955,7 +1285,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/innovation-driven/lessons-from-the-e-bike-journey-of-ups",
@@ -970,7 +1301,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/innovation-driven/mobile-training-academy-brings-safety-focused-driver-training-to",
@@ -985,7 +1317,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/innovation-driven/new-chief-digital-and-technology-officer",
@@ -1000,7 +1333,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/innovation-driven/new-state-of-the-art-ups-facility-opens-in-tacoma-washington",
@@ -1015,7 +1349,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/innovation-driven/new-ups-electric-vehicles-hit-the-streets-of-europe",
@@ -1030,7 +1365,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/innovation-driven/renewable-natural-gas-is-an-important-part-of-ups-strategy-to-in",
@@ -1045,7 +1381,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/innovation-driven/top-5-takeaways-from-ups-s-q3-2025-earnings-announcement",
@@ -1060,7 +1397,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/innovation-driven/ups-adds-two-new-cross-docks-in-europe-to-meet-growing-healthcar",
@@ -1075,7 +1413,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/innovation-driven/ups-and-google-cloud",
@@ -1090,7 +1429,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/innovation-driven/ups-and-koda-ship-first-ever-unattended-kidney-on-a-pump",
@@ -1105,7 +1445,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/innovation-driven/ups-cambridge-cycle-hub-paves-the-way-for-sustainable-city-deliv",
@@ -1120,7 +1461,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/innovation-driven/ups-healthcare-upgrades-two-facilities-in-italy-with-55-million",
@@ -1135,7 +1477,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/innovation-driven/ups-is-improving-careers-and-access-to-opportunity-with-the-help",
@@ -1150,7 +1493,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/innovation-driven/ups-opens-first-dedicated-healthcare-facility-in-ireland",
@@ -1165,7 +1509,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/innovation-driven/ups-opens-new-technology-center-in-chennai-india",
@@ -1180,7 +1525,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/innovation-driven/ups-recognized-as-one-of-2023-s-most-innovative-companies",
@@ -1195,7 +1541,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/innovation-driven/ups-s-deliverydefense-pits-ai-against-criminals",
@@ -1210,7 +1557,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/innovation-driven/ups-takes-center-stage-at-google-cloud-next-24-and-rfid-journal",
@@ -1225,7 +1573,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/innovation-driven/ups-teams-up-with-rubicon",
@@ -1240,7 +1589,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/innovation-driven/virtual-reality-helping-to-create-safety-for-ups-drivers",
@@ -1255,7 +1605,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/people-led",
@@ -1267,7 +1618,8 @@
       ],
       "sectionStyles": [
         "arc"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/people-led/40-years-of-service-and-a-lifetime-of-ups-pride",
@@ -1282,7 +1634,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/people-led/7-things-you-didnt-know-about-ups-and-its-browntail-jets",
@@ -1297,7 +1650,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/people-led/a-letter-to-the-jarvis-family",
@@ -1312,7 +1666,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/people-led/a-look-at-the-pioneering-women-who-shaped-ups-history",
@@ -1327,7 +1682,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/people-led/backed-by-ups-one-mother-s-story-of-resilience-and-support",
@@ -1342,7 +1698,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/people-led/celebrating-ups-driver-george-lodovico-for-55-years-of-safe-driv",
@@ -1357,7 +1714,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/people-led/cheers-to-118-years-of-ups",
@@ -1372,7 +1730,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/people-led/from-our-customers-hearts-to-ups-words-of-gratitude-for-extrao",
@@ -1387,7 +1746,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/people-led/from-the-er-to-ups-one-mom-s-journey-to-flexibility-and-opportu",
@@ -1402,22 +1762,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
-    },
-    {
-      "path": "/us/en/our-stories/people-led/from-the-philippines-to-ireland-we-deliver-the-holidays",
-      "sourceUrl": "https://about.ups.com/us/en/our-stories/people-led/from-the-philippines-to-ireland-we-deliver-the-holidays.html",
-      "imported": true,
-      "importValidated": false,
-      "blocks": [
-        "article-header",
-        "social-share",
-        "cards-stories"
       ],
-      "sectionStyles": [
-        "highlight",
-        "accent-bar"
-      ]
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/people-led/from-ups-scholar-to-the-ups-store-owner-and-everything-in-betw",
@@ -1432,7 +1778,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/people-led/how-one-ups-driver-mastered-arizona-s-desert-summers",
@@ -1447,7 +1794,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/people-led/how-one-ups-employee-turned-a-job-into-a-thriving-career",
@@ -1462,7 +1810,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/people-led/how-one-ups-leaders-personal-tragedy-ignited-a-passion-for-safet",
@@ -1477,7 +1826,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/people-led/how-ups-helped-one-employee-find-and-pursue-their-passion",
@@ -1492,7 +1842,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/people-led/iconic-ups-delivery-vehicles-get-new-flair",
@@ -1507,7 +1858,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/people-led/in-memory-of-ken-jarvis",
@@ -1522,7 +1874,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/people-led/keeping-seasonal-workers-safe",
@@ -1537,7 +1890,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/people-led/meet-cal-murray",
@@ -1552,7 +1906,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/people-led/meet-malina-downey-a-ups-engineer-powering-holiday-operations",
@@ -1567,7 +1922,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/people-led/meet-the-ups-ready-team-on-call-to-serve-during-the-busiest-time",
@@ -1582,7 +1938,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/people-led/national-human-trafficking-prevention-month",
@@ -1597,7 +1954,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/people-led/peak-wrap-up",
@@ -1612,7 +1970,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/people-led/special-olympics-coach-builds-lasting-career-in-a-specialist-rol",
@@ -1627,7 +1986,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/people-led/sunshine-state-ups-driver-turns-personal-loss-into-heat-safety-l",
@@ -1642,7 +2002,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/people-led/the-road-to-excellence-ups-drivers-at-the-national-truck-driving",
@@ -1657,7 +2018,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/people-led/the-safest-wheels-on-the-road",
@@ -1672,7 +2034,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/people-led/the-ups-store-bags-fifth-win-at-the-tournament-of-roses",
@@ -1687,7 +2050,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/people-led/thirsty-for-safety-how-one-ups-driver-is-making-a-splash",
@@ -1702,7 +2066,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/people-led/ups-delivers-holiday-shipping-with-flexibility-visibility-and-e",
@@ -1717,7 +2082,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/people-led/ups-driver-joel-reyez-shares-his-tips-to-working-in-the-heat",
@@ -1732,7 +2098,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/people-led/ups-driver-retires-after-58-years-and-over-5-million-accident-free-miles",
@@ -1747,7 +2114,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/people-led/ups-drivers-shine-at-2025-national-truck-driving-championships",
@@ -1762,7 +2130,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/people-led/ups-unveils-prosperous-daruma-express-envelope-design-in-japan",
@@ -1777,7 +2146,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/people-led/upss-holiday-hiring-spree",
@@ -1792,7 +2162,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
+      ],
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/our-stories/people-led/what-can-brown-noise-do-for-you",
@@ -1807,261 +2178,8 @@
       "sectionStyles": [
         "highlight",
         "accent-bar"
-      ]
-    },
-    {
-      "path": "/us/en/all-stories",
-      "sourceUrl": "https://about.ups.com/us/en/all-stories.html",
-      "imported": true,
-      "importValidated": false,
-      "blocks": [
-        "cards-stories"
       ],
-      "sectionStyles": []
-    },
-    {
-      "path": "/us/en/newsroom/awards-and-recognition",
-      "sourceUrl": "https://about.ups.com/us/en/newsroom/awards-and-recognition.html",
-      "imported": true,
-      "importValidated": false,
-      "blocks": [
-        "cards-awards",
-        "awards-list"
-      ],
-      "sectionStyles": [
-        "dark",
-        "accent-bar",
-        "highlight"
-      ]
-    },
-    {
-      "path": "/us/en/newsroom/facebook-rules",
-      "sourceUrl": "https://about.ups.com/us/en/newsroom/facebook-rules.html",
-      "imported": true,
-      "importValidated": false,
-      "blocks": [
-        "article-header",
-        "social-share",
-        "cards-stories"
-      ],
-      "sectionStyles": [
-        "highlight",
-        "accent-bar"
-      ]
-    },
-    {
-      "path": "/us/en/newsroom/press-releases",
-      "sourceUrl": "https://about.ups.com/us/en/newsroom/press-releases.html",
-      "imported": true,
-      "importValidated": false,
-      "blocks": [
-        "cards-stories"
-      ],
-      "sectionStyles": [
-        "arc",
-        "accent-bar"
-      ]
-    },
-    {
-      "path": "/us/en/newsroom/statements",
-      "sourceUrl": "https://about.ups.com/us/en/newsroom/statements.html",
-      "imported": true,
-      "importValidated": false,
-      "blocks": [
-        "cards-stories"
-      ],
-      "sectionStyles": [
-        "arc",
-        "accent-bar"
-      ]
-    },
-    {
-      "path": "/us/en/our-company/global-presence",
-      "sourceUrl": "https://about.ups.com/us/en/our-company/global-presence.html",
-      "imported": true,
-      "importValidated": false,
-      "blocks": [
-        "cards-stories"
-      ],
-      "sectionStyles": [
-        "arc",
-        "accent-bar"
-      ]
-    },
-    {
-      "path": "/us/en/our-company/governance/carbon-neutral-credentials",
-      "sourceUrl": "https://about.ups.com/us/en/our-company/governance/carbon-neutral-credentials.html",
-      "imported": true,
-      "importValidated": false,
-      "blocks": [
-        "article-header",
-        "social-share",
-        "cards-stories"
-      ],
-      "sectionStyles": [
-        "highlight",
-        "accent-bar"
-      ]
-    },
-    {
-      "path": "/us/en/our-company/governance/transparency-rule",
-      "sourceUrl": "https://about.ups.com/us/en/our-company/governance/transparency-rule.html",
-      "imported": true,
-      "importValidated": false,
-      "blocks": [
-        "article-header",
-        "social-share",
-        "cards-stories"
-      ],
-      "sectionStyles": [
-        "highlight",
-        "accent-bar"
-      ]
-    },
-    {
-      "path": "/us/en/our-company/leadership",
-      "sourceUrl": "https://about.ups.com/us/en/our-company/leadership.html",
-      "imported": true,
-      "importValidated": false,
-      "blocks": [
-        "cards-leadership"
-      ],
-      "sectionStyles": [
-        "arc",
-        "accent-bar",
-        "spacing-l"
-      ]
-    },
-    {
-      "path": "/us/en/our-company/our-history",
-      "sourceUrl": "https://about.ups.com/us/en/our-company/our-history.html",
-      "imported": true,
-      "importValidated": false,
-      "blocks": [
-        "timeline"
-      ],
-      "sectionStyles": [
-        "arc",
-        "spacing-2xl"
-      ]
-    },
-    {
-      "path": "/us/en/our-impact/community/the-ups-foundation-mission-and-purpose",
-      "sourceUrl": "https://about.ups.com/us/en/our-impact/community/the-ups-foundation-mission-and-purpose.html",
-      "imported": true,
-      "importValidated": false,
-      "blocks": [
-        "article-header",
-        "social-share",
-        "cards-stories"
-      ],
-      "sectionStyles": [
-        "highlight",
-        "accent-bar"
-      ]
-    },
-    {
-      "path": "/us/en/our-impact/community/ups-foundation-leadership",
-      "sourceUrl": "https://about.ups.com/us/en/our-impact/community/ups-foundation-leadership.html",
-      "imported": true,
-      "importValidated": false,
-      "blocks": [
-        "cards-leadership",
-        "navigation-tabs"
-      ],
-      "sectionStyles": [
-        "arc",
-        "spacing-l"
-      ]
-    },
-    {
-      "path": "/us/en/our-impact/reporting",
-      "sourceUrl": "https://about.ups.com/us/en/our-impact/reporting.html",
-      "imported": true,
-      "importValidated": false,
-      "blocks": [
-        "cards-reports"
-      ],
-      "sectionStyles": [
-        "arc",
-        "spacing-2xl",
-        "spacing-l"
-      ]
-    },
-    {
-      "path": "/us/en/our-impact/reporting/gender-equality-index-ups-france",
-      "sourceUrl": "https://about.ups.com/us/en/our-impact/reporting/gender-equality-index---ups-france-.html",
-      "importScript": "import-universal",
-      "imported": true,
-      "importValidated": false,
-      "blocks": [
-        "article-header",
-        "social-share"
-      ],
-      "sectionStyles": []
-    },
-    {
-      "path": "/us/en/our-impact/sustainability/key-highlights-from-ups-s-latest-sustainability-and-community-im",
-      "sourceUrl": "https://about.ups.com/us/en/our-impact/sustainability/key-highlights-from-ups-s-latest-sustainability-and-community-im.html",
-      "imported": true,
-      "importValidated": false,
-      "blocks": [
-        "article-header",
-        "social-share",
-        "cards-stories"
-      ],
-      "sectionStyles": [
-        "highlight",
-        "accent-bar"
-      ]
-    },
-    {
-      "path": "/us/en/our-impact/ups-sustainability-and-social-impact-report",
-      "sourceUrl": "https://about.ups.com/us/en/our-impact/ups-sustainability-and-social-impact-report.html",
-      "imported": true,
-      "importValidated": false,
-      "blocks": [
-        "hero-featured",
-        "columns-quote",
-        "columns-feature"
-      ],
-      "sectionStyles": []
-    },
-    {
-      "path": "/us/en/our-impact/ups-sustainability-and-social-impact-report/delivering-for-our-communities",
-      "sourceUrl": "https://about.ups.com/us/en/our-impact/ups-sustainability-and-social-impact-report/delivering-for-our-communities.html",
-      "imported": true,
-      "importValidated": false,
-      "blocks": [
-        "hero-featured",
-        "columns-quote",
-        "columns-feature"
-      ],
-      "sectionStyles": []
-    },
-    {
-      "path": "/us/en/our-impact/ups-sustainability-and-social-impact-report/delivering-for-our-people",
-      "sourceUrl": "https://about.ups.com/us/en/our-impact/ups-sustainability-and-social-impact-report/delivering-for-our-people.html",
-      "imported": true,
-      "importValidated": false,
-      "blocks": [
-        "hero-featured",
-        "columns-quote",
-        "columns-feature"
-      ],
-      "sectionStyles": []
-    },
-    {
-      "path": "/us/en/our-impact/ups-sustainability-and-social-impact-report/delivering-for-our-planet",
-      "sourceUrl": "https://about.ups.com/us/en/our-impact/ups-sustainability-and-social-impact-report/delivering-for-our-planet.html",
-      "imported": true,
-      "importValidated": false,
-      "blocks": [
-        "hero-featured",
-        "columns-quote",
-        "columns-feature"
-      ],
-      "sectionStyles": []
+      "importScript": "import-universal"
     },
     {
       "path": "/us/en/thank-a-ups-hero",
@@ -2074,7 +2192,8 @@
       ],
       "sectionStyles": [
         "spacing-l"
-      ]
+      ],
+      "importScript": "import-universal"
     }
   ]
 }

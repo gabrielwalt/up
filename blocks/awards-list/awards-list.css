@@ -98,9 +98,19 @@ main > div:has(.awards-list) {
   margin: 0 0 var(--spacing-xs);
 }
 
-/* ===== DATE + DESCRIPTION ===== */
+/* ===== DATE ===== */
 
-.awards-list .awards-list-meta {
+.awards-list .awards-list-date {
+  font-size: var(--body-font-size-m);
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--color-muted);
+  margin: 0 0 var(--spacing-xs);
+}
+
+/* ===== DESCRIPTION ===== */
+
+.awards-list .awards-list-desc {
   font-size: var(--body-font-size-m);
   font-weight: 400;
   line-height: 1.5;
