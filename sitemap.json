@@ -1179,7 +1179,7 @@
       "path": "/us/en/our-company/leadership",
       "sourceUrl": "https://about.ups.com/us/en/our-company/leadership.html",
       "imported": true,
-      "importValidated": false,
+      "importValidated": true,
       "blocks": [
         "cards-leadership"
       ],
@@ -1187,247 +1187,269 @@
         "arc",
         "spacing-l",
         "spacing-xl"
-      ]
+      ],
+      "critiqued": true,
+      "critiqueScore": 0.95
     },
     {
       "path": "/us/en/our-company/leadership/angela-hwang",
       "sourceUrl": "https://about.ups.com/us/en/our-company/leadership/angela-hwang.html",
       "imported": true,
-      "importValidated": false,
-      "critiqued": false,
+      "importValidated": true,
+      "critiqued": true,
       "approved": false,
       "blocks": [
         "leadership-bio"
       ],
-      "sectionStyles": []
+      "sectionStyles": [],
+      "critiqueScore": 0.88
     },
     {
       "path": "/us/en/our-company/leadership/bala-subramanian",
       "sourceUrl": "https://about.ups.com/us/en/our-company/leadership/bala-subramanian.html",
       "imported": true,
-      "importValidated": false,
-      "critiqued": false,
+      "importValidated": true,
+      "critiqued": true,
       "approved": false,
       "blocks": [
         "leadership-bio"
       ],
-      "sectionStyles": []
+      "sectionStyles": [],
+      "critiqueScore": 0.88
     },
     {
       "path": "/us/en/our-company/leadership/brian-dykes",
       "sourceUrl": "https://about.ups.com/us/en/our-company/leadership/brian-dykes.html",
       "imported": true,
-      "importValidated": false,
-      "critiqued": false,
+      "importValidated": true,
+      "critiqued": true,
       "approved": false,
       "blocks": [
         "leadership-bio"
       ],
-      "sectionStyles": []
+      "sectionStyles": [],
+      "critiqueScore": 0.88
     },
     {
       "path": "/us/en/our-company/leadership/carol-tome",
       "sourceUrl": "https://about.ups.com/us/en/our-company/leadership/carol-tome.html",
       "imported": true,
-      "importValidated": false,
-      "critiqued": false,
+      "importValidated": true,
+      "critiqued": true,
       "approved": false,
       "blocks": [
         "leadership-bio"
       ],
-      "sectionStyles": []
+      "sectionStyles": [],
+      "critiqueScore": 0.87
     },
     {
       "path": "/us/en/our-company/leadership/christiana-smith-shi",
       "sourceUrl": "https://about.ups.com/us/en/our-company/leadership/christiana-smith-shi.html",
       "imported": true,
-      "importValidated": false,
-      "critiqued": false,
+      "importValidated": true,
+      "critiqued": true,
       "approved": false,
       "blocks": [
         "leadership-bio"
       ],
-      "sectionStyles": []
+      "sectionStyles": [],
+      "critiqueScore": 0.88
     },
     {
       "path": "/us/en/our-company/leadership/darrell-ford",
       "sourceUrl": "https://about.ups.com/us/en/our-company/leadership/darrell-ford.html",
       "imported": true,
-      "importValidated": false,
-      "critiqued": false,
+      "importValidated": true,
+      "critiqued": true,
       "approved": false,
       "blocks": [
         "leadership-bio"
       ],
-      "sectionStyles": []
+      "sectionStyles": [],
+      "critiqueScore": 0.88
     },
     {
       "path": "/us/en/our-company/leadership/eva-boratto",
       "sourceUrl": "https://about.ups.com/us/en/our-company/leadership/eva-boratto.html",
       "imported": true,
-      "importValidated": false,
-      "critiqued": false,
+      "importValidated": true,
+      "critiqued": true,
       "approved": false,
       "blocks": [
         "leadership-bio"
       ],
-      "sectionStyles": []
+      "sectionStyles": [],
+      "critiqueScore": 0.88
     },
     {
       "path": "/us/en/our-company/leadership/franck-moison",
       "sourceUrl": "https://about.ups.com/us/en/our-company/leadership/franck-moison.html",
       "imported": true,
-      "importValidated": false,
-      "critiqued": false,
+      "importValidated": true,
+      "critiqued": true,
       "approved": false,
       "blocks": [
         "leadership-bio"
       ],
-      "sectionStyles": []
+      "sectionStyles": [],
+      "critiqueScore": 0.88
     },
     {
       "path": "/us/en/our-company/leadership/john-morikis",
       "sourceUrl": "https://about.ups.com/us/en/our-company/leadership/john-morikis.html",
       "imported": true,
-      "importValidated": false,
-      "critiqued": false,
+      "importValidated": true,
+      "critiqued": true,
       "approved": false,
       "blocks": [
         "leadership-bio"
       ],
-      "sectionStyles": []
+      "sectionStyles": [],
+      "critiqueScore": 0.88
     },
     {
       "path": "/us/en/our-company/leadership/kate-gutmann",
       "sourceUrl": "https://about.ups.com/us/en/our-company/leadership/kate-gutmann.html",
       "imported": true,
-      "importValidated": false,
-      "critiqued": false,
+      "importValidated": true,
+      "critiqued": true,
       "approved": false,
       "blocks": [
         "leadership-bio"
       ],
-      "sectionStyles": []
+      "sectionStyles": [],
+      "critiqueScore": 0.88
     },
     {
       "path": "/us/en/our-company/leadership/kate-johnson",
       "sourceUrl": "https://about.ups.com/us/en/our-company/leadership/kate-johnson.html",
       "imported": true,
-      "importValidated": false,
-      "critiqued": false,
+      "importValidated": true,
+      "critiqued": true,
       "approved": false,
       "blocks": [
         "leadership-bio"
       ],
-      "sectionStyles": []
+      "sectionStyles": [],
+      "critiqueScore": 0.88
     },
     {
       "path": "/us/en/our-company/leadership/kevin-clark-about-ups",
       "sourceUrl": "https://about.ups.com/us/en/our-company/leadership/kevin-clark-about-ups.html",
       "imported": true,
-      "importValidated": false,
-      "critiqued": false,
+      "importValidated": true,
+      "critiqued": true,
       "approved": false,
       "blocks": [
         "leadership-bio"
       ],
-      "sectionStyles": []
+      "sectionStyles": [],
+      "critiqueScore": 0.88
     },
     {
       "path": "/us/en/our-company/leadership/kevin-m-warsh",
       "sourceUrl": "https://about.ups.com/us/en/our-company/leadership/kevin-m-warsh.html",
       "imported": true,
-      "importValidated": false,
-      "critiqued": false,
+      "importValidated": true,
+      "critiqued": true,
       "approved": false,
       "blocks": [
         "leadership-bio"
       ],
-      "sectionStyles": []
+      "sectionStyles": [],
+      "critiqueScore": 0.88
     },
     {
       "path": "/us/en/our-company/leadership/matt-guffey",
       "sourceUrl": "https://about.ups.com/us/en/our-company/leadership/matt-guffey.html",
       "imported": true,
-      "importValidated": false,
-      "critiqued": false,
+      "importValidated": true,
+      "critiqued": true,
       "approved": false,
       "blocks": [
         "leadership-bio"
       ],
-      "sectionStyles": []
+      "sectionStyles": [],
+      "critiqueScore": 0.88
     },
     {
       "path": "/us/en/our-company/leadership/nando-cesarone",
       "sourceUrl": "https://about.ups.com/us/en/our-company/leadership/nando-cesarone.html",
       "imported": true,
-      "importValidated": false,
-      "critiqued": false,
+      "importValidated": true,
+      "critiqued": true,
       "approved": false,
       "blocks": [
         "leadership-bio"
       ],
-      "sectionStyles": []
+      "sectionStyles": [],
+      "critiqueScore": 0.88
     },
     {
       "path": "/us/en/our-company/leadership/norman-m-brothers-jr",
       "sourceUrl": "https://about.ups.com/us/en/our-company/leadership/norman-m-brothers-jr.html",
       "imported": true,
-      "importValidated": false,
-      "critiqued": false,
+      "importValidated": true,
+      "critiqued": true,
       "approved": false,
       "blocks": [
         "leadership-bio"
       ],
-      "sectionStyles": []
+      "sectionStyles": [],
+      "critiqueScore": 0.88
     },
     {
       "path": "/us/en/our-company/leadership/rodney-c-adkins",
       "sourceUrl": "https://about.ups.com/us/en/our-company/leadership/rodney-c-adkins.html",
       "imported": true,
-      "importValidated": false,
-      "critiqued": false,
+      "importValidated": true,
+      "critiqued": true,
       "approved": false,
       "blocks": [
         "leadership-bio"
       ],
-      "sectionStyles": []
+      "sectionStyles": [],
+      "critiqueScore": 0.88
     },
     {
       "path": "/us/en/our-company/leadership/russell-stokes",
       "sourceUrl": "https://about.ups.com/us/en/our-company/leadership/russell-stokes.html",
       "imported": true,
-      "importValidated": false,
-      "critiqued": false,
+      "importValidated": true,
+      "critiqued": true,
       "approved": false,
       "blocks": [
         "leadership-bio"
       ],
-      "sectionStyles": []
+      "sectionStyles": [],
+      "critiqueScore": 0.88
     },
     {
       "path": "/us/en/our-company/leadership/wayne-hewett",
       "sourceUrl": "https://about.ups.com/us/en/our-company/leadership/wayne-hewett.html",
       "imported": true,
-      "importValidated": false,
-      "critiqued": false,
+      "importValidated": true,
+      "critiqued": true,
       "approved": false,
       "blocks": [
         "leadership-bio"
       ],
-      "sectionStyles": []
+      "sectionStyles": [],
+      "critiqueScore": 0.88
     },
     {
       "path": "/us/en/our-company/leadership/william-r-johnson",
       "sourceUrl": "https://about.ups.com/us/en/our-company/leadership/william-r-johnson.html",
       "imported": true,
-      "importValidated": false,
-      "critiqued": false,
+      "importValidated": true,
+      "critiqued": true,
       "approved": false,
       "blocks": [
         "leadership-bio"
       ],
-      "sectionStyles": []
+      "sectionStyles": [],
+      "critiqueScore": 0.88
     },
     {
       "path": "/us/en/our-company/our-culture",
@@ -1447,13 +1469,15 @@
       "path": "/us/en/our-company/our-history",
       "sourceUrl": "https://about.ups.com/us/en/our-company/our-history.html",
       "imported": true,
-      "importValidated": false,
+      "importValidated": true,
       "blocks": [
         "timeline"
       ],
       "sectionStyles": [
         "arc"
-      ]
+      ],
+      "critiqued": true,
+      "critiqueScore": 0.92
     },
     {
       "path": "/us/en/our-company/our-strategy",
@@ -1490,14 +1514,16 @@
       "path": "/us/en/our-company/suppliers",
       "sourceUrl": "https://about.ups.com/us/en/our-company/suppliers.html",
       "imported": true,
-      "importValidated": false,
+      "importValidated": true,
       "blocks": [
         "hero-featured",
         "hero-featured-right"
       ],
       "sectionStyles": [
         "spacing-l"
-      ]
+      ],
+      "critiqued": true,
+      "critiqueScore": 0.92
     },
     {
       "path": "/us/en/our-company/suppliers/supplier-training-resources",
@@ -2026,13 +2052,14 @@
       "path": "/us/en/our-impact/community/ups-foundation-leadership/nikki-clifton",
       "sourceUrl": "https://about.ups.com/us/en/our-impact/community/ups-foundation-leadership/nikki-clifton.html",
       "imported": true,
-      "importValidated": false,
-      "critiqued": false,
+      "importValidated": true,
+      "critiqued": true,
       "approved": false,
       "blocks": [
         "leadership-bio"
       ],
-      "sectionStyles": []
+      "sectionStyles": [],
+      "critiqueScore": 0.88
     },
     {
       "path": "/us/en/our-impact/reporting",
