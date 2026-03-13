@@ -1579,7 +1579,7 @@
       "path": "/us/en/our-impact/community",
       "sourceUrl": "https://about.ups.com/us/en/our-impact/community.html",
       "imported": true,
-      "importValidated": false,
+      "importValidated": true,
       "blocks": [
         "hero-featured",
         "columns-feature",
@@ -1591,7 +1591,9 @@
         "accent-bar",
         "spacing-l",
         "spacing-xl"
-      ]
+      ],
+      "critiqued": true,
+      "critiqueScore": 0.82
     },
     {
       "path": "/us/en/our-impact/community/equity-and-economic-empowerment/insights-on-economic-empowerment-from-the-ups-impact-summit",
@@ -2038,7 +2040,7 @@
       "path": "/us/en/our-impact/community/ups-foundation-leadership",
       "sourceUrl": "https://about.ups.com/us/en/our-impact/community/ups-foundation-leadership.html",
       "imported": true,
-      "importValidated": false,
+      "importValidated": true,
       "blocks": [
         "cards-leadership",
         "navigation-tabs"
@@ -2046,7 +2048,9 @@
       "sectionStyles": [
         "spacing-l",
         "spacing-xl"
-      ]
+      ],
+      "critiqued": true,
+      "critiqueScore": 0.9
     },
     {
       "path": "/us/en/our-impact/community/ups-foundation-leadership/nikki-clifton",
@@ -2065,7 +2069,7 @@
       "path": "/us/en/our-impact/reporting",
       "sourceUrl": "https://about.ups.com/us/en/our-impact/reporting.html",
       "imported": true,
-      "importValidated": false,
+      "importValidated": true,
       "blocks": [
         "cards-reports"
       ],
@@ -2073,7 +2077,9 @@
         "arc",
         "spacing-l",
         "spacing-xl"
-      ]
+      ],
+      "critiqued": true,
+      "critiqueScore": 0.88
     },
     {
       "path": "/us/en/our-impact/reporting/gender-equality-index-ups-france",
