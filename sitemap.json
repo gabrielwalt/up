@@ -23,11 +23,13 @@
       "path": "/us/en/all-stories",
       "sourceUrl": "https://about.ups.com/us/en/all-stories.html",
       "imported": true,
-      "importValidated": false,
+      "importValidated": true,
       "blocks": [
         "cards-stories"
       ],
-      "sectionStyles": []
+      "sectionStyles": [],
+      "critiqued": true,
+      "critiqueScore": 0.72
     },
     {
       "path": "/us/en/home",
@@ -968,8 +970,8 @@
       "path": "/us/en/our-company/governance",
       "sourceUrl": "https://about.ups.com/us/en/our-company/governance.html",
       "imported": true,
-      "importValidated": false,
-      "critiqued": false,
+      "importValidated": true,
+      "critiqued": true,
       "approved": false,
       "blocks": [
         "navigation-tabs",
@@ -977,7 +979,8 @@
       ],
       "sectionStyles": [
         "spacing-l"
-      ]
+      ],
+      "critiqueScore": 0.85
     },
     {
       "path": "/us/en/our-company/governance/carbon-neutral-credentials",
@@ -2098,7 +2101,7 @@
       "path": "/us/en/our-impact/sustainability",
       "sourceUrl": "https://about.ups.com/us/en/our-impact/sustainability.html",
       "imported": true,
-      "importValidated": false,
+      "importValidated": true,
       "blocks": [
         "hero-featured",
         "fact-sheets",
@@ -2107,7 +2110,9 @@
       "sectionStyles": [
         "accent-bar",
         "spacing-l"
-      ]
+      ],
+      "critiqued": true,
+      "critiqueScore": 0.82
     },
     {
       "path": "/us/en/our-impact/sustainability/carol-b-tome-shares-ups-sustainability-message",
@@ -2419,7 +2424,7 @@
       "path": "/us/en/our-impact/ups-sustainability-and-social-impact-report",
       "sourceUrl": "https://about.ups.com/us/en/our-impact/ups-sustainability-and-social-impact-report.html",
       "imported": true,
-      "importValidated": false,
+      "importValidated": true,
       "blocks": [
         "hero-featured",
         "columns-feature",
@@ -2427,13 +2432,15 @@
       ],
       "sectionStyles": [
         "spacing-l"
-      ]
+      ],
+      "critiqued": true,
+      "critiqueScore": 0.935
     },
     {
       "path": "/us/en/our-impact/ups-sustainability-and-social-impact-report/delivering-for-our-communities",
       "sourceUrl": "https://about.ups.com/us/en/our-impact/ups-sustainability-and-social-impact-report/delivering-for-our-communities.html",
       "imported": true,
-      "importValidated": false,
+      "importValidated": true,
       "blocks": [
         "hero-featured",
         "hero-featured-right",
@@ -2445,7 +2452,9 @@
       "sectionStyles": [
         "spacing-l",
         "spacing-xl"
-      ]
+      ],
+      "critiqued": true,
+      "critiqueScore": 0.82
     },
     {
       "path": "/us/en/our-impact/ups-sustainability-and-social-impact-report/delivering-for-our-communities/delivering-equity-economic-empowerment",
@@ -2519,7 +2528,7 @@
       "path": "/us/en/our-impact/ups-sustainability-and-social-impact-report/delivering-for-our-people",
       "sourceUrl": "https://about.ups.com/us/en/our-impact/ups-sustainability-and-social-impact-report/delivering-for-our-people.html",
       "imported": true,
-      "importValidated": false,
+      "importValidated": true,
       "blocks": [
         "hero-featured",
         "fact-sheets",
@@ -2529,13 +2538,15 @@
       "sectionStyles": [
         "spacing-l",
         "spacing-xl"
-      ]
+      ],
+      "critiqued": true,
+      "critiqueScore": 0.82
     },
     {
       "path": "/us/en/our-impact/ups-sustainability-and-social-impact-report/delivering-for-our-planet",
       "sourceUrl": "https://about.ups.com/us/en/our-impact/ups-sustainability-and-social-impact-report/delivering-for-our-planet.html",
       "imported": true,
-      "importValidated": false,
+      "importValidated": true,
       "blocks": [
         "hero-featured",
         "hero-featured-right",
@@ -2546,7 +2557,9 @@
       "sectionStyles": [
         "spacing-l",
         "spacing-xl"
-      ]
+      ],
+      "critiqued": true,
+      "critiqueScore": 0.82
     },
     {
       "path": "/us/en/our-stories",
@@ -4579,71 +4592,82 @@
       "path": "/us/en/subscribe",
       "sourceUrl": "https://about.ups.com/us/en/subscribe.html",
       "imported": true,
-      "importValidated": false,
-      "critiqued": false,
+      "importValidated": true,
+      "critiqued": true,
       "approved": false,
       "blocks": [],
-      "sectionStyles": []
+      "sectionStyles": [],
+      "critiqueScore": 0.15
     },
     {
       "path": "/us/en/thank-a-ups-hero",
       "sourceUrl": "https://about.ups.com/us/en/thank-a-ups-hero.html",
       "imported": true,
-      "importValidated": false,
+      "importValidated": true,
       "blocks": [
         "form",
         "cards-stories"
       ],
       "sectionStyles": [
         "spacing-l"
-      ]
+      ],
+      "critiqued": true,
+      "critiqueScore": 0.74
     },
     {
       "path": "/corporategovernance/board-committees",
       "sourceUrl": "https://investors.ups.com/corporategovernance/board-committees",
       "imported": true,
-      "importValidated": false,
+      "importValidated": true,
       "blocks": [
         "navigation-tabs",
         "data-table",
         "investor-links"
       ],
-      "sectionStyles": []
+      "sectionStyles": [],
+      "critiqued": true,
+      "critiqueScore": 0.75
     },
     {
       "path": "/corporategovernance/governance-documents",
       "sourceUrl": "https://investors.ups.com/corporategovernance/governance-documents",
       "imported": true,
-      "importValidated": false,
+      "importValidated": true,
       "blocks": [
         "navigation-tabs",
         "cards-reports",
         "investor-links"
       ],
-      "sectionStyles": []
+      "sectionStyles": [],
+      "critiqued": true,
+      "critiqueScore": 0.93
     },
     {
       "path": "/corporategovernance/contact-the-board",
       "sourceUrl": "https://investors.ups.com/corporategovernance/contact-the-board",
       "imported": true,
-      "importValidated": false,
+      "importValidated": true,
       "blocks": [
         "navigation-tabs",
         "investor-links"
       ],
-      "sectionStyles": []
+      "sectionStyles": [],
+      "critiqued": true,
+      "critiqueScore": 0.9
     },
     {
       "path": "/corporategovernance/ups-code-of-conduct-and-ethics",
       "sourceUrl": "https://investors.ups.com/corporategovernance/ups-code-of-conduct-and-ethics",
       "imported": true,
-      "importValidated": false,
+      "importValidated": true,
       "blocks": [
         "navigation-tabs",
         "cards-reports",
         "investor-links"
       ],
-      "sectionStyles": []
+      "sectionStyles": [],
+      "critiqued": true,
+      "critiqueScore": 0.9
     },
     {
       "path": "/corporategovernance/political-engagement-policy",
